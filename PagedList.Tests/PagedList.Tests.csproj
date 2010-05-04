@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PagedList.Tests</RootNamespace>
+    <AssemblyName>PagedList.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
+    <Reference Include="xunit.console, Version=1.1.0.1323, Culture=neutral, processorArchitecture=MSIL">
+      <ExecutableExtension>.exe</ExecutableExtension>
+    </Reference>
+    <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PagedListFacts.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticPagedListFacts.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PagedList\PagedList.csproj">
+      <Project>{DA52D7C3-B871-48EC-B009-AC782AD50266}</Project>
+      <Name>PagedList</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dependencies\xUnit 1.1\HTML.xslt" />
+    <Content Include="Dependencies\xUnit 1.1\NUnitXml.xslt" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.console.exe" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.extensions.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.extensions.xml" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.gui.exe" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.installer.exe" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.runner.msbuild.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.runner.resharper.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.runner.tdnet.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.runner.utility.dll" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.runner.utility.xml" />
+    <Content Include="Dependencies\xUnit 1.1\xunit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dependencies\xUnit 1.1\xunit.console.exe.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
