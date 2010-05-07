@@ -6,9 +6,6 @@ Tests.VisualState.xml
 [Dd]ebug
 *.bak
 *.manifest
-*.exe
-*.dll
-*.pdb
 *.cache
 *.suo
 *.orig
