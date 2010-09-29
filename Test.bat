@@ -1,3 +1,3 @@
-@ECHO OFF
-PagedList.Tests\bin\debug\xunit.console PagedList.Tests\bin\debug\PagedList.Tests.dll
+@ECHO OFF 
+src\PagedList.Tests\bin\debug\xunit.console src\PagedList.Tests\bin\debug\PagedList.Tests.dll
 PAUSE

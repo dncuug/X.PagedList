@@ -1,3 +1,3 @@
 @ECHO OFF
-%SYSTEMROOT%\Microsoft.Net\Framework\v3.5\msbuild.exe "PagedList.sln" /t:rebuild /p:Configuration=Release
+%SYSTEMROOT%\Microsoft.Net\Framework\v3.5\msbuild.exe "./src/PagedList.sln" /t:rebuild /p:Configuration=Release
 PAUSE
