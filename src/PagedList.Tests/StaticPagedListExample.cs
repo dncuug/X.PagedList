@@ -26,7 +26,7 @@ namespace PagedList.Tests
 			Console.WriteLine("Is first page? {0}", lastPage.IsFirstPage); // false
 			Console.WriteLine("Is last page? {0}", lastPage.IsLastPage); // true
 			Console.WriteLine("First value on page? {0}", lastPage[0]); // 1
-			Console.WriteLine();
+			Console.ReadKey(false);
 		}
 	}
 }
