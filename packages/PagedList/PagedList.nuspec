@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>PagedList</id>
+    <version>1.1.0.0</version>
+    <authors>
+      <author>Troy Goode</author>
+      <author>Scott Guthrie</author>
+    </authors>
+    <description><![CDATA[PagedList makes it easier for .Net developers to write paging code. It allows you to take any IEnumerable<T> and by specifying the page size and desired page index, select only a subset of that list. PagedList also provides properties that are useful when building UI paging controls.]]></description>
+    <language>en-US</language>
+    <homepage>http://github.com/TroyGoode/PagedList</homepage>
+  </metadata>
+</package>
