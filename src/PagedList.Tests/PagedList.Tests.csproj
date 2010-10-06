@@ -65,8 +65,10 @@
     <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PagedListExample.cs" />
     <Compile Include="PagedListFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticPagedListExample.cs" />
     <Compile Include="StaticPagedListFacts.cs" />
   </ItemGroup>
   <ItemGroup>
