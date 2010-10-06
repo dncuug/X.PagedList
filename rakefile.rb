@@ -21,10 +21,11 @@ msbuild :release => :test do |msb|
   msb.solution = "src/PagedList.sln"
 end
 
-task :package => :release do
+task :package do
   require 'fileutils'
   build_directory = './src/PagedList/bin/Release/'
   output_directory = './packages/PagedList/lib/40/'
+  FileUtils.mkdir_p output_directory
   FileUtils.cp build_directory + 'PagedList.dll', output_directory + 'PagedList.dll'
   FileUtils.cp build_directory + 'PagedList.pdb', output_directory + 'PagedList.pdb'
   FileUtils.cp build_directory + 'PagedList.xml', output_directory + 'PagedList.xml'
