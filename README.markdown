@@ -9,8 +9,8 @@ public class Program
 	public static void Main(string[] args)
 	{
 		// create a list of integers from 1 to 200
-		var list = new List<int>();
-		for(var i = 1; i <= 200; i++)
+		var list = new List&lt;int&gt;();
+		for(var i = 1; i &lt;= 200; i++)
 			list.Add(i);
 
 		var firstPage = list.ToPagedList(0, 20); // first page, page size = 20
@@ -47,8 +47,8 @@ public class Program
 	public static void Main(string[] args)
 	{
 		// create a list of integers from 1 to 20
-		var list = new List<int>();
-		for(var i = 1; i <= 20; i++)
+		var list = new List&lt;int&gt;();
+		for(var i = 1; i &lt;= 20; i++)
 			list.Add(i);
 
 		var firstPage = new StaticPagedList(list, 0, 20, 100); // first page
