@@ -4,9 +4,9 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 
 # How do I use it?
 
-1. Install "PagedList.Mvc" via NuGet.
+1. Install "PagedList.Mvc" via NuGet - that will automatically install "PagedList" as well.
 2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
-3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still IEnumerable, but only contains a subset of the original data.
+3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
 4. Call Html.PagedListPager, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
 
 # Example
@@ -17,11 +17,10 @@ public class ProductController : Controller
 {
 	public object Index(int? page)
 	{
-		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product>
+		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable&lt;Product&gt; representing an unknown number of products. a thousand maybe?
 
 		var pageIndex = page ?? 0; // if no page was specified in the querystring, default to page 0
-		var pageSize = 25;
-		var onePageOfProducts = products.ToPagedList(pageIndex, pageSize);
+		var onePageOfProducts = products.ToPagedList(pageIndex, 25); // will only contain 25 products max because of the pageSize
 		
 		ViewBag.OnePageOfProducts = onePageOfProducts;
 		return View();
@@ -50,86 +49,6 @@ public class ProductController : Controller
 
 &lt;-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
 @Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )
-</pre>
-
-# Using PagedList<T>
-<pre>
-using System;
-using System.Linq;
-
-namespace PagedList.Tests
-{
-	public class PagedListExample
-	{
-		public static void Main(string args)
-		{
-			// create a list of integers from 1 to 200
-			var list = Enumerable.Range(1, 200);
-
-			var firstPage = list.ToPagedList(0, 20); // first page, page size = 20
-
-			Console.WriteLine("Is first page? {0}", firstPage.IsFirstPage); // true
-			Console.WriteLine("Is last page? {0}", firstPage.IsLastPage); // false
-			Console.WriteLine("First value on page? {0}", firstPage[0]); // 1
-			Console.WriteLine();
-
-			var anotherPage = list.ToPagedList(4, 20); // fifth page, page size = 20
-			
-			Console.WriteLine("Is first page? {0}", anotherPage.IsFirstPage); // false
-			Console.WriteLine("Is last page? {0}", anotherPage.IsLastPage); // false
-			Console.WriteLine("Total integers in list? {0}", anotherPage.TotalItemCount); // 200
-			Console.WriteLine("Integers on this page? {0}", anotherPage.Count); // 20
-			Console.WriteLine("First value on page? {0}", anotherPage[0]); // 81
-			Console.WriteLine();
-
-			var lastPage = list.ToPagedList(9, 20); // last (tenth) page, page size = 20
-			
-			Console.WriteLine("Is first page? {0}", lastPage.IsFirstPage); // false
-			Console.WriteLine("Is last page? {0}", lastPage.IsLastPage); // true
-			Console.WriteLine("First value on page? {0}", lastPage[0]); // 181
-			Console.ReadKey(false);
-		}
-	}
-}
-</pre>
-
-# Using StaticPagedList<T>
-<pre>
-using System;
-using System.Linq;
-
-namespace PagedList.Tests
-{
-	public class StaticPagedListExample
-	{
-		public static void Main(string[] args)
-		{
-			// create a list of integers from 1 to 20
-			var list = Enumerable.Range(1, 20);
-
-			var firstPage = new StaticPagedList&lt;int&gt;(list, 0, 20, 100); // first page
-			
-			Console.WriteLine("Is first page? {0}", firstPage.IsFirstPage); // true
-			Console.WriteLine("Is last page? {0}", firstPage.IsLastPage); // false
-			Console.WriteLine("First value on page? {0}", firstPage[0]); // 1
-			Console.WriteLine();
-
-			var middlePage = new StaticPagedList&lt;int&gt;(list, 2, 20, 100); // third page, same values
-			
-			Console.WriteLine("Is first page? {0}", middlePage.IsFirstPage); // false
-			Console.WriteLine("Is last page? {0}", middlePage.IsLastPage); // false
-			Console.WriteLine("First value on page? {0}", middlePage[0]); // 1
-			Console.WriteLine();
-
-			var lastPage = new StaticPagedList&lt;int&gt;(list, 4, 20, 100); // fifth page, same values
-			
-			Console.WriteLine("Is first page? {0}", lastPage.IsFirstPage); // false
-			Console.WriteLine("Is last page? {0}", lastPage.IsLastPage); // true
-			Console.WriteLine("First value on page? {0}", lastPage[0]); // 1
-			Console.ReadKey(false);
-		}
-	}
-}
 </pre>
 
 # License
