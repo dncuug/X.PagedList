@@ -51,6 +51,10 @@ public class ProductController : Controller
 @Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )
 </pre>
 
+# Out-of-the-box Pager Configurations
+
+![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
+
 # License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
