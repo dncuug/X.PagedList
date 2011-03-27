@@ -36,10 +36,10 @@ public class ProductController : Controller
 @using PagedList.Mvc; //import this so we get our HTML Helper
 @using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
 
-&lt;-- import the included stylesheet for some (very basic) default styling --&gt;
+&lt;!-- import the included stylesheet for some (very basic) default styling --&gt;
 &lt;link href="/Content/PagedList.css" rel="stylesheet" type="text/css" /&gt;
 
-&lt;-- loop through each of your products and display it however. we're just printing then name here --&gt;
+&lt;!-- loop through each of your products and display it however. we're just printing then name here --&gt;
 &lt;h2&gt;List of Products&lt;/h2&gt;
 &lt;ul&gt;
 	@foreach(var product in ViewBag.OnePageOfProducts){
@@ -47,7 +47,7 @@ public class ProductController : Controller
 	}
 &lt;/ul&gt;
 
-&lt;-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
+&lt;!-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
 @Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )
 </pre>
 
