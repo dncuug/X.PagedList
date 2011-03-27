@@ -5,7 +5,7 @@ namespace PagedList.Tests
 {
 	public class PagedListExample
 	{
-		public static void Main(string args)
+		public static void Main()
 		{
 			// create a list of integers from 1 to 200
 			var list = Enumerable.Range(1, 200);
