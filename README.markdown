@@ -20,7 +20,7 @@ public class ProductController : Controller
 		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable&lt;Product&gt; representing an unknown number of products. a thousand maybe?
 
 		var pageIndex = page ?? 0; // if no page was specified in the querystring, default to page 0
-		var onePageOfProducts = products.ToPagedList(pageIndex, 25); // will only contain 25 products max because of the pageSize
+		var onePageOfProducts = products<strong>.ToPagedList(pageIndex, 25)</strong>; // will only contain 25 products max because of the pageSize
 		
 		ViewBag.OnePageOfProducts = onePageOfProducts;
 		return View();
@@ -48,7 +48,7 @@ public class ProductController : Controller
 &lt;/ul&gt;
 
 &lt;-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
-@Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )
+<strong>@Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )</strong>
 </pre>
 
 # License
