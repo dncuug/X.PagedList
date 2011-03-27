@@ -33,12 +33,19 @@ end
 
 task :package_pagedlistmvc => :release do
   require 'fileutils'
+
   build_directory = './src/PagedList.Mvc/bin/Release/'
-  output_directory = './packages/PagedList.Mvc/lib/40/'
-  FileUtils.mkdir_p output_directory
-  FileUtils.cp build_directory + 'PagedList.Mvc.dll', output_directory + 'PagedList.Mvc.dll'
-  FileUtils.cp build_directory + 'PagedList.Mvc.pdb', output_directory + 'PagedList.Mvc.pdb'
-  FileUtils.cp build_directory + 'PagedList.Mvc.xml', output_directory + 'PagedList.Mvc.xml'
+  content_directory = './src/PagedList.Mvc.Example/Content/'
+  lib_output_directory = './packages/PagedList.Mvc/lib/40/'
+  content_output_directory = './packages/PagedList.Mvc/content/Content/'
+
+  FileUtils.mkdir_p lib_output_directory
+  FileUtils.mkdir_p content_output_directory
+
+  FileUtils.cp build_directory + 'PagedList.Mvc.dll', lib_output_directory + 'PagedList.Mvc.dll'
+  FileUtils.cp build_directory + 'PagedList.Mvc.pdb', lib_output_directory + 'PagedList.Mvc.pdb'
+  FileUtils.cp build_directory + 'PagedList.Mvc.xml', lib_output_directory + 'PagedList.Mvc.xml'
+  FileUtils.cp content_directory + 'PagedList.css', content_output_directory + 'PagedList.css'
 end
 
 task :package => [:package_pagedlist, :package_pagedlistmvc] do
