@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace PagedList
@@ -12,8 +13,13 @@ namespace PagedList
 	/// <typeparam name = "T">The type of object the collection should contain.</typeparam>
 	/// <seealso cref = "IPagedList{T}" />
 	/// <seealso cref = "List{T}" />
-	public abstract class BasePagedList<T> : List<T>, IPagedList<T>
+	public abstract class BasePagedList<T> : IPagedList<T>
 	{
+		/// <summary>
+		/// The subset of items contained only within this one page of the superset.
+		/// </summary>
+		protected readonly List<T> Subset = new List<T>();
+
 		/// <summary>
 		/// 	Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
 		/// </summary>
@@ -127,10 +133,10 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// One-based index of the first item in the paged subset.
+		/// 	One-based index of the first item in the paged subset.
 		/// </summary>
 		/// <value>
-		/// One-based index of the first item in the paged subset.
+		/// 	One-based index of the first item in the paged subset.
 		/// </value>
 		public int FirstItemOnPage
 		{
@@ -138,10 +144,10 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// One-based index of the last item in the paged subset.
+		/// 	One-based index of the last item in the paged subset.
 		/// </summary>
 		/// <value>
-		/// One-based index of the last item in the paged subset.
+		/// 	One-based index of the last item in the paged subset.
 		/// </value>
 		public int LastItemOnPage
 		{
@@ -152,6 +158,41 @@ namespace PagedList
 					numberOfLastItemOnPage = TotalItemCount;
 				return numberOfLastItemOnPage;
 			}
+		}
+
+		/// <summary>
+		/// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+		/// </summary>
+		/// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+		public IEnumerator<T> GetEnumerator()
+		{
+			return Subset.GetEnumerator();
+		}
+
+		/// <summary>
+		/// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+		/// </summary>
+		/// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
+		}
+
+		///<summary>
+		/// Gets the element at the specified index.
+		///</summary>
+		///<param name="index">The zero-based index of the element to get.</param>
+		public T this[int index]
+		{
+			get { return Subset[index]; }
+		}
+
+		/// <summary>
+		/// Gets the number of elements contained on this page.
+		/// </summary>
+		public int Count
+		{
+			get { return Subset.Count; }
 		}
 
 		#endregion

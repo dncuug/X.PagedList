@@ -34,10 +34,10 @@ namespace PagedList
 		{
 			// add items to internal list
 			if (TotalItemCount > 0)
-				if (index == 0)
-					AddRange(superset.Take(pageSize).ToList());
-				else
-					AddRange(superset.Skip((index) * pageSize).Take(pageSize).ToList());			
+				Subset.AddRange(index == 0
+					? superset.Take(pageSize).ToList()
+					: superset.Skip((index)*pageSize).Take(pageSize).ToList()
+				);
 		}
 	}
 }
