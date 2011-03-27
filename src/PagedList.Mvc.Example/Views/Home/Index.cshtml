@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+<h2>PagedList.Mvc.Example Website</h2>
+
+<p>Example of paging a list:</p>
+
+<h3>List of @ViewBag.Numbers.TotalItemCount Numbers (Page Size: @ViewBag.Numbers.PageSize, Current Page: @ViewBag.Numbers.PageNumber)</h3>
+<ul>
+	@foreach(var i in ViewBag.Numbers){
+		<li>@i</li>
+	}
+</ul>
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<h3>Default Paging Control</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }))
+
+<h3>Minimal Paging Control</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.Minimal)
+
+<h3>Minimal Paging Control w/ Page Count Text</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithPageCountText)
+
+<h3>Minimal Paging Control w/ Item Count Text</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithItemCountText)

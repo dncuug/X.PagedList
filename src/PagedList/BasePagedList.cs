@@ -4,23 +4,23 @@ using System.Collections.Generic;
 namespace PagedList
 {
 	/// <summary>
-	/// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+	/// 	Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
 	/// </summary>
 	/// <remarks>
-	/// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+	/// 	Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
 	/// </remarks>
-	/// <typeparam name="T">The type of object the collection should contain.</typeparam>
-	/// <seealso cref="IPagedList{T}"/>
-	/// <seealso cref="List{T}"/>
+	/// <typeparam name = "T">The type of object the collection should contain.</typeparam>
+	/// <seealso cref = "IPagedList{T}" />
+	/// <seealso cref = "List{T}" />
 	public abstract class BasePagedList<T> : List<T>, IPagedList<T>
 	{
 		/// <summary>
-		/// Initializes a new instance of a type deriving from <see cref="BasePagedList{T}"/> and sets properties needed to calculate position and size data on the subset and superset.
+		/// 	Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
 		/// </summary>
-		/// <param name="index">The index of the subset of objects contained by this instance.</param>
-		/// <param name="pageSize">The maximum size of any individual subset.</param>
-		/// <param name="totalItemCount">The size of the superset.</param>
-		internal protected BasePagedList(int index, int pageSize, int totalItemCount)
+		/// <param name = "index">The index of the subset of objects contained by this instance.</param>
+		/// <param name = "pageSize">The maximum size of any individual subset.</param>
+		/// <param name = "totalItemCount">The size of the superset.</param>
+		protected internal BasePagedList(int index, int pageSize, int totalItemCount)
 		{
 			// set source to blank list if superset is null to prevent exceptions
 			TotalItemCount = totalItemCount;
@@ -40,34 +40,34 @@ namespace PagedList
 		#region IPagedList<T> Members
 
 		/// <summary>
-		/// Total number of subsets within the superset.
+		/// 	Total number of subsets within the superset.
 		/// </summary>
 		/// <value>
-		/// Total number of subsets within the superset.
+		/// 	Total number of subsets within the superset.
 		/// </value>
 		public int PageCount { get; protected set; }
 
 		/// <summary>
-		/// Total number of objects contained within the superset.
+		/// 	Total number of objects contained within the superset.
 		/// </summary>
 		/// <value>
-		/// Total number of objects contained within the superset.
+		/// 	Total number of objects contained within the superset.
 		/// </value>
 		public int TotalItemCount { get; protected set; }
 
 		/// <summary>
-		/// Zero-based index of this subset within the superset.
+		/// 	Zero-based index of this subset within the superset.
 		/// </summary>
 		/// <value>
-		/// Zero-based index of this subset within the superset.
+		/// 	Zero-based index of this subset within the superset.
 		/// </value>
 		public int PageIndex { get; protected set; }
 
 		/// <summary>
-		/// One-based index of this subset within the superset.
+		/// 	One-based index of this subset within the superset.
 		/// </summary>
 		/// <value>
-		/// One-based index of this subset within the superset.
+		/// 	One-based index of this subset within the superset.
 		/// </value>
 		public int PageNumber
 		{
@@ -75,18 +75,18 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// Maximum size any individual subset.
+		/// 	Maximum size any individual subset.
 		/// </summary>
 		/// <value>
-		/// Maximum size any individual subset.
+		/// 	Maximum size any individual subset.
 		/// </value>
 		public int PageSize { get; protected set; }
 
 		/// <summary>
-		/// Returns true if this is NOT the first subset within the superset.
+		/// 	Returns true if this is NOT the first subset within the superset.
 		/// </summary>
 		/// <value>
-		/// Returns true if this is NOT the first subset within the superset.
+		/// 	Returns true if this is NOT the first subset within the superset.
 		/// </value>
 		public bool HasPreviousPage
 		{
@@ -94,10 +94,10 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// Returns true if this is NOT the last subset within the superset.
+		/// 	Returns true if this is NOT the last subset within the superset.
 		/// </summary>
 		/// <value>
-		/// Returns true if this is NOT the last subset within the superset.
+		/// 	Returns true if this is NOT the last subset within the superset.
 		/// </value>
 		public bool HasNextPage
 		{
@@ -105,10 +105,10 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// Returns true if this is the first subset within the superset.
+		/// 	Returns true if this is the first subset within the superset.
 		/// </summary>
 		/// <value>
-		/// Returns true if this is the first subset within the superset.
+		/// 	Returns true if this is the first subset within the superset.
 		/// </value>
 		public bool IsFirstPage
 		{
@@ -116,14 +116,42 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// Returns true if this is the last subset within the superset.
+		/// 	Returns true if this is the last subset within the superset.
 		/// </summary>
 		/// <value>
-		/// Returns true if this is the last subset within the superset.
+		/// 	Returns true if this is the last subset within the superset.
 		/// </value>
 		public bool IsLastPage
 		{
 			get { return PageIndex >= (PageCount - 1); }
+		}
+
+		/// <summary>
+		/// One-based index of the first item in the paged subset.
+		/// </summary>
+		/// <value>
+		/// One-based index of the first item in the paged subset.
+		/// </value>
+		public int FirstItemOnPage
+		{
+			get { return (PageIndex*PageSize) + 1; }
+		}
+
+		/// <summary>
+		/// One-based index of the last item in the paged subset.
+		/// </summary>
+		/// <value>
+		/// One-based index of the last item in the paged subset.
+		/// </value>
+		public int LastItemOnPage
+		{
+			get
+			{
+				var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
+				if (numberOfLastItemOnPage > TotalItemCount)
+					numberOfLastItemOnPage = TotalItemCount;
+				return numberOfLastItemOnPage;
+			}
 		}
 
 		#endregion

@@ -8,11 +8,11 @@ using System.Security;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("PagedList")]
-[assembly: AssemblyDescription("An implementation of PagedList as created by Scott Guthrie and made popular by Rob Conery. Maintained by Troy Goode.")]
+[assembly: AssemblyTitle("PagedList.Mvc")]
+[assembly: AssemblyDescription("HtmlHelper extensions for displaying paging controls in Asp.Net MVC when using the PagedList library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Troy Goode")]
-[assembly: AssemblyProduct("PagedList")]
+[assembly: AssemblyProduct("PagedList.Mvc")]
 [assembly: AssemblyCopyright("Public Domain")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -25,7 +25,7 @@ using System.Security;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 
-[assembly: Guid("1d709432-45fa-4475-a403-b2310a47d0a6")]
+[assembly: Guid("eb684fee-2094-4833-ae61-f9bfcab34abd")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -38,5 +38,5 @@ using System.Security;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.2.0.0")]
-[assembly: AssemblyFileVersion("1.2.0.0")]
+[assembly: AssemblyVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.0.0")]

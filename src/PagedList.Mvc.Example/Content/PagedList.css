@@ -1,0 +1,10 @@
+﻿.PagedList-control > ul{
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.PagedList-control > ul > li{
+	margin: .25em;
+	display: inline-block;
+}

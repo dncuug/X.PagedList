@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using Xunit.Extensions;
 
@@ -212,6 +213,71 @@ namespace PagedList.Tests
 
 			//assert
 			Assert.Equal(2, pagedList[0]);
+		}
+
+		[Fact]
+		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_Zero_FirstItemOnPage_Is_One()
+		{
+			//arrange
+			var data = Enumerable.Range(1, 10);
+
+			//act
+			var pagedList = data.ToPagedList(0, 5);
+
+			//assert
+			Assert.Equal(1, pagedList.FirstItemOnPage);
+		}
+
+		[Fact]
+		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_One_FirstItemOnPage_Is_Six()
+		{
+			//arrange
+			var data = Enumerable.Range(1, 10);
+
+			//act
+			var pagedList = data.ToPagedList(1, 5);
+
+			//assert
+			Assert.Equal(6, pagedList.FirstItemOnPage);
+		}
+
+		[Fact]
+		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_Zero_LastItemOnPage_Is_Five()
+		{
+			//arrange
+			var data = Enumerable.Range(1, 10);
+
+			//act
+			var pagedList = data.ToPagedList(0, 5);
+
+			//assert
+			Assert.Equal(5, pagedList.LastItemOnPage);
+		}
+
+		[Fact]
+		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_One_LastItemOnPage_Is_Ten()
+		{
+			//arrange
+			var data = Enumerable.Range(1, 10);
+
+			//act
+			var pagedList = data.ToPagedList(1, 5);
+
+			//assert
+			Assert.Equal(10, pagedList.LastItemOnPage);
+		}
+
+		[Fact]
+		public void DataSet_OneThroughEight_PageSize_Five_PageIndex_One_LastItemOnPage_Is_Eight()
+		{
+			//arrange
+			var data = Enumerable.Range(1, 8);
+
+			//act
+			var pagedList = data.ToPagedList(1, 5);
+
+			//assert
+			Assert.Equal(8, pagedList.LastItemOnPage);
 		}
 
 		[Theory]
