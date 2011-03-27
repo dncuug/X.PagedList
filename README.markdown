@@ -56,11 +56,12 @@ public class ProductController : Controller
 ![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
 
 **Code to generate the above configurations:**
-  * @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }))
-  * @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.Minimal**)
-  * @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithPageCountText**)
-  * @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithItemCountText**)
-  * @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.PageNumbersOnly**)
+
+* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }))
+* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.Minimal**)
+* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithPageCountText**)
+* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithItemCountText**)
+* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.PageNumbersOnly**)
 
 # License
 
