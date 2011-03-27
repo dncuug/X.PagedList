@@ -16,3 +16,4 @@ LastBuild.log
 _ReSharper*
 .DS_Store
 packages/PagedList/lib/40/
+packages/PagedList.Mvc/lib/40/
