@@ -4,7 +4,7 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 
 # How do I use it?
 
-1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
+1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
 2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
 3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
 4. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
