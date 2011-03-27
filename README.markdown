@@ -39,7 +39,7 @@ public class ProductController : Controller
 &lt;!-- import the included stylesheet for some (very basic) default styling --&gt;
 &lt;link href="/Content/PagedList.css" rel="stylesheet" type="text/css" /&gt;
 
-&lt;!-- loop through each of your products and display it however. we're just printing then name here --&gt;
+&lt;!-- loop through each of your products and display it however you want. we're just printing the name here --&gt;
 &lt;h2&gt;List of Products&lt;/h2&gt;
 &lt;ul&gt;
 	@foreach(var product in ViewBag.OnePageOfProducts){
