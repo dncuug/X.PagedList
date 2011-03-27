@@ -7,7 +7,7 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
 2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
 3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
-4. Call Html.PagedListPager, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
+4. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
 
 # Example
 
@@ -48,7 +48,7 @@ public class ProductController : Controller
 &lt;/ul&gt;
 
 &lt;!-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
-@Html.PagedListPager( (IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }) )
+@Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
 </pre>
 
 # Out-of-the-box Pager Configurations
@@ -59,19 +59,19 @@ public class ProductController : Controller
 
 <pre>
 &lt;h3&gt;Default Paging Control&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }))
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }))
 
 &lt;h3&gt;Minimal Paging Control&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
 
 &lt;h3&gt;Minimal Paging Control w/ Page Count Text&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
 
 &lt;h3&gt;Minimal Paging Control w/ Item Count Text&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
 
 &lt;h3&gt;Page Numbers Only&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
 </pre>
 
 # License
