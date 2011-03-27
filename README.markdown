@@ -57,11 +57,22 @@ public class ProductController : Controller
 
 **Code to generate the above configurations:**
 
-* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }))
-* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.Minimal**)
-* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithPageCountText**)
-* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.MinimalWithItemCountText**)
-* @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page }), **PagedListRenderOptions.PageNumbersOnly**)
+<pre>
+&lt;h3&gt;Default Paging Control&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }))
+
+&lt;h3&gt;Minimal Paging Control&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
+
+&lt;h3&gt;Minimal Paging Control w/ Page Count Text&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
+
+&lt;h3&gt;Minimal Paging Control w/ Item Count Text&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
+
+&lt;h3&gt;Page Numbers Only&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
+</pre>
 
 # License
 
