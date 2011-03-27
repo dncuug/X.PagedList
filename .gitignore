@@ -18,3 +18,4 @@ _ReSharper*
 packages/PagedList/lib/40/
 packages/PagedList.Mvc/content/
 packages/PagedList.Mvc/lib/40/
+packages/*.nupkg

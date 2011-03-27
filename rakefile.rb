@@ -21,7 +21,7 @@ msbuild :release => :test do |msb|
   msb.solution = "src/PagedList.sln"
 end
 
-task :package_pagedlist => :release do
+task :prepare_package_pagedlist => :release do
   require 'fileutils'
   build_directory = './src/PagedList/bin/Release/'
   output_directory = './packages/PagedList/lib/40/'
@@ -31,7 +31,7 @@ task :package_pagedlist => :release do
   FileUtils.cp build_directory + 'PagedList.xml', output_directory + 'PagedList.xml'
 end
 
-task :package_pagedlistmvc => :release do
+task :prepare_package_pagedlistmvc => :release do
   require 'fileutils'
 
   build_directory = './src/PagedList.Mvc/bin/Release/'
@@ -46,6 +46,26 @@ task :package_pagedlistmvc => :release do
   FileUtils.cp build_directory + 'PagedList.Mvc.pdb', lib_output_directory + 'PagedList.Mvc.pdb'
   FileUtils.cp build_directory + 'PagedList.Mvc.xml', lib_output_directory + 'PagedList.Mvc.xml'
   FileUtils.cp content_directory + 'PagedList.css', content_output_directory + 'PagedList.css'
+end
+
+exec :package_pagedlist => :prepare_package_pagedlist do |cmd|
+	cmd.path_to_command = 'nuget'
+	cmd.parameters [
+		'pack',
+		'./packages/PagedList/PagedList.nuspec',
+		'-OutputDirectory',
+		'./packages/'
+	]
+end
+
+exec :package_pagedlistmvc => :prepare_package_pagedlistmvc do |cmd|
+	cmd.path_to_command = 'nuget'
+	cmd.parameters [
+		'pack',
+		'./packages/PagedList.Mvc/PagedList.Mvc.nuspec',
+		'-OutputDirectory',
+		'./packages/'
+	]
 end
 
 task :package => [:package_pagedlist, :package_pagedlistmvc] do
