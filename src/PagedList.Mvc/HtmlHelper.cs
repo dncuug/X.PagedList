@@ -134,7 +134,8 @@ namespace PagedList.Mvc
 				listItemLinks.Append(First(list, generatePageUrl, options.LinkToFirstPageFormat));
 
 			//previous
-			listItemLinks.Append(Previous(list, generatePageUrl, options.LinkToPreviousPageFormat));
+			if (options.DisplayLinkToPreviousPage)
+				listItemLinks.Append(Previous(list, generatePageUrl, options.LinkToPreviousPageFormat));
 
 			//text
 			if (options.DisplayPageCountAndCurrentLocation)
@@ -150,7 +151,8 @@ namespace PagedList.Mvc
 					listItemLinks.Append(Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat));
 
 			//next
-			listItemLinks.Append(Next(list, generatePageUrl, options.LinkToNextPageFormat));
+			if (options.DisplayLinkToNextPage)
+				listItemLinks.Append(Next(list, generatePageUrl, options.LinkToNextPageFormat));
 
 			//last
 			if (options.DisplayLinkToLastPage)
@@ -162,7 +164,7 @@ namespace PagedList.Mvc
 			         	};
 
 			var outerDiv = new TagBuilder("div");
-			outerDiv.AddCssClass("PagedList-control");
+			outerDiv.AddCssClass("PagedList-pager");
 			outerDiv.InnerHtml = ul.ToString();
 
 			return new MvcHtmlString(outerDiv.ToString());

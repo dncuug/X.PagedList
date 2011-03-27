@@ -12,6 +12,8 @@
 		{
 			DisplayLinkToFirstPage = true;
 			DisplayLinkToLastPage = true;
+			DisplayLinkToPreviousPage = true;
+			DisplayLinkToNextPage = true;
 			DisplayLinkToIndividualPages = true;
 			DisplayPageCountAndCurrentLocation = false;
 			LinkToFirstPageFormat = "<< First";
@@ -32,6 +34,16 @@
 		/// When true, includes a hyperlink to the last page of the list.
 		///</summary>
 		public bool DisplayLinkToLastPage { get; set; }
+
+		///<summary>
+		/// When true, includes a hyperlink to the previous page of the list.
+		///</summary>
+		public bool DisplayLinkToPreviousPage { get; set; }
+
+		///<summary>
+		/// When true, includes a hyperlink to the next page of the list.
+		///</summary>
+		public bool DisplayLinkToNextPage { get; set; }
 
 		///<summary>
 		/// When true, includes hyperlinks for each page in the list.
@@ -156,6 +168,23 @@
 					DisplayLinkToLastPage = false,
 					DisplayLinkToIndividualPages = false,
 					DisplayItemSliceAndTotal = true
+				};
+			}
+		}
+
+		///<summary>
+		/// Shows only links to each individual page.
+		///</summary>
+		public static PagedListRenderOptions PageNumbersOnly
+		{
+			get
+			{
+				return new PagedListRenderOptions
+				{
+					DisplayLinkToFirstPage = false,
+					DisplayLinkToLastPage = false,
+					DisplayLinkToPreviousPage = false,
+					DisplayLinkToNextPage = false
 				};
 			}
 		}
