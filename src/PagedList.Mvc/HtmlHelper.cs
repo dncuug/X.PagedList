@@ -5,6 +5,9 @@ using System.Web.Mvc;
 
 namespace PagedList.Mvc
 {
+	///<summary>
+	/// Extension methods for generating paging controls that can operate on instances of IPagedList.
+	///</summary>
 	public static class HtmlHelper
 	{
 		private static TagBuilder WrapInListItem(TagBuilder inner, params string[] classes)
@@ -97,6 +100,13 @@ namespace PagedList.Mvc
 			return WrapInListItem(text, "PagedList-pageCountAndLocation");
 		}
 
+		///<summary>
+		/// Displays a configurable paging control for instances of PagedList.
+		///</summary>
+		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name="list">The PagedList to use as the data source.</param>
+		///<param name="generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
 		                                           IPagedList list,
 		                                           Func<int, string> generatePageUrl)
@@ -104,6 +114,14 @@ namespace PagedList.Mvc
 			return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
 		}
 
+		///<summary>
+		/// Displays a configurable paging control for instances of PagedList.
+		///</summary>
+		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name="list">The PagedList to use as the data source.</param>
+		///<param name="generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<param name="options">Formatting options.</param>
+		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
 		                                           IPagedList list,
 		                                           Func<int, string> generatePageUrl,
