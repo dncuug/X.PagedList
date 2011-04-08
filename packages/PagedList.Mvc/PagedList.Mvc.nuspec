@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>PagedList.Mvc</id>
-    <version>3.0.0.0</version>
+    <version>3.0.1.0</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
     <description><![CDATA[Asp.Net MVC HtmlHelper method for generating paging control for use with PagedList library.]]></description>
