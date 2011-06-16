@@ -1,4 +1,4 @@
-﻿namespace PagedList.Mvc
+namespace PagedList.Mvc
 {
 	///<summary>
 	/// Options for configuring the output of <see cref = "HtmlHelper" />.
@@ -16,6 +16,7 @@
 			DisplayLinkToNextPage = true;
 			DisplayLinkToIndividualPages = true;
 			DisplayPageCountAndCurrentLocation = false;
+			MaximumPageNumbers = null;
 			LinkToFirstPageFormat = "<< First";
 			LinkToPreviousPageFormat = "< Previous";
 			LinkToIndividualPageFormat = "{0}";
@@ -70,7 +71,7 @@
 		/// The maximum number of page numbers to display, null for infinite
 		///</summary>
 		public int? MaximumPageNumbers { get; set; }
-		
+
 		///<summary>
 		/// The pre-formatted text to display inside the hyperlink to the first page. The one-based index of the page (always 1 in this case) is passed into the formatting function - use {0} to reference it.
 		///</summary>
@@ -135,11 +136,11 @@
 			get
 			{
 				return new PagedListRenderOptions
-				       	{
-				       		DisplayLinkToFirstPage = false,
-				       		DisplayLinkToLastPage = false,
+						{
+							DisplayLinkToFirstPage = false,
+							DisplayLinkToLastPage = false,
 							DisplayLinkToIndividualPages = false
-				       	};
+						};
 			}
 		}
 
@@ -190,6 +191,24 @@
 					DisplayLinkToLastPage = false,
 					DisplayLinkToPreviousPage = false,
 					DisplayLinkToNextPage = false
+				};
+			}
+		}
+
+		///<summary>
+		/// Shows next, previous and Max of 5 number of pages at a time
+		///</summary>
+		public static PagedListRenderOptions MaxNumberOfPages
+		{
+			get
+			{
+				return new PagedListRenderOptions
+				{
+					DisplayLinkToFirstPage = false,
+					DisplayLinkToLastPage = false,
+					DisplayLinkToPreviousPage = true,
+					DisplayLinkToNextPage = true,
+					MaximumPageNumbers = 5
 				};
 			}
 		}
