@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
@@ -108,8 +108,8 @@ namespace PagedList.Mvc
 		///<param name="generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
-		                                           IPagedList list,
-		                                           Func<int, string> generatePageUrl)
+												   IPagedList list,
+												   Func<int, string> generatePageUrl)
 		{
 			return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
 		}
@@ -123,9 +123,9 @@ namespace PagedList.Mvc
 		///<param name="options">Formatting options.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
-		                                           IPagedList list,
-		                                           Func<int, string> generatePageUrl,
-		                                           PagedListRenderOptions options)
+												   IPagedList list,
+												   Func<int, string> generatePageUrl,
+												   PagedListRenderOptions options)
 		{
 			var listItemLinks = new StringBuilder();
 
@@ -147,8 +147,25 @@ namespace PagedList.Mvc
 
 			//page
 			if (options.DisplayLinkToIndividualPages)
-				foreach (var i in Enumerable.Range(0, list.PageCount))
+			{
+				int start = 0;
+				int end = list.PageCount;
+				if(options.MaximumPageNumbers != null && list.PageCount > options.MaximumPageNumbers)
+				{
+					start = list.PageIndex - (int)(options.MaximumPageNumbers / 2);
+					if (start < 0)
+					{
+						start = 0;
+					}
+					end = (int)options.MaximumPageNumbers;
+					if ((start + end) > list.PageCount)
+					{
+						start = list.PageCount - (int)options.MaximumPageNumbers;
+					}
+				}
+				foreach (var i in Enumerable.Range(start, end))
 					listItemLinks.Append(Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat));
+			}
 
 			//next
 			if (options.DisplayLinkToNextPage)
@@ -159,9 +176,9 @@ namespace PagedList.Mvc
 				listItemLinks.Append(Last(list, generatePageUrl, options.LinkToLastPageFormat));
 
 			var ul = new TagBuilder("ul")
-			         	{
-			         		InnerHtml = listItemLinks.ToString()
-			         	};
+						{
+							InnerHtml = listItemLinks.ToString()
+						};
 
 			var outerDiv = new TagBuilder("div");
 			outerDiv.AddCssClass("PagedList-pager");
