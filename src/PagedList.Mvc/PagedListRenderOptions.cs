@@ -65,6 +65,11 @@
 		/// "Showing items 75 through 100 of 183."
 		///</example>
 		public bool DisplayItemSliceAndTotal { get; set; }
+
+		///<summary>
+		/// The maximum number of page numbers to display, null for infinite
+		///</summary>
+		public int? MaximumPageNumbers { get; set; }
 		
 		///<summary>
 		/// The pre-formatted text to display inside the hyperlink to the first page. The one-based index of the page (always 1 in this case) is passed into the formatting function - use {0} to reference it.
