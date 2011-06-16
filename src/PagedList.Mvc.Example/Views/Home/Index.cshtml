@@ -31,3 +31,6 @@
 
 <h3>Page Numbers Only</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.PageNumbersOnly)
+
+<h3>Maximum Page Numbers</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MaxNumberOfPages)
