@@ -1,3 +1,5 @@
+using System;
+
 namespace PagedList.Mvc
 {
 	///<summary>
@@ -24,6 +26,7 @@ namespace PagedList.Mvc
 			LinkToLastPageFormat = "Last >>";
 			PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
 			ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
+			FunctionToDisplayAPageNumber = null;
 		}
 
 		///<summary>
@@ -127,6 +130,11 @@ namespace PagedList.Mvc
 		/// "Showing items {0} through {1} of {2}."
 		///</example>
 		public string ItemSliceAndTotalFormat { get; set; }
+
+        /// <summary>
+        /// A function that will render a page number.
+        /// </summary>
+        public Func<int, string> FunctionToDisplayAPageNumber { get; set; }
 
 		///<summary>
 		/// Shows only the Previous and Next links.

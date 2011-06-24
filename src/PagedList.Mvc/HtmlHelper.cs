@@ -45,11 +45,11 @@ namespace PagedList.Mvc
 			return WrapInListItem(previous, "PagedList-skipToPrevious");
 		}
 
-		private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, string format)
+		private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, Func<int, string> func)
 		{
 			var targetPageIndex = i;
 			var page = new TagBuilder("a");
-			page.SetInnerText(string.Format(format, targetPageIndex + 1));
+			page.SetInnerText(func(targetPageIndex));
 
 			if (i == list.PageIndex)
 				return WrapInListItem(page, "PagedList-skipToPage", "PagedList-currentPage", "PagedList-disabled");
@@ -164,7 +164,7 @@ namespace PagedList.Mvc
 					}
 				}
 				foreach (var i in Enumerable.Range(start, end))
-					listItemLinks.Append(Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat));
+                    listItemLinks.Append(Page(i, list, generatePageUrl, options.FunctionToDisplayAPageNumber ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber + 1))));
 			}
 
 			//next
