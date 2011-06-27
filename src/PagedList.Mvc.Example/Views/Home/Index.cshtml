@@ -17,6 +17,8 @@
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
+<h2>Out-of-the-box Pager Configurations</h2>
+
 <h3>Default Paging Control</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }))
 
@@ -34,6 +36,8 @@
 
 <h3>Only Show Five Pages At A Time</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+
+<h2>Custom Pager Configurations</h2>
 
 <h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })

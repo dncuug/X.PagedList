@@ -72,14 +72,18 @@ public class ProductController : Controller
 
 &lt;h3&gt;Page Numbers Only&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
-</pre>
+
+&lt;h3&gt;Only Show Five Pages At A Time&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 
 You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
 # Custom Pager Configurations
 
 <pre>
-
+&lt;h3>Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em>)&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })
+</pre>
 </pre>
 
 # License
