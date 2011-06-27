@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 @using PagedList;
 @using PagedList.Mvc;
@@ -32,5 +32,8 @@
 <h3>Page Numbers Only</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.PageNumbersOnly)
 
-<h3>Maximum Page Numbers</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MaxNumberOfPages)
+<h3>Only Show Five Pages At A Time</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+
+<h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })

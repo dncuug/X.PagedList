@@ -6,7 +6,7 @@ using System.Web.Mvc;
 namespace PagedList.Mvc
 {
 	///<summary>
-	/// Extension methods for generating paging controls that can operate on instances of IPagedList.
+	///	Extension methods for generating paging controls that can operate on instances of IPagedList.
 	///</summary>
 	public static class HtmlHelper
 	{
@@ -100,32 +100,40 @@ namespace PagedList.Mvc
 			return WrapInListItem(text, "PagedList-pageCountAndLocation");
 		}
 
+		private static TagBuilder Ellipses(string format)
+		{
+			var text = new TagBuilder("span");
+			text.SetInnerText(format); //TODO: fix so we can use &#8230;
+
+			return WrapInListItem(text, "PagedList-ellipses");
+		}
+
 		///<summary>
-		/// Displays a configurable paging control for instances of PagedList.
+		///	Displays a configurable paging control for instances of PagedList.
 		///</summary>
-		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
-		///<param name="list">The PagedList to use as the data source.</param>
-		///<param name="generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name = "list">The PagedList to use as the data source.</param>
+		///<param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
-												   IPagedList list,
-												   Func<int, string> generatePageUrl)
+		                                           IPagedList list,
+		                                           Func<int, string> generatePageUrl)
 		{
 			return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
 		}
 
 		///<summary>
-		/// Displays a configurable paging control for instances of PagedList.
+		///	Displays a configurable paging control for instances of PagedList.
 		///</summary>
-		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
-		///<param name="list">The PagedList to use as the data source.</param>
-		///<param name="generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
-		///<param name="options">Formatting options.</param>
+		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name = "list">The PagedList to use as the data source.</param>
+		///<param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<param name = "options">Formatting options.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
-												   IPagedList list,
-												   Func<int, string> generatePageUrl,
-												   PagedListRenderOptions options)
+		                                           IPagedList list,
+		                                           Func<int, string> generatePageUrl,
+		                                           PagedListRenderOptions options)
 		{
 			var listItemLinks = new StringBuilder();
 
@@ -148,23 +156,26 @@ namespace PagedList.Mvc
 			//page
 			if (options.DisplayLinkToIndividualPages)
 			{
-				int start = 0;
-				int end = list.PageCount;
-				if(options.MaximumPageNumbers != null && list.PageCount > options.MaximumPageNumbers)
+				var start = 0;
+				var end = list.PageCount;
+				if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
 				{
-					start = list.PageIndex - (int)(options.MaximumPageNumbers / 2);
+					start = list.PageIndex - options.MaximumPageNumbersToDisplay.Value / 2;
 					if (start < 0)
-					{
 						start = 0;
-					}
-					end = (int)options.MaximumPageNumbers;
+					end = options.MaximumPageNumbersToDisplay.Value;
 					if ((start + end) > list.PageCount)
-					{
-						start = list.PageCount - (int)options.MaximumPageNumbers;
-					}
+						start = list.PageCount - options.MaximumPageNumbersToDisplay.Value;
 				}
+
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 0)
+					listItemLinks.Append(Ellipses(options.EllipsesFormat));
+
 				foreach (var i in Enumerable.Range(start, end))
 					listItemLinks.Append(Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat));
+
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
+					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 			}
 
 			//next
@@ -176,9 +187,9 @@ namespace PagedList.Mvc
 				listItemLinks.Append(Last(list, generatePageUrl, options.LinkToLastPageFormat));
 
 			var ul = new TagBuilder("ul")
-						{
-							InnerHtml = listItemLinks.ToString()
-						};
+			         	{
+			         		InnerHtml = listItemLinks.ToString()
+			         	};
 
 			var outerDiv = new TagBuilder("div");
 			outerDiv.AddCssClass("PagedList-pager");

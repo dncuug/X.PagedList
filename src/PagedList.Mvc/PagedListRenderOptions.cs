@@ -16,7 +16,9 @@ namespace PagedList.Mvc
 			DisplayLinkToNextPage = true;
 			DisplayLinkToIndividualPages = true;
 			DisplayPageCountAndCurrentLocation = false;
-			MaximumPageNumbers = null;
+			MaximumPageNumbersToDisplay = 10;
+			DisplayEllipsesWhenNotShowingAllPageNumbers = true;
+			EllipsesFormat = "...";
 			LinkToFirstPageFormat = "<< First";
 			LinkToPreviousPageFormat = "< Previous";
 			LinkToIndividualPageFormat = "{0}";
@@ -68,9 +70,27 @@ namespace PagedList.Mvc
 		public bool DisplayItemSliceAndTotal { get; set; }
 
 		///<summary>
-		/// The maximum number of page numbers to display, null for infinite
+		/// The maximum number of page numbers to display. Null displays all page numbers.
 		///</summary>
-		public int? MaximumPageNumbers { get; set; }
+		public int? MaximumPageNumbersToDisplay { get; set; }
+
+		///<summary>
+		/// If true, adds an ellipsis where not all page numbers are being displayed.
+		///</summary>
+		///<example>
+		/// "1 2 3 4 5 ...",
+		/// "... 6 7 8 9 10 ...",
+		/// "... 11 12 13 14 15"
+		///</example>
+		public bool DisplayEllipsesWhenNotShowingAllPageNumbers { get; set; }
+
+		///<summary>
+		/// The pre-formatted text to display when not all page numbers are displayed at once.
+		///</summary>
+		///<example>
+		/// "..."
+		///</example>
+		public string EllipsesFormat { get; set; }
 
 		///<summary>
 		/// The pre-formatted text to display inside the hyperlink to the first page. The one-based index of the page (always 1 in this case) is passed into the formatting function - use {0} to reference it.
@@ -196,9 +216,9 @@ namespace PagedList.Mvc
 		}
 
 		///<summary>
-		/// Shows next, previous and Max of 5 number of pages at a time
+		/// Shows Next and Previous while limiting to a max of 5 page numbers at a time.
 		///</summary>
-		public static PagedListRenderOptions MaxNumberOfPages
+		public static PagedListRenderOptions OnlyShowFivePagesAtATime
 		{
 			get
 			{
@@ -208,7 +228,7 @@ namespace PagedList.Mvc
 					DisplayLinkToLastPage = false,
 					DisplayLinkToPreviousPage = true,
 					DisplayLinkToNextPage = true,
-					MaximumPageNumbers = 5
+					MaximumPageNumbersToDisplay = 5
 				};
 			}
 		}

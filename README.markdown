@@ -76,6 +76,12 @@ public class ProductController : Controller
 
 You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
+# Custom Pager Configurations
+
+<pre>
+
+</pre>
+
 # License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
