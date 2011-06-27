@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
     <id>PagedList.Mvc</id>
-    <version>3.0.2.0</version>
+    <version>3.0.3.0</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
     <description><![CDATA[Asp.Net MVC HtmlHelper method for generating paging control for use with PagedList library.]]></description>
@@ -10,7 +10,7 @@
     <projectUrl>http://github.com/TroyGoode/PagedList</projectUrl>
     <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
     <dependencies>
-    	<dependency id="PagedList" version="1.2.2" />
+    	<dependency id="PagedList" version="1.2.3" />
     </dependencies>
   </metadata>
 </package>
