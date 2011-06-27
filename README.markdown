@@ -82,8 +82,8 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 # Custom Pager Configurations
 
 <pre>
-&lt;h3>Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em>)&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })
+&lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em>)&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "&lt;&lt; Primera", LinkToPreviousPageFormat = "&lt; Anterior", LinkToNextPageFormat = "Siguiente &gt;", LinkToLastPageFormat = "Última &gt;&gt;" })
 </pre>
 
 # License
