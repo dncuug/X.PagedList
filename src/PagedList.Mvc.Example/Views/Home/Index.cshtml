@@ -8,9 +8,9 @@
 
 <p>Example of paging a list:</p>
 
-<h3>List of @ViewBag.Numbers.TotalItemCount Numbers (Page Size: @ViewBag.Numbers.PageSize, Current Page: @ViewBag.Numbers.PageNumber)</h3>
+<h3>List of @ViewBag.Names.TotalItemCount Names (Page Size: @ViewBag.Names.PageSize, Current Page: @ViewBag.Names.PageNumber)</h3>
 <ul>
-	@foreach(var i in ViewBag.Numbers){
+	@foreach(var i in ViewBag.Names){
 		<li>@i</li>
 	}
 </ul>
@@ -20,24 +20,24 @@
 <h2>Out-of-the-box Pager Configurations</h2>
 
 <h3>Default Paging Control</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }))
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }))
 
 <h3>Minimal Paging Control</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.Minimal)
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.Minimal)
 
 <h3>Minimal Paging Control w/ Page Count Text</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithPageCountText)
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithPageCountText)
 
 <h3>Minimal Paging Control w/ Item Count Text</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithItemCountText)
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.MinimalWithItemCountText)
 
 <h3>Page Numbers Only</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.PageNumbersOnly)
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.PageNumbersOnly)
 
 <h3>Only Show Five Pages At A Time</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 
 <h2>Custom Pager Configurations</h2>
 
 <h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })
