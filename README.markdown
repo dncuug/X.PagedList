@@ -51,11 +51,13 @@ public class ProductController : Controller
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
 </pre>
 
-# Out-of-the-box Pager Configurations
+# Pager Configurations
 
 ![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
 
 **Code to generate the above configurations:**
+
+## Out-of-the-box Pager Configurations
 
 <pre>
 &lt;h3&gt;Default Paging Control&lt;/h3&gt;
@@ -77,9 +79,9 @@ public class ProductController : Controller
 @Html.PagedListPager((IPagedList)ViewBag.Numbers, page => Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 </pre>
 
-You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
+## Custom Pager Configurations
 
-# Custom Pager Configurations
+You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
 <pre>
 &lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em>)&lt;/h3&gt;
