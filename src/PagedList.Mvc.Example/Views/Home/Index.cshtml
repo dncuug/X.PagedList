@@ -9,11 +9,11 @@
 <p>Example of paging a list:</p>
 
 <h3>List of @ViewBag.Names.TotalItemCount Names (Page Size: @ViewBag.Names.PageSize, Current Page: @ViewBag.Names.PageNumber)</h3>
-<ul>
+<ol start="@ViewBag.Names.FirstItemOnPage">
 	@foreach(var i in ViewBag.Names){
 		<li>@i</li>
 	}
-</ul>
+</ol>
 
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -41,3 +41,6 @@
 
 <h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "Última >>" })
+
+<h3>Show Range of Items For Each Page</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
