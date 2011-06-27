@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package>
-  <metadata>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata schemaVersion="2">
     <id>PagedList.Mvc</id>
-    <version>3.0.1.0</version>
+    <version>3.0.2.0</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
     <description><![CDATA[Asp.Net MVC HtmlHelper method for generating paging control for use with PagedList library.]]></description>

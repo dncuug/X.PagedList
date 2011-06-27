@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc.Example", "Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc", "PagedList.Mvc\PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D13AC3F0-9CE8-4FD9-B19D-69E49B23EB1B}"
+	ProjectSection(SolutionItems) = preProject
+		..\packages\PagedList.Mvc\PagedList.Mvc.nuspec = ..\packages\PagedList.Mvc\PagedList.Mvc.nuspec
+		..\packages\PagedList\PagedList.nuspec = ..\packages\PagedList\PagedList.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
