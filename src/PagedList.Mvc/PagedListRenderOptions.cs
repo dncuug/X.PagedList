@@ -156,6 +156,11 @@ namespace PagedList.Mvc
 		/// </summary>
 		public Func<int, string> FunctionToDisplayEachPageNumber { get; set; }
 
+        /// <summary>
+        /// Text that will appear between each page.
+        /// </summary>
+        public string Delimiter { get; set; }
+
 		///<summary>
 		/// Shows only the Previous and Next links.
 		///</summary>

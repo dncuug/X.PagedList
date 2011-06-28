@@ -176,12 +176,17 @@ namespace PagedList.Mvc
 				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 0)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 
-				foreach (var i in Enumerable.Range(start, end))
-					listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
-					                     	? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
-					                     	: Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
+                foreach (var i in Enumerable.Range(start, end))
+                {
+                    if (ADelimiterWasSet(options) && ThisIsNotTheFirstPage(start, i))
+                        listItemLinks.Append(options.Delimiter);
 
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
+                    listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
+                                             ? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
+                                             : Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
+                }
+
+			    if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 			}
 
@@ -204,5 +209,15 @@ namespace PagedList.Mvc
 
 			return new MvcHtmlString(outerDiv.ToString());
 		}
+
+	    private static bool ThisIsNotTheFirstPage(int start, int i)
+	    {
+	        return (i > start);
+	    }
+
+	    private static bool ADelimiterWasSet(PagedListRenderOptions options)
+	    {
+	        return (string.IsNullOrEmpty(options.Delimiter) == false);
+	    }
 	}
 }
