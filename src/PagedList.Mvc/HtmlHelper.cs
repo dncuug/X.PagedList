@@ -176,12 +176,18 @@ namespace PagedList.Mvc
 				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 0)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 
-				foreach (var i in Enumerable.Range(start, end))
-					listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
-					                     	? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
-					                     	: Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
+                foreach (var i in Enumerable.Range(start, end))
+                {
+                    if (string.IsNullOrEmpty(options.Delimiter) == false)
+                        if (i > start)
+                            listItemLinks.Append(options.Delimiter);
 
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
+                    listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
+                                             ? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
+                                             : Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
+                }
+
+			    if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 			}
 
