@@ -161,6 +161,7 @@ namespace PagedList.Mvc
 			//page
 			if (options.DisplayLinkToIndividualPages)
 			{
+				//calculate start and end of range of page numbers
 				var start = 0;
 				var end = list.PageCount;
 				if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
@@ -173,20 +174,24 @@ namespace PagedList.Mvc
 						start = list.PageCount - options.MaximumPageNumbersToDisplay.Value;
 				}
 
+				//if there are previous page numbers not displayed, show an ellipsis
 				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 0)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 
-                foreach (var i in Enumerable.Range(start, end))
-                {
-                    if (ADelimiterWasSet(options) && ThisIsNotTheFirstPage(start, i))
-                        listItemLinks.Append(options.Delimiter);
+				foreach (var i in Enumerable.Range(start, end))
+				{
+					//show delimiter between page numbers
+					if (i > start && !string.IsNullOrWhiteSpace(options.DelimiterBetweenPageNumbers))
+						listItemLinks.Append(options.DelimiterBetweenPageNumbers);
 
-                    listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
-                                             ? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
-                                             : Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
-                }
+					//show page number link
+					listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
+											 ? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
+											 : Page(i, list, generatePageUrl, options.FunctionToDisplayEachPageNumber));
+				}
 
-			    if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
+				//if there are subsequent page numbers not displayed, show an ellipsis
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 			}
 
@@ -209,15 +214,5 @@ namespace PagedList.Mvc
 
 			return new MvcHtmlString(outerDiv.ToString());
 		}
-
-	    private static bool ThisIsNotTheFirstPage(int start, int i)
-	    {
-	        return (i > start);
-	    }
-
-	    private static bool ADelimiterWasSet(PagedListRenderOptions options)
-	    {
-	        return (string.IsNullOrEmpty(options.Delimiter) == false);
-	    }
 	}
 }

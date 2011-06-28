@@ -89,6 +89,9 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 
 &lt;h3&gt;Show Range of Items For Each Page&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page =&gt; ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
+
+&lt;h3&gt;With Delimiter&lt;/h3&gt;
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 </pre>
 
 # License
