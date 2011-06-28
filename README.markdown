@@ -84,7 +84,7 @@ public class ProductController : Controller
 You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
 <pre>
-&lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em>)&lt;/h3&gt;
+&lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em&gt;)&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "&lt;&lt; Primera", LinkToPreviousPageFormat = "&lt; Anterior", LinkToNextPageFormat = "Siguiente &gt;", LinkToLastPageFormat = "&Uacute;ltima &gt;&gt;" })
 
 &lt;h3&gt;Show Range of Items For Each Page&lt;/h3&gt;
