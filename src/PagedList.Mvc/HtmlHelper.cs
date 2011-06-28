@@ -178,9 +178,8 @@ namespace PagedList.Mvc
 
                 foreach (var i in Enumerable.Range(start, end))
                 {
-                    if (string.IsNullOrEmpty(options.Delimiter) == false)
-                        if (i > start)
-                            listItemLinks.Append(options.Delimiter);
+                    if (ADelimiterWasSet(options) && ThisIsNotTheFirstPage(start, i))
+                        listItemLinks.Append(options.Delimiter);
 
                     listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
                                              ? Page(i, list, generatePageUrl, options.LinkToIndividualPageFormat)
@@ -210,5 +209,15 @@ namespace PagedList.Mvc
 
 			return new MvcHtmlString(outerDiv.ToString());
 		}
+
+	    private static bool ThisIsNotTheFirstPage(int start, int i)
+	    {
+	        return (i > start);
+	    }
+
+	    private static bool ADelimiterWasSet(PagedListRenderOptions options)
+	    {
+	        return (string.IsNullOrEmpty(options.Delimiter) == false);
+	    }
 	}
 }
