@@ -35,7 +35,7 @@ namespace PagedList
 			// add items to internal list
 			if (TotalItemCount > 0)
 				Subset.AddRange(index == 0
-					? superset.Take(pageSize).ToList()
+					? superset.Skip(0).Take(pageSize).ToList()
 					: superset.Skip((index)*pageSize).Take(pageSize).ToList()
 				);
 		}
