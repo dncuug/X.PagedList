@@ -1,10 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+	<title>@ViewBag.Title</title>
+	<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    @RenderBody()
+	<nav>
+		<ul>
+			<li>@Html.ActionLink("Traditional Paging", "Index", "Home")</li>
+			<li>@Html.ActionLink("Ajax Paging", "Ajax", "Home")</li>
+		</ul>
+	</nav>
+	@RenderBody()
 </body>
 </html>
