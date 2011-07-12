@@ -24,6 +24,12 @@ namespace PagedList.Mvc.Example.Controllers
 			return View();
 		}
 
+		// Ajax Paging
+		public ViewResult Infinite()
+		{
+			return View();
+		}
+
 		// Ajax Paging (cont'd)
 		public ActionResult AjaxPage(int? page)
 		{

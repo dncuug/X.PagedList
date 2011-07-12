@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Ajax";
 }
 @using PagedList;
 @using PagedList.Mvc;
@@ -31,7 +31,7 @@
 	}
 
 	function showNamesAndPager(p) {
-		$.getJSON("/home/ajaxpage", { page: p ? p : 1 }, function (data, status) {
+		$.getJSON("/home/ajaxpage", { page: p ? p : 1 }, function (data) {
 			$("#namesList").html($("#namesTemplate").tmpl(data.names));
 			$("#namesPager").html(
 				$("#pagerTemplate").tmpl({
@@ -42,11 +42,12 @@
 					}
 				})
 			);
-			}).error(function () {
-				// if we hit an error (such as a 404), try loading the first page
-				if(p !== 1) // don't do this if we just tried to load the first page
-					showNamesAndPager(1);
-			});
+			$("#namesList").attr("start", data.pager.FirstItemOnPage);
+		}).error(function () {
+			// if we hit an error (such as a 404), try loading the first page
+			if (p !== 1) // don't do this if we just tried to load the first page
+				showNamesAndPager(1);
+		});
 	}
 
 	$(function () {
@@ -111,5 +112,5 @@
 </script>
 
 <h2>PagedList.Mvc.Example Website : Ajax Paging</h2>
-<ul id="namesList"></ul>
+<ol id="namesList" start="1"></ol>
 <div id="namesPager" class="PagedList-pager"></div>
