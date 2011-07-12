@@ -68,7 +68,7 @@ namespace PagedList.Mvc.Example.Controllers
 		// - DB situations you'll want to return IQueryable<T>
 		private IEnumerable<string> GetStuffFromDatabase()
 		{
-			var sampleData = new StreamReader(Server.MapPath("~/SampleData.txt")).ReadToEnd();
+			var sampleData = new StreamReader(Server.MapPath("~/App_Data/Names.txt")).ReadToEnd();
 			return sampleData.Split('\n');
 		}
 
