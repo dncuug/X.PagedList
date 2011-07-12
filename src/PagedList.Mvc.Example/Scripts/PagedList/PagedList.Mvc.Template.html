@@ -1,0 +1,41 @@
+﻿<ul>
+{{if pagedList.IsFirstPage}}
+	<li class="PagedList-disabled PagedList-skipToFirst"><a>&lt;&lt; First</a></li>
+{{else}}
+	<li class="PagedList-skipToFirst"><a href="${generatePageUrl(1)}" data-page="1">&lt;&lt; First</a></li>
+{{/if}}
+
+{{if pagedList.HasPreviousPage}}
+	<li class="PagedList-skipToPrevious"><a href="${generatePageUrl(pagedList.PageNumber - 1)}" data-page="${pagedList.PageNumber - 1}">&lt; Previous</a></li>
+{{else}}
+	<li class="PagedList-disabled PagedList-skipToPrevious"><a>&lt; Previous</a></li>
+{{/if}}
+
+{{if renderOptions.showStartEllipses}}
+	<li class="PagedList-ellipses"><span>...</span></li>
+{{/if}}
+
+{{each renderOptions.pages}}
+{{if $value == pagedList.PageNumber}}
+	<li class="PagedList-disabled PagedList-currentPage PagedList-skipToPage"><a>${$value}</a></li>
+{{else}}
+	<li class="PagedList-skipToPage"><a href="${generatePageUrl($value)}" data-page="${$value}">${$value}</a></li>
+{{/if}}
+{{/each}}
+
+{{if renderOptions.showEndEllipses}}
+	<li class="PagedList-ellipses"><span>...</span></li>
+{{/if}}
+
+{{if pagedList.HasNextPage}}
+	<li class="PagedList-skipToNext"><a href="${generatePageUrl(pagedList.PageNumber + 1)}" data-page="${pagedList.PageNumber + 1}">Next &gt;</a></li>
+{{else}}
+	<li class="PagedList-disabled PagedList-skipToNext"><a>Next &gt;</a></li>
+{{/if}}
+
+{{if pagedList.IsLastPage}}
+	<li class="PagedList-disabled PagedList-skipToLast"><a>Last &gt;&gt;</a></li>
+{{else}}
+	<li class="PagedList-skipToLast"><a href="${generatePageUrl(pagedList.PageCount)}" data-page="${pagedList.PageCount}">Last &gt;&gt;</a></li>
+{{/if}}
+</ul>

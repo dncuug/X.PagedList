@@ -8,107 +8,51 @@
 
 <script type="text/javascript" src="/scripts/jquery-1.6.2.min.js"></script>
 <script type="text/javascript" src="/scripts/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/scripts/PagedList/PagedList.Mvc.js"></script>
 <script type="text/javascript">
-	function pagerRenderOptions(pager) {
-		var pagesToDisplay = 10;
-
-		var halfOfPagesToDisplay = Math.floor(pagesToDisplay / 2);
-		var arr = [];
-		var start = pager.PageNumber - halfOfPagesToDisplay;
-		if (start < 1)
-			start = 1;
-		if ((start + pagesToDisplay) > pager.PageCount)
-			start = pager.PageCount - pagesToDisplay;
-
-		for (var i = start; i <= start + pagesToDisplay; i++)
-			arr.push(i);
-
-		return {
-			pages: arr,
-			showStartEllipses: start != 1,
-			showEndEllipses: arr[arr.length - 1] != pager.PageCount
-		};
-	}
-
-	function showNamesAndPager(p) {
-		$.getJSON("/home/ajaxpage", { page: p ? p : 1 }, function (data) {
-			$("#namesList").html($("#namesTemplate").tmpl(data.names));
-			$("#namesPager").html(
-				$("#pagerTemplate").tmpl({
-					pager: data.pager,
-					renderOptions: pagerRenderOptions(data.pager),
-					urlForPage: function (page) {
-						return '/home/ajax/#' + page;
-					}
-				})
-			);
-			$("#namesList").attr("start", data.pager.FirstItemOnPage);
-		}).error(function () {
-			// if we hit an error (such as a 404), try loading the first page
-			if (p !== 1) // don't do this if we just tried to load the first page
-				showNamesAndPager(1);
-		});
-	}
-
 	$(function () {
-		var hash = window.location.hash;
-		if (hash)
-			hash = hash.slice(1);
-		showNamesAndPager(hash);
+		$.get('/Scripts/PagedList/PagedList.Mvc.Template.html', function (pagerTemplate) { // get template for pager
+			// create our pager control object
+			var pagedList = $.pagedList(
+				$.template(null, pagerTemplate),  // convert into compiled template
+				function(pageNumber){
+					return '/home/ajax/#' + pageNumber; // give the pager control the url for loading this page
+				},
+				{ pagesToDisplay: 10 } // optional page render options
+			);
 
-		$(".PagedList-pager a").live("click", function (ev) {
-			ev.preventDefault();
-			var page = $(this).data('page');
-			showNamesAndPager(page);
-			window.location.hash = page;
+			function showNamesAndPagerControl(p) {
+				$.getJSON("/home/ajaxpage", { page: p ? p : 1 }, function (data) { // default to page 1
+					$("#namesList")
+						.attr("start", data.pager.FirstItemOnPage) // update the <li> numbers
+						.html($("#namesTemplate").tmpl(data.names)); // show the names for this page
+					$("#namesPager").html(pagedList.render(data.pager)); // update the pager control
+				}).error(function () {
+					// if we hit an error (such as a 404), try loading the first page
+					if (p !== 1) // don't do this if we just tried to load the first page
+						showNamesAndPagerControl(1);
+				});
+			}
+
+			// get current url hash (ex: "#3" for page 3)
+			var hash = window.location.hash;
+			if (hash)
+				hash = hash.slice(1); // chop off the leading "#"
+
+			// load whatever the currently requested page is
+			showNamesAndPagerControl(hash);
+
+			$(".PagedList-pager a").live("click", function (ev) {
+				ev.preventDefault(); // don't let the page actually navigate
+				var pageNumber = $(this).data('page'); // load the pagenumber from the link's data-pager attribute
+				showNamesAndPagerControl(pageNumber);
+				window.location.hash = pageNumber; // update the url hash
+			});
 		});
 	});
 </script>
-<script id="namesTemplate" type="text/html">
+<script id="namesTemplate" type="text/x-jquery-tmpl">
 	<li>${$data}</li>
-</script>
-<script id="pagerTemplate" type="text/html">
-	<ul>
-		{{if pager.IsFirstPage}}
-			<li class="PagedList-disabled PagedList-skipToFirst"><a>&lt;&lt; First</a></li>
-		{{else}}
-			<li class="PagedList-skipToFirst"><a href="${urlForPage(1)}" data-page="1">&lt;&lt; First</a></li>
-		{{/if}}
-
-		{{if pager.HasPreviousPage}}
-			<li class="PagedList-skipToPrevious"><a href="${urlForPage(pager.PageNumber - 1)}" data-page="${pager.PageNumber - 1}">&lt; Previous</a></li>
-		{{else}}
-			<li class="PagedList-disabled PagedList-skipToPrevious"><a>&lt; Previous</a></li>
-		{{/if}}
-
-		{{if renderOptions.showStartEllipses}}
-			<li class="PagedList-ellipses"><span>...</span></li>
-		{{/if}}
-
-		{{each renderOptions.pages}}
-			{{if $value == pager.PageNumber}}
-				<li class="PagedList-disabled PagedList-currentPage PagedList-skipToPage"><a>${$value}</a></li>
-			{{else}}
-				<li class="PagedList-skipToPage"><a href="${urlForPage($value)}" data-page="${$value}">${$value}</a></li>
-			{{/if}}
-		{{/each}}
-
-		{{if renderOptions.showEndEllipses}}
-			<li class="PagedList-ellipses"><span>...</span></li>
-		{{/if}}
-
-		{{if pager.HasNextPage}}
-			<li class="PagedList-skipToNext"><a href="${urlForPage(pager.PageNumber + 1)}" data-page="${pager.PageNumber + 1}">Next &gt;</a></li>
-		{{else}}
-			<li class="PagedList-disabled PagedList-skipToNext"><a>Next &gt;</a></li>
-		{{/if}}
-
-		{{if pager.IsLastPage}}
-			<li class="PagedList-disabled PagedList-skipToLast"><a>Last &gt;&gt;</a></li>
-		{{else}}
-			<li class="PagedList-skipToLast"><a href="${urlForPage(pager.PageCount)}" data-page="${pager.PageCount}">Last &gt;&gt;</a></li>
-		{{/if}}
-	</ul>
 </script>
 
 <h2>PagedList.Mvc.Example Website : Ajax Paging</h2>
