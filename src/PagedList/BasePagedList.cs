@@ -13,10 +13,10 @@ namespace PagedList
 	/// <typeparam name = "T">The type of object the collection should contain.</typeparam>
 	/// <seealso cref = "IPagedList{T}" />
 	/// <seealso cref = "List{T}" />
-	public abstract class BasePagedList<T> : IPagedList<T>
+	public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
 	{
 		/// <summary>
-		/// The subset of items contained only within this one page of the superset.
+		/// 	The subset of items contained only within this one page of the superset.
 		/// </summary>
 		protected readonly List<T> Subset = new List<T>();
 
@@ -28,140 +28,34 @@ namespace PagedList
 		/// <param name = "totalItemCount">The size of the superset.</param>
 		protected internal BasePagedList(int index, int pageSize, int totalItemCount)
 		{
-			// set source to blank list if superset is null to prevent exceptions
-			TotalItemCount = totalItemCount;
-			PageSize = pageSize;
-			PageIndex = index;
-			if (TotalItemCount > 0)
-				PageCount = (int) Math.Ceiling(TotalItemCount/(double) PageSize);
-			else
-				PageCount = 0;
-
 			if (index < 0)
 				throw new ArgumentOutOfRangeException("index", index, "PageIndex cannot be below 0.");
 			if (pageSize < 1)
 				throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
+
+			// set source to blank list if superset is null to prevent exceptions
+			TotalItemCount = totalItemCount;
+			PageSize = pageSize;
+			PageIndex = index;
+			PageNumber = PageIndex + 1;
+			PageCount = TotalItemCount > 0
+			            	? (int) Math.Ceiling(TotalItemCount/(double) PageSize)
+			            	: 0;
+			HasPreviousPage = PageIndex > 0;
+			HasNextPage = PageIndex < (PageCount - 1);
+			IsFirstPage = PageIndex <= 0;
+			IsLastPage = PageIndex >= (PageCount - 1);
+			FirstItemOnPage = (PageIndex*PageSize) + 1;
+			var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
+			LastItemOnPage = numberOfLastItemOnPage > TotalItemCount
+			                 	? TotalItemCount
+			                 	: numberOfLastItemOnPage;
 		}
 
 		#region IPagedList<T> Members
 
 		/// <summary>
-		/// 	Total number of subsets within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Total number of subsets within the superset.
-		/// </value>
-		public int PageCount { get; protected set; }
-
-		/// <summary>
-		/// 	Total number of objects contained within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Total number of objects contained within the superset.
-		/// </value>
-		public int TotalItemCount { get; protected set; }
-
-		/// <summary>
-		/// 	Zero-based index of this subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Zero-based index of this subset within the superset.
-		/// </value>
-		public int PageIndex { get; protected set; }
-
-		/// <summary>
-		/// 	One-based index of this subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	One-based index of this subset within the superset.
-		/// </value>
-		public int PageNumber
-		{
-			get { return PageIndex + 1; }
-		}
-
-		/// <summary>
-		/// 	Maximum size any individual subset.
-		/// </summary>
-		/// <value>
-		/// 	Maximum size any individual subset.
-		/// </value>
-		public int PageSize { get; protected set; }
-
-		/// <summary>
-		/// 	Returns true if this is NOT the first subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Returns true if this is NOT the first subset within the superset.
-		/// </value>
-		public bool HasPreviousPage
-		{
-			get { return PageIndex > 0; }
-		}
-
-		/// <summary>
-		/// 	Returns true if this is NOT the last subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Returns true if this is NOT the last subset within the superset.
-		/// </value>
-		public bool HasNextPage
-		{
-			get { return PageIndex < (PageCount - 1); }
-		}
-
-		/// <summary>
-		/// 	Returns true if this is the first subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Returns true if this is the first subset within the superset.
-		/// </value>
-		public bool IsFirstPage
-		{
-			get { return PageIndex <= 0; }
-		}
-
-		/// <summary>
-		/// 	Returns true if this is the last subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Returns true if this is the last subset within the superset.
-		/// </value>
-		public bool IsLastPage
-		{
-			get { return PageIndex >= (PageCount - 1); }
-		}
-
-		/// <summary>
-		/// 	One-based index of the first item in the paged subset.
-		/// </summary>
-		/// <value>
-		/// 	One-based index of the first item in the paged subset.
-		/// </value>
-		public int FirstItemOnPage
-		{
-			get { return (PageIndex*PageSize) + 1; }
-		}
-
-		/// <summary>
-		/// 	One-based index of the last item in the paged subset.
-		/// </summary>
-		/// <value>
-		/// 	One-based index of the last item in the paged subset.
-		/// </value>
-		public int LastItemOnPage
-		{
-			get
-			{
-				var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
-				if (numberOfLastItemOnPage > TotalItemCount)
-					numberOfLastItemOnPage = TotalItemCount;
-				return numberOfLastItemOnPage;
-			}
-		}
-
-		/// <summary>
-		/// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+		/// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
 		/// </summary>
 		/// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
 		public IEnumerator<T> GetEnumerator()
@@ -170,7 +64,7 @@ namespace PagedList
 		}
 
 		/// <summary>
-		/// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+		/// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
 		/// </summary>
 		/// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
 		IEnumerator IEnumerable.GetEnumerator()
@@ -179,20 +73,29 @@ namespace PagedList
 		}
 
 		///<summary>
-		/// Gets the element at the specified index.
+		///	Gets the element at the specified index.
 		///</summary>
-		///<param name="index">The zero-based index of the element to get.</param>
+		///<param name = "index">The zero-based index of the element to get.</param>
 		public T this[int index]
 		{
 			get { return Subset[index]; }
 		}
 
 		/// <summary>
-		/// Gets the number of elements contained on this page.
+		/// 	Gets the number of elements contained on this page.
 		/// </summary>
 		public int Count
 		{
 			get { return Subset.Count; }
+		}
+
+		///<summary>
+		/// Gets a non-enumerable copy of this paged list.
+		///</summary>
+		///<returns>A non-enumerable copy of this paged list.</returns>
+		public IPagedList GetMetaData()
+		{
+			return new PagedListMetaData(this);
 		}
 
 		#endregion

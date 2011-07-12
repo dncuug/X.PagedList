@@ -36,16 +36,22 @@ task :prepare_package_pagedlistmvc => :release do
 
   build_directory = './src/PagedList.Mvc/bin/Release/'
   content_directory = './src/PagedList.Mvc.Example/Content/'
+  script_directory = './src/PagedList.Mvc.Example/Scripts/PagedList/'
+
   lib_output_directory = './packages/PagedList.Mvc/lib/40/'
   content_output_directory = './packages/PagedList.Mvc/content/Content/'
+  script_output_directory = './packages/PagedList.Mvc/content/Scripts/PagedList/'
 
   FileUtils.mkdir_p lib_output_directory
   FileUtils.mkdir_p content_output_directory
+  FileUtils.mkdir_p script_output_directory
 
   FileUtils.cp build_directory + 'PagedList.Mvc.dll', lib_output_directory + 'PagedList.Mvc.dll'
   FileUtils.cp build_directory + 'PagedList.Mvc.pdb', lib_output_directory + 'PagedList.Mvc.pdb'
   FileUtils.cp build_directory + 'PagedList.Mvc.xml', lib_output_directory + 'PagedList.Mvc.xml'
   FileUtils.cp content_directory + 'PagedList.css', content_output_directory + 'PagedList.css'
+  FileUtils.cp script_directory + 'PagedList.Mvc.js', script_output_directory + 'PagedList.Mvc.js'
+  FileUtils.cp script_directory + 'PagedList.Mvc.Template.html', script_output_directory + 'PagedList.Mvc.Template.html'
 end
 
 exec :package_pagedlist => :prepare_package_pagedlist do |cmd|

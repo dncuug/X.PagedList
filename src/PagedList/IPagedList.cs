@@ -22,6 +22,12 @@ namespace PagedList
 		/// Gets the number of elements contained on this page.
 		///</summary>
 		int Count { get; }
+
+		///<summary>
+		/// Gets a non-enumerable copy of this paged list.
+		///</summary>
+		///<returns>A non-enumerable copy of this paged list.</returns>
+		IPagedList GetMetaData();
 	}
 
 	/// <summary>

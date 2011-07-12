@@ -18,18 +18,6 @@ namespace PagedList.Mvc.Example.Controllers
 			return View();
 		}
 
-		// Ajax Paging
-		public ViewResult Ajax()
-		{
-			return View();
-		}
-
-		// Ajax Paging
-		public ViewResult Infinite()
-		{
-			return View();
-		}
-
 		// Ajax Paging (cont'd)
 		public ActionResult AjaxPage(int? page)
 		{
@@ -40,8 +28,20 @@ namespace PagedList.Mvc.Example.Controllers
 			return Json(new
 			            	{
 			            		names = listPaged,
-			            		pager = new Pager(listPaged)
+			            		pager = listPaged.GetMetaData()
 			            	}, JsonRequestBehavior.AllowGet);
+		}
+
+		// Ajax Paging
+		public ViewResult Ajax()
+		{
+			return View();
+		}
+
+		// Ajax Paging
+		public ViewResult Infinite()
+		{
+			return View();
 		}
 
 		private IPagedList<string> GetPagedNames(int? page)
@@ -64,50 +64,12 @@ namespace PagedList.Mvc.Example.Controllers
 			return listPaged;
 		}
 
-		// in this case we return IEnumerable<int>, but in most
-		// - DB situations you'll want to return IQueryable<T>
+		// in this case we return IEnumerable<string>, but in most
+		// - DB situations you'll want to return IQueryable<string>
 		private IEnumerable<string> GetStuffFromDatabase()
 		{
 			var sampleData = new StreamReader(Server.MapPath("~/App_Data/Names.txt")).ReadToEnd();
 			return sampleData.Split('\n');
 		}
-
-		#region Nested type: Pager
-
-		public class Pager : IPagedList
-		{
-			public Pager(IPagedList pagedList)
-			{
-				PageCount = pagedList.PageCount;
-				TotalItemCount = pagedList.TotalItemCount;
-				PageIndex = pagedList.PageIndex;
-				PageNumber = pagedList.PageNumber;
-				PageSize = pagedList.PageSize;
-				HasPreviousPage = pagedList.HasPreviousPage;
-				HasNextPage = pagedList.HasNextPage;
-				IsFirstPage = pagedList.IsFirstPage;
-				IsLastPage = pagedList.IsLastPage;
-				FirstItemOnPage = pagedList.FirstItemOnPage;
-				LastItemOnPage = pagedList.LastItemOnPage;
-			}
-
-			#region IPagedList Members
-
-			public int PageCount { get; private set; }
-			public int TotalItemCount { get; private set; }
-			public int PageIndex { get; private set; }
-			public int PageNumber { get; private set; }
-			public int PageSize { get; private set; }
-			public bool HasPreviousPage { get; private set; }
-			public bool HasNextPage { get; private set; }
-			public bool IsFirstPage { get; private set; }
-			public bool IsLastPage { get; private set; }
-			public int FirstItemOnPage { get; private set; }
-			public int LastItemOnPage { get; private set; }
-
-			#endregion
-		}
-
-		#endregion
 	}
 }
