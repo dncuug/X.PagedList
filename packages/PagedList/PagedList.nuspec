@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata schemaVersion="2">
     <id>PagedList</id>
-    <version>1.4.0.0</version>
+    <version>1.5.0.0</version>
     <authors>Troy Goode</authors>
     <owners>TroyGoode</owners>
     <description><![CDATA[PagedList makes it easier for .Net developers to write paging code. It allows you to take any IEnumerable(T) and by specifying the page size and desired page index, select only a subset of that list. PagedList also provides properties that are useful when building UI paging controls.]]></description>
