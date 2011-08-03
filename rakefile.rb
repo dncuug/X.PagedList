@@ -1,4 +1,4 @@
-require 'albacore'
+require 'albacore' # >= 0.2.7
 
 task :default => [:build]
 
