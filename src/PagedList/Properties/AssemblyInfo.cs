@@ -11,7 +11,7 @@ using System.Security;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("PagedList")]
-[assembly: AssemblyDescription("An implementation of PagedList as created by Scott Guthrie and made popular by Rob Conery. Maintained by Troy Goode.")]
+[assembly: AssemblyDescription("PagedList makes it easier for .Net developers to write paging code. It allows you to take any IEnumerable(T) and by specifying the page size and desired page index, select only a subset of that list. PagedList also provides properties that are useful when building UI paging controls.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Troy Goode")]
 [assembly: AssemblyProduct("PagedList")]
