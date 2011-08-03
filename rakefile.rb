@@ -3,19 +3,17 @@ require 'albacore'
 task :default => [:build]
 
 msbuild :build do |msb|
-  msb.path_to_command =  File.join(ENV['windir'], 'Microsoft.NET', 'Framework',  'v4.0.30319', 'MSBuild.exe')
   msb.properties :configuration => :Debug
   msb.targets :Clean, :Rebuild
   msb.solution = "src/PagedList.sln"
 end
 
 xunit :test => :build do |xunit|
-  xunit.path_to_command = "src/PagedList.Tests/bin/debug/xunit.console.exe"
+  xunit.command = "src/PagedList.Tests/bin/debug/xunit.console.exe"
   xunit.assembly = "src/PagedList.Tests/bin/debug/PagedList.Tests.dll"
 end
 
 msbuild :release => :test do |msb|
-  msb.path_to_command =  File.join(ENV['windir'], 'Microsoft.NET', 'Framework',  'v4.0.30319', 'MSBuild.exe')
   msb.properties :configuration => :Release
   msb.targets :Clean, :Rebuild
   msb.solution = "src/PagedList.sln"
@@ -54,24 +52,14 @@ task :prepare_package_pagedlistmvc => :release do
   FileUtils.cp script_directory + 'PagedList.Mvc.Template.html', script_output_directory + 'PagedList.Mvc.Template.html'
 end
 
-exec :package_pagedlist => :prepare_package_pagedlist do |cmd|
-	cmd.path_to_command = 'nuget'
-	cmd.parameters [
-		'pack',
-		'./packages/PagedList/PagedList.nuspec',
-		'-OutputDirectory',
-		'./packages/'
-	]
+nugetpack :package_pagedlist => :prepare_package_pagedlist do |nuget|
+	nuget.nuspec = './packages/PagedList/PagedList.nuspec'
+	nuget.output = './packages/'
 end
 
-exec :package_pagedlistmvc => :prepare_package_pagedlistmvc do |cmd|
-	cmd.path_to_command = 'nuget'
-	cmd.parameters [
-		'pack',
-		'./packages/PagedList.Mvc/PagedList.Mvc.nuspec',
-		'-OutputDirectory',
-		'./packages/'
-	]
+nugetpack :package_pagedlistmvc => :prepare_package_pagedlistmvc do |nuget|
+	nuget.nuspec = './packages/PagedList.Mvc/PagedList.Mvc.nuspec'
+	nuget.output = './packages/'
 end
 
 task :package => [:package_pagedlist, :package_pagedlistmvc] do
