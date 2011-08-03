@@ -11,7 +11,7 @@ using System.Security;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("PagedList.Mvc")]
-[assembly: AssemblyDescription("HtmlHelper extensions for displaying paging controls in Asp.Net MVC when using the PagedList library.")]
+[assembly: AssemblyDescription("Asp.Net MVC HtmlHelper method for generating paging control for use with PagedList library.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Troy Goode")]
 [assembly: AssemblyProduct("PagedList.Mvc")]

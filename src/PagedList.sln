@@ -12,7 +12,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D13AC3F0-9CE8-4FD9-B19D-69E49B23EB1B}"
 	ProjectSection(SolutionItems) = preProject
 		..\packages\PagedList.Mvc\PagedList.Mvc.nuspec = ..\packages\PagedList.Mvc\PagedList.Mvc.nuspec
-		..\packages\PagedList\PagedList.nuspec = ..\packages\PagedList\PagedList.nuspec
 		..\rakefile.rb = ..\rakefile.rb
 		..\README.markdown = ..\README.markdown
 	EndProjectSection

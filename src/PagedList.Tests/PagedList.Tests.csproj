@@ -60,11 +60,13 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
-    <Reference Include="xunit.console, Version=1.1.0.1323, Culture=neutral, processorArchitecture=MSIL">
-      <ExecutableExtension>.exe</ExecutableExtension>
+    <Reference Include="xunit, Version=1.8.0.1545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\xunit.1.8.0.1545\lib\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.extensions, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL" />
+    <Reference Include="xunit.extensions, Version=1.8.0.1545, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\packages\xunit.extensions.1.8.0.1545\lib\xunit.extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PagedListExample.cs" />
@@ -80,23 +82,34 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dependencies\xUnit 1.1\HTML.xslt" />
-    <Content Include="Dependencies\xUnit 1.1\NUnitXml.xslt" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.console.exe" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.extensions.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.extensions.xml" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.gui.exe" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.installer.exe" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.runner.msbuild.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.runner.resharper.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.runner.tdnet.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.runner.utility.dll" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.runner.utility.xml" />
-    <Content Include="Dependencies\xUnit 1.1\xunit.xml" />
+    <Content Include="Dependencies\xunit-1.8\EULA.txt" />
+    <Content Include="Dependencies\xunit-1.8\HTML.xslt" />
+    <Content Include="Dependencies\xunit-1.8\NUnitXml.xslt" />
+    <Content Include="Dependencies\xunit-1.8\xunit.console.clr4.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.console.clr4.x86.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.console.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.console.x86.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.dll" />
+    <Content Include="Dependencies\xunit-1.8\xunit.extensions.dll" />
+    <Content Include="Dependencies\xunit-1.8\xunit.extensions.xml" />
+    <Content Include="Dependencies\xunit-1.8\xunit.gui.clr4.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.gui.clr4.x86.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.gui.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.gui.x86.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.installer.exe" />
+    <Content Include="Dependencies\xunit-1.8\xunit.runner.msbuild.dll" />
+    <Content Include="Dependencies\xunit-1.8\xunit.runner.tdnet.dll" />
+    <Content Include="Dependencies\xunit-1.8\xunit.runner.utility.dll" />
+    <Content Include="Dependencies\xunit-1.8\xunit.runner.utility.xml" />
+    <Content Include="Dependencies\xunit-1.8\xunit.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dependencies\xUnit 1.1\xunit.console.exe.config" />
+    <None Include="Dependencies\xunit-1.8\xunit.console.clr4.exe.config" />
+    <None Include="Dependencies\xunit-1.8\xunit.console.clr4.x86.exe.config" />
+    <None Include="Dependencies\xunit-1.8\xunit.console.exe.config" />
+    <None Include="Dependencies\xunit-1.8\xunit.console.x86.exe.config" />
+    <None Include="Dependencies\xunit-1.8\xunit.dll.tdnet" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

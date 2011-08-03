@@ -19,3 +19,4 @@ packages/PagedList/lib/40/
 packages/PagedList.Mvc/content/
 packages/PagedList.Mvc/lib/40/
 packages/*.nupkg
+src/PagedList.Mvc/Content/

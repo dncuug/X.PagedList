@@ -1,4 +1,5 @@
 require 'albacore' # >= 0.2.7
+require 'fileutils'
 
 task :default => [:build]
 
@@ -9,7 +10,7 @@ msbuild :build do |msb|
 end
 
 xunit :test => :build do |xunit|
-  xunit.command = "src/PagedList.Tests/bin/debug/xunit.console.exe"
+  xunit.command = "src/PagedList.Tests/Dependencies/xunit-1.8/xunit.console.clr4.exe"
   xunit.assembly = "src/PagedList.Tests/bin/debug/PagedList.Tests.dll"
 end
 
@@ -24,31 +25,24 @@ nugetpack :package_pagedlist => :test do |nuget|
 	nuget.output = './packages/'
 end
 
-task :prepare_package_pagedlistmvc => :release do
-  require 'fileutils'
-
-  build_directory = './src/PagedList.Mvc/bin/Release/'
+#HACK: remove once http://nuget.codeplex.com/workitem/1349 is fixed
+task :prepare_package_pagedlistmvc do
   content_directory = './src/PagedList.Mvc.Example/Content/'
   script_directory = './src/PagedList.Mvc.Example/Scripts/PagedList/'
 
-  lib_output_directory = './packages/PagedList.Mvc/lib/40/'
-  content_output_directory = './packages/PagedList.Mvc/content/Content/'
-  script_output_directory = './packages/PagedList.Mvc/content/Scripts/PagedList/'
+  content_directory_out = './src/PagedList.Mvc/Content/Content/'
+  script_directory_out = './src/PagedList.Mvc/Content/Scripts/PagedList/'
 
-  FileUtils.mkdir_p lib_output_directory
-  FileUtils.mkdir_p content_output_directory
-  FileUtils.mkdir_p script_output_directory
+  FileUtils.mkdir_p content_directory_out
+  FileUtils.mkdir_p script_directory_out
 
-  FileUtils.cp build_directory + 'PagedList.Mvc.dll', lib_output_directory + 'PagedList.Mvc.dll'
-  FileUtils.cp build_directory + 'PagedList.Mvc.pdb', lib_output_directory + 'PagedList.Mvc.pdb'
-  FileUtils.cp build_directory + 'PagedList.Mvc.xml', lib_output_directory + 'PagedList.Mvc.xml'
-  FileUtils.cp content_directory + 'PagedList.css', content_output_directory + 'PagedList.css'
-  FileUtils.cp script_directory + 'PagedList.Mvc.js', script_output_directory + 'PagedList.Mvc.js'
-  FileUtils.cp script_directory + 'PagedList.Mvc.Template.html', script_output_directory + 'PagedList.Mvc.Template.html'
+  FileUtils.cp content_directory + 'PagedList.css', content_directory_out + 'PagedList.css'
+  FileUtils.cp script_directory + 'PagedList.Mvc.js', script_directory_out + 'PagedList.Mvc.js'
+  FileUtils.cp script_directory + 'PagedList.Mvc.Template.html', script_directory_out + 'PagedList.Mvc.Template.html'
 end
 
 nugetpack :package_pagedlistmvc => :prepare_package_pagedlistmvc do |nuget|
-	nuget.nuspec = './packages/PagedList.Mvc/PagedList.Mvc.nuspec'
+	nuget.nuspec = './src/PagedList.Mvc/PagedList.Mvc.csproj -Prop Configuration=Release'
 	nuget.output = './packages/'
 end
 

@@ -60,6 +60,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="PagedList.Mvc.nuspec" />
     <None Include="PublicKeyFile.snk" />
     <None Include="PublicPrivateKeyFile.snk" />
   </ItemGroup>

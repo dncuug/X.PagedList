@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata schemaVersion="2">
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>TroyGoode BOOM BOOM BOOM</owners>
+    <description><![CDATA[$description$]]></description>
+    <tags>paging pager page infinitescroll ajax mvc</tags>
+    <language>en-US</language>
+    <projectUrl>http://github.com/TroyGoode/PagedList</projectUrl>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <dependencies>
+      <dependency id="PagedList" version="1.5" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Content\**\*.*" target="Content" />
+  </files>
+</package>
