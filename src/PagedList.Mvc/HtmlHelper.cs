@@ -214,5 +214,75 @@ namespace PagedList.Mvc
 
 			return new MvcHtmlString(outerDiv.ToString());
 		}
+
+		///<summary>
+		/// Displays a configurable "Go To Page:" form for instances of PagedList.
+		///</summary>
+		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name="list">The PagedList to use as the data source.</param>
+		///<param name="formAction">The URL this form should submit the GET request to.</param>
+		///<returns>Outputs the "Go To Page:" form HTML.</returns>
+		public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+														  IPagedList list,
+														  string formAction)
+		{
+			return PagedListGoToPageForm(html, list, formAction, "page");
+		}
+
+		///<summary>
+		/// Displays a configurable "Go To Page:" form for instances of PagedList.
+		///</summary>
+		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name="list">The PagedList to use as the data source.</param>
+		///<param name="formAction">The URL this form should submit the GET request to.</param>
+		///<param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
+		///<returns>Outputs the "Go To Page:" form HTML.</returns>
+		public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+		                                                  IPagedList list,
+		                                                  string formAction,
+		                                                  string inputFieldName)
+		{
+			return PagedListGoToPageForm(html, list, formAction, new GoToFormRenderOptions(inputFieldName));
+		}
+
+		///<summary>
+		/// Displays a configurable "Go To Page:" form for instances of PagedList.
+		///</summary>
+		///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+		///<param name="list">The PagedList to use as the data source.</param>
+		///<param name="formAction">The URL this form should submit the GET request to.</param>
+		///<param name="options">Formatting options.</param>
+		///<returns>Outputs the "Go To Page:" form HTML.</returns>
+		public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+		                                         IPagedList list,
+		                                         string formAction,
+		                                         GoToFormRenderOptions options)
+		{
+			var form = new TagBuilder("form");
+			form.AddCssClass("PagedList-goToPage");
+			form.Attributes.Add("action", formAction);
+			form.Attributes.Add("method", "get");
+
+			var fieldset = new TagBuilder("fieldset");
+
+			var label = new TagBuilder("label");
+			label.Attributes.Add("for", options.InputFieldName);
+			label.SetInnerText(options.LabelFormat);
+
+			var input = new TagBuilder("input");
+			input.Attributes.Add("type", options.InputFieldType);
+			input.Attributes.Add("name", options.InputFieldName);
+			input.Attributes.Add("value", list.PageNumber.ToString());
+
+			var submit = new TagBuilder("input");
+			submit.Attributes.Add("type", "submit");
+			submit.Attributes.Add("value", options.SubmitButtonFormat);
+
+			fieldset.InnerHtml = label.ToString();
+			fieldset.InnerHtml += input.ToString(TagRenderMode.SelfClosing);
+			fieldset.InnerHtml += submit.ToString(TagRenderMode.SelfClosing);
+			form.InnerHtml = fieldset.ToString();
+			return new MvcHtmlString(form.ToString());
+		}
 	}
 }
