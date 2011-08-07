@@ -1,8 +1,8 @@
 require 'albacore' # >= 0.2.7
 require 'fileutils'
 
-pagedlist_version = '1.5.0.0'
-pagedlist_mvc_version = '3.3.0.0'
+pagedlist_version = '1.6.0.0'
+pagedlist_mvc_version = '3.4.0.0'
 
 task :default => [:build]
 
