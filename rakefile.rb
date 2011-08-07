@@ -93,13 +93,13 @@ msbuild :release => :test do |msb|
   msb.solution = "src/PagedList.sln"
 end
 
-nugetpack :package_pagedlist => :test do |nuget|
+nugetpack :package_pagedlist => :release do |nuget|
 	nuget.nuspec = './src/PagedList/PagedList.csproj -Prop Configuration=Release'
 	nuget.output = './packages/'
 end
 
 #HACK: remove once http://nuget.codeplex.com/workitem/1349 is fixed
-task :prepare_package_pagedlistmvc => :test do
+task :prepare_package_pagedlistmvc => :release do
   content_directory = './src/PagedList.Mvc.Example/Content/'
   script_directory = './src/PagedList.Mvc.Example/Scripts/PagedList/'
 
@@ -125,13 +125,13 @@ end
 nugetpush :push_pagedlist => :package_pagedlist do |nuget|
 	ver = String.new(pagedlist_version)
 	ver.slice!(/(\.0)*$/)
-	nuget.package = './packages/PagedList.#{ver}.nupkg'
+	nuget.package = "./packages/PagedList.#{ver}.nupkg"
 end
 
 nugetpush :push_pagedlistmvc => :package_pagedlistmvc do |nuget|
 	ver = String.new(pagedlist_mvc_version)
 	ver.slice!(/(\.0)*$/)
-	nuget.package = './packages/PagedList.Mvc.#{ver}.nupkg'
+	nuget.package = "./packages/PagedList.Mvc.#{ver}.nupkg"
 end
 
 task :push => [:push_pagedlist, :push_pagedlistmvc] do
