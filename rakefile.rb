@@ -49,7 +49,7 @@ end
 nuspec :generate_pagedlist_nuspec do |nuspec|
   nuspec.title = "$id$"
   nuspec.id = "$id$"
-  nuspec.version = "$version"
+  nuspec.version = "$version$"
   nuspec.authors = "$author$"
   nuspec.owners = "TroyGoode"
   nuspec.description = "$description$"
@@ -63,7 +63,7 @@ end
 nuspec :generate_pagedlistmvc_nuspec do |nuspec|
   nuspec.title = "$id$"
   nuspec.id = "$id$"
-  nuspec.version = "$version"
+  nuspec.version = "$version$"
   nuspec.authors = "$author$"
   nuspec.owners = "TroyGoode"
   nuspec.description = "$description$"
@@ -120,4 +120,19 @@ nugetpack :package_pagedlistmvc => :prepare_package_pagedlistmvc do |nuget|
 end
 
 task :package => [:package_pagedlist, :package_pagedlistmvc] do
+end
+
+nugetpush :push_pagedlist => :package_pagedlist do |nuget|
+	ver = String.new(pagedlist_version)
+	ver.slice!(/(\.0)*$/)
+	nuget.package = './packages/PagedList.#{ver}.nupkg'
+end
+
+nugetpush :push_pagedlistmvc => :package_pagedlistmvc do |nuget|
+	ver = String.new(pagedlist_mvc_version)
+	ver.slice!(/(\.0)*$/)
+	nuget.package = './packages/PagedList.Mvc.#{ver}.nupkg'
+end
+
+task :push => [:push_pagedlist, :push_pagedlistmvc] do
 end
