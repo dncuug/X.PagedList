@@ -43,6 +43,26 @@ assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
   asm.output_file = "src/PagedList/Properties/AssemblyInfo.cs"
 end
 
+assemblyinfo :generate_pagedlistmvc_assemblyinfo do |asm|
+  asm.version = pagedlist_mvc_version
+  asm.company_name = "Troy Goode"
+  asm.product_name = "PagedList.Mvc"
+  asm.title = "PagedList.Mvc"
+  asm.description = "Asp.Net MVC HtmlHelper method for generating paging control for use with PagedList library."
+  asm.copyright = "MIT License"
+  asm.custom_attributes \
+	:CLSCompliant => true,
+	:ComVisible => false,
+	:Guid => "eb684fee-2094-4833-ae61-f9bfcab34abd",
+	:AllowPartiallyTrustedCallers => nil,
+	:AssemblyFileVersion => pagedlist_mvc_version,
+	:AssemblyConfiguration => '',
+	:AssemblyTrademark => '',
+	:AssemblyCulture => ''
+  asm.namespaces "System", "System.Security"
+  asm.output_file = "src/PagedList.Mvc/Properties/AssemblyInfo.cs"
+end
+
 nugetpack :package_pagedlist => :test do |nuget|
 	nuget.nuspec = './src/PagedList/PagedList.csproj -Prop Configuration=Release'
 	nuget.output = './packages/'
