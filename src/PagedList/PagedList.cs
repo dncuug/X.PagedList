@@ -51,7 +51,7 @@ namespace PagedList
 			if(superset != null && TotalItemCount > 0)
 				Subset.AddRange(index == 0
 					? superset.Skip(0).Take(pageSize).ToList()
-					: superset.Skip((index)*pageSize).Take(pageSize).ToList()
+					: superset.Skip((index) * pageSize).Take(pageSize).ToList()
 				);
 		}
 	}
