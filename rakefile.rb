@@ -6,23 +6,6 @@ pagedlist_mvc_version = '3.3.0.0'
 
 task :default => [:build]
 
-msbuild :build do |msb|
-  msb.properties :configuration => :Debug
-  msb.targets :Clean, :Rebuild
-  msb.solution = "src/PagedList.sln"
-end
-
-xunit :test => :build do |xunit|
-  xunit.command = "src/PagedList.Tests/Dependencies/xunit-1.8/xunit.console.clr4.exe"
-  xunit.assembly = "src/PagedList.Tests/bin/debug/PagedList.Tests.dll"
-end
-
-msbuild :release => :test do |msb|
-  msb.properties :configuration => :Release
-  msb.targets :Clean, :Rebuild
-  msb.solution = "src/PagedList.sln"
-end
-
 assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
   asm.version = pagedlist_version
   asm.company_name = "Troy Goode"
@@ -63,13 +46,60 @@ assemblyinfo :generate_pagedlistmvc_assemblyinfo do |asm|
   asm.output_file = "src/PagedList.Mvc/Properties/AssemblyInfo.cs"
 end
 
+nuspec :generate_pagedlist_nuspec do |nuspec|
+  nuspec.title = "$id$"
+  nuspec.id = "$id$"
+  nuspec.version = "$version"
+  nuspec.authors = "$author$"
+  nuspec.owners = "TroyGoode"
+  nuspec.description = "$description$"
+  nuspec.language = "en-US"
+  nuspec.licenseUrl = "http://www.opensource.org/licenses/mit-license.php"
+  nuspec.projectUrl = "http://github.com/TroyGoode/PagedList"
+  nuspec.tags = "paging pager page infinitescroll ajax mvc"
+  nuspec.output_file = "src/PagedList/PagedList.nuspec"
+end
+
+nuspec :generate_pagedlistmvc_nuspec do |nuspec|
+  nuspec.title = "$id$"
+  nuspec.id = "$id$"
+  nuspec.version = "$version"
+  nuspec.authors = "$author$"
+  nuspec.owners = "TroyGoode"
+  nuspec.description = "$description$"
+  nuspec.language = "en-US"
+  nuspec.licenseUrl = "http://www.opensource.org/licenses/mit-license.php"
+  nuspec.projectUrl = "http://github.com/TroyGoode/PagedList"
+  nuspec.tags = "paging pager page infinitescroll ajax mvc"
+  nuspec.dependency "PagedList", pagedlist_version
+  nuspec.file "Content\\**\\*.*", "Content"
+  nuspec.output_file = "src/PagedList.Mvc/PagedList.Mvc.nuspec"
+end
+
+msbuild :build => [:generate_pagedlist_assemblyinfo, :generate_pagedlistmvc_assemblyinfo, :generate_pagedlist_nuspec, :generate_pagedlistmvc_nuspec] do |msb|
+  msb.properties :configuration => :Debug
+  msb.targets :Clean, :Rebuild
+  msb.solution = "src/PagedList.sln"
+end
+
+xunit :test => :build do |xunit|
+  xunit.command = "src/PagedList.Tests/Dependencies/xunit-1.8/xunit.console.clr4.exe"
+  xunit.assembly = "src/PagedList.Tests/bin/debug/PagedList.Tests.dll"
+end
+
+msbuild :release => :test do |msb|
+  msb.properties :configuration => :Release
+  msb.targets :Clean, :Rebuild
+  msb.solution = "src/PagedList.sln"
+end
+
 nugetpack :package_pagedlist => :test do |nuget|
 	nuget.nuspec = './src/PagedList/PagedList.csproj -Prop Configuration=Release'
 	nuget.output = './packages/'
 end
 
 #HACK: remove once http://nuget.codeplex.com/workitem/1349 is fixed
-task :prepare_package_pagedlistmvc do
+task :prepare_package_pagedlistmvc => :test do
   content_directory = './src/PagedList.Mvc.Example/Content/'
   script_directory = './src/PagedList.Mvc.Example/Scripts/PagedList/'
 
