@@ -1,8 +1,8 @@
 require 'albacore' # >= 0.2.7
 require 'fileutils'
 
-pagedlist_version = "1.5.0.0"
-pagedlist_mvc_version = "3.3.0.0"
+pagedlist_version = '1.5.0.0'
+pagedlist_mvc_version = '3.3.0.0'
 
 task :default => [:build]
 
@@ -30,8 +30,16 @@ assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
   asm.title = "PagedList"
   asm.description = "PagedList makes it easier for .Net developers to write paging code. It allows you to take any IEnumerable(T) and by specifying the page size and desired page index, select only a subset of that list. PagedList also provides properties that are useful when building UI paging controls."
   asm.copyright = "MIT License"
-  asm.guid = "1d709432-45fa-4475-a403-b2310a47d0a6"
-  asm.custom_attributes :CLSCompliant => true, :ComVisible => false, :AllowPartiallyTrustedCallers
+  asm.custom_attributes \
+	:CLSCompliant => true,
+	:ComVisible => false,
+	:Guid => "1d709432-45fa-4475-a403-b2310a47d0a6",
+	:AllowPartiallyTrustedCallers => nil,
+	:AssemblyFileVersion => pagedlist_version,
+	:AssemblyConfiguration => '',
+	:AssemblyTrademark => '',
+	:AssemblyCulture => ''
+  asm.namespaces "System", "System.Security"
   asm.output_file = "src/PagedList/Properties/AssemblyInfo.cs"
 end
 
