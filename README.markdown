@@ -20,7 +20,7 @@ public class ProductController : Controller
 		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable&lt;Product&gt; representing an unknown number of products. a thousand maybe?
 
 		var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
-		var onePageOfProducts = products.ToPagedList(pageIndex, 25); // will only contain 25 products max because of the pageSize
+		var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
 		
 		ViewBag.OnePageOfProducts = onePageOfProducts;
 		return View();
