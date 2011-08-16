@@ -7,7 +7,7 @@ namespace PagedList.Mvc.Example.Controllers
 {
 	public class AutomappedListController : Controller
 	{
-		public ActionResult Index()
+		public ActionResult Index(int? page)
 		{
 			var orders = new[]
 			             	{
@@ -33,9 +33,12 @@ namespace PagedList.Mvc.Example.Controllers
 			             		                                          	})
 			             	};
 
-			Mapper.CreateMap<Order, OrderDto>();
+			var pagedOrders = orders.ToPagedList(page ?? 0, 2);
 
-			var dto = Mapper.Map<Order[], OrderDto[]>(orders);
+			Mapper.CreateMap<Order, OrderDto>();
+			var dtoOrders = Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(pagedOrders);
+			var dto = new StaticPagedList<OrderDto>(dtoOrders, pagedOrders.PageIndex, pagedOrders.PageSize, pagedOrders.TotalItemCount);
+
 			return View(dto);
 		}
 

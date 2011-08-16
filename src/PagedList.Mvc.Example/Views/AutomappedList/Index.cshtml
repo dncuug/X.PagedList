@@ -1,8 +1,12 @@
-﻿@model IEnumerable<PagedList.Mvc.Example.Controllers.AutomappedListController.OrderDto>
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<PagedList.Mvc.Example.Controllers.AutomappedListController.OrderDto>
 @{
 	
 	ViewBag.Title = "Automapper Example";
 }
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <h2>Automapper Example</h2>
 <ul>
@@ -10,3 +14,5 @@
 		<p>@example.CustomerName: $@example.Total</p>
 	}
 </ul>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }) )
