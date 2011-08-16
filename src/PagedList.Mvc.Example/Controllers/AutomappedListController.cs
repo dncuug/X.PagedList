@@ -9,6 +9,8 @@ namespace PagedList.Mvc.Example.Controllers
 	{
 		public ActionResult Index(int? page)
 		{
+			const int pageSize = 2;
+
 			var orders = new[]
 			             	{
 			             		new Order(new Customer {Name = "Jerry Seinfeld"}, new[]
@@ -33,16 +35,16 @@ namespace PagedList.Mvc.Example.Controllers
 			             		                                          	})
 			             	};
 
-			var pagedOrders = orders.ToPagedList(page ?? 0, 2);
+			var pagedOrders = orders.ToPagedList(page ?? 0, pageSize);
 
-			Mapper.CreateMap<Order, OrderDto>();
-			var dtoOrders = Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(pagedOrders);
-			var dto = new StaticPagedList<OrderDto>(dtoOrders, pagedOrders.PageIndex, pagedOrders.PageSize, pagedOrders.TotalItemCount);
+			Mapper.CreateMap<Order, OrderDto>(); // create mapping between Order and OrderDto
+			var dtoOrders = Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(pagedOrders); // convert all the Orders in the paged list into OrderDtos
+			var dto = new StaticPagedList<OrderDto>(dtoOrders, pagedOrders); // reconsitute a new paged list containing the OrderDtos
 
 			return View(dto);
 		}
 
-		// example classes below from http://automapper.codeplex.com/wikipage?title=Flattening&referringTitle=Home
+		#region Example classes from: http://automapper.codeplex.com/wikipage?title=Flattening&referringTitle=Home
 
 		public class OrderDto
 		{
@@ -100,5 +102,7 @@ namespace PagedList.Mvc.Example.Controllers
 				return LineItems.Sum(x => x.GetTotal());
 			}
 		}
+
+		#endregion
 	}
 }
