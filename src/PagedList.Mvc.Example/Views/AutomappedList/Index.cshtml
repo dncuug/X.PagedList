@@ -1,0 +1,10 @@
+﻿@{
+	ViewBag.Title = "Automapper Example";
+}
+
+<h2>Automapper Example</h2>
+<ul>
+	@foreach (var example in ViewBag.Example){ 
+		<p>@example.CustomerName: $@example.Total</p>
+	}
+</ul>
