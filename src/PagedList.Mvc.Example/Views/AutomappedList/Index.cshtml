@@ -1,10 +1,12 @@
-﻿@{
+﻿@model IEnumerable<PagedList.Mvc.Example.Controllers.AutomappedListController.OrderDto>
+@{
+	
 	ViewBag.Title = "Automapper Example";
 }
 
 <h2>Automapper Example</h2>
 <ul>
-	@foreach (var example in ViewBag.Example){ 
+	@foreach (var example in Model){ 
 		<p>@example.CustomerName: $@example.Total</p>
 	}
 </ul>

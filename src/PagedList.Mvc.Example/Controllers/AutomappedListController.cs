@@ -35,8 +35,8 @@ namespace PagedList.Mvc.Example.Controllers
 
 			Mapper.CreateMap<Order, OrderDto>();
 
-			ViewBag.Example = Mapper.Map<Order[], OrderDto[]>(orders);
-			return View();
+			var dto = Mapper.Map<Order[], OrderDto[]>(orders);
+			return View(dto);
 		}
 
 		// example classes below from http://automapper.codeplex.com/wikipage?title=Flattening&referringTitle=Home
