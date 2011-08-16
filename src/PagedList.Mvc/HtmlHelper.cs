@@ -176,7 +176,7 @@ namespace PagedList.Mvc
 				}
 
 				//if there are previous page numbers not displayed, show an ellipsis
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 0)
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 1)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 
 				foreach (var i in Enumerable.Range(start, end))
