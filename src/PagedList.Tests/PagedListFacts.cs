@@ -32,7 +32,7 @@ namespace PagedList.Tests
 		}
 
 		[Fact]
-		public void PageIndex_Above_RecordCount_Returns_Empty_List()
+		public void PageNumber_Above_RecordCount_Returns_Empty_List()
 		{
 			//arrange
 			var data = new[] {1, 2, 3};

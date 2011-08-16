@@ -21,14 +21,14 @@ namespace PagedList.Mvc
 
 		private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, string format)
 		{
-			const int targetPageIndex = 1;
+			const int targetPageNumber = 1;
 			var first = new TagBuilder("a");
-			first.SetInnerText(string.Format(format, targetPageIndex));
+			first.SetInnerText(string.Format(format, targetPageNumber));
 
 			if (list.IsFirstPage)
 				return WrapInListItem(first, "PagedList-skipToFirst", "PagedList-disabled");
 
-			first.Attributes["href"] = generatePageUrl(targetPageIndex);
+			first.Attributes["href"] = generatePageUrl(targetPageNumber);
 			return WrapInListItem(first, "PagedList-skipToFirst");
 		}
 
@@ -118,7 +118,7 @@ namespace PagedList.Mvc
 		///</summary>
 		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
 		///<param name = "list">The PagedList to use as the data source.</param>
-		///<param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
 												   IPagedList list,
@@ -132,7 +132,7 @@ namespace PagedList.Mvc
 		///</summary>
 		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
 		///<param name = "list">The PagedList to use as the data source.</param>
-		///<param name = "generatePageUrl">A function that takes the index of the desired page and returns a URL-string that will load that page.</param>
+		///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
 		///<param name = "options">Formatting options.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
