@@ -223,7 +223,8 @@ namespace PagedList.Mvc
 					DisplayLinkToFirstPage = false,
 					DisplayLinkToLastPage = false,
 					DisplayLinkToPreviousPage = false,
-					DisplayLinkToNextPage = false
+					DisplayLinkToNextPage = false,
+					DisplayEllipsesWhenNotShowingAllPageNumbers = false
 				};
 			}
 		}

@@ -21,9 +21,9 @@ namespace PagedList.Mvc
 
 		private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, string format)
 		{
-			const int targetPageIndex = 0;
+			const int targetPageIndex = 1;
 			var first = new TagBuilder("a");
-			first.SetInnerText(string.Format(format, targetPageIndex + 1));
+			first.SetInnerText(string.Format(format, targetPageIndex));
 
 			if (list.IsFirstPage)
 				return WrapInListItem(first, "PagedList-skipToFirst", "PagedList-disabled");
@@ -34,14 +34,14 @@ namespace PagedList.Mvc
 
 		private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, string format)
 		{
-			var targetPageIndex = list.PageIndex - 1;
+			var targetPageNumber = list.PageNumber - 1;
 			var previous = new TagBuilder("a");
-			previous.SetInnerText(string.Format(format, targetPageIndex + 1));
+			previous.SetInnerText(string.Format(format, targetPageNumber));
 
 			if (!list.HasPreviousPage)
 				return WrapInListItem(previous, "PagedList-skipToPrevious", "PagedList-disabled");
 
-			previous.Attributes["href"] = generatePageUrl(targetPageIndex);
+			previous.Attributes["href"] = generatePageUrl(targetPageNumber);
 			return WrapInListItem(previous, "PagedList-skipToPrevious");
 		}
 
@@ -52,40 +52,40 @@ namespace PagedList.Mvc
 
 		private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, Func<int, string> format)
 		{
-			var targetPageIndex = i;
+			var targetPageNumber = i;
 			var page = new TagBuilder("a");
-			page.SetInnerText(format(targetPageIndex + 1));
+			page.SetInnerText(format(targetPageNumber));
 
-			if (i == list.PageIndex)
+			if (i == list.PageNumber)
 				return WrapInListItem(page, "PagedList-skipToPage", "PagedList-currentPage", "PagedList-disabled");
 
-			page.Attributes["href"] = generatePageUrl(targetPageIndex);
+			page.Attributes["href"] = generatePageUrl(targetPageNumber);
 			return WrapInListItem(page, "PagedList-skipToPage");
 		}
 
 		private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, string format)
 		{
-			var targetPageIndex = list.PageIndex + 1;
+			var targetPageNumber = list.PageNumber + 1;
 			var next = new TagBuilder("a");
-			next.SetInnerText(string.Format(format, targetPageIndex + 1));
+			next.SetInnerText(string.Format(format, targetPageNumber));
 
 			if (!list.HasNextPage)
 				return WrapInListItem(next, "PagedList-skipToNext", "PagedList-disabled");
 
-			next.Attributes["href"] = generatePageUrl(targetPageIndex);
+			next.Attributes["href"] = generatePageUrl(targetPageNumber);
 			return WrapInListItem(next, "PagedList-skipToNext");
 		}
 
 		private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, string format)
 		{
-			var targetPageIndex = list.PageCount - 1;
+			var targetPageNumber = list.PageCount;
 			var last = new TagBuilder("a");
-			last.SetInnerText(string.Format(format, targetPageIndex + 1));
+			last.SetInnerText(string.Format(format, targetPageNumber));
 
 			if (list.IsLastPage)
 				return WrapInListItem(last, "PagedList-skipToLast", "PagedList-disabled");
 
-			last.Attributes["href"] = generatePageUrl(targetPageIndex);
+			last.Attributes["href"] = generatePageUrl(targetPageNumber);
 			return WrapInListItem(last, "PagedList-skipToLast");
 		}
 
@@ -162,16 +162,17 @@ namespace PagedList.Mvc
 			if (options.DisplayLinkToIndividualPages)
 			{
 				//calculate start and end of range of page numbers
-				var start = 0;
+				var start = 1;
 				var end = list.PageCount;
 				if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
 				{
-					start = list.PageIndex - options.MaximumPageNumbersToDisplay.Value / 2;
-					if (start < 0)
-						start = 0;
-					end = options.MaximumPageNumbersToDisplay.Value;
-					if ((start + end) > list.PageCount)
-						start = list.PageCount - options.MaximumPageNumbersToDisplay.Value;
+					var maxPageNumbersToDisplay = options.MaximumPageNumbersToDisplay.Value;
+					start = list.PageNumber - maxPageNumbersToDisplay / 2;
+					if (start < 1)
+						start = 1;
+					end = maxPageNumbersToDisplay;
+					if ((start + end - 1) > list.PageCount)
+						start = list.PageCount - maxPageNumbersToDisplay + 1;
 				}
 
 				//if there are previous page numbers not displayed, show an ellipsis
@@ -191,7 +192,7 @@ namespace PagedList.Mvc
 				}
 
 				//if there are subsequent page numbers not displayed, show an ellipsis
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end) < list.PageCount)
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end - 1) < list.PageCount)
 					listItemLinks.Append(Ellipses(options.EllipsesFormat));
 			}
 

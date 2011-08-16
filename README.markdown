@@ -19,7 +19,7 @@ public class ProductController : Controller
 	{
 		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable&lt;Product&gt; representing an unknown number of products. a thousand maybe?
 
-		var pageIndex = page ?? 0; // if no page was specified in the querystring, default to page 0
+		var pageIndex = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
 		var onePageOfProducts = products.ToPagedList(pageIndex, 25); // will only contain 25 products max because of the pageSize
 		
 		ViewBag.OnePageOfProducts = onePageOfProducts;
@@ -76,7 +76,7 @@ public class ProductController : Controller
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
 
 &lt;h3&gt;Only Show Five Pages At A Time&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
 </pre>
 
 ## Custom Pager Configurations
@@ -85,13 +85,13 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 
 <pre>
 &lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em&gt;)&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { LinkToFirstPageFormat = "&lt;&lt; Primera", LinkToPreviousPageFormat = "&lt; Anterior", LinkToNextPageFormat = "Siguiente &gt;", LinkToLastPageFormat = "&Uacute;ltima &gt;&gt;" })
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = "&lt;&lt; Primera", LinkToPreviousPageFormat = "&lt; Anterior", LinkToNextPageFormat = "Siguiente &gt;", LinkToLastPageFormat = "&Uacute;ltima &gt;&gt;" })
 
 &lt;h3&gt;Show Range of Items For Each Page&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page =&gt; ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page =&gt; ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
 
 &lt;h3&gt;With Delimiter&lt;/h3&gt;
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page + 1 }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 </pre>
 
 # License

@@ -35,7 +35,7 @@ namespace PagedList.Mvc.Example.Controllers
 			             		                                          	})
 			             	};
 
-			var pagedOrders = orders.ToPagedList(page ?? 0, pageSize);
+			var pagedOrders = orders.ToPagedList(page ?? 1, pageSize);
 
 			Mapper.CreateMap<Order, OrderDto>(); // create mapping between Order and OrderDto
 			var dtoOrders = Mapper.Map<IEnumerable<Order>, IEnumerable<OrderDto>>(pagedOrders); // convert all the Orders in the paged list into OrderDtos
