@@ -23,29 +23,28 @@ namespace PagedList
 		/// <summary>
 		/// 	Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
 		/// </summary>
-		/// <param name = "index">The index of the subset of objects contained by this instance.</param>
+		/// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
 		/// <param name = "pageSize">The maximum size of any individual subset.</param>
 		/// <param name = "totalItemCount">The size of the superset.</param>
-		protected internal BasePagedList(int index, int pageSize, int totalItemCount)
+		protected internal BasePagedList(int pageNumber, int pageSize, int totalItemCount)
 		{
-			if (index < 0)
-				throw new ArgumentOutOfRangeException("index", index, "PageIndex cannot be below 0.");
+			if (pageNumber < 1)
+				throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "PageNumber cannot be below 1.");
 			if (pageSize < 1)
 				throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
 
 			// set source to blank list if superset is null to prevent exceptions
 			TotalItemCount = totalItemCount;
 			PageSize = pageSize;
-			PageIndex = index;
-			PageNumber = PageIndex + 1;
+			PageNumber = pageNumber;
 			PageCount = TotalItemCount > 0
 			            	? (int) Math.Ceiling(TotalItemCount/(double) PageSize)
 			            	: 0;
-			HasPreviousPage = PageIndex > 0;
-			HasNextPage = PageIndex < (PageCount - 1);
-			IsFirstPage = PageIndex <= 0;
-			IsLastPage = PageIndex >= (PageCount - 1);
-			FirstItemOnPage = (PageIndex*PageSize) + 1;
+			HasPreviousPage = PageNumber > 1;
+			HasNextPage = PageNumber < PageCount;
+			IsFirstPage = PageNumber == 1;
+			IsLastPage = PageNumber == PageCount;
+			FirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 			var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
 			LastItemOnPage = numberOfLastItemOnPage > TotalItemCount
 			                 	? TotalItemCount

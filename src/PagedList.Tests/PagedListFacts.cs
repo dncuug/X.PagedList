@@ -12,20 +12,20 @@ namespace PagedList.Tests
 		public void Null_Data_Set_Doesnt_Throw_Exception()
 		{
 			//act
-			Assert.ThrowsDelegate act = () => new PagedList<object>(null, 0, 10);
+			Assert.ThrowsDelegate act = () => new PagedList<object>(null, 1, 10);
 
 			//assert
 			Assert.DoesNotThrow(act);
 		}
 
 		[Fact]
-		public void PageIndex_Below_Zero_Throws_ArgumentOutOfRange()
+		public void PageNumber_Below_One_Throws_ArgumentOutOfRange()
 		{
 			//arrange
 			var data = new[] {1, 2, 3};
 
 			//act
-			Assert.ThrowsDelegate act = () => data.ToPagedList(-1, 1);
+			Assert.ThrowsDelegate act = () => data.ToPagedList(0, 1);
 
 			//assert
 			Assert.Throws<ArgumentOutOfRangeException>(act);
@@ -51,7 +51,7 @@ namespace PagedList.Tests
 			var data = new[] {1, 2, 3};
 
 			//act
-			Assert.ThrowsDelegate act = () => data.ToPagedList(0, 0);
+			Assert.ThrowsDelegate act = () => data.ToPagedList(1, 0);
 
 			//assert
 			Assert.Throws<ArgumentOutOfRangeException>(act);
@@ -61,7 +61,7 @@ namespace PagedList.Tests
 		public void Null_Data_Set_Doesnt_Return_Null()
 		{
 			//act
-			var pagedList = new PagedList<object>(null, 0, 10);
+			var pagedList = new PagedList<object>(null, 1, 10);
 
 			//assert
 			Assert.NotNull(pagedList);
@@ -71,7 +71,7 @@ namespace PagedList.Tests
 		public void Null_Data_Set_Returns_Zero_Pages()
 		{
 			//act
-			var pagedList = new PagedList<object>(null, 0, 10);
+			var pagedList = new PagedList<object>(null, 1, 10);
 
 			//assert
 			Assert.Equal(0, pagedList.PageCount);
@@ -84,20 +84,20 @@ namespace PagedList.Tests
 			var data = new List<object>();
 
 			//act
-			var pagedList = data.ToPagedList(0, 10);
+			var pagedList = data.ToPagedList(1, 10);
 
 			//assert
 			Assert.Equal(0, pagedList.PageCount);
 		}
 
 		[Fact]
-		public void DataSet_Of_One_Through_Five_PageSize_Of_Two_PageIndex_Of_One_First_Item_Is_Three()
+		public void DataSet_Of_One_Through_Five_PageSize_Of_Two_PageNumber_Of_Two_First_Item_Is_Three()
 		{
 			//arrange
 			var data = new[] {1, 2, 3, 4, 5};
 
 			//act
-			var pagedList = data.ToPagedList(1, 2);
+			var pagedList = data.ToPagedList(2, 2);
 
 			//assert
 			Assert.Equal(3, pagedList[0]);
@@ -110,23 +110,10 @@ namespace PagedList.Tests
 			var data = new[] {1, 2, 3, 4, 5};
 
 			//act
-			var pagedList = data.ToPagedList(1, 2);
+			var pagedList = data.ToPagedList(2, 2);
 
 			//assert
 			Assert.Equal(5, pagedList.TotalItemCount);
-		}
-
-		[Fact]
-		public void PageIndex_Is_Preserved()
-		{
-			//arrange
-			var data = new[] {1, 2, 3, 4, 5};
-
-			//act
-			var pagedList = data.ToPagedList(1, 2);
-
-			//assert
-			Assert.Equal(1, pagedList.PageIndex);
 		}
 
 		[Fact]
@@ -136,7 +123,7 @@ namespace PagedList.Tests
 			var data = new[] {1, 2, 3, 4, 5};
 
 			//act
-			var pagedList = data.ToPagedList(1, 2);
+			var pagedList = data.ToPagedList(2, 2);
 
 			//assert
 			Assert.Equal(2, pagedList.PageSize);
@@ -149,7 +136,7 @@ namespace PagedList.Tests
 			var data = new[] {1, 2, 3, 4, 5};
 
 			//act
-			var pagedList = data.ToPagedList(1, 2);
+			var pagedList = data.ToPagedList(2, 2);
 
 			//assert
 			Assert.Equal(2, pagedList.Count);
@@ -157,157 +144,142 @@ namespace PagedList.Tests
 			//### related test below
 
 			//act
-			pagedList = data.ToPagedList(2, 2);
+			pagedList = data.ToPagedList(3, 2);
 
 			//assert
 			Assert.Equal(1, pagedList.Count);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughSix_PageSize_Three_PageIndex_Zero_FirstValue_Is_One()
+		public void DataSet_OneThroughSix_PageSize_Three_PageNumber_One_FirstValue_Is_One()
 		{
 			//arrange
 			var data = new[] { 1, 2, 3, 4, 5, 6 };
 
 			//act
-			var pagedList = data.ToPagedList(0, 3);
+			var pagedList = data.ToPagedList(1, 3);
 
 			//assert
 			Assert.Equal(1, pagedList[0]);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughThree_PageSize_One_PageIndex_Two_HasNextPage_False()
+		public void DataSet_OneThroughThree_PageSize_One_PageNumber_Three_HasNextPage_False()
 		{
 			//arrange
 			var data = new[] {1, 2, 3};
 
 			//act
-			var pagedList = data.ToPagedList(2, 1);
+			var pagedList = data.ToPagedList(3, 1);
 
 			//assert
 			Assert.Equal(false, pagedList.HasNextPage);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughThree_PageSize_One_PageIndex_Two_IsLastPage_True()
+		public void DataSet_OneThroughThree_PageSize_One_PageNumber_Three_IsLastPage_True()
 		{
 			//arrange
 			var data = new[] {1, 2, 3};
 
 			//act
-			var pagedList = data.ToPagedList(2, 1);
+			var pagedList = data.ToPagedList(3, 1);
 
 			//assert
 			Assert.Equal(true, pagedList.IsLastPage);
 		}
 
 		[Fact]
-		public void DataSet_OneAndTwo_PageSize_One_PageIndex_One_FirstValue_Is_Two()
+		public void DataSet_OneAndTwo_PageSize_One_PageNumber_Two_FirstValue_Is_Two()
 		{
 			//arrange
 			var data = new[] { 1, 2 };
 
 			//act
-			var pagedList = data.ToPagedList(1, 1);
+			var pagedList = data.ToPagedList(2, 1);
 
 			//assert
 			Assert.Equal(2, pagedList[0]);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_Zero_FirstItemOnPage_Is_One()
+		public void DataSet_OneThroughTen_PageSize_Five_PageNumber_One_FirstItemOnPage_Is_One()
 		{
 			//arrange
 			var data = Enumerable.Range(1, 10);
 
 			//act
-			var pagedList = data.ToPagedList(0, 5);
+			var pagedList = data.ToPagedList(1, 5);
 
 			//assert
 			Assert.Equal(1, pagedList.FirstItemOnPage);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_One_FirstItemOnPage_Is_Six()
+		public void DataSet_OneThroughTen_PageSize_Five_PageNumber_Two_FirstItemOnPage_Is_Six()
 		{
 			//arrange
 			var data = Enumerable.Range(1, 10);
 
 			//act
-			var pagedList = data.ToPagedList(1, 5);
+			var pagedList = data.ToPagedList(2, 5);
 
 			//assert
 			Assert.Equal(6, pagedList.FirstItemOnPage);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_Zero_LastItemOnPage_Is_Five()
+		public void DataSet_OneThroughTen_PageSize_Five_PageNumber_One_LastItemOnPage_Is_Five()
 		{
 			//arrange
 			var data = Enumerable.Range(1, 10);
 
 			//act
-			var pagedList = data.ToPagedList(0, 5);
+			var pagedList = data.ToPagedList(1, 5);
 
 			//assert
 			Assert.Equal(5, pagedList.LastItemOnPage);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughTen_PageSize_Five_PageIndex_One_LastItemOnPage_Is_Ten()
+		public void DataSet_OneThroughTen_PageSize_Five_PageNumber_Two_LastItemOnPage_Is_Ten()
 		{
 			//arrange
 			var data = Enumerable.Range(1, 10);
 
 			//act
-			var pagedList = data.ToPagedList(1, 5);
+			var pagedList = data.ToPagedList(2, 5);
 
 			//assert
 			Assert.Equal(10, pagedList.LastItemOnPage);
 		}
 
 		[Fact]
-		public void DataSet_OneThroughEight_PageSize_Five_PageIndex_One_LastItemOnPage_Is_Eight()
+		public void DataSet_OneThroughEight_PageSize_Five_PageNumber_Two_LastItemOnPage_Is_Eight()
 		{
 			//arrange
 			var data = Enumerable.Range(1, 8);
 
 			//act
-			var pagedList = data.ToPagedList(1, 5);
+			var pagedList = data.ToPagedList(2, 5);
 
 			//assert
 			Assert.Equal(8, pagedList.LastItemOnPage);
 		}
 
-		[Theory]
-		[InlineData(new[] {1, 2, 3}, 0, 1)]
-		[InlineData(new[] {1, 2, 3}, 1, 2)]
-		[InlineData(new[] {1, 2, 3}, 2, 3)]
-		public void Theory_PageNumber_Is_PageIndex_Plus_One(int[] integers, int pageIndex, int expectedPageNumber)
-		{
-			//arrange
-			var data = integers;
-
-			//act
-			var pagedList = data.ToPagedList(pageIndex, 1);
-
-			//assert
-			Assert.Equal(expectedPageNumber, pagedList.PageNumber);
-		}
 
 		[Theory]
-		[InlineData(new[] {1, 2, 3}, 0, 1, false, true)]
-		[InlineData(new[] {1, 2, 3}, 1, 1, true, true)]
-		[InlineData(new[] {1, 2, 3}, 2, 1, true, false)]
-		public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(int[] integers, int pageIndex, int pageSize,
+		[InlineData(new[] {1, 2, 3}, 1, 1, false, true)]
+		[InlineData(new[] {1, 2, 3}, 2, 1, true, true)]
+		[InlineData(new[] {1, 2, 3}, 3, 1, true, false)]
+		public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
 		                                                               bool expectedHasPrevious, bool expectedHasNext)
 		{
 			//arrange
 			var data = integers;
 
 			//act
-			var pagedList = data.ToPagedList(pageIndex, pageSize);
+			var pagedList = data.ToPagedList(pageNumber, pageSize);
 
 			//assert
 			Assert.Equal(expectedHasPrevious, pagedList.HasPreviousPage);
@@ -315,17 +287,17 @@ namespace PagedList.Tests
 		}
 
 		[Theory]
-		[InlineData(new[] {1, 2, 3}, 0, 1, true, false)]
-		[InlineData(new[] {1, 2, 3}, 1, 1, false, false)]
-		[InlineData(new[] {1, 2, 3}, 2, 1, false, true)]
-		public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(int[] integers, int pageIndex, int pageSize,
+		[InlineData(new[] {1, 2, 3}, 1, 1, true, false)]
+		[InlineData(new[] {1, 2, 3}, 2, 1, false, false)]
+		[InlineData(new[] {1, 2, 3}, 3, 1, false, true)]
+		public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
 		                                                          bool expectedIsFirstPage, bool expectedIsLastPage)
 		{
 			//arrange
 			var data = integers;
 
 			//act
-			var pagedList = data.ToPagedList(pageIndex, pageSize);
+			var pagedList = data.ToPagedList(pageNumber, pageSize);
 
 			//assert
 			Assert.Equal(expectedIsFirstPage, pagedList.IsFirstPage);
@@ -345,7 +317,7 @@ namespace PagedList.Tests
 			var data = integers;
 
 			//act
-			var pagedList = data.ToPagedList(0, pageSize);
+			var pagedList = data.ToPagedList(1, pageSize);
 
 			//assert
 			Assert.Equal(expectedNumberOfPages, pagedList.PageCount);

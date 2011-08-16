@@ -20,7 +20,6 @@
 		{
 			PageCount = pagedList.PageCount;
 			TotalItemCount = pagedList.TotalItemCount;
-			PageIndex = pagedList.PageIndex;
 			PageNumber = pagedList.PageNumber;
 			PageSize = pagedList.PageSize;
 			HasPreviousPage = pagedList.HasPreviousPage;
@@ -48,15 +47,7 @@
 		/// 	Total number of objects contained within the superset.
 		/// </value>
 		public int TotalItemCount { get; protected set; }
-
-		/// <summary>
-		/// 	Zero-based index of this subset within the superset.
-		/// </summary>
-		/// <value>
-		/// 	Zero-based index of this subset within the superset.
-		/// </value>
-		public int PageIndex { get; protected set; }
-
+		
 		/// <summary>
 		/// 	One-based index of this subset within the superset.
 		/// </summary>

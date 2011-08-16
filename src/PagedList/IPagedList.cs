@@ -10,7 +10,7 @@ namespace PagedList
 	/// </remarks>
 	/// <typeparam name="T">The type of object the collection should contain.</typeparam>
 	/// <seealso cref="IEnumerable{T}"/>
-	public interface IPagedList<T> : IPagedList, IEnumerable<T>
+	public interface IPagedList<out T> : IPagedList, IEnumerable<T>
 	{
 		///<summary>
 		/// Gets the element at the specified index.
@@ -53,14 +53,6 @@ namespace PagedList
 		/// Total number of objects contained within the superset.
 		/// </value>
 		int TotalItemCount { get; }
-
-		/// <summary>
-		/// Zero-based index of this subset within the superset.
-		/// </summary>
-		/// <value>
-		/// Zero-based index of this subset within the superset.
-		/// </value>
-		int PageIndex { get; }
 
 		/// <summary>
 		/// One-based index of this subset within the superset.
