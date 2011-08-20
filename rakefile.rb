@@ -1,13 +1,11 @@
 require 'albacore' # >= 0.2.7
 require 'fileutils'
-
-pagedlist_version = '1.10'
-pagedlist_mvc_version = '3.9'
+load './version.rb'
 
 task :default => [:build]
 
 assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
-  asm.version = pagedlist_version
+  asm.version = PAGEDLIST_VERSION
   asm.company_name = "Troy Goode"
   asm.product_name = "PagedList"
   asm.title = "PagedList"
@@ -18,7 +16,7 @@ assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
 	:ComVisible => false,
 	:Guid => "1d709432-45fa-4475-a403-b2310a47d0a6",
 	:AllowPartiallyTrustedCallers => nil,
-	:AssemblyFileVersion => pagedlist_version,
+	:AssemblyFileVersion => PAGEDLIST_VERSION,
 	:AssemblyConfiguration => '',
 	:AssemblyTrademark => '',
 	:AssemblyCulture => ''
@@ -27,7 +25,7 @@ assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
 end
 
 assemblyinfo :generate_pagedlistmvc_assemblyinfo do |asm|
-  asm.version = pagedlist_mvc_version
+  asm.version = PAGEDLIST_MVC_VERSION
   asm.company_name = "Troy Goode"
   asm.product_name = "PagedList.Mvc"
   asm.title = "PagedList.Mvc"
@@ -38,7 +36,7 @@ assemblyinfo :generate_pagedlistmvc_assemblyinfo do |asm|
 	:ComVisible => false,
 	:Guid => "eb684fee-2094-4833-ae61-f9bfcab34abd",
 	:AllowPartiallyTrustedCallers => nil,
-	:AssemblyFileVersion => pagedlist_mvc_version,
+	:AssemblyFileVersion => PAGEDLIST_MVC_VERSION,
 	:AssemblyConfiguration => '',
 	:AssemblyTrademark => '',
 	:AssemblyCulture => ''
@@ -71,7 +69,7 @@ nuspec :generate_pagedlistmvc_nuspec do |nuspec|
   nuspec.licenseUrl = "http://www.opensource.org/licenses/mit-license.php"
   nuspec.projectUrl = "http://github.com/TroyGoode/PagedList"
   nuspec.tags = "paging pager page infinitescroll ajax mvc"
-  nuspec.dependency "PagedList", pagedlist_version
+  nuspec.dependency "PagedList", PAGEDLIST_VERSION
   nuspec.file "Content\\**\\*.*", "Content"
   nuspec.output_file = "src/PagedList.Mvc/PagedList.Mvc.nuspec"
 end
@@ -123,13 +121,13 @@ task :package => [:package_pagedlist, :package_pagedlistmvc] do
 end
 
 nugetpush :push_pagedlist => :package_pagedlist do |nuget|
-	ver = String.new(pagedlist_version)
+	ver = String.new(PAGEDLIST_VERSION)
 	ver.slice!(/(\.0)*$/)
 	nuget.package = "./packages/PagedList.#{ver}.nupkg"
 end
 
 nugetpush :push_pagedlistmvc => :package_pagedlistmvc do |nuget|
-	ver = String.new(pagedlist_mvc_version)
+	ver = String.new(PAGEDLIST_MVC_VERSION)
 	ver.slice!(/(\.0)*$/)
 	nuget.package = "./packages/PagedList.Mvc.#{ver}.nupkg"
 end
