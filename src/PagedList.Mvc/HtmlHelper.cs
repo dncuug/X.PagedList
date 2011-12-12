@@ -10,6 +10,13 @@ namespace PagedList.Mvc
 	///</summary>
 	public static class HtmlHelper
 	{
+		private static TagBuilder WrapInListItem(string text)
+		{
+			var li = new TagBuilder("li");
+			li.SetInnerText(text);
+			return li;
+		}
+
 		private static TagBuilder WrapInListItem(TagBuilder inner, params string[] classes)
 		{
 			var li = new TagBuilder("li");
@@ -183,7 +190,7 @@ namespace PagedList.Mvc
 				{
 					//show delimiter between page numbers
 					if (i > start && !string.IsNullOrWhiteSpace(options.DelimiterBetweenPageNumbers))
-						listItemLinks.Append(options.DelimiterBetweenPageNumbers);
+						listItemLinks.Append(WrapInListItem(options.DelimiterBetweenPageNumbers));
 
 					//show page number link
 					listItemLinks.Append(options.FunctionToDisplayEachPageNumber == null
