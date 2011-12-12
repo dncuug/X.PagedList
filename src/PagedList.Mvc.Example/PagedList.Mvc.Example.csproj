@@ -135,6 +135,8 @@
     <None Include="Scripts\jquery-waypoints-v1.1\README.markdown" />
     <Content Include="Views\Home\Infinite.cshtml" />
     <Content Include="Views\AutomappedList\Index.cshtml" />
+    <Content Include="Views\Home\TwitterBootstrap.cshtml" />
+    <Content Include="Views\Home\TwitterBootstrapAjax.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

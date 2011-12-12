@@ -18,6 +18,12 @@ namespace PagedList.Mvc.Example.Controllers
 			return View();
 		}
 
+		// Traditional Paging (+Twitter Bootstrap)
+		public ActionResult TwitterBootstrap(int? page)
+		{
+			return Index(page);
+		}
+
 		// Ajax Paging (cont'd)
 		public ActionResult AjaxPage(int? page)
 		{
@@ -38,7 +44,13 @@ namespace PagedList.Mvc.Example.Controllers
 			return View();
 		}
 
-		// Ajax Paging
+		// Ajax Paging (+Twitter Bootstrap)
+		public ViewResult TwitterBootstrapAjax()
+		{
+			return View();
+		}
+
+		// Ajax Paging (Infinite)
 		public ViewResult Infinite()
 		{
 			return View();

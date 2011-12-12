@@ -1,0 +1,67 @@
+﻿@{
+	ViewBag.Title = "Ajax (+Twitter Bootstrap)";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+
+<script type="text/javascript" src="/scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/scripts/PagedList/PagedList.Mvc.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$.get('/Scripts/PagedList/PagedList.Mvc.Template.html', function (pagerTemplate) { // get template for pager
+			// create our pager control object
+			var pagedList = $.pagedList(
+				$.template(null, pagerTemplate),  // convert into compiled template
+				function(pageNumber){
+					return '/home/ajax/#' + pageNumber; // give the pager control the url for loading this page
+				},
+				{ pagesToDisplay: 10 } // optional page render options
+			);
+
+			function showNamesAndPagerControl(p) {
+				$.getJSON("/home/ajaxpage", { page: p ? p : 1 }, function (data) { // default to page 1
+					$("#namesList")
+						.attr("start", data.pager.FirstItemOnPage) // update the <li> numbers
+						.html($("#namesTemplate").tmpl(data.names)); // show the names for this page
+					$("#namesPager").html(pagedList.render(data.pager)); // update the pager control
+				}).error(function () {
+					// if we hit an error (such as a 404), try loading the first page
+					if (p !== 1) // don't do this if we just tried to load the first page
+						showNamesAndPagerControl(1);
+				});
+			}
+
+			// get current url hash (ex: "#3" for page 3)
+			var hash = window.location.hash;
+			if (hash)
+				hash = hash.slice(1); // chop off the leading "#"
+
+			// load whatever the currently requested page is
+			showNamesAndPagerControl(hash);
+
+			$(".PagedList-pager a").live("click", function (ev) {
+				ev.preventDefault(); // don't let the page actually navigate
+				var pageNumber = $(this).data('page'); // load the pagenumber from the link's data-pager attribute
+				showNamesAndPagerControl(pageNumber);
+				window.location.hash = pageNumber; // update the url hash
+			});
+		});
+	});
+</script>
+<script id="namesTemplate" type="text/x-jquery-tmpl">
+	<li>${$data}</li>
+</script>
+
+<h2>PagedList.Mvc.Example Website : Ajax Paging (+Twitter Bootstrap)</h2>
+
+<h3>Instructions:</h3>
+<p>Simply remove the PagedList stylesheet:</p>
+<pre>&lt;link href="/Content/PagedList.css" rel="stylesheet" type="text/css" /&gt;</pre>
+<p>... and add the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> stylesheet:</p>
+<pre>&lt;link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"&gt;</pre>
+
+<ol id="namesList" start="1"></ol>
+<div id="namesPager" class="PagedList-pager pagination"></div>

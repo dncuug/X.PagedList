@@ -12,24 +12,30 @@ namespace PagedList.Mvc
 		///</summary>
 		public PagedListRenderOptions()
 		{
-			DisplayLinkToFirstPage = true;
-			DisplayLinkToLastPage = true;
+			DisplayLinkToFirstPage = false;
+			DisplayLinkToLastPage = false;
 			DisplayLinkToPreviousPage = true;
 			DisplayLinkToNextPage = true;
 			DisplayLinkToIndividualPages = true;
 			DisplayPageCountAndCurrentLocation = false;
 			MaximumPageNumbersToDisplay = 10;
 			DisplayEllipsesWhenNotShowingAllPageNumbers = true;
-			EllipsesFormat = "...";
-			LinkToFirstPageFormat = "<< First";
-			LinkToPreviousPageFormat = "< Previous";
+			EllipsesFormat = "&#8230;";
+			LinkToFirstPageFormat = "&larr;&larr; First";
+			LinkToPreviousPageFormat = "&larr; Previous";
 			LinkToIndividualPageFormat = "{0}";
-			LinkToNextPageFormat = "Next >";
-			LinkToLastPageFormat = "Last >>";
+			LinkToNextPageFormat = "Next &rarr;";
+			LinkToLastPageFormat = "Last &rarr;&rarr;";
 			PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
 			ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
 			FunctionToDisplayEachPageNumber = null;
+			ClassToApplyToLastListItemInPager = "next";
 		}
+
+		///<summary>
+		/// Specifies a class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
+		///</summary>
+		public string ClassToApplyToLastListItemInPager { get; set; }
 
 		///<summary>
 		/// When true, includes a hyperlink to the first page of the list.
@@ -160,6 +166,21 @@ namespace PagedList.Mvc
 		/// Text that will appear between each page number. If null or whitespace is specified, no delimiter will be shown.
 		/// </summary>
 		public string DelimiterBetweenPageNumbers { get; set; }
+
+		///<summary>
+		/// Also includes links to First and Last pages.
+		///</summary>
+		public static PagedListRenderOptions DefaultPlusFirstAndLast
+		{
+			get
+			{
+				return new PagedListRenderOptions
+				{
+					DisplayLinkToFirstPage = true,
+					DisplayLinkToLastPage = true,
+				};
+			}
+		}
 
 		///<summary>
 		/// Shows only the Previous and Next links.

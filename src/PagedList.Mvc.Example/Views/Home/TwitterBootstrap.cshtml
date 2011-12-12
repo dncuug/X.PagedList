@@ -1,14 +1,20 @@
 ﻿@{
-	ViewBag.Title = "Traditional Paging";
+	ViewBag.Title = "Traditional Paging (+Twitter Bootstrap)";
 }
 @using PagedList;
 @using PagedList.Mvc;
 
-<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 
-<h2>PagedList.Mvc.Example Website : Traditional Paging</h2>
+<h2>PagedList.Mvc.Example Website : Twitter Bootstrap</h2>
 
-<p>Example of paging a list:</p>
+<h3>Instructions:</h3>
+<p>Simply remove the PagedList stylesheet:</p>
+<pre>&lt;link href="/Content/PagedList.css" rel="stylesheet" type="text/css" /&gt;</pre>
+<p>... and add the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> stylesheet:</p>
+<pre>&lt;link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"&gt;</pre>
+
+<h3>Example of paging a list:</h3>
 
 @Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"))
 
