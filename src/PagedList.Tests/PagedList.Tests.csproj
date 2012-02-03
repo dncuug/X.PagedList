@@ -72,6 +72,7 @@
     <Compile Include="PagedListExample.cs" />
     <Compile Include="PagedListFacts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplitAndPartitionFacts.cs" />
     <Compile Include="StaticPagedListExample.cs" />
     <Compile Include="StaticPagedListFacts.cs" />
   </ItemGroup>

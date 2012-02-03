@@ -12,7 +12,7 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 # Example
 
 **/Controllers/ProductController.cs**
-<pre>
+```html
 public class ProductController : Controller
 {
 	public object Index(int? page)
@@ -26,10 +26,10 @@ public class ProductController : Controller
 		return View();
 	}
 }
-</pre>
+```
 
 **/Views/Products/Index.cshtml**
-<pre>
+```html
 @{
 	ViewBag.Title = "Product Listing"
 }
@@ -49,7 +49,7 @@ public class ProductController : Controller
 
 &lt;!-- output a paging control that lets the user navigation to the previous page, next page, etc --&gt;
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
-</pre>
+```
 
 # Pager Configurations
 
@@ -59,7 +59,7 @@ public class ProductController : Controller
 
 ## Out-of-the-box Pager Configurations
 
-<pre>
+```html
 &lt;h3&gt;Default Paging Control&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }))
 
@@ -77,13 +77,13 @@ public class ProductController : Controller
 
 &lt;h3&gt;Only Show Five Pages At A Time&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-</pre>
+```
 
 ## Custom Pager Configurations
 
 You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
-<pre>
+```html
 &lt;h3&gt;Custom Wording (&lt;em&gt;Spanish Translation Example&lt;/em&gt;)&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = "&lt;&lt; Primera", LinkToPreviousPageFormat = "&lt; Anterior", LinkToNextPageFormat = "Siguiente &gt;", LinkToLastPageFormat = "&Uacute;ltima &gt;&gt;" })
 
@@ -92,7 +92,30 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 
 &lt;h3&gt;With Delimiter&lt;/h3&gt;
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page =&gt; Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
-</pre>
+```
+
+## Split and Partition
+
+You can split an enumerable up into <em>n</em> equal-sized objects using the .Split extension method:
+
+```csharp
+var deckOfCards = new DeckOfCards(); //there are 52 cards in the deck
+var splitDeck = deckOfCards.Split(2).ToArray();
+
+Assert.Equal(26, splitDeck[0].Count());
+Assert.Equal(26, splitDeck[1].Count());
+```
+
+You can split an enumerable up into <em>n</em> pages, each with a maximum of <em>m</em> items using the .Partition extension method:
+
+```csharp
+var deckOfCards = new DeckOfCards(); //52 cards
+var hands = deckOfCards.Partition(5).ToArray();
+
+Assert.Equal(11, hands.Count());
+Assert.Equal(5, hands.First().Count());
+Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only has 2 cards
+```
 
 # License
 
