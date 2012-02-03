@@ -9,6 +9,8 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
 4. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
 
+<hr />
+
 # Example
 
 **/Controllers/ProductController.cs**
@@ -77,48 +79,7 @@ public class UserController : Controller
 }
 ```
 
-# Pager Configurations
-
-![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
-
-**Code to generate the above configurations:**
-
-## Out-of-the-box Pager Configurations
-
-```html
-<h3>Default Paging Control</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }))
-
-<h3>Minimal Paging Control</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
-
-<h3>Minimal Paging Control w/ Page Count Text</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
-
-<h3>Minimal Paging Control w/ Item Count Text</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
-
-<h3>Page Numbers Only</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
-
-<h3>Only Show Five Pages At A Time</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
-```
-
-## Custom Pager Configurations
-
-You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
-
-```html
-<h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "&Uacute;ltima >>" })
-
-<h3>Show Range of Items For Each Page</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
-
-<h3>With Delimiter</h3>
-@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
-```
+<hr />
 
 # Split and Partition Extension Methods
 
@@ -142,6 +103,55 @@ Assert.Equal(11, hands.Count());
 Assert.Equal(5, hands.First().Count());
 Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only has 2 cards
 ```
+
+<hr />
+
+# Pager Configurations
+
+### Styling the Pager Yourself
+
+The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://twitter.github.com/bootstrap/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
+
+![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
+
+### Out-of-the-box Pager Configurations
+
+```html
+<h3>Default Paging Control</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }))
+
+<h3>Minimal Paging Control</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.Minimal)
+
+<h3>Minimal Paging Control w/ Page Count Text</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithPageCountText)
+
+<h3>Minimal Paging Control w/ Item Count Text</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.MinimalWithItemCountText)
+
+<h3>Page Numbers Only</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.PageNumbersOnly)
+
+<h3>Only Show Five Pages At A Time</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+```
+
+### Custom Pager Configurations
+
+You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
+
+```html
+<h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { LinkToFirstPageFormat = "<< Primera", LinkToPreviousPageFormat = "< Anterior", LinkToNextPageFormat = "Siguiente >", LinkToLastPageFormat = "&Uacute;ltima >>" })
+
+<h3>Show Range of Items For Each Page</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
+
+<h3>With Delimiter</h3>
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
+```
+
+<hr />
 
 # License
 
