@@ -12,6 +12,7 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 # Example
 
 **/Controllers/ProductController.cs**
+
 ```csharp
 public class ProductController : Controller
 {
@@ -29,6 +30,7 @@ public class ProductController : Controller
 ```
 
 **/Views/Products/Index.cshtml**
+
 ```html
 @{
 	ViewBag.Title = "Product Listing"
