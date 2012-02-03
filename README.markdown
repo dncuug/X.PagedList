@@ -51,6 +51,30 @@ public class ProductController : Controller
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
 ```
 
+# Example 2: Manual Paging
+
+**/Controllers/ProductController.cs**
+
+In some cases you do not have access something capable of creating an IQueryable, such as when using .Net's built-in [MembershipProvider's GetAllUsers](http://msdn.microsoft.com/en-us/library/system.web.security.membershipprovider.getallusers.aspx) method. This method offers paging, but not via IQueryable. Luckily PagedList still has your back (note the use of **StaticPagedList**):
+
+<pre>
+public class UserController : Controller
+{
+	public object Index(int? page)
+	{
+		var pageIndex = (page ?? 1) - 1; //MembershipProvider expects a 0 for the first page
+		var pageSize = 10;
+		int totalUserCount; // will be set by call to GetAllUsers due to _out_ paramter :-|
+
+		var users = Membership.GetAllUsers(pageIndex, pageSize, out totalUserCount);
+		var usersAsIPagedList = new StaticPagedList<MembershipUser>(users, pageIndex + 1, pageSize, totalUserCount);
+
+		ViewBag.OnePageOfUsers = usersAsIPagedList;
+		return View();
+	}
+}
+</pre>
+
 # Pager Configurations
 
 ![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
