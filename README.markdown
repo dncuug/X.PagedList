@@ -1,8 +1,10 @@
-# What is this?
+# PagedList
+
+## What is this?
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
-# How do I use it?
+## How do I use it?
 
 1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
 2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
@@ -11,7 +13,7 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 
 <hr />
 
-# Example
+## Example
 
 **/Controllers/ProductController.cs**
 
@@ -55,7 +57,7 @@ public class ProductController : Controller
 @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page }) )
 ```
 
-# Example 2: Manual Paging
+## Example 2: Manual Paging
 
 **/Controllers/ProductController.cs**
 
@@ -81,7 +83,7 @@ public class UserController : Controller
 
 <hr />
 
-# Split and Partition Extension Methods
+## Split and Partition Extension Methods
 
 You can split an enumerable up into <em>n</em> equal-sized objects using the .Split extension method:
 
@@ -106,7 +108,7 @@ Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only h
 
 <hr />
 
-# Pager Configurations
+## Pager Configurations
 
 ### Styling the Pager Yourself
 
@@ -153,6 +155,6 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 
 <hr />
 
-# License
+## License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
