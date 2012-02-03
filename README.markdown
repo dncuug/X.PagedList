@@ -120,7 +120,7 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/Pa
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 ```
 
-## Split and Partition
+# Split and Partition Extension Methods
 
 You can split an enumerable up into <em>n</em> equal-sized objects using the .Split extension method:
 
