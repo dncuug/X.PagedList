@@ -222,9 +222,18 @@ namespace PagedList.Mvc
 			if (options.DisplayLinkToLastPage)
 				listItemLinks.Add(Last(list, generatePageUrl, options.LinkToLastPageFormat));
 
+			//append class to first item in list?
+			if (!string.IsNullOrWhiteSpace(options.ClassToApplyToFirstListItemInPager))
+				listItemLinks.First().AddCssClass(options.ClassToApplyToFirstListItemInPager);
+
 			//append class to last item in list?
 			if (!string.IsNullOrWhiteSpace(options.ClassToApplyToLastListItemInPager))
 				listItemLinks.Last().AddCssClass(options.ClassToApplyToLastListItemInPager);
+
+			//append classes to all list item links
+			foreach(var li in listItemLinks)
+				foreach (var c in options.LiElementClasses ?? Enumerable.Empty<string>())
+					li.AddCssClass(c);
 
 			//collapse all of the list items into one big string
 			var listItemLinksString = listItemLinks.Aggregate(
@@ -237,10 +246,12 @@ namespace PagedList.Mvc
 						{
 							InnerHtml = listItemLinksString
 						};
+			foreach (var c in options.UlElementClasses ?? Enumerable.Empty<string>())
+				ul.AddCssClass(c);
 
 			var outerDiv = new TagBuilder("div");
-			outerDiv.AddCssClass("PagedList-pager");
-			outerDiv.AddCssClass("pagination");
+			foreach(var c in options.ContainerDivClasses ?? Enumerable.Empty<string>())
+				outerDiv.AddCssClass(c);
 			outerDiv.InnerHtml = ul.ToString();
 
 			return new MvcHtmlString(outerDiv.ToString());

@@ -4,15 +4,15 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
 
 <h2>PagedList.Mvc.Example Website : Twitter Bootstrap</h2>
 
 <h3>Instructions:</h3>
 <p>Simply remove the PagedList stylesheet:</p>
 <pre>&lt;link href="/Content/PagedList.css" rel="stylesheet" type="text/css" /&gt;</pre>
-<p>... and add the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> stylesheet:</p>
-<pre>&lt;link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"&gt;</pre>
+<p>... and add the <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> stylesheet instead:</p>
+<pre>&lt;link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css"&gt;</pre>
 
 <h3>Example of paging a list:</h3>
 
@@ -36,6 +36,12 @@
 <h3>Minimal Paging Control</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.Minimal)
 
+<h3>Minimal Paging Control (Bootstrap Pager-Style)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.TwitterBootstrapPager)
+
+<h3>Minimal Paging Control (Bootstrap Pager-Style, Aligned)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.TwitterBootstrapPagerAligned)
+
 <h3>Minimal Paging Control w/ Page Count Text</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.MinimalWithPageCountText)
 
@@ -55,9 +61,6 @@
 
 <h3>Show Range of Items For Each Page</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
-
-<h3>With Delimiter</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 
 <h3>Empty PagedList</h3>
 @Html.PagedListPager(new string[0].ToPagedList(1, 10), page => Url.Action("Index", new { page }))

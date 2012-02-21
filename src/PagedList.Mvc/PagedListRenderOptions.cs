@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PagedList.Mvc
 {
@@ -29,11 +31,35 @@ namespace PagedList.Mvc
 			PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
 			ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
 			FunctionToDisplayEachPageNumber = null;
+			ClassToApplyToFirstListItemInPager = "previous";
 			ClassToApplyToLastListItemInPager = "next";
+			ContainerDivClasses = new []{"PagedList-pager", "pagination"};
+			UlElementClasses = Enumerable.Empty<string>();
+			LiElementClasses = Enumerable.Empty<string>();
 		}
 
 		///<summary>
-		/// Specifies a class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
+		/// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
+		///</summary>
+		public IEnumerable<string> ContainerDivClasses { get; set; }
+
+		///<summary>
+		/// CSSClasses to append to the &lt;ul&gt; element in the paging control.
+		///</summary>
+		public IEnumerable<string> UlElementClasses { get; set; }
+
+		///<summary>
+		/// CSS Classes to append to every &lt;li&gt; element in the paging control.
+		///</summary>
+		public IEnumerable<string> LiElementClasses { get; set; }
+
+		///<summary>
+		/// Specifies a CSS class to append to the first list item in the pager. If null or whitespace is defined, no additional class is added to first list item in list.
+		///</summary>
+		public string ClassToApplyToFirstListItemInPager { get; set; }
+
+		///<summary>
+		/// Specifies a CSS class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
 		///</summary>
 		public string ClassToApplyToLastListItemInPager { get; set; }
 
@@ -206,54 +232,94 @@ namespace PagedList.Mvc
 			get
 			{
 				return new PagedListRenderOptions
-				{
-					DisplayLinkToFirstPage = false,
-					DisplayLinkToLastPage = false,
-					DisplayLinkToIndividualPages = false,
-					DisplayPageCountAndCurrentLocation = true
-				};
+				       	{
+				       		DisplayLinkToFirstPage = false,
+				       		DisplayLinkToLastPage = false,
+				       		DisplayLinkToIndividualPages = false,
+				       		DisplayPageCountAndCurrentLocation = true
+				       	};
 			}
 		}
 
 		///<summary>
-		/// Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
+		///	Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
 		///</summary>
 		public static PagedListRenderOptions MinimalWithItemCountText
 		{
 			get
 			{
 				return new PagedListRenderOptions
-				{
-					DisplayLinkToFirstPage = false,
-					DisplayLinkToLastPage = false,
-					DisplayLinkToIndividualPages = false,
-					DisplayItemSliceAndTotal = true
-				};
+				       	{
+				       		DisplayLinkToFirstPage = false,
+				       		DisplayLinkToLastPage = false,
+				       		DisplayLinkToIndividualPages = false,
+				       		DisplayItemSliceAndTotal = true
+				       	};
 			}
 		}
 
 		///<summary>
-		/// Shows only links to each individual page.
+		///	Shows only links to each individual page.
 		///</summary>
 		public static PagedListRenderOptions PageNumbersOnly
 		{
 			get
 			{
 				return new PagedListRenderOptions
-				{
-					DisplayLinkToFirstPage = false,
-					DisplayLinkToLastPage = false,
-					DisplayLinkToPreviousPage = false,
-					DisplayLinkToNextPage = false,
-					DisplayEllipsesWhenNotShowingAllPageNumbers = false
-				};
+				       	{
+				       		DisplayLinkToFirstPage = false,
+				       		DisplayLinkToLastPage = false,
+				       		DisplayLinkToPreviousPage = false,
+				       		DisplayLinkToNextPage = false,
+				       		DisplayEllipsesWhenNotShowingAllPageNumbers = false
+				       	};
 			}
 		}
 
 		///<summary>
-		/// Shows Next and Previous while limiting to a max of 5 page numbers at a time.
+		///	Shows Next and Previous while limiting to a max of 5 page numbers at a time.
 		///</summary>
 		public static PagedListRenderOptions OnlyShowFivePagesAtATime
+		{
+			get
+			{
+				return new PagedListRenderOptions
+				       	{
+				       		DisplayLinkToFirstPage = false,
+				       		DisplayLinkToLastPage = false,
+				       		DisplayLinkToPreviousPage = true,
+				       		DisplayLinkToNextPage = true,
+				       		MaximumPageNumbersToDisplay = 5
+				       	};
+			}
+		}
+
+		///<summary>
+		/// Twitter Bootstrap 2's basic pager format (just Previous and Next links).
+		///</summary>
+		public static PagedListRenderOptions TwitterBootstrapPager
+		{
+			get
+			{
+				return new PagedListRenderOptions
+				       	{
+				       		DisplayLinkToFirstPage = false,
+				       		DisplayLinkToLastPage = false,
+				       		DisplayLinkToIndividualPages = false,
+				       		ContainerDivClasses = null,
+				       		UlElementClasses = new[] {"pager"},
+				       		ClassToApplyToFirstListItemInPager = null,
+				       		ClassToApplyToLastListItemInPager = null,
+							LinkToPreviousPageFormat = "Previous",
+							LinkToNextPageFormat = "Next"
+				       	};
+			}
+		}
+
+		///<summary>
+		/// Twitter Bootstrap 2's basic pager format (just Previous and Next links), with aligned links.
+		///</summary>
+		public static PagedListRenderOptions TwitterBootstrapPagerAligned
 		{
 			get
 			{
@@ -261,9 +327,13 @@ namespace PagedList.Mvc
 				{
 					DisplayLinkToFirstPage = false,
 					DisplayLinkToLastPage = false,
-					DisplayLinkToPreviousPage = true,
-					DisplayLinkToNextPage = true,
-					MaximumPageNumbersToDisplay = 5
+					DisplayLinkToIndividualPages = false,
+					ContainerDivClasses = null,
+					UlElementClasses = new[] { "pager" },
+					ClassToApplyToFirstListItemInPager = "previous",
+					ClassToApplyToLastListItemInPager = "next",
+					LinkToPreviousPageFormat = "&larr; Older",
+					LinkToNextPageFormat = "Newer &rarr;"
 				};
 			}
 		}
