@@ -197,7 +197,7 @@ namespace PagedList.Mvc
 		/// <summary>
 		/// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
 		/// </summary>
-		public Func<TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
+		public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
 
 		/// <summary>
 		/// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
@@ -207,13 +207,25 @@ namespace PagedList.Mvc
 		/// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
 		public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, string id)
 		{
-			options.FunctionToTransformEachPageLink = tb =>
+			options.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
 			                                          	{
-															tb.Attributes.Add("data-ajax", "true");
-															tb.Attributes.Add("data-ajax-method", "get");
-															tb.Attributes.Add("data-ajax-mode", "replace");
-															tb.Attributes.Add("data-ajax-update", id);
-			                                          		return tb;
+			                                          		var appendUnobtrusiveAjaxAttributes = true;
+															if (liTagBuilder.Attributes.ContainsKey("class"))
+															{
+																var liClasses = liTagBuilder.Attributes["class"].Split(' ');
+																appendUnobtrusiveAjaxAttributes = !liClasses.Contains("disabled") && !liClasses.Contains("active");
+															}
+
+															if (appendUnobtrusiveAjaxAttributes)
+															{
+																aTagBuilder.Attributes.Add("data-ajax", "true");
+																aTagBuilder.Attributes.Add("data-ajax-method", "get");
+																aTagBuilder.Attributes.Add("data-ajax-mode", "replace");
+																aTagBuilder.Attributes.Add("data-ajax-update", id);																
+															}
+
+															liTagBuilder.InnerHtml = aTagBuilder.ToString();
+			                                          		return liTagBuilder;
 			                                          	};
 			return options;
 		}
