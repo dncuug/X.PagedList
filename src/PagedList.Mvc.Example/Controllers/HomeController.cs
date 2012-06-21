@@ -24,6 +24,19 @@ namespace PagedList.Mvc.Example.Controllers
 			return Index(page);
 		}
 
+		// Unobtrusive Ajax
+		public ActionResult UnobtrusiveAjax(int? page)
+		{
+			var listPaged = GetPagedNames(page);
+			if (listPaged == null)
+				return HttpNotFound();
+
+			ViewBag.Names = listPaged;
+			return Request.IsAjaxRequest()
+				? (ActionResult)PartialView("UnobtrusiveAjax_Partial")
+				: View();
+		}
+
 		// Ajax Paging (cont'd)
 		public ActionResult AjaxPage(int? page)
 		{

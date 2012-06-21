@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace PagedList.Mvc
 {
@@ -192,6 +193,30 @@ namespace PagedList.Mvc
 		/// Text that will appear between each page number. If null or whitespace is specified, no delimiter will be shown.
 		/// </summary>
 		public string DelimiterBetweenPageNumbers { get; set; }
+
+		/// <summary>
+		/// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
+		/// </summary>
+		public Func<TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
+
+		/// <summary>
+		/// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+		/// </summary>
+		/// <param name="options">The preferred Html.PagedList(...) style options.</param>
+		/// <param name="id">The element ID ("#my_id") of the element whose innerHtml should be replaced.</param>
+		/// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+		public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, string id)
+		{
+			options.FunctionToTransformEachPageLink = tb =>
+			                                          	{
+															tb.Attributes.Add("data-ajax", "true");
+															tb.Attributes.Add("data-ajax-method", "get");
+															tb.Attributes.Add("data-ajax-mode", "replace");
+															tb.Attributes.Add("data-ajax-update", id);
+			                                          		return tb;
+			                                          	};
+			return options;
+		}
 
 		///<summary>
 		/// Also includes links to First and Last pages.
