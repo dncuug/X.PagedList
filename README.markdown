@@ -83,6 +83,18 @@ public class UserController : Controller
 
 <hr />
 
+## Customizing Each Page's URL
+
+To add "foo=bar" to the querystring of each link, you can pass the values into the `RouteDictionary` parameter of [`Url.Action`](http://msdn.microsoft.com/en-us/library/system.web.mvc.urlhelper.action.aspx):
+
+```csharp
+@Html.PagedListPager( myList, page => Url.Action("Index", new { page = page, foo = "bar" }) )
+```
+
+Please note that `Url.Action` is a method provided by the Asp.Net MVC framework - not the PagedList library.
+
+<hr />
+
 ## Split and Partition Extension Methods
 
 You can split an enumerable up into <em>n</em> equal-sized objects using the .Split extension method:
