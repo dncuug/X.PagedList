@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\Page
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Tests", "PagedList.Tests\PagedList.Tests.csproj", "{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc.Example", "PagedList.Mvc.Example\PagedList.Mvc.Example.csproj", "{262216DA-247E-4217-B208-FB82AD664305}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc", "PagedList.Mvc\PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D13AC3F0-9CE8-4FD9-B19D-69E49B23EB1B}"
@@ -32,10 +30,6 @@ Global
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{262216DA-247E-4217-B208-FB82AD664305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{262216DA-247E-4217-B208-FB82AD664305}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{262216DA-247E-4217-B208-FB82AD664305}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{262216DA-247E-4217-B208-FB82AD664305}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
