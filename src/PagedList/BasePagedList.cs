@@ -21,6 +21,13 @@ namespace PagedList
 		protected readonly List<T> Subset = new List<T>();
 
 		/// <summary>
+		/// Parameterless constructor.
+		/// </summary>
+		protected internal BasePagedList()
+		{
+		}
+
+		/// <summary>
 		/// 	Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
 		/// </summary>
 		/// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
