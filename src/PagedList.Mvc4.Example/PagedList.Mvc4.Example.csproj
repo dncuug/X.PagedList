@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -163,6 +166,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AjaxController.cs" />
+    <Compile Include="Controllers\AutomapperController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfiniteScrollController.cs" />
@@ -295,6 +299,7 @@
     <Content Include="Views\UnobtrusiveAjax\UnobtrusiveAjax_Partial.cshtml" />
     <Content Include="Views\UnobtrusiveAjax\Index.cshtml" />
     <Content Include="Views\InfiniteScroll\Index.cshtml" />
+    <Content Include="Views\Automapper\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

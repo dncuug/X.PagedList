@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Automapper";
+}
+@model IPagedList<PagedList.Mvc4.Example.Controllers.AutomapperController.OrderViewModel>
+@using PagedList;
+@using PagedList.Mvc;
+
+@Styles.Render("~/Content/PagedList.css")
+
+<h2>Integrating with <a href="http://automapper.codeplex.com/">AutoMapper</a></h2>
+<ul>
+	@foreach (var example in Model){ 
+		<p>@example.CustomerName: $@example.Total</p>
+	}
+</ul>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }) )
