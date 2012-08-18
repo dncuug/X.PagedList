@@ -4,14 +4,15 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<link rel="stylesheet" href="/Content/bootstrap-2.0.4.css">
-<script type="text/javascript" src="/Scripts/jquery-1.7.1.min.js"></script>
-<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@Styles.Render("~/Content/bootstrap-2.0.4.css")
 
-<h2>PagedList.Mvc.Example Website : Unobtrusive Ajax</h2>
+<h2>Unobtrusive Ajax</h2>
 
 <p>Example of paging a list:</p>
-
 <div id="unobtrusive">
 	@Html.Partial("UnobtrusiveAjax_Partial")
 </div>
+
+@section Scripts{
+	<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}
