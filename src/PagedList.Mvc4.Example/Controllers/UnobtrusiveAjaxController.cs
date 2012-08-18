@@ -11,7 +11,7 @@ namespace PagedList.Mvc4.Example.Controllers
 		// Unobtrusive Ajax
 		public ActionResult Index(int? page)
 		{
-			var listPaged = GetPagedNames(page);
+			var listPaged = GetPagedNames(page); // GetPagedNames is found in BaseController
 			if (listPaged == null)
 				return HttpNotFound();
 

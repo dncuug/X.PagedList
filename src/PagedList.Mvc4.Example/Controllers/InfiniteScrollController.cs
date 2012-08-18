@@ -17,13 +17,13 @@ namespace PagedList.Mvc4.Example.Controllers
 		// Ajax Paging (cont'd)
 		public ActionResult AjaxPage(int? page)
 		{
-			var listPaged = GetPagedNames(page);
+			var listPaged = GetPagedNames(page); // GetPagedNames is found in BaseController
 			if (listPaged == null)
 				return HttpNotFound();
 
 			return Json(new
 			{
-				names = listPaged,
+				names = listPaged.ToArray(),
 				pager = listPaged.GetMetaData()
 			}, JsonRequestBehavior.AllowGet);
 		}
