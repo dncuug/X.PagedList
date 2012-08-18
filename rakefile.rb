@@ -121,15 +121,11 @@ task :package => [:package_pagedlist, :package_pagedlistmvc] do
 end
 
 nugetpush :push_pagedlist => :package_pagedlist do |nuget|
-	ver = String.new(PAGEDLIST_VERSION)
-	ver.slice!(/(\.0)*$/)
-	nuget.package = "./packages/PagedList.#{ver}.nupkg"
+	nuget.package = "packages\\PagedList.#{PAGEDLIST_VERSION}.0.0.nupkg"
 end
 
 nugetpush :push_pagedlistmvc => :package_pagedlistmvc do |nuget|
-	ver = String.new(PAGEDLIST_MVC_VERSION)
-	ver.slice!(/(\.0)*$/)
-	nuget.package = "./packages/PagedList.Mvc.#{ver}.nupkg"
+	nuget.package = "packages\\PagedList.Mvc.#{PAGEDLIST_MVC_VERSION}.0.0.nupkg"
 end
 
 task :push => [:push_pagedlist, :push_pagedlistmvc] do
