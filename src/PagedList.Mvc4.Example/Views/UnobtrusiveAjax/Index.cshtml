@@ -1,0 +1,17 @@
+﻿@{
+	ViewBag.Title = "Unobtrusive Ajax";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+<script type="text/javascript" src="/Scripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<h2>PagedList.Mvc.Example Website : Unobtrusive Ajax</h2>
+
+<p>Example of paging a list:</p>
+
+<div id="unobtrusive">
+	@Html.Partial("UnobtrusiveAjax_Partial")
+</div>

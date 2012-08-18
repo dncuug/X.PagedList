@@ -1,0 +1,75 @@
+﻿@{
+	ViewBag.Title = "Infinite Scrolling";
+}
+@using PagedList;
+@using PagedList.Mvc;
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/scripts/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-waypoints-v1.1/waypoints.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var $delay = $("#delay");
+		var $loading = $("<div class='loading'><p>Loading more items&hellip;</p></div>");
+		var $footer = $('footer');
+		var $moreLink = $('.more a');
+
+		var getNewPage = function () {
+			var moreLinkUrl = $moreLink.attr('href');
+			$.getJSON(moreLinkUrl, function (data) {
+				// add names to the <ol id="namesList"></ol> list
+				$("#namesTemplate").tmpl(data.names).appendTo("#namesList");
+
+				// hide the loading message
+				$loading.detach();
+
+				// update "More" link to point to the next page
+				var nextPage = data.pager.PageNumber + 1;
+				var nextMoreLinkUrl = moreLinkUrl.replace(/\?page=\d+/, '?page=' + nextPage);
+				$moreLink.attr('href', nextMoreLinkUrl);
+
+				// rebind Waypoint now that we're done loading
+				$footer.waypoint({ offset: '100%' });
+			}).error(function () {
+				// if we hit an error (such as a 404) we should probably handle it,
+				// but I'll leave that as an exercise for the reader :-)
+			});
+		};
+
+		$footer.waypoint(function (event, direction) {
+			// unbind Waypoint so that we don't keep getting
+			// called while we wait for stuff to load
+			$footer.waypoint('remove');
+
+			// show loading message
+			$('body').append($loading);
+
+			// load next page
+			setTimeout(getNewPage, $delay.val());
+		}, { offset: '100%' });
+	});
+</script>
+<script id="namesTemplate" type="text/x-jquery-tmpl">
+	<li>${$data}</li>
+</script>
+
+<h2>PagedList.Mvc.Example Website : Infinite Scrolling</h2>
+<h3>Note: This example leverages the <a href="http://imakewebthings.github.com/jquery-waypoints/">jQuery Waypoints</a> library.</h3>
+
+<div>
+	<label for="delay">Artificial Delay:</label>
+	<input id="delay" name="delay" value="0" />
+	<em>&lt;-- Increase this to see the loading message appear more easily.</em>
+</div>
+
+<ol id="namesList"></ol>
+<div id="namesPager" class="PagedList-pager"></div>
+
+<footer>
+	<nav>
+		<!-- Hijack this link for the infinite scroll -->
+		<p class="more"><a href="/home/ajaxpage?page=1" title="Traditional navigation link">More</a></p>
+	</nav>
+</footer>
