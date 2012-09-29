@@ -128,6 +128,14 @@ The HTML output by Html.PagedListPager is configured to be styled automatically 
 
 ![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
 
+If your project does not reference the [Twitter Bootstrap](http://twitter.github.com/bootstrap) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
+
+Simply append `"~/Content/PagedList.css"` to where Site.css is already bundled, yielding:
+
+```csharp
+bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/PagedList.css"));
+```
+
 ### Out-of-the-box Pager Configurations
 
 ```html
