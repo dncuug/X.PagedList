@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="GoToFormRenderOptions.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="PagedListDisplayMode.cs" />
     <Compile Include="PagedListRenderOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

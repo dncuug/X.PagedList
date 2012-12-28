@@ -24,8 +24,11 @@
 <h3>Default Paging Control</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }))
 
-<h3>Default Paging Control (+First and Last)</h3>
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.DefaultPlusFirstAndLast)
+<h3>Classic Paging Control (always shows Previous/Next links, but sometimes they are disabled)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.Classic)
+
+<h3>Classic Paging Control (Classic +First and Last links)</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
 
 <h3>Minimal Paging Control</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.Minimal)

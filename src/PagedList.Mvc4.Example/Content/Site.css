@@ -754,3 +754,7 @@ tr.pager td {
             margin: 0;
         }
 }
+
+.pagination {
+	margin: 5px 0 25px 0 !important;
+}

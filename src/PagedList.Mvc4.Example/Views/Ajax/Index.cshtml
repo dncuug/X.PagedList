@@ -17,47 +17,49 @@
 		{{/each}}
 	</script>
 	<script id="pagerTemplate" type="text/template">
-		<ul class="pagination">
-		{{#if IsFirstPage}}
-			<li class="disabled"><a>&larr;&larr; First</a></li>
-		{{else}}
-			<li><a href="/ajax/ajaxpage?page=1">&larr;&larr; First</a></li>
-		{{/if}}
+		<div class="pagination">
+			<ul>
+			{{#if IsFirstPage}}
+				<li class="disabled"><a>««</a></li>
+			{{else}}
+				<li><a href="/ajax/ajaxpage?page=1">««</a></li>
+			{{/if}}
 
-		{{#if HasPreviousPage}}
-			<li><a href="/ajax/ajaxpage?page={{PreviousPageNumber}}">&larr; Previous</a></li>
-		{{else}}
-			<li class="disabled"><a>&larr; Previous</a></li>
-		{{/if}}
+			{{#if HasPreviousPage}}
+				<li><a href="/ajax/ajaxpage?page={{PreviousPageNumber}}">«</a></li>
+			{{else}}
+				<li class="disabled"><a>«</a></li>
+			{{/if}}
 
-		{{#unless FirstPageIsVisible}}
-		<li class="disabled"><a>...</a></li>
-		{{/unless}}
+			{{#unless FirstPageIsVisible}}
+			<li class="disabled"><a>...</a></li>
+			{{/unless}}
 
-		{{#each Pages}}
-		{{#if Selected}}
-			<li class="active"><a>{{PageNumber}}</a></li>
-		{{else}}
-			<li><a href="/ajax/ajaxpage?page={{PageNumber}}">{{PageNumber}}</a></li>
-		{{/if}}
-		{{/each}}
+			{{#each Pages}}
+			{{#if Selected}}
+				<li class="active"><a>{{PageNumber}}</a></li>
+			{{else}}
+				<li><a href="/ajax/ajaxpage?page={{PageNumber}}">{{PageNumber}}</a></li>
+			{{/if}}
+			{{/each}}
 
-		{{#unless LastPageIsVisible}}
-		<li class="disabled"><a>...</a></li>
-		{{/unless}}
+			{{#unless LastPageIsVisible}}
+			<li class="disabled"><a>...</a></li>
+			{{/unless}}
 
-		{{#if HasNextPage}}
-			<li><a href="/ajax/ajaxpage?page={{NextPageNumber}}">Next &rarr;</a></li>
-		{{else}}
-			<li class="disabled"><a>Next &rarr;</a></li>
-		{{/if}}
+			{{#if HasNextPage}}
+				<li><a href="/ajax/ajaxpage?page={{NextPageNumber}}">»</a></li>
+			{{else}}
+				<li class="disabled"><a>»</a></li>
+			{{/if}}
 
-		{{#if IsLastPage}}
-			<li class="disabled next"><a>Last &rarr;&rarr;</a></li>
-		{{else}}
-			<li class="next"><a href="/ajax/ajaxpage?page={{PageCount}}">Last &rarr;&rarr;</a></li>
-		{{/if}}
-		</ul>
+			{{#if IsLastPage}}
+				<li class="disabled"><a>»»</a></li>
+			{{else}}
+				<li class="next"><a href="/ajax/ajaxpage?page={{PageCount}}">»»</a></li>
+			{{/if}}
+			</ul>
+		</div>
 	</script>
 
 	<script type="text/javascript" src="/Scripts/handlebars-1.0.0.beta.6.js"></script>

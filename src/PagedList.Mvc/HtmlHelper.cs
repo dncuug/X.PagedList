@@ -157,14 +157,34 @@ namespace PagedList.Mvc
 												   Func<int, string> generatePageUrl,
 												   PagedListRenderOptions options)
 		{
+            if (options.Display == PagedListDisplayMode.Never || (options.Display == PagedListDisplayMode.IfNeeded && list.PageCount <= 1))
+                return null;
+
 			var listItemLinks = new List<TagBuilder>();
 
+            //calculate start and end of range of page numbers
+            var firstPageToDisplay = 1;
+			var lastPageToDisplay = list.PageCount;
+			var pageNumbersToDisplay = lastPageToDisplay;
+            if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
+            {
+				// cannot fit all pages into pager
+                var maxPageNumbersToDisplay = options.MaximumPageNumbersToDisplay.Value;
+                firstPageToDisplay = list.PageNumber - maxPageNumbersToDisplay / 2;
+                if (firstPageToDisplay < 1)
+                    firstPageToDisplay = 1;
+                pageNumbersToDisplay = maxPageNumbersToDisplay;
+	            lastPageToDisplay = firstPageToDisplay + pageNumbersToDisplay - 1;
+                if (lastPageToDisplay > list.PageCount)
+                    firstPageToDisplay = list.PageCount - maxPageNumbersToDisplay + 1;
+            }
+
 			//first
-			if (options.DisplayLinkToFirstPage)
+			if (options.DisplayLinkToFirstPage == PagedListDisplayMode.Always || (options.DisplayLinkToFirstPage == PagedListDisplayMode.IfNeeded && firstPageToDisplay > 1))
 				listItemLinks.Add(First(list, generatePageUrl, options));
 
 			//previous
-			if (options.DisplayLinkToPreviousPage)
+			if (options.DisplayLinkToPreviousPage == PagedListDisplayMode.Always || (options.DisplayLinkToPreviousPage == PagedListDisplayMode.IfNeeded && !list.IsFirstPage))
 				listItemLinks.Add(Previous(list, generatePageUrl, options));
 
 			//text
@@ -178,28 +198,14 @@ namespace PagedList.Mvc
 			//page
 			if (options.DisplayLinkToIndividualPages)
 			{
-				//calculate start and end of range of page numbers
-				var start = 1;
-				var end = list.PageCount;
-				if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
-				{
-					var maxPageNumbersToDisplay = options.MaximumPageNumbersToDisplay.Value;
-					start = list.PageNumber - maxPageNumbersToDisplay / 2;
-					if (start < 1)
-						start = 1;
-					end = maxPageNumbersToDisplay;
-					if ((start + end - 1) > list.PageCount)
-						start = list.PageCount - maxPageNumbersToDisplay + 1;
-				}
-
 				//if there are previous page numbers not displayed, show an ellipsis
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && start > 1)
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && firstPageToDisplay > 1)
 					listItemLinks.Add(Ellipses(options));
 
-				foreach (var i in Enumerable.Range(start, end))
+				foreach (var i in Enumerable.Range(firstPageToDisplay, pageNumbersToDisplay))
 				{
 					//show delimiter between page numbers
-					if (i > start && !string.IsNullOrWhiteSpace(options.DelimiterBetweenPageNumbers))
+					if (i > firstPageToDisplay && !string.IsNullOrWhiteSpace(options.DelimiterBetweenPageNumbers))
 						listItemLinks.Add(WrapInListItem(options.DelimiterBetweenPageNumbers));
 
 					//show page number link
@@ -207,30 +213,33 @@ namespace PagedList.Mvc
 				}
 
 				//if there are subsequent page numbers not displayed, show an ellipsis
-				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (start + end - 1) < list.PageCount)
+				if (options.DisplayEllipsesWhenNotShowingAllPageNumbers && (firstPageToDisplay + pageNumbersToDisplay - 1) < list.PageCount)
 					listItemLinks.Add(Ellipses(options));
 			}
 
 			//next
-			if (options.DisplayLinkToNextPage)
+			if (options.DisplayLinkToNextPage == PagedListDisplayMode.Always || (options.DisplayLinkToNextPage == PagedListDisplayMode.IfNeeded && !list.IsLastPage))
 				listItemLinks.Add(Next(list, generatePageUrl, options));
 
 			//last
-			if (options.DisplayLinkToLastPage)
+            if (options.DisplayLinkToLastPage == PagedListDisplayMode.Always || (options.DisplayLinkToLastPage == PagedListDisplayMode.IfNeeded && lastPageToDisplay < list.PageCount))
 				listItemLinks.Add(Last(list, generatePageUrl, options));
 
-			//append class to first item in list?
-			if (!string.IsNullOrWhiteSpace(options.ClassToApplyToFirstListItemInPager))
-				listItemLinks.First().AddCssClass(options.ClassToApplyToFirstListItemInPager);
+            if(listItemLinks.Any())
+            {
+                //append class to first item in list?
+                if (!string.IsNullOrWhiteSpace(options.ClassToApplyToFirstListItemInPager))
+                    listItemLinks.First().AddCssClass(options.ClassToApplyToFirstListItemInPager);
 
-			//append class to last item in list?
-			if (!string.IsNullOrWhiteSpace(options.ClassToApplyToLastListItemInPager))
-				listItemLinks.Last().AddCssClass(options.ClassToApplyToLastListItemInPager);
+                //append class to last item in list?
+                if (!string.IsNullOrWhiteSpace(options.ClassToApplyToLastListItemInPager))
+                    listItemLinks.Last().AddCssClass(options.ClassToApplyToLastListItemInPager);
 
-			//append classes to all list item links
-			foreach(var li in listItemLinks)
-				foreach (var c in options.LiElementClasses ?? Enumerable.Empty<string>())
-					li.AddCssClass(c);
+                //append classes to all list item links
+                foreach (var li in listItemLinks)
+                    foreach (var c in options.LiElementClasses ?? Enumerable.Empty<string>())
+                        li.AddCssClass(c);
+            }
 
 			//collapse all of the list items into one big string
 			var listItemLinksString = listItemLinks.Aggregate(
