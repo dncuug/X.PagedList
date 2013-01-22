@@ -10,3 +10,13 @@
 </ul>
 
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing("#unobtrusive"))
+
+
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions(){  HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" }))
+
+<script>
+
+    function PagedOnComplete(obj) {
+        alert('OnComplete');
+    }
+</script>
