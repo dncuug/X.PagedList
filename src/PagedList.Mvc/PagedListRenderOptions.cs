@@ -215,13 +215,6 @@ namespace PagedList.Mvc
 		{
 			options.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
 			                                          	{
-			                                          		var appendUnobtrusiveAjaxAttributes = true;
-															if (liTagBuilder.Attributes.ContainsKey("class"))
-															{
-																var liClasses = liTagBuilder.Attributes["class"].Split(' ');
-																appendUnobtrusiveAjaxAttributes = !liClasses.Contains("disabled") && !liClasses.Contains("active");
-															}
-
                                                             if (ajaxOptions != null)
                                                             {
                                                                 foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
@@ -245,7 +238,7 @@ namespace PagedList.Mvc
             if (id.StartsWith("#"))
                 id = id.Substring(1);
 
-            AjaxOptions ajaxOptions = new AjaxOptions()
+            var ajaxOptions = new AjaxOptions()
             {
                 HttpMethod = "GET",
                 InsertionMode = InsertionMode.Replace,
