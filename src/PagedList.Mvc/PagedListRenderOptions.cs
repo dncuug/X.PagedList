@@ -214,15 +214,16 @@ namespace PagedList.Mvc
         public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, AjaxOptions ajaxOptions)
 		{
 			options.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
-			                                          	{
-                                                            if (ajaxOptions != null)
-                                                            {
-                                                                foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
-                                                                    aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString());
-                                                            }
+				                                          {
+																var liClass = liTagBuilder.Attributes.ContainsKey("class") ? liTagBuilder.Attributes["class"] ?? "" : "";
+																if (ajaxOptions != null && !liClass.Contains("disabled") && !liClass.Contains("active"))
+																{
+																	foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
+																		aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString());
+																}
 
-															liTagBuilder.InnerHtml = aTagBuilder.ToString();
-			                                          		return liTagBuilder;
+																liTagBuilder.InnerHtml = aTagBuilder.ToString();
+			                                          			return liTagBuilder;
 			                                          	};
 			return options;
 		}

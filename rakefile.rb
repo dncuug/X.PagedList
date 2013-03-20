@@ -96,7 +96,6 @@ nugetpack :package_pagedlist => :release do |nuget|
 	nuget.output = './packages/'
 end
 
-
 nugetpack :package_pagedlistmvc => :release do |nuget|
 	nuget.nuspec = './src/PagedList.Mvc/PagedList.Mvc.csproj -Prop Configuration=Release'
 	nuget.output = './packages/'
