@@ -4,6 +4,8 @@
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
+[Tips are welcome, but not expected.](https://www.gittip.com/TroyGoode/)
+
 ## How do I use it?
 
 1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
