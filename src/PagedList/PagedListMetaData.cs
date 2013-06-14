@@ -1,8 +1,11 @@
-﻿namespace PagedList
+﻿using System;
+
+namespace PagedList
 {
 	///<summary>
 	/// Non-enumerable version of the PagedList class.
 	///</summary>
+	[Serializable]
 	public class PagedListMetaData : IPagedList
 	{
 		/// <summary>

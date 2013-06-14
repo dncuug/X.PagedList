@@ -15,6 +15,7 @@ namespace PagedList
 	/// <seealso cref="BasePagedList{T}"/>
 	/// <seealso cref="StaticPagedList{T}"/>
 	/// <seealso cref="List{T}"/>
+	[Serializable]
 	public class PagedList<T> : BasePagedList<T>
 	{
 		/// <summary>
