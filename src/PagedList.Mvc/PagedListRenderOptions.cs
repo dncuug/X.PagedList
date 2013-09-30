@@ -35,8 +35,8 @@ namespace PagedList.Mvc
 			FunctionToDisplayEachPageNumber = null;
 			ClassToApplyToFirstListItemInPager = null;
 			ClassToApplyToLastListItemInPager = null;
-			ContainerDivClasses = new []{"pagination"};
-			UlElementClasses = Enumerable.Empty<string>();
+			ContainerDivClasses = new [] { "pagination-container" };
+			UlElementClasses = new[] { "pagination" };
 			LiElementClasses = Enumerable.Empty<string>();
 		}
 
