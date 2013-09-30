@@ -20,6 +20,7 @@ assemblyinfo :generate_pagedlist_assemblyinfo do |asm|
 	:AssemblyConfiguration => '',
 	:AssemblyTrademark => '',
 	:AssemblyCulture => ''
+  asm.custom_data "[assembly: SecurityRules(SecurityRuleSet.Level1)]"
   asm.namespaces "System", "System.Security"
   asm.output_file = "src/PagedList/Properties/AssemblyInfo.cs"
 end
@@ -40,6 +41,7 @@ assemblyinfo :generate_pagedlistmvc_assemblyinfo do |asm|
 	:AssemblyConfiguration => '',
 	:AssemblyTrademark => '',
 	:AssemblyCulture => ''
+  asm.custom_data "[assembly: SecurityRules(SecurityRuleSet.Level1)]"
   asm.namespaces "System", "System.Security"
   asm.output_file = "src/PagedList.Mvc/Properties/AssemblyInfo.cs"
 end
