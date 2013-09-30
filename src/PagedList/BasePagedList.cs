@@ -13,6 +13,7 @@ namespace PagedList
 	/// <typeparam name = "T">The type of object the collection should contain.</typeparam>
 	/// <seealso cref = "IPagedList{T}" />
 	/// <seealso cref = "List{T}" />
+	[Serializable]
 	public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
 	{
 		/// <summary>
