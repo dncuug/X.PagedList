@@ -51,6 +51,7 @@ namespace PagedList.Mvc
 			               	{
 			               		InnerHtml = string.Format(options.LinkToPreviousPageFormat, targetPageNumber)
 			               	};
+			previous.Attributes["rel"] = "prev";
 			
 			if (!list.HasPreviousPage)
 				return WrapInListItem(previous, options, "PagedList-skipToPrevious", "disabled");
@@ -81,6 +82,7 @@ namespace PagedList.Mvc
 			           	{
 			           		InnerHtml = string.Format(options.LinkToNextPageFormat, targetPageNumber)
 			           	};
+			next.Attributes["rel"] = "next";
 			
 			if (!list.HasNextPage)
 				return WrapInListItem(next, options, "PagedList-skipToNext", "disabled");
