@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("MIT License")]
 [assembly: AssemblyVersion("4.5")]
 
-[assembly: CLSCompliant(true)]
+//[assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 [assembly: Guid("eb684fee-2094-4833-ae61-f9bfcab34abd")]
 [assembly: AllowPartiallyTrustedCallers()]

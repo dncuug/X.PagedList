@@ -256,6 +256,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PagedList.Core\PagedList.Core.csproj">
+      <Project>{55002a4e-d21e-432d-baac-1a9beff4115b}</Project>
+      <Name>PagedList.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PagedList.Mvc\PagedList.Mvc.csproj">
       <Project>{3e8629f8-d927-4d5f-a351-47dde2ae37d1}</Project>
       <Name>PagedList.Mvc</Name>

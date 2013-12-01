@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PagedList.Core\PagedList.Core.csproj">
+      <Project>{55002a4e-d21e-432d-baac-1a9beff4115b}</Project>
+      <Name>PagedList.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PagedList\PagedList.csproj">
       <Project>{DA52D7C3-B871-48EC-B009-AC782AD50266}</Project>
       <Name>PagedList</Name>

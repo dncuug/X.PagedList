@@ -66,7 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasePagedList.cs" />
-    <Compile Include="IPagedList.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="PagedListExtensions.cs" />
     <Compile Include="PagedListMetaData.cs" />
@@ -94,6 +93,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PagedList.Core\PagedList.Core.csproj">
+      <Project>{55002a4e-d21e-432d-baac-1a9beff4115b}</Project>
+      <Name>PagedList.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
