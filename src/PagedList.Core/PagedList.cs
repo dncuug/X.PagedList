@@ -15,7 +15,7 @@ namespace PagedList
 	/// <seealso cref="BasePagedList{T}"/>
 	/// <seealso cref="StaticPagedList{T}"/>
 	/// <seealso cref="List{T}"/>
-	[Serializable]
+	//[Serializable]
 	public class PagedList<T> : BasePagedList<T>
 	{
 		/// <summary>
@@ -29,9 +29,10 @@ namespace PagedList
 		public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
 		{
 			if (pageNumber < 1)
-				throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "PageNumber cannot be below 1.");
+
+                throw new ArgumentOutOfRangeException(String.Format("pageNumber = {0}. PageNumber cannot be below 1.", pageNumber));
 			if (pageSize < 1)
-				throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
+                throw new ArgumentOutOfRangeException(String.Format("pageSize = {0}. PageSize cannot be less than 1.", pageSize));
 
 			// set source to blank list if superset is null to prevent exceptions
 			TotalItemCount = superset == null ? 0 : superset.Count();

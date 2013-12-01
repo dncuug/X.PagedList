@@ -5,7 +5,7 @@ namespace PagedList
 	///<summary>
 	/// Non-enumerable version of the PagedList class.
 	///</summary>
-	[Serializable]
+    //[Serializable]
 	public class PagedListMetaData : IPagedList
 	{
 		/// <summary>
