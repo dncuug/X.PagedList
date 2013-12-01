@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\PagedList.csproj", "{DA52D7C3-B871-48EC-B009-AC782AD50266}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Tests", "PagedList.Tests\PagedList.Tests.csproj", "{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc", "PagedList.Mvc\PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
@@ -26,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3C4B95
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Core", "PagedList.Core\PagedList.Core.csproj", "{55002A4E-D21E-432D-BAAC-1A9BEFF4115B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\PagedList.csproj", "{55002A4E-D21E-432D-BAAC-1A9BEFF4115B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA52D7C3-B871-48EC-B009-AC782AD50266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA52D7C3-B871-48EC-B009-AC782AD50266}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA52D7C3-B871-48EC-B009-AC782AD50266}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA52D7C3-B871-48EC-B009-AC782AD50266}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,21 +1,30 @@
-using System;
-using System.Security;
+﻿using System.Resources;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-[assembly: AssemblyTitle("PagedList")]
-[assembly: AssemblyDescription("PagedList makes it easier for .Net developers to write paging code. It allows you to take any IEnumerable(T) and by specifying the page size and desired page index, select only a subset of that list. PagedList also provides properties that are useful when building UI paging controls.")]
-[assembly: AssemblyCompany("Troy Goode")]
-[assembly: AssemblyProduct("PagedList")]
-[assembly: AssemblyCopyright("MIT License")]
-[assembly: AssemblyVersion("1.17")]
 
-//[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
-[assembly: Guid("1d709432-45fa-4475-a403-b2310a47d0a6")]
-[assembly: AllowPartiallyTrustedCallers()]
-[assembly: AssemblyFileVersion("1.17")]
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("PagedList.Core")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("PagedList.Core")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("en")]
 
-[assembly: SecurityRules(SecurityRuleSet.Level1)]
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
