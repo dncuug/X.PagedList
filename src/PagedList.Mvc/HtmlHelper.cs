@@ -29,7 +29,7 @@ namespace PagedList.Mvc
 			return li;
 		}
 
-		private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, Func<int, string> generateAjaxUrl, PagedListRenderOptions options)
 		{
 			const int targetPageNumber = 1;
 			var first = new TagBuilder("a")
@@ -41,10 +41,11 @@ namespace PagedList.Mvc
 				return WrapInListItem(first, options, "PagedList-skipToFirst", "disabled");
 
 			first.Attributes["href"] = generatePageUrl(targetPageNumber);
+            if (generateAjaxUrl != null) { first.Attributes[options.UnobtrusiveAjaxAttrName] = generateAjaxUrl(targetPageNumber); }
 			return WrapInListItem(first, options, "PagedList-skipToFirst");
 		}
 
-		private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, Func<int, string> generateAjaxUrl, PagedListRenderOptions options)
 		{
 			var targetPageNumber = list.PageNumber - 1;
 			var previous = new TagBuilder("a")
@@ -57,10 +58,11 @@ namespace PagedList.Mvc
 				return WrapInListItem(previous, options, "PagedList-skipToPrevious", "disabled");
 
 			previous.Attributes["href"] = generatePageUrl(targetPageNumber);
+            if (generateAjaxUrl != null) { previous.Attributes[options.UnobtrusiveAjaxAttrName] = generateAjaxUrl(targetPageNumber); }
 			return WrapInListItem(previous, options, "PagedList-skipToPrevious");
 		}
 
-		private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, Func<int, string> generateAjaxUrl, PagedListRenderOptions options)
 		{
 			var format = options.FunctionToDisplayEachPageNumber
 				?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
@@ -72,10 +74,11 @@ namespace PagedList.Mvc
 				return WrapInListItem(page, options, "active");
 
 			page.Attributes["href"] = generatePageUrl(targetPageNumber);
+            if (generateAjaxUrl != null) { page.Attributes[options.UnobtrusiveAjaxAttrName] = generateAjaxUrl(targetPageNumber); }
 			return WrapInListItem(page, options);
 		}
 
-		private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, Func<int, string> generateAjaxUrl, PagedListRenderOptions options)
 		{
 			var targetPageNumber = list.PageNumber + 1;
 			var next = new TagBuilder("a")
@@ -88,10 +91,11 @@ namespace PagedList.Mvc
 				return WrapInListItem(next, options, "PagedList-skipToNext", "disabled");
 
 			next.Attributes["href"] = generatePageUrl(targetPageNumber);
+            if (generateAjaxUrl != null) { next.Attributes[options.UnobtrusiveAjaxAttrName] = generateAjaxUrl(targetPageNumber); }
 			return WrapInListItem(next, options, "PagedList-skipToNext");
 		}
 
-		private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, Func<int, string> generateAjaxUrl, PagedListRenderOptions options)
 		{
 			var targetPageNumber = list.PageCount;
 			var last = new TagBuilder("a")
@@ -103,6 +107,7 @@ namespace PagedList.Mvc
 				return WrapInListItem(last, options, "PagedList-skipToLast", "disabled");
 
 			last.Attributes["href"] = generatePageUrl(targetPageNumber);
+            if (generateAjaxUrl != null) { last.Attributes[options.UnobtrusiveAjaxAttrName] = generateAjaxUrl(targetPageNumber); }
 			return WrapInListItem(last, options, "PagedList-skipToLast");
 		}
 
@@ -138,13 +143,31 @@ namespace PagedList.Mvc
 		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
 		///<param name = "list">The PagedList to use as the data source.</param>
 		///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
-		///<returns>Outputs the paging control HTML.</returns>
+        ///<param name = "generateAjaxUrl">A function that takes the page number of the desired page and returns a URL-string that using for unobtrusive ajax.</param>
+        ///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
 												   IPagedList list,
-												   Func<int, string> generatePageUrl)
+                                                   Func<int, string> generatePageUrl,
+                                                   Func<int, string> generateAjaxUrl = null)
 		{
-			return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
+            return PagedListPager(html, list, generatePageUrl, generateAjaxUrl, new PagedListRenderOptions());
 		}
+
+        ///<summary>
+        ///	Displays a configurable paging control for instances of PagedList.
+        ///</summary>
+        ///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
+        ///<param name = "list">The PagedList to use as the data source.</param>
+        ///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
+        ///<param name = "options">Formatting options.</param>
+        ///<returns>Outputs the paging control HTML.</returns>
+        public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
+                                                   IPagedList list,
+                                                   Func<int, string> generatePageUrl,
+                                                   PagedListRenderOptions options)
+        {
+            return PagedListPager(html, list, generatePageUrl, null, options);
+        }
 
 		///<summary>
 		///	Displays a configurable paging control for instances of PagedList.
@@ -152,11 +175,13 @@ namespace PagedList.Mvc
 		///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
 		///<param name = "list">The PagedList to use as the data source.</param>
 		///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
-		///<param name = "options">Formatting options.</param>
+        ///<param name = "generateAjaxUrl">A function that takes the page number of the desired page and returns a URL-string that using for unobtrusive ajax.</param>
+        ///<param name = "options">Formatting options.</param>
 		///<returns>Outputs the paging control HTML.</returns>
 		public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
 												   IPagedList list,
-												   Func<int, string> generatePageUrl,
+                                                   Func<int, string> generatePageUrl,
+                                                   Func<int, string> generateAjaxUrl,
 												   PagedListRenderOptions options)
 		{
             if (options.Display == PagedListDisplayMode.Never || (options.Display == PagedListDisplayMode.IfNeeded && list.PageCount <= 1))
@@ -183,11 +208,11 @@ namespace PagedList.Mvc
 
 			//first
 			if (options.DisplayLinkToFirstPage == PagedListDisplayMode.Always || (options.DisplayLinkToFirstPage == PagedListDisplayMode.IfNeeded && firstPageToDisplay > 1))
-				listItemLinks.Add(First(list, generatePageUrl, options));
+                listItemLinks.Add(First(list, generatePageUrl, generateAjaxUrl, options));
 
 			//previous
 			if (options.DisplayLinkToPreviousPage == PagedListDisplayMode.Always || (options.DisplayLinkToPreviousPage == PagedListDisplayMode.IfNeeded && !list.IsFirstPage))
-				listItemLinks.Add(Previous(list, generatePageUrl, options));
+                listItemLinks.Add(Previous(list, generatePageUrl, generateAjaxUrl, options));
 
 			//text
 			if (options.DisplayPageCountAndCurrentLocation)
@@ -211,7 +236,7 @@ namespace PagedList.Mvc
 						listItemLinks.Add(WrapInListItem(options.DelimiterBetweenPageNumbers));
 
 					//show page number link
-					listItemLinks.Add(Page(i, list, generatePageUrl, options));
+                    listItemLinks.Add(Page(i, list, generatePageUrl, generateAjaxUrl, options));
 				}
 
 				//if there are subsequent page numbers not displayed, show an ellipsis
@@ -221,11 +246,11 @@ namespace PagedList.Mvc
 
 			//next
 			if (options.DisplayLinkToNextPage == PagedListDisplayMode.Always || (options.DisplayLinkToNextPage == PagedListDisplayMode.IfNeeded && !list.IsLastPage))
-				listItemLinks.Add(Next(list, generatePageUrl, options));
+                listItemLinks.Add(Next(list, generatePageUrl, generateAjaxUrl, options));
 
 			//last
             if (options.DisplayLinkToLastPage == PagedListDisplayMode.Always || (options.DisplayLinkToLastPage == PagedListDisplayMode.IfNeeded && lastPageToDisplay < list.PageCount))
-				listItemLinks.Add(Last(list, generatePageUrl, options));
+                listItemLinks.Add(Last(list, generatePageUrl, generateAjaxUrl, options));
 
             if(listItemLinks.Any())
             {

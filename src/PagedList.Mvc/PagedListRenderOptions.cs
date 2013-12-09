@@ -38,6 +38,7 @@ namespace PagedList.Mvc
 			ContainerDivClasses = new [] { "pagination-container" };
 			UlElementClasses = new[] { "pagination" };
 			LiElementClasses = Enumerable.Empty<string>();
+            UnobtrusiveAjaxAttrName = "data-ajax-url";
 		}
 
 		///<summary>
@@ -204,6 +205,11 @@ namespace PagedList.Mvc
 		/// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
 		/// </summary>
 		public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
+
+        /// <summary>
+        /// Specifies an attribute name to append generated unobtrusive ajax url
+        /// </summary>
+        public string UnobtrusiveAjaxAttrName { get; set; }
 
 		/// <summary>
 		/// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
