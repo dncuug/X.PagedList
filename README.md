@@ -1,14 +1,15 @@
-# PagedList
+# X.PagedList
 
 ## What is this?
+This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
+The main different is that X.PagedList is portable assembly. It means, that you can use it not only in Web projects, but in Winforms, Window Phone, Silverlight and etc. projects.
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
-[Tips are welcome, but not expected.](https://www.gittip.com/TroyGoode/)
 
 ## How do I use it?
 
-1. Install ["PagedList.Mvc"](http://nuget.org/List/Packages/PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["PagedList"](http://nuget.org/List/Packages/PagedList) as well.
+1. Install ["X.PagedList.Mvc"](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["X.PagedList"](https://nuget.org/packages/X.PagedList/) as well.
 2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
 3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
 4. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
@@ -128,7 +129,7 @@ Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only h
 
 The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://twitter.github.com/bootstrap/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
 
-![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
+![Out-of-the-box Pager Configurations](https://raw.github.com/Ernado-x/X.PagedList/master/misc/DefaultPagingControlStyles.png)
 
 If your project does not reference the [Twitter Bootstrap](http://twitter.github.com/bootstrap) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
 
@@ -162,7 +163,7 @@ bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Co
 
 ### Custom Pager Configurations
 
-You can instantiate [**PagedListRenderOptions**](https://github.com/TroyGoode/PagedList/blob/master/src/PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
+You can instantiate [**PagedListRenderOptions**](https://github.com/ernado-x/X.PagedList/blob/master/src/X.PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
 ```html
 <h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
