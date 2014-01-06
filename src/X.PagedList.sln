@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Tests", "PagedList.Tests\PagedList.Tests.csproj", "{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Tests", "X.PagedList.Tests\X.PagedList.Tests.csproj", "{C09C2434-CAF9-4EFB-BF3F-FC59B511C06A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc", "PagedList.Mvc\PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Mvc", "X.PagedList.Mvc\X.PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\PagedList.csproj", "{55002A4E-D21E-432D-BAAC-1A9BEFF4115B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList", "X.PagedList\X.PagedList.csproj", "{55002A4E-D21E-432D-BAAC-1A9BEFF4115B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc.Example", "PagedList.Mvc.Example\PagedList.Mvc.Example.csproj", "{5AE0D66A-83C6-488E-86B5-AC157E64AAC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Mvc.Example", "X.PagedList.Mvc.Example\X.PagedList.Mvc.Example.csproj", "{5AE0D66A-83C6-488E-86B5-AC157E64AAC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -57,6 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -102,6 +103,7 @@
     <Content Include="Dependencies\xunit-1.8\xunit.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Dependencies\xunit-1.8\xunit.console.clr4.exe.config" />
     <None Include="Dependencies\xunit-1.8\xunit.console.clr4.x86.exe.config" />
     <None Include="Dependencies\xunit-1.8\xunit.console.exe.config" />
@@ -127,9 +129,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PagedList\PagedList.csproj">
+    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj">
       <Project>{55002a4e-d21e-432d-baac-1a9beff4115b}</Project>
-      <Name>PagedList</Name>
+      <Name>X.PagedList</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
