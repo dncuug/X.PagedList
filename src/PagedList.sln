@@ -7,21 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Tests", "PagedLis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc", "PagedList.Mvc\PagedList.Mvc.csproj", "{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D13AC3F0-9CE8-4FD9-B19D-69E49B23EB1B}"
-	ProjectSection(SolutionItems) = preProject
-		..\rakefile.rb = ..\rakefile.rb
-		..\README.markdown = ..\README.markdown
-		..\version.rb = ..\version.rb
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3C4B957A-17FC-437D-ACBB-BFC71DE5C2A1}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList", "PagedList\PagedList.csproj", "{55002A4E-D21E-432D-BAAC-1A9BEFF4115B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagedList.Mvc.Example", "PagedList.Mvc.Example\PagedList.Mvc.Example.csproj", "{5AE0D66A-83C6-488E-86B5-AC157E64AAC5}"
