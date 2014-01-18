@@ -19,16 +19,6 @@ namespace PagedList
     public class PagedList<T> : BasePagedList<T>
     {
         /// <summary>
-        /// Default page Size
-        /// </summary>
-        public static int DefaultPageSize { get; set; }
-
-        static PagedList()
-        {
-            DefaultPageSize = 25;
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="PagedList{T}"/> class that divides the supplied superset into subsets the size of the supplied pageSize. The instance then only containes the objects contained in the subset specified by index.
         /// </summary>
         /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IQueryable{T}"/>, it will be treated as such.</param>

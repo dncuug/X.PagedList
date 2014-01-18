@@ -49,6 +49,7 @@
     <Compile Include="PagedList.cs" />
     <Compile Include="PagedListExtensions.cs" />
     <Compile Include="PagedListMetaData.cs" />
+    <Compile Include="Paging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticPagedList.cs" />
   </ItemGroup>
