@@ -1,10 +1,10 @@
 # PagedList
 
+**[Follow me (@troygoode) on Twitter!](https://twitter.com/intent/user?screen_name=troygoode)**
+
 ## What is this?
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
-
-[Tips are welcome, but not expected.](https://www.gittip.com/TroyGoode/)
 
 ## How do I use it?
 
