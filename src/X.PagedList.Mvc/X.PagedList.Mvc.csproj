@@ -59,12 +59,6 @@
     <None Include="PublicKeyFile.snk" />
     <None Include="PublicPrivateKeyFile.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj">
-      <Project>{55002a4e-d21e-432d-baac-1a9beff4115b}</Project>
-      <Name>X.PagedList</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

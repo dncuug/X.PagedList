@@ -7,6 +7,11 @@ namespace PagedList
     /// </summary>
     public static class Paging
     {
+        static Paging()
+        {
+            PageSize = 15;
+        }
+
         /// <summary>
         /// Default page size
         /// </summary>
