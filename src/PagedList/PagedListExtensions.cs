@@ -61,11 +61,13 @@ namespace PagedList
 		/// <returns>A subset of this collection of objects, split into pages of maximum size n.</returns>
 		public static IEnumerable<IEnumerable<T>> Partition<T>(this IEnumerable<T> superset, int pageSize)
 		{
-			if (superset.Count() < pageSize)
+			// Cache this to avoid evaluating it twice
+			int count = superset.Count();
+			if (count < pageSize)
 				yield return superset;
 			else
 			{
-				var numberOfPages = Math.Ceiling(superset.Count() / (double)pageSize);
+				var numberOfPages = Math.Ceiling(count / (double)pageSize);
 				for (var i = 0; i < numberOfPages; i++)
 					yield return superset.Skip(pageSize * i).Take(pageSize);				
 			}
