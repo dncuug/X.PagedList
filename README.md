@@ -1,4 +1,4 @@
-# X.PagedList [![Build status](https://ci.appveyor.com/api/projects/status?id=h2foow44iy2k5nl0)](https://ci.appveyor.com/project/x-pagedlist)
+# X.PagedList [![Build status](https://ci.appveyor.com/api/projects/status/h2foow44iy2k5nl0)](https://ci.appveyor.com/project/ernado-x/x-pagedlist)
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
