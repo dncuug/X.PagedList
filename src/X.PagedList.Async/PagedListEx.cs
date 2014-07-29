@@ -13,7 +13,7 @@ namespace PagedList
         public static async Task<IPagedList<T>> CreateAsync(IQueryable<T> superset, int pageNumber, int pageSize)
         {
             var list = new PagedListEx<T>();
-            await list.InitAsync(superset, pageNumber, pageSize);
+            await list.InitAsync(superset, pageNumber, pageSize).ConfigureAwait(false);
             return list;
         }
 
@@ -45,8 +45,8 @@ namespace PagedList
             {
                 Subset.AddRange(
                     (pageNumber == 1)
-                        ? await superset.Skip<T>(0).Take<T>(pageSize).ToListAsync<T>()
-                        : await superset.Skip<T>(((pageNumber - 1) * pageSize)).Take<T>(pageSize).ToListAsync<T>()
+                        ? await superset.Skip<T>(0).Take<T>(pageSize).ToListAsync<T>().ConfigureAwait(false)
+                        : await superset.Skip<T>(((pageNumber - 1) * pageSize)).Take<T>(pageSize).ToListAsync<T>().ConfigureAwait(false)
                     );
             }
         }
