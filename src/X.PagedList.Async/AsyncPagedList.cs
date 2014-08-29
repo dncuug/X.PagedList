@@ -4,20 +4,20 @@ using System.Threading.Tasks;
 
 namespace PagedList
 {
-    public class PagedListEx<T> : BasePagedList<T>
+    public class AsyncPagedList<T> : BasePagedList<T>
     {
-        private PagedListEx()
+        private AsyncPagedList()
         {
         }
 
         public static async Task<IPagedList<T>> CreateAsync(IQueryable<T> superset, int pageNumber, int pageSize)
         {
-            var list = new PagedListEx<T>();
+            var list = new AsyncPagedList<T>();
             await list.InitAsync(superset, pageNumber, pageSize).ConfigureAwait(false);
             return list;
         }
 
-        async Task InitAsync(IQueryable<T> superset, int pageNumber, int pageSize)
+        private async Task InitAsync(IQueryable<T> superset, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
             {
@@ -51,6 +51,5 @@ namespace PagedList
             }
         }
 
-        
     }
 }

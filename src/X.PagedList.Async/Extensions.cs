@@ -18,5 +18,11 @@ namespace PagedList
         {
             return Task.Factory.StartNew(() => list.ToList());
         }
+
+        public static Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> list, int pageNumber, int pageSize)
+        {
+            return Task.Factory.StartNew(() => (IPagedList<T>)(new StaticPagedList<T>(list.Skip(((pageNumber - 1) * pageSize)).Take(pageSize), pageNumber, pageSize, list.Count())));
+
+        }
     }
 }

@@ -91,7 +91,7 @@ namespace PagedList
         /// <summary>
         /// 	Gets the number of elements contained on this page.
         /// </summary>
-        public int Count
+        public virtual int Count
         {
             get { return Subset.Count; }
         }
