@@ -126,11 +126,11 @@ Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only h
 
 ### Styling the Pager Yourself
 
-The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://twitter.github.com/bootstrap/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
+The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://getbootstrap.com/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
 
 ![Out-of-the-box Pager Configurations](https://github.com/TroyGoode/PagedList/raw/master/misc/DefaultPagingControlStyles.png)
 
-If your project does not reference the [Twitter Bootstrap](http://twitter.github.com/bootstrap) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
+If your project does not reference the [Twitter Bootstrap](http://getbootstrap.com/) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
 
 Simply append `"~/Content/PagedList.css"` to where Site.css is already bundled, yielding:
 
