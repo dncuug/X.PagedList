@@ -7,7 +7,7 @@ using System.Resources;
 [assembly: AssemblyTitle("X.PagedList")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Troy Goode, Ernado")]
+[assembly: AssemblyCompany("Troy Goode, Andrew Gubskiy")]
 [assembly: AssemblyProduct("PagedList.Core")]
 [assembly: AssemblyCopyright("MIT License")]
 [assembly: AssemblyTrademark("")]
@@ -24,5 +24,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.20.5.*")]
-[assembly: AssemblyFileVersion("1.20.5.50")]
+[assembly: AssemblyVersion("1.22.5.*")]
+[assembly: AssemblyFileVersion("1.22.5.150")]
