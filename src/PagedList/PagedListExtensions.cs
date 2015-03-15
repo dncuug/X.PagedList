@@ -70,5 +70,20 @@ namespace PagedList
 					yield return superset.Skip(pageSize * i).Take(pageSize);				
 			}
 		}
+
+        /// <summary>
+        /// Cast to Custom Type
+        /// </summary>
+        /// <param name="source">Source</param>
+        /// <param name="selector">Selector</param>
+        /// <typeparam name="TSource">Input Type</typeparam>
+        /// <typeparam name="TResult">Result Type</typeparam>
+        /// <returns>New PagedList</returns>
+        public static IPagedList<TResult> Select<TSource, TResult>(this PagedList<TSource> source, Func<TSource, TResult> selector)
+        {
+            var subset = ((IEnumerable<TSource>)source).Select(selector);
+            return new PagedList<TResult>(source, subset);
+        }
+
 	}
 }
