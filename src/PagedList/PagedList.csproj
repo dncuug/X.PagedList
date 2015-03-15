@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BasePagedList.cs" />
     <Compile Include="IPagedList.cs" />
+    <Compile Include="PagedListForEntityFramework .cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="PagedListExtensions.cs" />
     <Compile Include="PagedListMetaData.cs" />
