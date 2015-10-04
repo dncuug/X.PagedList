@@ -36,10 +36,10 @@ namespace PagedList
 			// set source to blank list if superset is null to prevent exceptions
 			TotalItemCount = superset == null ? 0 : superset.Count();
 			PageSize = pageSize;
-			PageNumber = pageNumber;
 			PageCount = TotalItemCount > 0
 						? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
 						: 0;
+			PageNumber = (pageNumber == int.MaxValue) ? PageCount : pageNumber;
 			HasPreviousPage = PageNumber > 1;
 			HasNextPage = PageNumber < PageCount;
 			IsFirstPage = PageNumber == 1;
