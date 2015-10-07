@@ -41,9 +41,15 @@ namespace PagedList
         public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
+<<<<<<< HEAD
                 throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "PageNumber cannot be below 1.");
             if (pageSize < 1)
                 throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
+=======
+                throw new ArgumentOutOfRangeException("pageNumber", "PageNumber cannot be below 1.");
+            if (pageSize < 1)
+                throw new ArgumentOutOfRangeException("pageSize", "PageSize cannot be less than 1.");
+>>>>>>> GalayM-AddSelectExtension
 
             // set source to blank list if superset is null to prevent exceptions
             TotalItemCount = superset == null ? 0 : superset.Count();
@@ -81,9 +87,15 @@ namespace PagedList
         public PagedList(IQueryable<T> superset, Expression<Func<T>> keySelector, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
+<<<<<<< HEAD
                 throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "PageNumber cannot be below 1.");
             if (pageSize < 1)
                 throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
+=======
+                throw new ArgumentOutOfRangeException("pageNumber", "PageNumber cannot be below 1.");
+            if (pageSize < 1)
+                throw new ArgumentOutOfRangeException("pageSize", "PageSize cannot be less than 1.");
+>>>>>>> GalayM-AddSelectExtension
 
             // set source to blank list if superset is null to prevent exceptions
             TotalItemCount = superset == null ? 0 : superset.Count();

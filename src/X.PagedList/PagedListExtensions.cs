@@ -75,6 +75,7 @@ namespace PagedList
 				for (var i = 0; i < numberOfPages; i++)
 					yield return superset.Skip(pageSize * i).Take(pageSize);				
 			}
+<<<<<<< HEAD
 =======
         /// <summary>
         /// Creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
@@ -125,6 +126,8 @@ namespace PagedList
                     yield return superset.Skip(pageSize * i).Take(pageSize);
             }
 >>>>>>> 497cabbdfec58102c0e269ab15683fb16475464b:src/PagedList/PagedListExtensions.cs
+=======
+>>>>>>> GalayM-AddSelectExtension
         }
 
         /// <summary>
@@ -155,7 +158,10 @@ namespace PagedList
         public static IPagedList<T> ToPagedListForEntityFramework<T, TKey>(this IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         {
             return new PagedListForEntityFramework<T, TKey>(superset, keySelector, pageNumber, pageSize);
+<<<<<<< HEAD
 <<<<<<< HEAD:src/X.PagedList/PagedListExtensions.cs
+=======
+>>>>>>> GalayM-AddSelectExtension
 		}
 
 	}
