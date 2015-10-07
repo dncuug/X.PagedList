@@ -18,11 +18,7 @@ namespace PagedList
     /// <seealso cref="BasePagedList{T}"/>
     /// <seealso cref="StaticPagedList{T}"/>
     /// <seealso cref="List{T}"/>
-<<<<<<< HEAD
-    [Serializable]
-=======
-    //[Serializable]
->>>>>>> GalayM-AddSelectExtension
+    //[Serializable]        
     public class PagedListForEntityFramework<T, TKey> : PagedList<T>
     {
         /// <summary>
@@ -37,15 +33,11 @@ namespace PagedList
         public PagedListForEntityFramework(IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
-<<<<<<< HEAD
-                throw new ArgumentOutOfRangeException("pageNumber", pageNumber, "PageNumber cannot be below 1.");
-            if (pageSize < 1)
-                throw new ArgumentOutOfRangeException("pageSize", pageSize, "PageSize cannot be less than 1.");
-=======
+
                 throw new ArgumentOutOfRangeException("pageNumber",  "PageNumber cannot be below 1.");
             if (pageSize < 1)
                 throw new ArgumentOutOfRangeException("pageSize","PageSize cannot be less than 1.");
->>>>>>> GalayM-AddSelectExtension
+
 
             // set source to blank list if superset is null to prevent exceptions
             TotalItemCount = superset == null ? 0 : superset.Count();
