@@ -52,6 +52,7 @@
     <Compile Include="IPagedList.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="PagedListExtensions.cs" />
+    <Compile Include="PagedListForEntityFramework .cs" />
     <Compile Include="PagedListMetaData.cs" />
     <Compile Include="Paging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
