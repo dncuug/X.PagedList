@@ -1,4 +1,4 @@
-# X.PagedList 
+# X.PagedList [![Build Status](https://travis-ci.org/ernado-x/X.PagedList.svg?branch=master)](https://travis-ci.org/ernado-x/X.PagedList)
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
