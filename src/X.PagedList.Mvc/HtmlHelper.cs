@@ -66,7 +66,7 @@ namespace PagedList.Mvc
             var format = options.FunctionToDisplayEachPageNumber
                 ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
             var targetPageNumber = i;
-            var page = new TagBuilder("a");
+            var page = i == list.PageNumber ? new TagBuilder("span") : new TagBuilder("a");
             page.SetInnerText(format(targetPageNumber));
 
             if (i == list.PageNumber)
