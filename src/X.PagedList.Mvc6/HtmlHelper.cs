@@ -40,15 +40,36 @@ namespace PagedList.Mvc
 #endif
         }
 
+        internal static string TagBuilderToString(TagBuilder tagBuilder)
+        {
+#if MvcOld
+            return tagBuilder.ToString();
+#else
+            using (var writer = new System.IO.StringWriter())
+            {
+
+                tagBuilder.WriteTo(writer, Microsoft.Extensions.WebEncoders.HtmlEncoder.Default);
+                return writer.ToString();
+            }
+#endif
+        }
+
         internal static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
         {
 #if MvcOld
             return tagBuilder.ToString(renderMode);
 #else
-            var tagBuilderRenderMode = tagBuilder.TagRenderMode;
+            var renderModeCopy = tagBuilder.TagRenderMode;
             tagBuilder.TagRenderMode = renderMode;
-            var html = tagBuilder.ToString();
-            tagBuilder.TagRenderMode = tagBuilderRenderMode;
+
+            string html;
+            using (var writer = new System.IO.StringWriter())
+            {
+
+                tagBuilder.WriteTo(writer, Microsoft.Extensions.WebEncoders.HtmlEncoder.Default);
+                html = writer.ToString();
+            }
+            tagBuilder.TagRenderMode = renderModeCopy;
             return html;
 #endif
         }
@@ -67,7 +88,7 @@ namespace PagedList.Mvc
                 li.AddCssClass(@class);
             if (options.FunctionToTransformEachPageLink != null)
                 return options.FunctionToTransformEachPageLink(li, inner);
-            AppendHtml(li, inner.ToString());
+            AppendHtml(li, TagBuilderToString(inner));
             return li;
         }
 
@@ -277,7 +298,7 @@ namespace PagedList.Mvc
             //collapse all of the list items into one big string
             var listItemLinksString = listItemLinks.Aggregate(
                 new StringBuilder(),
-                (sb, listItem) => sb.Append(listItem.ToString()),
+                (sb, listItem) => sb.Append(TagBuilderToString(listItem)),
                 sb => sb.ToString()
                 );
 
@@ -289,9 +310,9 @@ namespace PagedList.Mvc
             var outerDiv = new TagBuilder("div");
             foreach (var c in options.ContainerDivClasses ?? Enumerable.Empty<string>())
                 outerDiv.AddCssClass(c);
-            AppendHtml(outerDiv, ul.ToString());
+            AppendHtml(outerDiv, TagBuilderToString(ul));
 
-            return new HtmlString(outerDiv.ToString());
+            return new HtmlString(TagBuilderToString(outerDiv));
         }
 
         ///<summary>
@@ -357,14 +378,14 @@ namespace PagedList.Mvc
             submit.Attributes.Add("type", "submit");
             submit.Attributes.Add("value", options.SubmitButtonFormat);
 
-            AppendHtml(fieldset, label.ToString());
+            AppendHtml(fieldset, TagBuilderToString(label));
 
             AppendHtml(fieldset, TagBuilderToString(input, TagRenderMode.SelfClosing));
 
             AppendHtml(fieldset, TagBuilderToString(submit, TagRenderMode.SelfClosing));
 
-            AppendHtml(form, fieldset.ToString());
-            return new HtmlString(form.ToString());
+            AppendHtml(form, TagBuilderToString(fieldset));
+            return new HtmlString(TagBuilderToString(form));
         }
     }
 }
