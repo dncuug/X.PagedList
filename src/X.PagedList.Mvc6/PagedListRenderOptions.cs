@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
+
+#if MvcOld
+using TagBuilder = System.Web.Mvc.TagBuilder;
 using System.Web.Mvc.Ajax;
+#else
+using TagBuilder = Microsoft.AspNet.Mvc.Rendering.TagBuilder;
+#endif
 
 namespace PagedList.Mvc
 {
@@ -205,12 +210,14 @@ namespace PagedList.Mvc
 		/// </summary>
 		public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
 
-		/// <summary>
-		/// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
-		/// </summary>
-		/// <param name="options">The preferred Html.PagedList(...) style options.</param>
+#if MvcOld
+
+        /// <summary>
+        /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+        /// </summary>
+        /// <param name="options">The preferred Html.PagedList(...) style options.</param>
         /// <param name="ajaxOptions">The ajax options that will put into the link</param>
-		/// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+        /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
         public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, AjaxOptions ajaxOptions)
 		{
 			options.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
@@ -259,7 +266,9 @@ namespace PagedList.Mvc
             return EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions(), ajaxOptions);
         }
 
-		///<summary>
+#endif
+
+        ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
         public static PagedListRenderOptions Classic

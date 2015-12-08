@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;MvcOld</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\X.PagedList.Mvc.xml</DocumentationFile>
@@ -79,10 +79,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GoToFormRenderOptions.cs" />
-    <Compile Include="HtmlHelper.cs" />
-    <Compile Include="PagedListDisplayMode.cs" />
-    <Compile Include="PagedListRenderOptions.cs" />
+    <Compile Include="..\X.PagedList.Mvc6\GoToFormRenderOptions.cs">
+      <Link>GoToFormRenderOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\X.PagedList.Mvc6\HtmlHelper.cs">
+      <Link>HtmlHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\X.PagedList.Mvc6\PagedListDisplayMode.cs">
+      <Link>PagedListDisplayMode.cs</Link>
+    </Compile>
+    <Compile Include="..\X.PagedList.Mvc6\PagedListRenderOptions.cs">
+      <Link>PagedListRenderOptions.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
