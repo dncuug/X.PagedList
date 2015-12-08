@@ -11,12 +11,30 @@ TestResults
 # User-specific files
 *.suo
 *.user
+*.userosscache
 *.sln.docstates
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Visual Studio 2015 cache/options directory
+.vs/
+
+# DNX
+project.lock.json
+artifacts/
 
 # Build results
 [Dd]ebug/
+[Dd]ebugPublic/
 [Rr]elease/
+[Rr]eleases/
 x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
 *_i.c
 *_p.c
 *.ilk
@@ -89,17 +107,19 @@ csx
 AppPackages/
 
 # Others
-[Bb]in
-[Oo]bj
-sql
+ClientBin/
+[Ss]tyle[Cc]op.*
+~$*
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.pfx
+*.publishsettings
+node_modules/
+orleans.codegen.cs
 TestResults
 [Tt]est[Rr]esult*
 *.Cache
-ClientBin
-[Ss]tyle[Cc]op.*
-~$*
-*.dbmdl
-Generated_Code #added for RIA/Silverlight projects
 
 # Backup & report files from converting an old project file to a newer
 # Visual Studio version. Backup files are not needed, because we have git ;-)
@@ -109,6 +129,12 @@ UpgradeLog*.XML
 
 TestResult.xml
 Tests.VisualState.xml
+
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
 
 *.bak
 *.manifest
