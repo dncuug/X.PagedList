@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+
+#if MvcOld
+using TagBuilder = System.Web.Mvc.TagBuilder;
+using TagRenderMode = System.Web.Mvc.TagRenderMode;
+using HtmlString = System.Web.Mvc.MvcHtmlString;
+using IHtmlHelper = System.Web.Mvc.HtmlHelper;
+#else
+using TagBuilder = Microsoft.AspNet.Mvc.Rendering.TagBuilder;
+using TagRenderMode = Microsoft.AspNet.Mvc.Rendering.TagRenderMode;
+using HtmlString = Microsoft.AspNet.Mvc.Rendering.HtmlString;
+using IHtmlHelper = Microsoft.AspNet.Mvc.Rendering.IHtmlHelper;
+#endif
 
 namespace PagedList.Mvc
 {
@@ -12,10 +22,41 @@ namespace PagedList.Mvc
     ///</summary>
     public static class HtmlHelper
     {
+        internal static void SetInnerText(TagBuilder tagBuilder, string innerText)
+        {
+#if MvcOld
+            tagBuilder.SetInnerText(innerText);
+#else
+            tagBuilder.InnerHtml.AppendHtml(innerText);
+#endif
+        }
+
+        internal static void AppendHtml(TagBuilder tagBuilder, string innerHtml)
+        {
+#if MvcOld
+            tagBuilder.InnerHtml += innerHtml;
+#else
+            tagBuilder.InnerHtml.AppendHtml(innerHtml);
+#endif
+        }
+
+        internal static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
+        {
+#if MvcOld
+            return tagBuilder.ToString(renderMode);
+#else
+            var tagBuilderRenderMode = tagBuilder.TagRenderMode;
+            tagBuilder.TagRenderMode = renderMode;
+            var html = tagBuilder.ToString();
+            tagBuilder.TagRenderMode = tagBuilderRenderMode;
+            return html;
+#endif
+        }
+
         private static TagBuilder WrapInListItem(string text)
         {
             var li = new TagBuilder("li");
-            li.SetInnerText(text);
+            SetInnerText(li, text);
             return li;
         }
 
@@ -26,18 +67,15 @@ namespace PagedList.Mvc
                 li.AddCssClass(@class);
             if (options.FunctionToTransformEachPageLink != null)
                 return options.FunctionToTransformEachPageLink(li, inner);
-            li.InnerHtml = inner.ToString();
+            AppendHtml(li, inner.ToString());
             return li;
         }
 
         private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
         {
             const int targetPageNumber = 1;
-            var first = new TagBuilder("a")
-                            {
-                                InnerHtml = string.Format(options.LinkToFirstPageFormat, targetPageNumber)
-                            };
-
+            var first = new TagBuilder("a");
+            AppendHtml(first, string.Format(options.LinkToFirstPageFormat, targetPageNumber));
             if (list.IsFirstPage)
                 return WrapInListItem(first, options, "PagedList-skipToFirst", "disabled");
 
@@ -48,10 +86,8 @@ namespace PagedList.Mvc
         private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
         {
             var targetPageNumber = list.PageNumber - 1;
-            var previous = new TagBuilder("a")
-                            {
-                                InnerHtml = string.Format(options.LinkToPreviousPageFormat, targetPageNumber)
-                            };
+            var previous = new TagBuilder("a");
+            AppendHtml(previous, string.Format(options.LinkToPreviousPageFormat, targetPageNumber));
             previous.Attributes["rel"] = "prev";
 
             if (!list.HasPreviousPage)
@@ -67,7 +103,7 @@ namespace PagedList.Mvc
                 ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
             var targetPageNumber = i;
             var page = i == list.PageNumber ? new TagBuilder("span") : new TagBuilder("a");
-            page.SetInnerText(format(targetPageNumber));
+            SetInnerText(page, format(targetPageNumber));
 
             if (i == list.PageNumber)
                 return WrapInListItem(page, options, "active");
@@ -79,10 +115,8 @@ namespace PagedList.Mvc
         private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
         {
             var targetPageNumber = list.PageNumber + 1;
-            var next = new TagBuilder("a")
-                        {
-                            InnerHtml = string.Format(options.LinkToNextPageFormat, targetPageNumber)
-                        };
+            var next = new TagBuilder("a");
+            AppendHtml(next, string.Format(options.LinkToNextPageFormat, targetPageNumber));
             next.Attributes["rel"] = "next";
 
             if (!list.HasNextPage)
@@ -95,10 +129,8 @@ namespace PagedList.Mvc
         private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
         {
             var targetPageNumber = list.PageCount;
-            var last = new TagBuilder("a")
-                        {
-                            InnerHtml = string.Format(options.LinkToLastPageFormat, targetPageNumber)
-                        };
+            var last = new TagBuilder("a");
+            AppendHtml(last, string.Format(options.LinkToLastPageFormat, targetPageNumber));
 
             if (list.IsLastPage)
                 return WrapInListItem(last, options, "PagedList-skipToLast", "disabled");
@@ -110,7 +142,7 @@ namespace PagedList.Mvc
         private static TagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptions options)
         {
             var text = new TagBuilder("a");
-            text.SetInnerText(string.Format(options.PageCountAndCurrentLocationFormat, list.PageNumber, list.PageCount));
+            SetInnerText(text, string.Format(options.PageCountAndCurrentLocationFormat, list.PageNumber, list.PageCount));
 
             return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
         }
@@ -118,17 +150,15 @@ namespace PagedList.Mvc
         private static TagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptions options)
         {
             var text = new TagBuilder("a");
-            text.SetInnerText(string.Format(options.ItemSliceAndTotalFormat, list.FirstItemOnPage, list.LastItemOnPage, list.TotalItemCount));
+            SetInnerText(text, string.Format(options.ItemSliceAndTotalFormat, list.FirstItemOnPage, list.LastItemOnPage, list.TotalItemCount));
 
             return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
         }
 
         private static TagBuilder Ellipses(PagedListRenderOptions options)
         {
-            var a = new TagBuilder("a")
-                        {
-                            InnerHtml = options.EllipsesFormat
-                        };
+            var a = new TagBuilder("a");
+            AppendHtml(a, options.EllipsesFormat);
 
             return WrapInListItem(a, options, "PagedList-ellipses", "disabled");
         }
@@ -140,7 +170,7 @@ namespace PagedList.Mvc
         ///<param name = "list">The PagedList to use as the data source.</param>
         ///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
         ///<returns>Outputs the paging control HTML.</returns>
-        public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
+        public static HtmlString PagedListPager(this IHtmlHelper html,
                                                    IPagedList list,
                                                    Func<int, string> generatePageUrl)
         {
@@ -155,7 +185,7 @@ namespace PagedList.Mvc
         ///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
         ///<param name = "options">Formatting options.</param>
         ///<returns>Outputs the paging control HTML.</returns>
-        public static MvcHtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
+        public static HtmlString PagedListPager(this IHtmlHelper html,
                                                    IPagedList list,
                                                    Func<int, string> generatePageUrl,
                                                    PagedListRenderOptions options)
@@ -251,19 +281,17 @@ namespace PagedList.Mvc
                 sb => sb.ToString()
                 );
 
-            var ul = new TagBuilder("ul")
-                        {
-                            InnerHtml = listItemLinksString
-                        };
+            var ul = new TagBuilder("ul");
+            AppendHtml(ul, listItemLinksString);
             foreach (var c in options.UlElementClasses ?? Enumerable.Empty<string>())
                 ul.AddCssClass(c);
 
             var outerDiv = new TagBuilder("div");
             foreach (var c in options.ContainerDivClasses ?? Enumerable.Empty<string>())
                 outerDiv.AddCssClass(c);
-            outerDiv.InnerHtml = ul.ToString();
+            AppendHtml(outerDiv, ul.ToString());
 
-            return new MvcHtmlString(outerDiv.ToString());
+            return new HtmlString(outerDiv.ToString());
         }
 
         ///<summary>
@@ -273,7 +301,7 @@ namespace PagedList.Mvc
         ///<param name="list">The PagedList to use as the data source.</param>
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+        public static HtmlString PagedListGoToPageForm(this IHtmlHelper html,
                                                           IPagedList list,
                                                           string formAction)
         {
@@ -288,7 +316,7 @@ namespace PagedList.Mvc
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+        public static HtmlString PagedListGoToPageForm(this IHtmlHelper html,
                                                           IPagedList list,
                                                           string formAction,
                                                           string inputFieldName)
@@ -304,7 +332,7 @@ namespace PagedList.Mvc
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<param name="options">Formatting options.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static MvcHtmlString PagedListGoToPageForm(this System.Web.Mvc.HtmlHelper html,
+        public static HtmlString PagedListGoToPageForm(this IHtmlHelper html,
                                                  IPagedList list,
                                                  string formAction,
                                                  GoToFormRenderOptions options)
@@ -318,7 +346,7 @@ namespace PagedList.Mvc
 
             var label = new TagBuilder("label");
             label.Attributes.Add("for", options.InputFieldName);
-            label.SetInnerText(options.LabelFormat);
+            SetInnerText(label, options.LabelFormat);
 
             var input = new TagBuilder("input");
             input.Attributes.Add("type", options.InputFieldType);
@@ -329,11 +357,14 @@ namespace PagedList.Mvc
             submit.Attributes.Add("type", "submit");
             submit.Attributes.Add("value", options.SubmitButtonFormat);
 
-            fieldset.InnerHtml = label.ToString();
-            fieldset.InnerHtml += input.ToString(TagRenderMode.SelfClosing);
-            fieldset.InnerHtml += submit.ToString(TagRenderMode.SelfClosing);
-            form.InnerHtml = fieldset.ToString();
-            return new MvcHtmlString(form.ToString());
+            AppendHtml(fieldset, label.ToString());
+
+            AppendHtml(fieldset, TagBuilderToString(input, TagRenderMode.SelfClosing));
+
+            AppendHtml(fieldset, TagBuilderToString(submit, TagRenderMode.SelfClosing));
+
+            AppendHtml(form, fieldset.ToString());
+            return new HtmlString(form.ToString());
         }
     }
 }
