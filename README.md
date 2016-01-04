@@ -1,4 +1,4 @@
-# X.PagedList [![Build Status](https://travis-ci.org/ernado-x/X.PagedList.svg?branch=master)](https://travis-ci.org/ernado-x/X.PagedList)
+# X.PagedList [![Build Status](https://travis-ci.org/kpi-ua/X.PagedList.svg?branch=master)](https://travis-ci.org/kpi-ua/X.PagedList)
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
@@ -181,6 +181,3 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/ernado-x/X.P
 ## License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ernado-x/x.pagedlist/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
