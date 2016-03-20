@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3E8629F8-D927-4D5F-A351-47DDE2AE37D1}</ProjectGuid>
+    <ProjectGuid>{1FB9A75F-3C92-446A-BC20-FB28B5E6A723}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PagedList.Mvc</RootNamespace>
