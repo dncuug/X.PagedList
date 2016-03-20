@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using X.PagedList;
 #if MvcOld
 using TagBuilder = System.Web.Mvc.TagBuilder;
 using TagRenderMode = System.Web.Mvc.TagRenderMode;

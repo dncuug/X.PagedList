@@ -1,12 +1,12 @@
-﻿using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
+using Moq;
 using Xunit;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
     public class AsyncPagedListExtensionsTheories
     {

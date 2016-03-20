@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
 	public class PagedListExample
 	{

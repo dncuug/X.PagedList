@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using PagedList;
 
-namespace PagedList
+namespace X.PagedList
 {
     /// <summary>
     /// Container for extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
@@ -71,7 +72,7 @@ namespace PagedList
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
         /// <seealso cref="PagedList{T}"/>
-        public static IPagedList<T> ToPagedList<T, TKey>(this IQueryable<T> superset, int pageNumber, int pageSize)
+        public static IPagedList<T> ToPagedList<T, TKey>(this IEnumerable<T> superset, int pageNumber, int pageSize)
         {
             return new PagedList<T>(superset, pageNumber, pageSize);
         }

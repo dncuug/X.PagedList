@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
     public class TestContext : DbContext
     {

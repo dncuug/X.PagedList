@@ -11,6 +11,13 @@
         "Microsoft.Bcl": "1.1.10",
         "Microsoft.Bcl.Build": "1.0.21"
       }
+    },
+    "net45+win+wpa81+wp80": {
+      "wrappedProject": "../../X.PagedList/X.PagedList.csproj",
+      "bin": {
+        "assembly": "../../X.PagedList/obj/{configuration}/X.PagedList.dll",
+        "pdb": "../../X.PagedList/obj/{configuration}/X.PagedList.pdb"
+      }
     }
   }
 }

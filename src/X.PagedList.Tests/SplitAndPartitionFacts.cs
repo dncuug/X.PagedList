@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Xunit;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
 	public class SplitAndPartitionFacts
 	{

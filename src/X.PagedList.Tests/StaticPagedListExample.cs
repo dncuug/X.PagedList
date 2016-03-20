@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using PagedList;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
 	public class StaticPagedListExample
 	{

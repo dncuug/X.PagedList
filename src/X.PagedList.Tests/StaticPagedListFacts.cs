@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using PagedList;
+using Xunit;
 
-namespace PagedList.Tests
+namespace X.PagedList.Tests
 {
 	public class StaticPagedListFacts
 	{

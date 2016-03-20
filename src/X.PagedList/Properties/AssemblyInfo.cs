@@ -1,5 +1,7 @@
-﻿using System.Reflection;
-using System.Resources;
+﻿using System.Resources;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -7,10 +9,10 @@ using System.Resources;
 [assembly: AssemblyTitle("X.PagedList")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Troy Goode, Andrew Gubskiy")]
+[assembly: AssemblyCompany("NTUU KPI")]
 [assembly: AssemblyProduct("X.PagedList")]
-[assembly: AssemblyCopyright("MIT License")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright Troy Goode, Ernado ©  2016")]
+[assembly: AssemblyTrademark("X.PagedList")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
@@ -24,5 +26,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.24.1.*")]
-[assembly: AssemblyFileVersion("1.24.1.300")]
+[assembly: AssemblyVersion("5.0.0.*")]
+[assembly: AssemblyFileVersion("5.0.0.3000")]

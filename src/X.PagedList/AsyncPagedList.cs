@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PagedList
+namespace X.PagedList
 {
     public class AsyncPagedList<T> : BasePagedList<T>
     {

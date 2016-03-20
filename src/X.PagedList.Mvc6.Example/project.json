@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "compilationOptions": {
     "emitEntryPoint": true
@@ -29,6 +29,9 @@
     "dnx451": {
       "dependencies": {
         "X.PagedList": "1.0.0-*"
+      },
+      "frameworkAssemblies": {
+        "System.Data.Entity": "4.0.0.0"
       }
     }
   },

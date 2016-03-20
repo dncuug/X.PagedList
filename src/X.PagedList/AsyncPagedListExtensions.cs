@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using PagedList;
 
-namespace PagedList
+namespace X.PagedList
 {
     public static class AsyncPagedListExtensions
     {
