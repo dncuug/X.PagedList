@@ -8,6 +8,6 @@ install:
   - dnvm upgrade
   - dnu restore
 script:
-  - xbuild
+  - xbuild src/X.PagedList/X.PagedList.csproj
   - dnu build src/X.PagedList.Mvc6/project.json
   - dnu build src/X.PagedList.Mvc6.Example/project.json
