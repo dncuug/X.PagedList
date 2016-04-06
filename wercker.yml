@@ -12,13 +12,20 @@ build:
     - script:
         name: update mono
         code: |
-          sudo apt-get update
-          sudo apt-get -y install  mono-devel
-          sudo apt-get -y install  mono-complete
+          #sudo apt-get update
+          #sudo apt-get -y install  mono-devel
+          #sudo apt-get -y install  mono-complete
           sudo apt-get -y install  referenceassemblies-pcl
-    # nuget restore
+          
+    # change work dir
     - script:
-        name: nuget restore
+        name: change work dir
+        code: |
+          cd src
+          
+    # packages restore
+    - script:
+        name: packages restore
         code: |
           nuget restore
           dnu restore
@@ -27,6 +34,6 @@ build:
     - script:
         name: run build
         code: |
-          xbuild src/X.PagedList/X.PagedList.csproj
-          dnu build src/X.PagedList.Mvc6/project.json
-          dnu build src/X.PagedList.Mvc6.Example/project.json
+          xbuild X.PagedList/X.PagedList.csproj
+          dnu build X.PagedList.Mvc6/project.json
+          dnu build X.PagedList.Mvc6.Example/project.json
