@@ -1,4 +1,6 @@
-# X.PagedList [![Build Status](https://travis-ci.org/kpi-ua/X.PagedList.svg?branch=master)](https://travis-ci.org/kpi-ua/X.PagedList)
+# X.PagedList
+
+[![wercker status](https://app.wercker.com/status/d179668548bcb9e93cdb1a3563cc9e1a/s "wercker status")](https://app.wercker.com/project/bykey/d179668548bcb9e93cdb1a3563cc9e1a)
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
