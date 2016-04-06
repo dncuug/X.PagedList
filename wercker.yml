@@ -16,6 +16,12 @@ build:
           sudo apt-get -y install  mono-devel
           sudo apt-get -y install  mono-complete
           sudo apt-get -y install  referenceassemblies-pcl
+    # nuget restore
+    - script:
+        name: nuget restore
+        code: |
+          nuget restore
+          
     # Executes build commands
     - script:
         name: run build
