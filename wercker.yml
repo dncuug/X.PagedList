@@ -5,9 +5,17 @@ build:
   steps:
     - script:
         name: show base information
-      code: |
+        code: |
           echo  mono --version
           
+    # update mono
+    - script:
+        name: update mono
+        code: |
+          sudo apt-get update
+          sudo apt-get -y install  mono-devel
+          sudo apt-get -y install  mono-complete
+          sudo apt-get -y install  referenceassemblies-pcl
     # Executes build commands
     - script:
         name: run build
