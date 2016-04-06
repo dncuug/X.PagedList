@@ -12,10 +12,10 @@ build:
     - script:
         name: update mono
         code: |
-          #sudo apt-get update
+          apt-get update
           #sudo apt-get -y install  mono-devel
           #sudo apt-get -y install  mono-complete
-          sudo apt-get -y install  referenceassemblies-pcl
+          apt-get -y install  referenceassemblies-pcl
           
     # change work dir
     - script:
