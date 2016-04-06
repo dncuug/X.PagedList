@@ -21,6 +21,7 @@ build:
         name: nuget restore
         code: |
           nuget restore
+          dnu restore
           
     # Executes build commands
     - script:
