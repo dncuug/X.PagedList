@@ -1,0 +1,17 @@
+box: microsoft/aspnet
+# Build definition
+build:
+  # Show base information
+  steps:
+    - script:
+        name: show base information
+      code: |
+          echo  mono --version
+          
+    # Executes build commands
+    - script:
+        name: run build
+        code: |
+          xbuild src/X.PagedList/X.PagedList.csproj
+          dnu build src/X.PagedList.Mvc6/project.json
+          dnu build src/X.PagedList.Mvc6.Example/project.json
