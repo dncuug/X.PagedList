@@ -14,7 +14,7 @@
     <p>@item</p>
 }
 
-@Html.PagedListPager(Model, page => Url.Action(new UrlActionContext { Action = "Contact", Values = new[] { page } }));
+@Html.PagedListPager(Model, page => Url.Action(new UrlActionContext { Action = "Contact", Values = new { page } }))
 
 <address>
     One Microsoft Way<br />
