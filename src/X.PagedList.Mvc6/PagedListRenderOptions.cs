@@ -30,11 +30,11 @@ namespace PagedList.Mvc
 			MaximumPageNumbersToDisplay = 10;
 			DisplayEllipsesWhenNotShowingAllPageNumbers = true;
 			EllipsesFormat = "&#8230;";
-			LinkToFirstPageFormat = "««";
-			LinkToPreviousPageFormat = "«";
+			LinkToFirstPageFormat = "&laquo;";
+			LinkToPreviousPageFormat = "&laquo;";
 			LinkToIndividualPageFormat = "{0}";
-			LinkToNextPageFormat = "»";
-			LinkToLastPageFormat = "»»";
+			LinkToNextPageFormat = "&raquo;";
+			LinkToLastPageFormat = "&raquo;&raquo;";
 			PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
 			ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
 			FunctionToDisplayEachPageNumber = null;
