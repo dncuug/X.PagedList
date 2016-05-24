@@ -1,10 +1,12 @@
 {
     "name": "X.PagedListCore.Mvc",
     "version": "1.0.0-*",
-    "compilationOptions": {
-        "emitEntryPoint": false
+    "buildOptions": {
+        "emitEntryPoint": false,
+        "compile": {
+            "include": ["../../X.PagedList.Mvc/**/**.cs"]
+        }
     },
-    "compile": ["../../X.PagedList.Mvc/**/**.cs"],
     "dependencies": {
         "Microsoft.AspNetCore.Mvc": "1.0.0-*",
         "X.PagedListCore": "1.0.0-*",
