@@ -148,3 +148,5 @@ LastBuild.log
 _ReSharper*
 .DS_Store
 src/PagedList.Mvc/Content/
+/src/X.PagedList.Mvc6/project.fragment.lock.json
+/src/X.PagedList.Mvc6.Example/project.fragment.lock.json

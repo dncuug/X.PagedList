@@ -43,7 +43,8 @@ namespace PagedList.Mvc
 			ContainerDivClasses = new [] { "pagination-container" };
 			UlElementClasses = new[] { "pagination" };
 			LiElementClasses = Enumerable.Empty<string>();
-		}
+            PageClasses = Enumerable.Empty<string>();
+        }
 
 		///<summary>
 		/// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
@@ -60,10 +61,15 @@ namespace PagedList.Mvc
 		///</summary>
 		public IEnumerable<string> LiElementClasses { get; set; }
 
-		///<summary>
-		/// Specifies a CSS class to append to the first list item in the pager. If null or whitespace is defined, no additional class is added to first list item in list.
-		///</summary>
-		public string ClassToApplyToFirstListItemInPager { get; set; }
+        ///<summary>
+        /// CSS Classes to append to every &lt;a&gt; or &lt;span&gt; element that represent each page in the paging control.
+        ///</summary>
+        public IEnumerable<string> PageClasses { get; set; }
+
+        ///<summary>
+        /// Specifies a CSS class to append to the first list item in the pager. If null or whitespace is defined, no additional class is added to first list item in list.
+        ///</summary>
+        public string ClassToApplyToFirstListItemInPager { get; set; }
 
 		///<summary>
 		/// Specifies a CSS class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.

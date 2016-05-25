@@ -130,6 +130,10 @@ namespace PagedList.Mvc
                 return WrapInListItem(page, options, "active");
 
             page.Attributes["href"] = generatePageUrl(targetPageNumber);
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                page.AddCssClass(c);
+
             return WrapInListItem(page, options);
         }
 
