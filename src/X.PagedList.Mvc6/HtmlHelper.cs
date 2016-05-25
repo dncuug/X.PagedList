@@ -97,6 +97,10 @@ namespace PagedList.Mvc
             const int targetPageNumber = 1;
             var first = new TagBuilder("a");
             AppendHtml(first, string.Format(options.LinkToFirstPageFormat, targetPageNumber));
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                first.AddCssClass(c);
+
             if (list.IsFirstPage)
                 return WrapInListItem(first, options, "PagedList-skipToFirst", "disabled");
 
@@ -110,6 +114,9 @@ namespace PagedList.Mvc
             var previous = new TagBuilder("a");
             AppendHtml(previous, string.Format(options.LinkToPreviousPageFormat, targetPageNumber));
             previous.Attributes["rel"] = "prev";
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                previous.AddCssClass(c);
 
             if (!list.HasPreviousPage)
                 return WrapInListItem(previous, options, "PagedList-skipToPrevious", "disabled");
@@ -126,13 +133,13 @@ namespace PagedList.Mvc
             var page = i == list.PageNumber ? new TagBuilder("span") : new TagBuilder("a");
             SetInnerText(page, format(targetPageNumber));
 
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                page.AddCssClass(c);
+
             if (i == list.PageNumber)
                 return WrapInListItem(page, options, "active");
 
             page.Attributes["href"] = generatePageUrl(targetPageNumber);
-
-            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
-                page.AddCssClass(c);
 
             return WrapInListItem(page, options);
         }
@@ -143,6 +150,9 @@ namespace PagedList.Mvc
             var next = new TagBuilder("a");
             AppendHtml(next, string.Format(options.LinkToNextPageFormat, targetPageNumber));
             next.Attributes["rel"] = "next";
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                next.AddCssClass(c);
 
             if (!list.HasNextPage)
                 return WrapInListItem(next, options, "PagedList-skipToNext", "disabled");
@@ -156,6 +166,9 @@ namespace PagedList.Mvc
             var targetPageNumber = list.PageCount;
             var last = new TagBuilder("a");
             AppendHtml(last, string.Format(options.LinkToLastPageFormat, targetPageNumber));
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+                last.AddCssClass(c);
 
             if (list.IsLastPage)
                 return WrapInListItem(last, options, "PagedList-skipToLast", "disabled");
