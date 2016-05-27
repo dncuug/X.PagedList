@@ -31,6 +31,25 @@ namespace WebApplication3.Controllers
             return View(model);
         }
 
+        public IActionResult StaticContact(int? page = 1)
+        {
+            ViewData["Message"] = "Your static contact page.";
+
+            var pageIndex = page ?? 1;
+            var pageSize = 10;
+
+            var toSkip = pageIndex * pageSize - pageSize;
+
+            // filter contacts
+            var filteredContacts = Contacts.Skip(toSkip).Take(pageSize);
+
+            int totalContactsCount = Contacts.Count;
+
+            StaticPagedList<string> contactsAsIPagedList = new StaticPagedList<string>(filteredContacts, pageIndex, pageSize, totalContactsCount);
+
+            return View(contactsAsIPagedList);
+        }
+
         public IActionResult Error()
         {
             return View();

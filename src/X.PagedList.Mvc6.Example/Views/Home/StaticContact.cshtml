@@ -3,7 +3,7 @@
 @using X.PagedList
 @model IPagedList<string>
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Static Contact";
 }
 
 <h2>@ViewData["Title"].</h2>
@@ -14,11 +14,11 @@
     <p>@item</p>
 }
 
-@Html.PagedListPager(Model, page => Url.Action(new UrlActionContext { Action = "Contact", Values = new { page } }))
+@Html.PagedListPager(Model, page => Url.Action(new UrlActionContext { Action = "StaticContact", Values = new { page } }))
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
+    One Microsoft Way<br/>
+    Redmond, WA 98052-6399<br/>
     <abbr title="Phone">P:</abbr>
     425.555.0100
 </address>
