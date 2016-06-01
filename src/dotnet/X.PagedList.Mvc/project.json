@@ -1,15 +1,15 @@
 {
-    "name": "X.PagedListCore.Mvc",
+    "name": "X.PagedList.Mvc",
     "version": "1.0.0-*",
     "buildOptions": {
         "emitEntryPoint": false,
         "compile": {
-            "include": ["../../X.PagedList.Mvc/**/**.cs"]
+            "include": ["../../X.PagedList.Mvc6/**/**.cs"]
         }
     },
     "dependencies": {
         "Microsoft.AspNetCore.Mvc": "1.0.0-*",
-        "X.PagedListCore": "1.0.0-*",
+        "X.PagedList": "*",
         "Microsoft.NETCore.App": {
             "type": "platform",
             "version": "1.0.0-rc2-*"
@@ -18,7 +18,7 @@
 
     "frameworks": {
         "netcoreapp1.0": {
-            "compilationOptions": {
+            "buildOptions": {
                 "define": [ "DOTNET_CORE" ]
             },
             "imports": [

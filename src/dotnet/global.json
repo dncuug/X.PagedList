@@ -1,7 +1,7 @@
 {
   "projects": [
-    "X.PagedListCore",
-    "X.PagedListCore.Mvc"
+    "X.PagedList",
+    "X.PagedList.Mvc"
   ],
   "sdk": {
     "version": "1.0.0-rc2-*"
