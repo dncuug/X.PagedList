@@ -5,6 +5,8 @@ using System.Linq;
 #if MvcOld
 using TagBuilder = System.Web.Mvc.TagBuilder;
 using System.Web.Mvc.Ajax;
+#elif DOTNET_CORE
+using TagBuilder = Microsoft.AspNetCore.Mvc.Rendering.TagBuilder;
 #else
 using TagBuilder = Microsoft.AspNet.Mvc.Rendering.TagBuilder;
 #endif
@@ -30,11 +32,11 @@ namespace PagedList.Mvc
 			MaximumPageNumbersToDisplay = 10;
 			DisplayEllipsesWhenNotShowingAllPageNumbers = true;
 			EllipsesFormat = "&#8230;";
-			LinkToFirstPageFormat = "««";
-			LinkToPreviousPageFormat = "«";
+			LinkToFirstPageFormat = "Â«Â«";
+			LinkToPreviousPageFormat = "Â«";
 			LinkToIndividualPageFormat = "{0}";
-			LinkToNextPageFormat = "»";
-			LinkToLastPageFormat = "»»";
+			LinkToNextPageFormat = "Â»";
+			LinkToLastPageFormat = "Â»Â»";
 			PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
 			ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
 			FunctionToDisplayEachPageNumber = null;
