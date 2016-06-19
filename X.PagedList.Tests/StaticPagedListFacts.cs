@@ -1,5 +1,4 @@
-﻿using PagedList;
-using Xunit;
+﻿using Xunit;
 
 namespace X.PagedList.Tests
 {

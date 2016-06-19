@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
-using PagedList;
 
 namespace X.PagedList.Mvc.Example.Controllers
 {

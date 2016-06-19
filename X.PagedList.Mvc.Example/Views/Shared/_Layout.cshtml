@@ -1,51 +1,49 @@
-﻿@using System
-@using System.Web.Optimization
+﻿@using System.Web.Optimization
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-        <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                    </section>
-                    <nav>
-                        <ul id="menu">
-							<li>@Html.ActionLink("Traditional", "Index", "TraditionalPaging")</li>
-							<li>@Html.ActionLink("Ajax", "Index", "Ajax")</li>
-							<li>@Html.ActionLink("Unobtrusive Ajax", "Index", "UnobtrusiveAjax")</li>
-							<li>@Html.ActionLink("Infinite Scroll", "Index", "InfiniteScroll")</li>
-							<li>@Html.ActionLink("Automapper", "Index", "Automapper")</li>
-                        </ul>
-                    </nav>
-                </div>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
             </div>
-        </header>
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
+            <div class="float-right">
+                <section id="login"></section>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Traditional", "Index", "TraditionalPaging")</li>
+                        <li>@Html.ActionLink("Ajax", "Index", "Ajax")</li>
+                        <li>@Html.ActionLink("Unobtrusive Ajax", "Index", "UnobtrusiveAjax")</li>
+                        <li>@Html.ActionLink("Infinite Scroll", "Index", "InfiniteScroll")</li>
+                        <li>@Html.ActionLink("Automapper", "Index", "Automapper")</li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
-                </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
 </html>

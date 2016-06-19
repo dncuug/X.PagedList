@@ -1,6 +1,4 @@
-﻿using PagedList;
-
-namespace X.PagedList
+﻿namespace X.PagedList
 {
 	///<summary>
 	/// Non-enumerable version of the PagedList class.
