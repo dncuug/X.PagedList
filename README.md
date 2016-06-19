@@ -8,6 +8,9 @@ The main different is that X.PagedList is portable assembly. It means, that you 
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
+#### About .NET Core support
+
+Unfortunately I cannot support ASP.NET Core (formerly ASP.NET MVC 6) version at this moment. So I deleted all code that related to .NET Core from master branch and cleaned up project.  ASP.NET Core  compatible version saved in  net-core branch. I think I will back to this code when .NET Core will be released. Sorry for inconvenience.
 
 ## How do I use it?
 
@@ -131,7 +134,7 @@ Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only h
 
 The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://getbootstrap.com/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
 
-![Out-of-the-box Pager Configurations](https://raw.github.com/Ernado-x/X.PagedList/master/misc/DefaultPagingControlStyles.png)
+![Out-of-the-box Pager Configurations](https://raw.github.com/kpi-ua/X.PagedList/master/DefaultPagingControlStyles.png)
 
 If your project does not reference the [Twitter Bootstrap](http://getbootstrap.com/) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
 
