@@ -1,4 +1,4 @@
-box: microsoft/aspnet
+box: mono
 # Build definition
 build:
   # Show base information
@@ -13,8 +13,6 @@ build:
         name: update mono
         code: |
           apt-get update
-          #sudo apt-get -y install  mono-devel
-          #sudo apt-get -y install  mono-complete
           apt-get -y install  referenceassemblies-pcl
           
 
@@ -22,15 +20,10 @@ build:
     - script:
         name: packages restore
         code: |
-          cd src
           nuget restore
-          dnu restore
           
     # Executes build commands
     - script:
         name: run build
         code: |
-          cd src
           xbuild X.PagedList/X.PagedList.csproj
-          dnu build X.PagedList.Mvc6/project.json
-          dnu build X.PagedList.Mvc6.Example/project.json
