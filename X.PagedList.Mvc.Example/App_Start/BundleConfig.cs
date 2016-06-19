@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace PagedList.Mvc4.Example
+namespace X.PagedList.Mvc.Example
 {
 	public class BundleConfig
 	{

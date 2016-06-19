@@ -1,12 +1,10 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using X.PagedList;
+using AutoMapper;
+using PagedList;
 
-namespace PagedList.Mvc4.Example.Controllers
+namespace X.PagedList.Mvc.Example.Controllers
 {
     public class AutomapperController : Controller
     {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 
-namespace PagedList.Mvc4.Example.Controllers
+namespace X.PagedList.Mvc.Example.Controllers
 {
     public class InfiniteScrollController : BaseController
     {

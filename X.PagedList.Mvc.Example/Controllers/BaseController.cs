@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Web;
-using PagedList;
 using System.Web.Mvc;
-using X.PagedList;
 
-namespace PagedList.Mvc4.Example.Controllers
+namespace X.PagedList.Mvc.Example.Controllers
 {
     public abstract class BaseController : Controller
     {

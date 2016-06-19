@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
-namespace PagedList.Mvc4.Example
+namespace X.PagedList.Mvc.Example
 {
 	public class FilterConfig
 	{

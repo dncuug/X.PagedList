@@ -8,7 +8,7 @@
     <ProjectGuid>{1FB9A75F-3C92-446A-BC20-FB28B5E6A723}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PagedList.Mvc</RootNamespace>
+    <RootNamespace>X.PagedList.Mvc</RootNamespace>
     <AssemblyName>X.PagedList.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -85,24 +85,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\X.PagedList.Mvc6\GoToFormRenderOptions.cs">
-      <Link>GoToFormRenderOptions.cs</Link>
-    </Compile>
-    <Compile Include="..\X.PagedList.Mvc6\HtmlHelper.cs">
-      <Link>HtmlHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\X.PagedList.Mvc6\PagedListDisplayMode.cs">
-      <Link>PagedListDisplayMode.cs</Link>
-    </Compile>
-    <Compile Include="..\X.PagedList.Mvc6\PagedListRenderOptions.cs">
-      <Link>PagedListRenderOptions.cs</Link>
-    </Compile>
+    <Compile Include="GoToFormRenderOptions.cs" />
+    <Compile Include="HtmlHelper.cs" />
+    <Compile Include="PagedListDisplayMode.cs" />
+    <Compile Include="PagedListRenderOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="PagedList.Mvc.nuspec" />
     <None Include="PublicKeyFile.snk" />
     <None Include="PublicPrivateKeyFile.snk" />
   </ItemGroup>
