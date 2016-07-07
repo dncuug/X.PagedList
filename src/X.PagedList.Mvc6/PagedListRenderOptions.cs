@@ -6,7 +6,7 @@ using System.Linq;
 using TagBuilder = System.Web.Mvc.TagBuilder;
 using System.Web.Mvc.Ajax;
 #else
-using TagBuilder = Microsoft.AspNet.Mvc.Rendering.TagBuilder;
+using TagBuilder = Microsoft.AspNetCore.Mvc.Rendering.TagBuilder;
 #endif
 
 namespace PagedList.Mvc
