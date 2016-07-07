@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList;
-#if MvcOld
-using TagBuilder = System.Web.Mvc.TagBuilder;
-using TagRenderMode = System.Web.Mvc.TagRenderMode;
-using HtmlString = System.Web.Mvc.MvcHtmlString;
-using IHtmlHelper = System.Web.Mvc.HtmlHelper;
-#else
-using TagBuilder = Microsoft.AspNet.Mvc.Rendering.TagBuilder;
-using TagRenderMode = Microsoft.AspNet.Mvc.Rendering.TagRenderMode;
-using HtmlString = Microsoft.AspNet.Mvc.Rendering.HtmlString;
-using IHtmlHelper = Microsoft.AspNet.Mvc.Rendering.IHtmlHelper;
-#endif
 
 namespace PagedList.Mvc
 {
@@ -48,7 +40,7 @@ namespace PagedList.Mvc
             using (var writer = new System.IO.StringWriter())
             {
 
-                tagBuilder.WriteTo(writer, Microsoft.Extensions.WebEncoders.HtmlEncoder.Default);
+                tagBuilder.WriteTo(writer, HtmlEncoder.Default);
                 return writer.ToString();
             }
 #endif
@@ -66,7 +58,7 @@ namespace PagedList.Mvc
             using (var writer = new System.IO.StringWriter())
             {
 
-                tagBuilder.WriteTo(writer, Microsoft.Extensions.WebEncoders.HtmlEncoder.Default);
+                tagBuilder.WriteTo(writer, HtmlEncoder.Default);
                 html = writer.ToString();
             }
             tagBuilder.TagRenderMode = renderModeCopy;
