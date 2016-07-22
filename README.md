@@ -8,10 +8,6 @@ The main different is that X.PagedList is portable assembly. It means, that you 
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
-#### About .NET Core support
-
-Unfortunately I cannot support ASP.NET Core (formerly ASP.NET MVC 6) version at this moment. So I deleted all code that related to .NET Core from master branch and cleaned up project.  ASP.NET Core  compatible version saved in  net-core branch. I think I will back to this code when .NET Core will be released. Sorry for inconvenience.
-
 ## How do I use it?
 
 1. Install ["X.PagedList.Mvc"](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["X.PagedList"](https://nuget.org/packages/X.PagedList/) as well.
@@ -186,3 +182,8 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/ernado-x/X.P
 ## License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+
+## About .NET Core support
+
+Unfortunately I cannot support ASP.NET Core (formerly ASP.NET MVC 6) version at this moment. So I deleted all code that related to .NET Core from master branch and cleaned up project.  ASP.NET Core  compatible version saved in  net-core branch. I think I will back to this code when .NET Core will be released. Sorry for inconvenience.
