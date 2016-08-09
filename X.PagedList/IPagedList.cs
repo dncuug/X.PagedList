@@ -23,11 +23,11 @@ namespace X.PagedList
 		///</summary>
 		int Count { get; }
 
-		///<summary>
-		/// Gets a non-enumerable copy of this paged list.
-		///</summary>
-		///<returns>A non-enumerable copy of this paged list.</returns>
-		IPagedList GetMetaData();
+        ///<summary>
+        /// Gets a non-enumerable copy of this paged list.
+        ///</summary>
+        ///<returns>A non-enumerable copy of this paged list.</returns>
+        PagedListMetaData GetMetaData();
 	}
 
 	/// <summary>

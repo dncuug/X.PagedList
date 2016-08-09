@@ -100,7 +100,7 @@ namespace X.PagedList
         /// Gets a non-enumerable copy of this paged list.
         ///</summary>
         ///<returns>A non-enumerable copy of this paged list.</returns>
-        public IPagedList GetMetaData()
+        public PagedListMetaData GetMetaData()
         {
             return new PagedListMetaData(this);
         }
