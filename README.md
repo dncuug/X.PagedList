@@ -24,16 +24,16 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 ```csharp
 public class ProductController : Controller
 {
-	public object Index(int? page)
-	{
-		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
+    public object Index(int? page)
+    {
+        var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
 
-		var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
-		var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
-		
-		ViewBag.OnePageOfProducts = onePageOfProducts;
-		return View();
-	}
+        var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+        var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
+        
+        ViewBag.OnePageOfProducts = onePageOfProducts;
+        return View();
+    }
 }
 ```
 
@@ -41,10 +41,10 @@ public class ProductController : Controller
 
 ```html
 @{
-	ViewBag.Title = "Product Listing"
+    ViewBag.Title = "Product Listing"
 }
-@using PagedList.Mvc; //import this so we get our HTML Helper
-@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
+@using X.PagedList.Mvc; //import this so we get our HTML Helper
+@using X.PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
 
 <!-- import the included stylesheet for some (very basic) default styling -->
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -52,9 +52,9 @@ public class ProductController : Controller
 <!-- loop through each of your products and display it however you want. we're just printing the name here -->
 <h2>List of Products</h2>
 <ul>
-	@foreach(var product in ViewBag.OnePageOfProducts){
-		<li>@product.Name</li>
-	}
+    @foreach(var product in ViewBag.OnePageOfProducts){
+        <li>@product.Name</li>
+    }
 </ul>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
@@ -70,18 +70,18 @@ In some cases you do not have access something capable of creating an IQueryable
 ```csharp
 public class UserController : Controller
 {
-	public object Index(int? page)
-	{
-		var pageIndex = (page ?? 1) - 1; //MembershipProvider expects a 0 for the first page
-		var pageSize = 10;
-		int totalUserCount; // will be set by call to GetAllUsers due to _out_ paramter :-|
+    public object Index(int? page)
+    {
+        var pageIndex = (page ?? 1) - 1; //MembershipProvider expects a 0 for the first page
+        var pageSize = 10;
+        int totalUserCount; // will be set by call to GetAllUsers due to _out_ paramter :-|
 
-		var users = Membership.GetAllUsers(pageIndex, pageSize, out totalUserCount);
-		var usersAsIPagedList = new StaticPagedList<MembershipUser>(users, pageIndex + 1, pageSize, totalUserCount);
+        var users = Membership.GetAllUsers(pageIndex, pageSize, out totalUserCount);
+        var usersAsIPagedList = new StaticPagedList<MembershipUser>(users, pageIndex + 1, pageSize, totalUserCount);
 
-		ViewBag.OnePageOfUsers = usersAsIPagedList;
-		return View();
-	}
+        ViewBag.OnePageOfUsers = usersAsIPagedList;
+        return View();
+    }
 }
 ```
 
