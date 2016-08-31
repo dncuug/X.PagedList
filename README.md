@@ -8,7 +8,6 @@ The main different is that X.PagedList is portable assembly. It means, that you 
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
-
 ## How do I use it?
 
 1. Install ["X.PagedList.Mvc"](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["X.PagedList"](https://nuget.org/packages/X.PagedList/) as well.
@@ -25,16 +24,16 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 ```csharp
 public class ProductController : Controller
 {
-	public object Index(int? page)
-	{
-		var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
+    public object Index(int? page)
+    {
+        var products = MyProductDataSource.FindAllProducts(); //returns IQueryable<Product> representing an unknown number of products. a thousand maybe?
 
-		var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
-		var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
-		
-		ViewBag.OnePageOfProducts = onePageOfProducts;
-		return View();
-	}
+        var pageNumber = page ?? 1; // if no page was specified in the querystring, default to the first page (1)
+        var onePageOfProducts = products.ToPagedList(pageNumber, 25); // will only contain 25 products max because of the pageSize
+        
+        ViewBag.OnePageOfProducts = onePageOfProducts;
+        return View();
+    }
 }
 ```
 
@@ -42,10 +41,10 @@ public class ProductController : Controller
 
 ```html
 @{
-	ViewBag.Title = "Product Listing"
+    ViewBag.Title = "Product Listing"
 }
-@using PagedList.Mvc; //import this so we get our HTML Helper
-@using PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
+@using X.PagedList.Mvc; //import this so we get our HTML Helper
+@using X.PagedList; //import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)
 
 <!-- import the included stylesheet for some (very basic) default styling -->
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -53,9 +52,9 @@ public class ProductController : Controller
 <!-- loop through each of your products and display it however you want. we're just printing the name here -->
 <h2>List of Products</h2>
 <ul>
-	@foreach(var product in ViewBag.OnePageOfProducts){
-		<li>@product.Name</li>
-	}
+    @foreach(var product in ViewBag.OnePageOfProducts){
+        <li>@product.Name</li>
+    }
 </ul>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
@@ -71,18 +70,18 @@ In some cases you do not have access something capable of creating an IQueryable
 ```csharp
 public class UserController : Controller
 {
-	public object Index(int? page)
-	{
-		var pageIndex = (page ?? 1) - 1; //MembershipProvider expects a 0 for the first page
-		var pageSize = 10;
-		int totalUserCount; // will be set by call to GetAllUsers due to _out_ paramter :-|
+    public object Index(int? page)
+    {
+        var pageIndex = (page ?? 1) - 1; //MembershipProvider expects a 0 for the first page
+        var pageSize = 10;
+        int totalUserCount; // will be set by call to GetAllUsers due to _out_ paramter :-|
 
-		var users = Membership.GetAllUsers(pageIndex, pageSize, out totalUserCount);
-		var usersAsIPagedList = new StaticPagedList<MembershipUser>(users, pageIndex + 1, pageSize, totalUserCount);
+        var users = Membership.GetAllUsers(pageIndex, pageSize, out totalUserCount);
+        var usersAsIPagedList = new StaticPagedList<MembershipUser>(users, pageIndex + 1, pageSize, totalUserCount);
 
-		ViewBag.OnePageOfUsers = usersAsIPagedList;
-		return View();
-	}
+        ViewBag.OnePageOfUsers = usersAsIPagedList;
+        return View();
+    }
 }
 ```
 
@@ -131,7 +130,7 @@ Assert.Equal(2, hands.Last().Count()); //10 hands have 5 cards, last hand only h
 
 The HTML output by Html.PagedListPager is configured to be styled automatically by the [Twitter Bootstrap](http://getbootstrap.com/) stylesheet, if present. Here is what it looks like without using Twitter Bootstrap:
 
-![Out-of-the-box Pager Configurations](https://raw.github.com/Ernado-x/X.PagedList/master/misc/DefaultPagingControlStyles.png)
+![Out-of-the-box Pager Configurations](https://raw.github.com/kpi-ua/X.PagedList/master/DefaultPagingControlStyles.png)
 
 If your project does not reference the [Twitter Bootstrap](http://getbootstrap.com/) project, the NuGet package contains a stand-alone `PagedList.css`. You can reference this style sheet manually or, if using MVC4, reference within `BundleConfig.cs` and take advantage of bundling and minification automatically. 
 
@@ -183,3 +182,8 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/ernado-x/X.P
 ## License
 
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+
+## About .NET Core support
+
+Unfortunately I cannot support ASP.NET Core (formerly ASP.NET MVC 6) version at this moment. So I deleted all code that related to .NET Core from master branch and cleaned up project.  ASP.NET Core  compatible version saved in  net-core branch. I think I will back to this code when .NET Core will be released. Sorry for inconvenience.

@@ -1,0 +1,13 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+
+@Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"))
+
+<ul id="names" start="@ViewBag.Names.FirstItemOnPage">
+    @foreach (var i in ViewBag.Names)
+    {
+        <li>@i</li>
+    }
+</ul>
+
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" }))
