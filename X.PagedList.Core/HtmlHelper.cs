@@ -307,9 +307,9 @@ namespace X.PagedList.Core
         ///<param name="list">The PagedList to use as the data source.</param>
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper html, IPagedList list, string formAction)
+        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper, IPagedList list, string formAction)
         {
-            return PagedListGoToPageForm(html, list, formAction, "page");
+            return PagedListGoToPageForm(helper, list, formAction, "page");
         }
 
         ///<summary>
@@ -320,12 +320,12 @@ namespace X.PagedList.Core
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper html,
+        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper,
                                                           IPagedList list,
                                                           string formAction,
                                                           string inputFieldName)
         {
-            return PagedListGoToPageForm(html, list, formAction, new GoToFormRenderOptions(inputFieldName));
+            return PagedListGoToPageForm(helper, list, formAction, new GoToFormRenderOptions(inputFieldName));
         }
 
         ///<summary>
@@ -336,7 +336,7 @@ namespace X.PagedList.Core
         ///<param name="formAction">The URL this form should submit the GET request to.</param>
         ///<param name="options">Formatting options.</param>
         ///<returns>Outputs the "Go To Page:" form HTML.</returns>
-        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper html,
+        public static HtmlString PagedListGoToPageForm(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper helper,
                                                  IPagedList list,
                                                  string formAction,
                                                  GoToFormRenderOptions options)

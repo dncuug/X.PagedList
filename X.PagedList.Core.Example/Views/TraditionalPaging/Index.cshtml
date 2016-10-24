@@ -8,9 +8,9 @@
 
 <p>Example of paging a list:</p>
 
-@*
+
 @Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"), new GoToFormRenderOptions { InputFieldClass = "form-control", InputWidth = 300, SubmitButtonClass = "btn", SubmitButtonWidth = 100 })
-*@
+
 
 <h3>List of @ViewBag.Names.TotalItemCount Names (Page Size: @ViewBag.Names.PageSize, Current Page: @ViewBag.Names.PageNumber)</h3>
 <ol start="@ViewBag.Names.FirstItemOnPage">
