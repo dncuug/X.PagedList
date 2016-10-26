@@ -21,19 +21,23 @@ namespace X.PagedList.Core
         internal static void AppendHtml(TagBuilder tagBuilder, string innerHtml)
         {
             //tagBuilder.InnerHtml += innerHtml;
-            tagBuilder.InnerHtml.Append(innerHtml);
+            tagBuilder.InnerHtml.AppendHtml(innerHtml);
         }
 
         internal static string TagBuilderToString(TagBuilder tagBuilder)
         {
-            return tagBuilder.ToString();
+            var writer = new System.IO.StringWriter();
+            tagBuilder.WriteTo(writer, System.Text.Encodings.Web.HtmlEncoder.Default);
+            return writer.ToString();
         }
 
         internal static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
         {
             //return tagBuilder.ToString(renderMode);
+            var writer = new System.IO.StringWriter();
             tagBuilder.TagRenderMode = renderMode;
-            return tagBuilder.ToString();
+            tagBuilder.WriteTo(writer, System.Text.Encodings.Web.HtmlEncoder.Default);
+            return writer.ToString();
         }
 
         private static TagBuilder WrapInListItem(string text)
