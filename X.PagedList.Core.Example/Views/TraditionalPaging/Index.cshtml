@@ -9,7 +9,7 @@
 <p>Example of paging a list:</p>
 
 
-@Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"), new GoToFormRenderOptions { InputFieldClass = "form-control", InputWidth = 300, SubmitButtonClass = "btn", SubmitButtonWidth = 100 })
+@Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"), new GoToFormRenderOptions { FormClass = "form-inline", InputFieldClass = "form-control", InputWidth = 100, SubmitButtonClass = "btn btn-default", SubmitButtonWidth = 50 })
 
 
 <h3>List of @ViewBag.Names.TotalItemCount Names (Page Size: @ViewBag.Names.PageSize, Current Page: @ViewBag.Names.PageNumber)</h3>
@@ -22,7 +22,6 @@
 
 <h2>Out-of-the-box Pager Configurations</h2>
 
-@*
 <h3>Default Paging Control</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }))
 
@@ -57,4 +56,3 @@
 
 <h3>Empty PagedList</h3>
 @Html.PagedListPager(new string[0].ToPagedList(1, 10), page => Url.Action("Index", new { page }))
-*@

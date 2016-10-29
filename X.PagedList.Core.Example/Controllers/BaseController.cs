@@ -33,8 +33,11 @@ namespace X.PagedList.Core.Example.Controllers
         // - DB situations you'll want to return IQueryable<string>
         protected IEnumerable<string> GetStuffFromDatabase()
         {
-            var sampleData = new System.IO.StreamReader(new FileStream((@"./App_Data/Names.txt"), FileMode.Open)).ReadToEnd();
-            return sampleData.Split('\n');
+            using (StreamReader sr = new StreamReader(new FileStream((@"./App_Data/Names.txt"), FileMode.Open)))
+            {
+                String sampleData = sr.ReadToEnd();
+                return sampleData.Split('\n');
+            }
         }
     }
 }

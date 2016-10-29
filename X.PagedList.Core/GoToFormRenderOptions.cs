@@ -16,6 +16,7 @@ namespace X.PagedList.Core
             SubmitButtonFormat = "Go";
             InputFieldName = inputFieldName;
             InputFieldType = "number";
+            FormClass = "PagedList-goToPage";
         }
 
         ///<summary>
@@ -66,6 +67,11 @@ namespace X.PagedList.Core
         /// Input width in px
         /// </summary>
         public int InputWidth { get; set; }
+
+        /// <summary>
+        /// Class that will be applied for form
+        /// </summary>
+        public String FormClass { get; set; }
 
         /// <summary>
         /// Class that will be applied for input field

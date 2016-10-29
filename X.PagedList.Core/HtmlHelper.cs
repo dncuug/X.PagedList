@@ -174,7 +174,7 @@ namespace X.PagedList.Core
         ///<param name = "list">The PagedList to use as the data source.</param>
         ///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
         ///<returns>Outputs the paging control HTML.</returns>
-        public static HtmlString PagedListPager(this Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper html,
+        public static HtmlString PagedListPager(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html,
                                                    IPagedList list,
                                                    Func<int, string> generatePageUrl)
         {
@@ -189,7 +189,7 @@ namespace X.PagedList.Core
         ///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
         ///<param name = "options">Formatting options.</param>
         ///<returns>Outputs the paging control HTML.</returns>
-        public static HtmlString PagedListPager(this Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper html,
+        public static HtmlString PagedListPager(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html,
                                                    IPagedList list,
                                                    Func<int, string> generatePageUrl,
                                                    PagedListRenderOptions options)
@@ -346,7 +346,7 @@ namespace X.PagedList.Core
                                                  GoToFormRenderOptions options)
         {
             var form = new TagBuilder("form");
-            form.AddCssClass("PagedList-goToPage");
+            form.AddCssClass(options.FormClass);
             form.Attributes.Add("action", formAction);
             form.Attributes.Add("method", "get");
 
