@@ -1,0 +1,127 @@
+﻿@{
+	ViewBag.Title = "Ajax";
+}
+@using X.PagedList;
+
+
+@*@Styles.Render("~/Content/PagedList.css")*@
+
+<h2>Ajax Paging</h2>
+<ol id="namesList"></ol>
+<div id="namesPager"></div>
+
+@section Scripts{
+	<script id="namesTemplate" type="text/template">
+		{{#each this}}
+		<li>{{this}}</li>
+		{{/each}}
+	</script>
+	<script id="pagerTemplate" type="text/template">
+		<div class="pagination">
+            <ul class="pagination">
+                {{#if isFirstPage}}
+                <li class="disabled"><a>««</a></li>
+                {{else}}
+                <li><a href="/ajax/ajaxpage?page=1">««</a></li>
+                {{/if}}
+
+                {{#if hasPreviousPage}}
+                <li><a href="/ajax/ajaxpage?page={{previousPageNumber}}">«</a></li>
+                {{else}}
+                <li class="disabled"><a>«</a></li>
+                {{/if}}
+
+                {{#unless firstPageIsVisible}}
+                <li class="disabled"><a>...</a></li>
+                {{/unless}}
+
+                {{#each pages}}
+                {{#if selected}}
+                <li class="active"><a>{{pageNumber}}</a></li>
+                {{else}}
+                <li><a href="/ajax/ajaxpage?page={{pageNumber}}">{{pageNumber}}</a></li>
+                {{/if}}
+                {{/each}}
+
+                {{#unless lastPageIsVisible}}
+                <li class="disabled"><a>...</a></li>
+                {{/unless}}
+
+                {{#if hasNextPage}}
+                <li><a href="/ajax/ajaxpage?page={{nextPageNumber}}">»</a></li>
+                {{else}}
+                <li class="disabled"><a>»</a></li>
+                {{/if}}
+
+                {{#if isLastPage}}
+                <li class="disabled"><a>»»</a></li>
+                {{else}}
+                <li class="next"><a href="/ajax/ajaxpage?page={{pageCount}}">»»</a></li>
+                {{/if}}
+            </ul>
+		</div>
+	</script>
+
+	@*<script type="text/javascript" src="/Scripts/handlebars-1.0.0.beta.6.js"></script>*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
+	<script type="text/javascript">
+		// we use Handlebars.js (http://handlebarsjs.com/) here, but any templating language would work
+		var namesTemplate = Handlebars.compile($('#namesTemplate').html());
+		var pagerTemplate = Handlebars.compile($('#pagerTemplate').html());
+
+		var fetchPage = function (pageUrl) {
+			$.get(pageUrl, function (data) {
+			    window.location.hash = data.pager.pageNumber;
+
+				// determine how many pages should be shown
+				var start, end;
+				var numberOfPagesToShowAtOnce = 10;
+				var halfOfPagesToShowAtOnce = Math.floor(numberOfPagesToShowAtOnce / 2);
+				start = data.pager.pageNumber - halfOfPagesToShowAtOnce;
+				if (start < 1)
+					start = 1;
+				if ((start + numberOfPagesToShowAtOnce) > data.pager.pageCount)
+					end = data.pager.pageCount;
+				else
+					end = start + numberOfPagesToShowAtOnce;
+
+				// add each visible page to an array to show
+				data.pager.pages = [];
+				for (var i = start; i <= end; i++) {
+					data.pager.pages.push({
+						pageNumber: i,
+						selected: i === data.pager.pageNumber
+					});
+				}
+
+				// used for showing/hiding ellipsis
+				data.pager.firstPageIsVisible = start === 1;
+				data.pager.lastPageIsVisible = end === data.pager.pageCount;
+
+				// add urls for previous & next pages
+				data.pager.previousPageNumber = data.pager.pageNumber - 1
+				data.pager.nextPageNumber = data.pager.pageNumber + 1
+
+				// render templates
+				$('#namesList').html(namesTemplate(data.names)).attr('start', data.pager.firstItemOnPage);
+				$('#namesPager').html(pagerTemplate(data.pager));
+
+				// bind to page click events
+				$('#namesPager li a').click(function (event) {
+					event.preventDefault();
+					var newPageUrl = $(event.target).attr('href');
+					if (newPageUrl) {
+						fetchPage(newPageUrl);
+					}
+				});
+			});
+		}
+
+		$(function () {
+			var page = window.location.hash
+				? window.location.hash.slice(1)
+				: 1;
+			fetchPage('/ajax/ajaxpage?page=' + page);
+		});
+	</script>
+}
