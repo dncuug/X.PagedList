@@ -54,7 +54,7 @@ namespace X.PagedList.Core.Example
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=TraditionalPaging}/{action=Index}/{id?}");
-            });
+        });
         }
     }
 }

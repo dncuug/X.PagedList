@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Web.Mvc.Ajax; // Added into project
 
 namespace X.PagedList.Core
 {
@@ -240,10 +242,9 @@ namespace X.PagedList.Core
     /// </summary>
     public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
 
-    #region Unobtrusive AJAX is not supported yet 
+    #region Unobtrusive AJAX support 
     // TODO: Enable unobtrusive AJAX support if needed
 
-    /*
     /// <summary>
     /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
     /// </summary>
@@ -261,7 +262,8 @@ namespace X.PagedList.Core
                                                           aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString());
                                                       }
 
-                                                      liTagBuilder.InnerHtml = aTagBuilder.ToString();
+                                                      //liTagBuilder.InnerHtml = aTagBuilder.ToString();
+                                                      HtmlHelper.AppendHtml(liTagBuilder, HtmlHelper.TagBuilderToString(aTagBuilder));
                                                       return liTagBuilder;
                                                     };
       return options;
@@ -297,7 +299,6 @@ namespace X.PagedList.Core
     {
       return EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions(), ajaxOptions);
     }
-    */
     #endregion
 
     ///<summary>
