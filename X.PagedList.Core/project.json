@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "X.PagedList": {
+          "target": "project"
+        }
+      }
+    }
+  }
+}
