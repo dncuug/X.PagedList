@@ -11,4 +11,4 @@
 	}
 </ul>
 
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }) )
+<paged-list-pager list="@Model" page-url="@(page => Url.Action("Index", new { page }))" />

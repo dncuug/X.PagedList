@@ -2,7 +2,7 @@
 @using X.PagedList.Core
 @using System.Web.Mvc.Ajax; @*Built in X.PagedList.Core*@
 
-@Html.PagedListGoToPageForm((IPagedList)ViewBag.Names, Url.Action("Index"), new GoToFormRenderOptions { FormClass = "form-inline", InputFieldClass = "form-control", InputWidth = 100, SubmitButtonClass = "btn btn-default", SubmitButtonWidth = 50 })
+<paged-list-form list="@(IPagedList)ViewBag.Names" action="@Url.Action("Index")" />
 
 <ul id="names" start="@ViewBag.Names.FirstItemOnPage">
     @foreach (var i in ViewBag.Names)
@@ -11,4 +11,5 @@
     }
 </ul>
 
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" }))
+@*@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" }))*@
+<paged-list-pager list="@(IPagedList)ViewBag.Names" page-url="@(page => Url.Action("Index", new { page }))" enable-unobtrusive-ajax-replacing="@(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "unobtrusive", OnComplete = "PagedOnComplete" })" />

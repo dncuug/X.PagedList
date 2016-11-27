@@ -243,8 +243,6 @@ namespace X.PagedList.Core
     public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
 
     #region Unobtrusive AJAX support 
-    // TODO: Enable unobtrusive AJAX support if needed
-
     /// <summary>
     /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
     /// </summary>

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace X.PagedList.Core.TagHelpers
 {
+    ///<summary>
+    /// Displays a configurable "Go To Page:" form for instances of PagedList.
+    ///</summary>
     public class PagedListFormTagHelper : TagHelper
     {
         #region Input parameters
