@@ -47,5 +47,19 @@ namespace X.PagedList
         {
             return AsyncPagedList<T>.CreateAsync(superset, pageNumber, pageSize);
         }
+
+        /// <summary>
+        /// Async creates a subset of this collection of objects that can be individually accessed by index (defaulting to the first page) and containing metadata about the collection of objects the subset was created from.
+        /// </summary>
+        /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+        /// <typeparam name="TKey">Type For Compare</typeparam>
+        /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance, defaulting to the first page.</param>
+        /// <param name="pageSize">The maximum size of any individual subset.</param>
+        /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+        /// <seealso cref="PagedList{T}"/>
+        public static Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize)
+        {
+            return superset.ToPagedListAsync(pageNumber ?? 1, pageSize);
+        }
     }
 }
