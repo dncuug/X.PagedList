@@ -19,7 +19,22 @@ namespace X.PagedList.Tests
             Assert.Equal(pageNumber, pagedBlogs.PageNumber);
             Assert.Equal(pageSize, pagedBlogs.PageSize);
         }
-        
+
+        [Theory]
+        [InlineData(1, 1)]
+        [InlineData(2, 2)]
+        [InlineData(3, 3)]
+        public async Task ToListAsync_ForQueryable_WithoutPageNumber_Works(int pageSize, int expectedCount)
+        {
+            int? pageNumber = null;
+            var blogs = BuildBlogList();
+            var pagedBlogs = await blogs.ToPagedListAsync(pageNumber, pageSize);
+
+            Assert.Equal(expectedCount, pagedBlogs.Count);
+            Assert.Equal(1, pagedBlogs.PageNumber);
+            Assert.Equal(pageSize, pagedBlogs.PageSize);
+        }
+
         private static IQueryable<Blog> BuildBlogList()
         {
             return new List<Blog>
