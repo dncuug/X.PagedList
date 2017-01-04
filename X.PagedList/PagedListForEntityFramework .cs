@@ -56,7 +56,7 @@ namespace X.PagedList
             // add items to internal list
             if (superset != null && TotalItemCount > 0)
                 Subset.AddRange(pageNumber == 1
-                    ? superset.Take(pageSize).ToList()
+                    ? superset.OrderBy(keySelector).Take(pageSize).ToList()
                     : superset.OrderBy(keySelector).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList());
         }
 
