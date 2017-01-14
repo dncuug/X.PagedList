@@ -4,7 +4,7 @@
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
-The main different is that X.PagedList is portable assembly. It means, that you can use it not only in Web projects, but in Winforms, Window Phone, Silverlight and etc. projects.
+The main difference is that X.PagedList is a portable assembly. It means you can use it not only in Web projects but also in Winforms, WPF, Window Phone, Silverlight and other .NET projects.
 
 PagedList is a library that enables you to easily take an IEnumerable/IQueryable, chop it up into "pages", and grab a specific "page" by an index. PagedList.Mvc allows you to take that "page" and display a pager control that has links like "Previous", "Next", etc.
 
