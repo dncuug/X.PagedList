@@ -1,0 +1,11 @@
+﻿{
+  "supports": {},
+  "dependencies": {
+    "System.Linq.Queryable": "4.3.0",
+    "System.Resources.ResourceManager": "4.3.0",
+    "System.Runtime.Extensions": "4.3.0"
+  },
+  "frameworks": {
+    "netstandard1.0": {}
+  }
+}
