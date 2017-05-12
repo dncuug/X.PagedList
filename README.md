@@ -1,6 +1,5 @@
 # X.PagedList
-
-[![wercker status](https://app.wercker.com/status/d179668548bcb9e93cdb1a3563cc9e1a/s "wercker status")](https://app.wercker.com/project/bykey/d179668548bcb9e93cdb1a3563cc9e1a)
+[![Build status](https://ci.appveyor.com/api/projects/status/vlbd5ei5l7keyui9?svg=true)](https://ci.appveyor.com/project/ernado-x/x-pagedlist)
 
 ## What is this?
 This is fork of Troy's project  PagedList(https://github.com/troygoode/PagedList).
