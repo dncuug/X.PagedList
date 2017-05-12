@@ -19,8 +19,6 @@ namespace X.PagedList
     //[Serializable]
     public class PagedList<T> : BasePagedList<T>
     {
-
-
         /// <summary>
         /// 
         /// </summary>

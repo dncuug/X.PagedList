@@ -1,7 +1,7 @@
+using Microsoft.AspNetCore.Html;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Html;
 using X.PagedList.Mvc.Core.Fake;
 using TagBuilder = Microsoft.AspNetCore.Mvc.Rendering.TagBuilder;
 
@@ -26,11 +26,11 @@ namespace X.PagedList.Mvc.Core
             MaximumPageNumbersToDisplay = 10;
             DisplayEllipsesWhenNotShowingAllPageNumbers = true;
             EllipsesFormat = "&#8230;";
-            LinkToFirstPageFormat = "««";
-            LinkToPreviousPageFormat = "«";
+            LinkToFirstPageFormat = "<<";
+            LinkToPreviousPageFormat = "<";
             LinkToIndividualPageFormat = "{0}";
-            LinkToNextPageFormat = "»";
-            LinkToLastPageFormat = "»»";
+            LinkToNextPageFormat = ">";
+            LinkToLastPageFormat = ">>";
             PageCountAndCurrentLocationFormat = "Page {0} of {1}.";
             ItemSliceAndTotalFormat = "Showing items {0} through {1} of {2}.";
             FunctionToDisplayEachPageNumber = null;
