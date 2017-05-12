@@ -64,9 +64,8 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -258,7 +257,7 @@
       <Name>X.PagedList.Mvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj">
-      <Project>{bedd4f54-9819-48c0-b4dc-59a1c682f08e}</Project>
+      <Project>{8ee7b3ac-909f-4cd2-bfcb-25d0064d9504}</Project>
       <Name>X.PagedList</Name>
     </ProjectReference>
   </ItemGroup>
