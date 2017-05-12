@@ -252,7 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\X.PagedList.Mvc\X.PagedList.Mvc.csproj">
-      <Project>{1fb9a75f-3c92-446a-bc20-fb28b5e6a723}</Project>
+      <Project>{dd85d2fb-8ff3-427b-9bb1-11d99ab321bb}</Project>
       <Name>X.PagedList.Mvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj">
