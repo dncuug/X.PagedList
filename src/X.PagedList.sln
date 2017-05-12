@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList", "X.PagedList\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Mvc", "X.PagedList.Mvc\X.PagedList.Mvc.csproj", "{DD85D2FB-8FF3-427B-9BB1-11D99AB321BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Mvc.Core", "X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj", "{CAB45FA8-EB81-4796-BE4C-51EEBF024E48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DD85D2FB-8FF3-427B-9BB1-11D99AB321BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD85D2FB-8FF3-427B-9BB1-11D99AB321BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD85D2FB-8FF3-427B-9BB1-11D99AB321BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB45FA8-EB81-4796-BE4C-51EEBF024E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB45FA8-EB81-4796-BE4C-51EEBF024E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB45FA8-EB81-4796-BE4C-51EEBF024E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB45FA8-EB81-4796-BE4C-51EEBF024E48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
