@@ -26,4 +26,4 @@ build:
     - script:
         name: run build
         code: |
-          xbuild X.PagedList/X.PagedList.csproj
+          xbuild src/X.PagedList/X.PagedList.csproj
