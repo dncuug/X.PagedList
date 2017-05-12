@@ -32,9 +32,9 @@ namespace X.PagedList
         public PagedListForEntityFramework(IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         {
             if (pageNumber < 1)
-                throw new ArgumentOutOfRangeException("pageNumber",  "PageNumber cannot be below 1.");
+                throw new ArgumentOutOfRangeException("pageNumber", "PageNumber cannot be below 1.");
             if (pageSize < 1)
-                throw new ArgumentOutOfRangeException("pageSize","PageSize cannot be less than 1.");
+                throw new ArgumentOutOfRangeException("pageSize", "PageSize cannot be less than 1.");
 
             // set source to blank list if superset is null to prevent exceptions
             TotalItemCount = superset == null ? 0 : superset.Count();
@@ -55,9 +55,15 @@ namespace X.PagedList
 
             // add items to internal list
             if (superset != null && TotalItemCount > 0)
-                Subset.AddRange(pageNumber == 1
-                    ? superset.OrderBy(keySelector).Take(pageSize).ToList()
-                    : superset.OrderBy(keySelector).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList());
+            {
+                var keySelectorMethod = keySelector.Compile();
+                
+                var items = pageNumber == 1
+                    ? superset.OrderBy(keySelectorMethod).Take(pageSize).ToList()
+                    : superset.OrderBy(keySelectorMethod).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+
+                Subset.AddRange(items);
+            }
         }
 
         /// <summary>
