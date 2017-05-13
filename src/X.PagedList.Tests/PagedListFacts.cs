@@ -30,6 +30,24 @@ namespace X.PagedList.Tests
 		//}
 
 		[Fact]
+		public void Split_Works()
+		{
+			//arrange
+			var list = Enumerable.Range(1, 45);
+
+			//act
+			var splitList = list.Split(5);
+
+			//assert
+			Assert.Equal(5, splitList.Count());
+			Assert.Equal(10, splitList.ElementAt(0).Count());
+			Assert.Equal(10, splitList.ElementAt(1).Count()); 
+			Assert.Equal(10, splitList.ElementAt(2).Count()); 
+			Assert.Equal(10, splitList.ElementAt(3).Count()); 
+			Assert.Equal(5, splitList.ElementAt(4).Count());
+		}
+
+		[Fact]
 		public void PageNumber_Above_RecordCount_Returns_Empty_List()
 		{
 			//arrange

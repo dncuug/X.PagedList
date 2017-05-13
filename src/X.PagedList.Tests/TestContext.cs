@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -117,4 +116,15 @@ namespace X.PagedList.Tests
             }
         }
     }
+
+    public class DbContext { }
+    public class DbSet<T> : List<T> { }
+    public class TestDbAsyncQueryProvider { }
+
+    public interface IDbAsyncEnumerable<T> : IDbAsyncEnumerable { }
+    public interface IDbAsyncEnumerator<T> : IDbAsyncEnumerator { }
+    public interface IDbAsyncQueryProvider : IQueryProvider { }
+    public interface IDbAsyncEnumerable { IDbAsyncEnumerator GetAsyncEnumerator(); }
+    public interface IDbAsyncEnumerator { object Current { get; } }
+
 }

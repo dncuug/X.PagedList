@@ -26,7 +26,6 @@ namespace X.PagedList
         {
         }
 
-
         /// <summary>
 		/// Initializes a new instance of the <see cref="PagedList{T}"/> class that divides the supplied superset into subsets the size of the supplied pageSize. The instance then only containes the objects contained in the subset specified by index.
 		/// </summary>
