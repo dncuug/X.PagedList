@@ -23,7 +23,7 @@ namespace X.PagedList
         {
             return new PagedList<T>(superset, pageNumber, pageSize);
         }
-             
+
 
         /// <summary>
         /// Splits a collection of objects into n pages with an (for example, if I have a list of 45 shoes and say 'shoes.Split(5)' I will now have 4 pages of 10 shoes and 1 page of 5 shoes.
@@ -34,11 +34,23 @@ namespace X.PagedList
         /// <returns>A subset of this collection of objects, split into n pages.</returns>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> superset, int numberOfPages)
         {
-            return superset
-                .Select((item, index) => new { index, item })
-                .GroupBy(x => x.index % numberOfPages)
-                .Select(x => x.Select(y => y.item));
+            int take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
+
+            var result = new List<IEnumerable<T>>();
+
+            for (int i = 0; i < numberOfPages; i++)
+            {
+                var chunk = superset.Skip(i * take).Take(take).ToList();
+
+                if (chunk.Any())
+                {
+                    result.Add(chunk);
+                };
+            }
+
+            return result;
         }
+
 
         /// <summary>
         /// Splits a collection of objects into an unknown number of pages with n items per page (for example, if I have a list of 45 shoes and say 'shoes.Partition(10)' I will now have 4 pages of 10 shoes and 1 page of 5 shoes.
@@ -75,8 +87,8 @@ namespace X.PagedList
         {
             return new PagedList<T>(superset, pageNumber, pageSize);
         }
-           
-       
+
+
         /// <summary>
         /// Cast to Custom Type
         /// </summary>

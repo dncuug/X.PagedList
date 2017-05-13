@@ -33,7 +33,7 @@ namespace X.PagedList.Tests
 		public void Split_Works()
 		{
 			//arrange
-			var list = Enumerable.Range(1, 45);
+			var list = Enumerable.Range(1, 47);
 
 			//act
 			var splitList = list.Split(5);
@@ -44,7 +44,7 @@ namespace X.PagedList.Tests
 			Assert.Equal(10, splitList.ElementAt(1).Count()); 
 			Assert.Equal(10, splitList.ElementAt(2).Count()); 
 			Assert.Equal(10, splitList.ElementAt(3).Count()); 
-			Assert.Equal(5, splitList.ElementAt(4).Count());
+			Assert.Equal(7, splitList.ElementAt(4).Count());
 		}
 
 		[Fact]
