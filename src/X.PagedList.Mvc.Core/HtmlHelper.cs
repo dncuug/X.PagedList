@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace X.PagedList.Mvc.Core
 {
@@ -24,13 +25,15 @@ namespace X.PagedList.Mvc.Core
 
         private static string TagBuilderToString(TagBuilder tagBuilder)
         {
-            return tagBuilder.ToString();
+            return TagBuilderToString(tagBuilder, TagRenderMode.Normal);
         }
 
         private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
         {
-            tagBuilder.TagRenderMode = renderMode;
-            return tagBuilder.ToString();
+            var encoder = HtmlEncoder.Create(new TextEncoderSettings());
+            var writer = new System.IO.StringWriter();
+            tagBuilder.WriteTo(writer, encoder);
+            return writer.ToString();
         }
 
         private static TagBuilder WrapInListItem(string text)
