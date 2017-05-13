@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,7 +60,7 @@ namespace X.PageList.Mvc.Example.Core.Controllers
 		// - DB situations you'll want to return IQueryable<string>
 		protected IEnumerable<string> GetStuffFromDatabase()
 		{
-			var sampleData = new StreamReader(Server.MapPath("~/App_Data/Names.txt")).ReadToEnd();
+			var sampleData = System.IO.File.ReadAllText("Names.txt");
 			return sampleData.Split('\n');
 		}
     }
