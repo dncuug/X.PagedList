@@ -11,11 +11,11 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 
 ### Classic .NET (version 4.5.2 version and above)
 
-Install ["X.PagedList.Mvc"](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install ["X.PagedList"](https://nuget.org/packages/X.PagedList/) as well.
+Install [X.PagedList.Mvc](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
 
 ### .NET Core (.NET Standard 1.4)
 
-Install ["X.PagedList.Mvc.Core"](http://nuget.org/List/Packages/X.PagedList.Mvc.Core) via [NuGet](http://nuget.org) - that will automatically install ["X.PagedList"](https://nuget.org/packages/X.PagedList/) as well.
+Install [X.PagedList.Mvc.Core](http://nuget.org/List/Packages/X.PagedList.Mvc.Core) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
 
 ### Next steps
 
