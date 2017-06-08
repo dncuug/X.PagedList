@@ -12,8 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj" />
-    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
-    <ProjectReference Include="..\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
   </ItemGroup>
 
 </Project>
