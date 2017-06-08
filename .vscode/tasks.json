@@ -7,7 +7,7 @@
         {
             "taskName": "build",
             "args": [
-                "${workspaceRoot}/src/X.PagedList.Tests/X.PagedList.Tests.csproj"
+                "${workspaceRoot}/tests/X.PagedList.Tests/X.PagedList.Tests.csproj"
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
