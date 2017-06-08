@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
-namespace X.PageList.Mvc.Example.Core.Controllers
+namespace X.PagedList.Mvc.Example.Core.Controllers
 {
     public class HomeController : Controller
     {
