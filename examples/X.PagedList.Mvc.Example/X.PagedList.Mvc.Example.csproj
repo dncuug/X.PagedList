@@ -251,12 +251,12 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\X.PagedList.Mvc\X.PagedList.Mvc.csproj">
-      <Project>{dd85d2fb-8ff3-427b-9bb1-11d99ab321bb}</Project>
+    <ProjectReference Include="..\..\src\X.PagedList.Mvc\X.PagedList.Mvc.csproj">
+      <Project>{cfbaecec-9581-47dd-a5f0-fcbd0be4398e}</Project>
       <Name>X.PagedList.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj">
-      <Project>{8ee7b3ac-909f-4cd2-bfcb-25d0064d9504}</Project>
+    <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj">
+      <Project>{49f86df5-728f-4f22-986e-38dfc9c2432a}</Project>
       <Name>X.PagedList</Name>
     </ProjectReference>
   </ItemGroup>

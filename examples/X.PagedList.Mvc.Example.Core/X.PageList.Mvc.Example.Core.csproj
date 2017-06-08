@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
@@ -13,9 +13,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
-    <ProjectReference Include="..\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
+    <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
   </ItemGroup>
 
 
