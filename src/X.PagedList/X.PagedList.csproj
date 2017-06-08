@@ -6,8 +6,8 @@
     <Authors>Copyright Troy Goode, Ernado © 2017</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
     <Version>7.0.1</Version>
-    <AssemblyVersion>7.0.0.*</AssemblyVersion>
-    <FileVersion>7.0.0.5510</FileVersion>
+    <AssemblyVersion>7.0.1.5510</AssemblyVersion>
+    <FileVersion>7.0.1.5510</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
