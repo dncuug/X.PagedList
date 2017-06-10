@@ -9,23 +9,16 @@ PagedList is a library that enables you to easily take an IEnumerable/IQueryable
 
 ## How do I use it?
 
-### Classic .NET (version 4.5.2 version and above)
-
-Install [X.PagedList.Mvc](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
+### Classic .NET (version 4.5.2 and above)
+0. Install [X.PagedList.Mvc](http://nuget.org/List/Packages/X.PagedList.Mvc) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
 
 ### .NET Core (.NET Standard 1.4)
-
-Install [X.PagedList.Mvc.Core](http://nuget.org/List/Packages/X.PagedList.Mvc.Core) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
+0. Install [X.PagedList.Mvc.Core](http://nuget.org/List/Packages/X.PagedList.Mvc.Core) via [NuGet](http://nuget.org) - that will automatically install [X.PagedList](https://nuget.org/packages/X.PagedList/) as well.
 
 ### Next steps
-
-2. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
-3. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
-4. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
-
-
-
-<hr />
+1. In your controller code, call **ToPagedList** off of your IEnumerable/IQueryable passing in the page size and which page you want to view.
+2. Pass the result of **ToPagedList** to your view where you can enumerate over it - its still an IEnumerable, but only contains a subset of the original data.
+3. Call **Html.PagedListPager**, passing in the instance of the PagedList and a function that will generate URLs for each page to see a paging control.
 
 ## Example
 
@@ -187,13 +180,5 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/kpi-ua/X.Pag
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 ```
 
-<hr />
-
 ## License
-
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
-
-
-## About .NET Core support
-
-Unfortunately I cannot support ASP.NET Core (formerly ASP.NET MVC 6) version at this moment. So I deleted all code that related to .NET Core from master branch and cleaned up project.  ASP.NET Core  compatible version saved in  net-core branch. I think I will back to this code when .NET Core will be released. Sorry for inconvenience.
