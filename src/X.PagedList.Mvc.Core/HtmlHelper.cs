@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -23,15 +24,10 @@ namespace X.PagedList.Mvc.Core
             tagBuilder.InnerHtml.AppendHtml(innerHtml);
         }
 
-        private static string TagBuilderToString(TagBuilder tagBuilder)
-        {
-            return TagBuilderToString(tagBuilder, TagRenderMode.Normal);
-        }
-
-        private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
+        private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode = TagRenderMode.Normal)
         {
             var encoder = HtmlEncoder.Create(new TextEncoderSettings());
-            var writer = new System.IO.StringWriter();
+            var writer = new System.IO.StringWriter() as TextWriter;
             tagBuilder.WriteTo(writer, encoder);
             return writer.ToString();
         }
