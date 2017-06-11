@@ -48,13 +48,19 @@ namespace X.PagedList
         {
             // Cache this to avoid evaluating it twice
             int count = superset.Count();
+
             if (count < pageSize)
+            {
                 yield return superset;
+            }
             else
             {
                 var numberOfPages = Math.Ceiling(count / (double)pageSize);
+
                 for (var i = 0; i < numberOfPages; i++)
+                {
                     yield return superset.Skip(pageSize * i).Take(pageSize);
+                }
             }
         }
 
@@ -141,21 +147,6 @@ namespace X.PagedList
         }
 
         /// <summary>
-        /// Creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
-        /// </summary>
-        /// <typeparam name="T">The type of object the collection should contain.</typeparam>
-        /// <typeparam name="TKey">Type For Compare</typeparam>
-        /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IEnumerable{T}"/>, it will be treated as such.</param>
-        /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-        /// <param name="pageSize">The maximum size of any individual subset.</param>
-        /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-        /// <seealso cref="PagedList{T}"/>
-        public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize)
-        {
-            return await AsyncPagedList<T>.CreateAsync(superset.AsQueryable(), pageNumber, pageSize);
-        }
-
-        /// <summary>
         /// Async creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
         /// </summary>
         /// <typeparam name="T">The type of object the collection should contain.</typeparam>        
@@ -166,7 +157,35 @@ namespace X.PagedList
         /// <seealso cref="PagedList{T}"/>
         public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
         {
-            return await AsyncPagedList<T>.CreateAsync(superset, pageNumber, pageSize);
+            var subset = new List<T>();
+            var totalCount = 0;
+
+            if ((superset != null) && (superset.Any()))
+            {
+                totalCount = superset.Count();
+
+                subset.AddRange(
+                    (pageNumber == 1)
+                        ? await superset.Skip<T>(0).Take<T>(pageSize).ToListAsync<T>().ConfigureAwait(false)
+                        : await superset.Skip<T>(((pageNumber - 1) * pageSize)).Take<T>(pageSize).ToListAsync<T>().ConfigureAwait(false)
+                );
+            }
+
+            return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
+        }
+
+        /// <summary>
+        /// Creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+        /// </summary>
+        /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+        /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IEnumerable{T}"/>, it will be treated as such.</param>
+        /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+        /// <param name="pageSize">The maximum size of any individual subset.</param>
+        /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
+        /// <seealso cref="PagedList{T}"/>
+        public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize)
+        {
+            return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize);
         }
 
         /// <summary>
@@ -180,7 +199,7 @@ namespace X.PagedList
         /// <seealso cref="PagedList{T}"/>
         public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize)
         {
-            return await AsyncPagedList<T>.CreateAsync(superset, pageNumber ?? 1, pageSize);
+            return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize);
         }
     }
 }

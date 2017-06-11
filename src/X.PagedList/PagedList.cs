@@ -71,7 +71,6 @@ namespace X.PagedList
         public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
             : base(pageNumber, pageSize, superset.Count())
         {
-            // add items to internal list
             if (TotalItemCount > 0)
             {
                 Subset.AddRange(pageNumber == 1
