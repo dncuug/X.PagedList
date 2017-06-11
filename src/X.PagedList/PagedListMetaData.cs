@@ -2,8 +2,7 @@
 {
 	///<summary>
 	/// Non-enumerable version of the PagedList class.
-	///</summary>
-    //[Serializable]
+	///</summary>    
 	public class PagedListMetaData : IPagedList
 	{
 		/// <summary>

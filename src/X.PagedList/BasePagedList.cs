@@ -5,20 +5,16 @@ using System.Collections.Generic;
 namespace X.PagedList
 {
     /// <summary>
-    /// 	Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
     /// </summary>
     /// <remarks>
-    /// 	Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
     /// </remarks>
     /// <typeparam name = "T">The type of object the collection should contain.</typeparam>
     /// <seealso cref = "IPagedList{T}" />
     /// <seealso cref = "List{T}" />
-    //[Serializable]
     public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     {
-        /// <summary>
-        /// 	The subset of items contained only within this one page of the superset.
-        /// </summary>
         protected readonly List<T> Subset = new List<T>();
 
         /// <summary>
@@ -27,9 +23,9 @@ namespace X.PagedList
         protected internal BasePagedList()
         {
         }
-
+        
         /// <summary>
-        /// 	Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
+        /// Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
         /// </summary>
         /// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
         /// <param name = "pageSize">The maximum size of any individual subset.</param>
@@ -37,12 +33,18 @@ namespace X.PagedList
         protected internal BasePagedList(int pageNumber, int pageSize, int totalItemCount)
         {
             if (pageNumber < 1)
-                throw new ArgumentOutOfRangeException(String.Format("pageNumber = {0}. PageNumber cannot be below 1.", pageNumber));
+            {
+                throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
+            }
+
             if (pageSize < 1)
-                throw new ArgumentOutOfRangeException(String.Format("pageSize = {0}. PageSize cannot be less than 1.", pageSize));
+            {
+                throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
+            }
 
             // set source to blank list if superset is null to prevent exceptions
             TotalItemCount = totalItemCount;
+
             PageSize = pageSize;
             PageNumber = pageNumber;
             PageCount = TotalItemCount > 0
@@ -53,7 +55,9 @@ namespace X.PagedList
             IsFirstPage = PageNumber == 1;
             IsLastPage = PageNumber >= PageCount;
             FirstItemOnPage = (PageNumber - 1) * PageSize + 1;
+
             var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
+
             LastItemOnPage = numberOfLastItemOnPage > TotalItemCount
                                 ? TotalItemCount
                                 : numberOfLastItemOnPage;
@@ -83,18 +87,12 @@ namespace X.PagedList
         ///	Gets the element at the specified index.
         ///</summary>
         ///<param name = "index">The zero-based index of the element to get.</param>
-        public T this[int index]
-        {
-            get { return Subset[index]; }
-        }
+        public T this[int index] => Subset[index];
 
         /// <summary>
         /// 	Gets the number of elements contained on this page.
         /// </summary>
-        public virtual int Count
-        {
-            get { return Subset.Count; }
-        }
+        public virtual int Count => Subset.Count;
 
         ///<summary>
         /// Gets a non-enumerable copy of this paged list.

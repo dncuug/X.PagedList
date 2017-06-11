@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace X.PagedList
 {
-	/// <summary>
-	/// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
-	/// </summary>
-	/// <remarks>
-	/// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
-	/// </remarks>
-	/// <typeparam name="T">The type of object the collection should contain.</typeparam>
-	/// <seealso cref="IPagedList{T}"/>
-	/// <seealso cref="BasePagedList{T}"/>
-	/// <seealso cref="PagedList{T}"/>
-	/// <seealso cref="List{T}"/>
-	//[Serializable]
-	public class StaticPagedList<T> : BasePagedList<T>
+    /// <summary>
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// </summary>
+    /// <remarks>
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// </remarks>
+    /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+    /// <seealso cref="IPagedList{T}"/>
+    /// <seealso cref="BasePagedList{T}"/>
+    /// <seealso cref="PagedList{T}"/>
+    /// <seealso cref="List{T}"/>
+    public class StaticPagedList<T> : BasePagedList<T>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="StaticPagedList{T}"/> class that contains the already divided subset and information about the size of the superset and the subset's position within it.

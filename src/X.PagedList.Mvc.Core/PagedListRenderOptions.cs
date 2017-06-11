@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using X.PagedList.Mvc.Core.Fake;
-using TagBuilder = Microsoft.AspNetCore.Mvc.Rendering.TagBuilder;
 
 namespace X.PagedList.Mvc.Core
 {

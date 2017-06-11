@@ -36,7 +36,7 @@ namespace X.PagedList.Tests
 			var list = Enumerable.Range(1, 47);
 
 			//act
-			var splitList = list.Split(5);
+			var splitList = list.Split(5).ToList();
 
 			//assert
 			Assert.Equal(5, splitList.Count());
