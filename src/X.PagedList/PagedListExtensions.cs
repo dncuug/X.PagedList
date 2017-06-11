@@ -108,10 +108,24 @@ namespace X.PagedList
         /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
         /// <param name="pageSize">The maximum size of any individual subset.</param>
         /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>
-        /// <seealso cref="PagedListForEntityFramework{T, TKey}"/>
-        public static IPagedList<T> ToPagedList<T>(this IQueryable<T> superset, Expression<Func<T, dynamic>> keySelector, int pageNumber, int pageSize)
+        public static IPagedList<T> ToPagedList<T, TKey>(this IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         {
-            return new PagedList<T>(superset, keySelector, pageNumber, pageSize);
+            return new PagedList<T, TKey>(superset, keySelector, pageNumber, pageSize);
+        }
+
+        /// <summary>
+        /// Creates a subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.
+        /// </summary>
+        /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+        /// <typeparam name="TKey">Type For Compare</typeparam>
+        /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IEnumerable{T}"/>, it will be treated as such.</param>
+        /// <param name="keySelector">Expression for Order</param>
+        /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+        /// <param name="pageSize">The maximum size of any individual subset.</param>
+        /// <returns>A subset of this collection of objects that can be individually accessed by index and containing metadata about the collection of objects the subset was created from.</returns>        
+        public static IPagedList<T> ToPagedList<T, TKey>(this IEnumerable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
+        {
+            return new PagedList<T, TKey>(superset.AsQueryable(), keySelector, pageNumber, pageSize);
         }
 
         /// <summary>

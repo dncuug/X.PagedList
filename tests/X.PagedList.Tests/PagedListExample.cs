@@ -8,7 +8,7 @@ namespace X.PagedList.Tests
 		public void PagedListExample_Main()
 		{
 			// create a list of integers from 1 to 200
-			var list = Enumerable.Range(1, 200);
+			var list = Enumerable.Range(1, 200).ToList();
 
 			var firstPage = list.ToPagedList(1, 20); // first page, page size = 20
 			Console.WriteLine("Is first page? {0}", firstPage.IsFirstPage); // true

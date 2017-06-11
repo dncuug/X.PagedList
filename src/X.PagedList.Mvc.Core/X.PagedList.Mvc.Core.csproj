@@ -11,7 +11,7 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.2-beta</Version>
+    <Version>1.0.3-beta</Version>
   </PropertyGroup>
 
   <ItemGroup>
