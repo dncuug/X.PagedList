@@ -218,10 +218,14 @@ namespace X.PagedList.Tests
             var data = new[] { 1, 2, 3 };
 
             //act
-            var pagedList = data.ToPagedList(3, 1);
+            var pagedList1 = data.ToPagedList(2, 1);
+            var pagedList2 = data.ToPagedList(3, 1);
+            var pagedList3 = data.ToPagedList(4, 1);
 
             //assert
-            Assert.Equal(false, pagedList.HasNextPage);
+            Assert.Equal(true, pagedList1.HasNextPage);
+            Assert.Equal(false, pagedList2.HasNextPage);
+            Assert.Equal(false, pagedList3.HasNextPage);
         }
 
         [Fact]
@@ -231,10 +235,14 @@ namespace X.PagedList.Tests
             var data = new[] { 1, 2, 3 };
 
             //act
-            var pagedList = data.ToPagedList(3, 1);
+            var pagedList1 = data.ToPagedList(2, 1);
+            var pagedList2 = data.ToPagedList(3, 1);
+            var pagedList3 = data.ToPagedList(4, 1);
 
             //assert
-            Assert.Equal(true, pagedList.IsLastPage);
+            Assert.Equal(false, pagedList1.IsLastPage);
+            Assert.Equal(true, pagedList2.IsLastPage);
+            Assert.Equal(false, pagedList3.IsLastPage);
         }
 
         [Fact]
