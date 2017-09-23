@@ -53,7 +53,7 @@ namespace X.PagedList
             HasPreviousPage = PageNumber > 1;
             HasNextPage = PageNumber < PageCount;
             IsFirstPage = PageNumber == 1;
-            IsLastPage = PageNumber >= PageCount;
+            IsLastPage = PageNumber == PageCount;
             FirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 
             var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
