@@ -7,9 +7,23 @@ namespace X.PagedList.Mvc.Example.Core.Controllers
     {
         public IActionResult Index(int page = 1)
         {
-            var listPaged = GetPagedNames(page); // GetPagedNames is found in BaseController
+            var listPaged = GetPagedNames(page);
+            ViewBag.Names = null;//listPaged;
+            return View();
+        }
+
+        public IActionResult AjaxIndex(int page = 1)
+        {
+            var listPaged = GetPagedNames(page);
             ViewBag.Names = listPaged;
             return View();
+        }
+
+        public IActionResult GetOnePageOfNames(int page = 1)
+        {
+            var listPaged = GetPagedNames(page);
+            ViewBag.Names = listPaged;
+            return PartialView("_NameListPartial", ViewBag.Names);
         }
 
         public IActionResult Error()

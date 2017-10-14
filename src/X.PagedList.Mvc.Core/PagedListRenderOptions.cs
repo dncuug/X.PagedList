@@ -258,9 +258,7 @@ namespace X.PagedList.Mvc.Core
                                                                   foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
                                                                       aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString());
                                                               }
-
-                                                              liTagBuilder.InnerHtml.SetContent(aTagBuilder.ToString());
-                                                              return liTagBuilder;
+                                                              return aTagBuilder;
                                                           };
             return options;
         }

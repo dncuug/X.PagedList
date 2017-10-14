@@ -8,6 +8,11 @@ namespace X.PagedList.Mvc.Core.Fake
         {
             var result = new List<HtmlAttribute>();
 
+            result.Add(new HtmlAttribute() { Key = "data-ajax-method", Value = this.HttpMethod });
+            result.Add(new HtmlAttribute() { Key = "data-ajax-mode", Value = this.InsertionMode });
+            result.Add(new HtmlAttribute() { Key = "data-ajax-update", Value = "#" + this.UpdateTargetId });
+            result.Add(new HtmlAttribute() { Key = "data-ajax", Value = "true" });
+
             return result;
         }
 

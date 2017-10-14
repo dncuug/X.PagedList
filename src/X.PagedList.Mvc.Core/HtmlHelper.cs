@@ -46,7 +46,7 @@ namespace X.PagedList.Mvc.Core
                 li.AddCssClass(@class);
             if (options.FunctionToTransformEachPageLink != null)
             {
-                return options.FunctionToTransformEachPageLink(li, inner);
+                inner = options.FunctionToTransformEachPageLink(li, inner);
             }
 
             AppendHtml(li, TagBuilderToString(inner));
