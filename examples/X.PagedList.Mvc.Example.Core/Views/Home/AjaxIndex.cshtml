@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Product Listing";
+}
+
+@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+
+<!-- loop through each of your products and display it however you want. we're just printing the name here -->
+<h2>List of Products</h2>
+<div id="nameListContainer">
+    @Html.Partial("_NameListPartial", (IPagedList<string>)ViewBag.Names)
+</div>
