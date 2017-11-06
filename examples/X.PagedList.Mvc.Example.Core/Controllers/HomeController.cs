@@ -7,8 +7,7 @@ namespace X.PagedList.Mvc.Example.Core.Controllers
     {
         public IActionResult Index(int page = 1)
         {
-            var listPaged = GetPagedNames(page);
-            ViewBag.Names = null;//listPaged;
+            ViewBag.Names = GetPagedNames(page);
             return View();
         }
 

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET Core</Description>
     <Authors>Copyright Troy Goode, Ernado © 2017</Authors>
