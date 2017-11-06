@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.4</TargetFrameworks>
+    <TargetFramework>netstandard1.2</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Ernado © 2017</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
-    <Version>7.1.3</Version>
-    <AssemblyVersion>7.1.3</AssemblyVersion>
-    <FileVersion>7.1.3</FileVersion>
+    <Version>7.1.7</Version>
+    <AssemblyVersion>7.1.7</AssemblyVersion>
+    <FileVersion>7.1.7</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
@@ -15,6 +15,7 @@
     <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>x_paged_list.snk</AssemblyOriginatorKeyFile>
     <!-- <AssemblyOriginatorKeyFile>x_paged_list.snk</AssemblyOriginatorKeyFile> -->
   </PropertyGroup>
 

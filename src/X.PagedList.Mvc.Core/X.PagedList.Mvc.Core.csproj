@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.6</TargetFrameworks>
+    <TargetFramework>netstandard1.6</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET Core</Description>
     <Authors>Copyright Troy Goode, Ernado © 2017</Authors>
@@ -10,11 +10,13 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.5-beta</Version>
+    <Version>1.0.7-beta</Version>
+    <AssemblyVersion>1.0.7</AssemblyVersion>
+    <FileVersion>1.0.7</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.1.3" />    
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.0.0" />    
   </ItemGroup>
    <ItemGroup>
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
