@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\X.PagedList.Mvc.Common\X.PagedList.Mvc.Common.csproj" />
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
   </ItemGroup>
 

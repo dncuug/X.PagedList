@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using X.PagedList.Mvc.Common;
 using X.PagedList.Mvc.Core.Fake;
 
 namespace X.PagedList.Mvc.Core
