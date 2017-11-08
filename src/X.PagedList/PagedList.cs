@@ -17,7 +17,7 @@ namespace X.PagedList
         /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
         public PagedList(IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
-            : base(pageNumber, pageSize, superset.Count())
+            : base(pageNumber, pageSize, superset?.Count() ?? 0)
         {
             // add items to internal list
             if (TotalItemCount > 0)
@@ -27,7 +27,7 @@ namespace X.PagedList
         }
 
         public PagedList(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
-            : base(pageNumber, pageSize, superset.Count())
+            : base(pageNumber, pageSize, superset?.Count() ?? 0)
         {
             if (TotalItemCount > 0)
             {
@@ -69,7 +69,7 @@ namespace X.PagedList
         /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
         public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
-            : base(pageNumber, pageSize, superset.Count())
+            : base(pageNumber, pageSize, superset?.Count() ?? 0)
         {
             if (TotalItemCount > 0)
             {
