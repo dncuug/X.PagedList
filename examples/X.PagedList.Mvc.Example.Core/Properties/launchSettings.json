@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "X.PageList.Mvc.Example.Core": {
+    "X.PagedList.Mvc.Example.Core": {
       "commandName": "Project"
     }
   }
