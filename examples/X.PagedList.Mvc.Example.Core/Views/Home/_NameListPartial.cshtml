@@ -1,6 +1,11 @@
-﻿@model IPagedList<string> @*use this for the fake AjaxOptions since ajax helpers were dropped in .net core*@
-@using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
-@using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+﻿@*use this for the fake AjaxOptions since ajax helpers were dropped in .net core*@
+@model IPagedList<string>
+    
+@*import this so we get our HTML Helper*@
+@using X.PagedList.Mvc.Core; 
+
+@*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList; 
 
 <ul>
     @foreach (var name in Model)
