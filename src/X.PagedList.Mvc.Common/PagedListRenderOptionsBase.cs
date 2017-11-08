@@ -7,7 +7,7 @@ namespace X.PagedList.Mvc.Common
     public class PagedListRenderOptionsBase
     {
         ///<summary>
-        /// The default settings render all navigation links and no descriptive text.
+        /// The default settings render all navigation links and no descriptive text
         ///</summary>
         public PagedListRenderOptionsBase()
         {

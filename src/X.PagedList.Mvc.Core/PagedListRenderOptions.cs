@@ -3,12 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using X.PagedList.Mvc.Common;
-using X.PagedList.Mvc.Core.Fake;
 
 namespace X.PagedList.Mvc.Core
 {
     ///<summary>
-    /// Options for configuring the output of <see cref = "X.PagedList.Mvc.Core.HtmlHelper" />.
+    /// Options for configuring the output of <see cref = "X.PagedList.Mvc.Core.HtmlHelper" />
     ///</summary>
     public class PagedListRenderOptions : PagedListRenderOptionsBase
     {

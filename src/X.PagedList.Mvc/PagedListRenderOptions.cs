@@ -6,7 +6,7 @@ using X.PagedList.Mvc.Common;
 namespace X.PagedList.Mvc
 {
     ///<summary>
-    /// Options for configuring the output of <see cref = "X.PagedList.Mvc.HtmlHelper" />.
+    /// Options for configuring the output of <see cref = "X.PagedList.Mvc.HtmlHelper" />
     ///</summary>
     public class PagedListRenderOptions : PagedListRenderOptionsBase
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace X.PagedList.Mvc.Core.Fake
+namespace X.PagedList.Mvc.Core
 {
     public class AjaxOptions
     {
@@ -8,9 +8,9 @@ namespace X.PagedList.Mvc.Core.Fake
         {
             return new List<HtmlAttribute>
             {
-                new HtmlAttribute {Key = "data-ajax-method", Value = this.HttpMethod},
-                new HtmlAttribute {Key = "data-ajax-mode", Value = this.InsertionMode},
-                new HtmlAttribute {Key = "data-ajax-update", Value = "#" + this.UpdateTargetId},
+                new HtmlAttribute {Key = "data-ajax-method", Value = HttpMethod},
+                new HtmlAttribute {Key = "data-ajax-mode", Value = InsertionMode},
+                new HtmlAttribute {Key = "data-ajax-update", Value = "#" + UpdateTargetId},
                 new HtmlAttribute {Key = "data-ajax", Value = "true"}
             };
         }
