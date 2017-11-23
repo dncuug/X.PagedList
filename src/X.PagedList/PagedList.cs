@@ -40,8 +40,8 @@ namespace X.PagedList
             // add items to internal list
 
             var items = pageNumber == 1
-                ? superset.OrderBy(keySelectorMethod).Take(pageSize).ToList()
-                : superset.OrderBy(keySelectorMethod).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                ? superset.OrderBy(keySelectorMethod).Take(() => pageSize).ToList()
+                : superset.OrderBy(keySelectorMethod).Skip(() => (pageNumber - 1) * pageSize).Take(() => pageSize).ToList();
 
             Subset.AddRange(items);
         }
@@ -74,8 +74,8 @@ namespace X.PagedList
             if (TotalItemCount > 0)
             {
                 Subset.AddRange(pageNumber == 1
-                    ? superset.Take(pageSize).ToList()
-                    : superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
+                    ? superset.Take(() => pageSize).ToList()
+                    : superset.Skip(() => (pageNumber - 1) * pageSize).Take(() => pageSize).ToList()
                 );
             }
         }
