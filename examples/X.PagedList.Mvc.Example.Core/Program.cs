@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System.IO;
+﻿using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
-namespace X.PageList.Mvc.Example.Core
+namespace X.PagedList.Mvc.Example.Core
 {
     public class Program
     {

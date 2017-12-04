@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using X.PagedList.Mvc.Common;
 
 namespace X.PagedList.Mvc
 {
@@ -39,7 +40,7 @@ namespace X.PagedList.Mvc
             return li;
         }
 
-        private static TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptions options, params string[] classes)
+        private static TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptionsBase options, params string[] classes)
         {
             var li = new TagBuilder("li");
 
@@ -48,16 +49,19 @@ namespace X.PagedList.Mvc
                 li.AddCssClass(@class);
             }
 
-            if (options.FunctionToTransformEachPageLink != null)
+            if (options is PagedListRenderOptions)
             {
-                return options.FunctionToTransformEachPageLink(li, inner);
+                if (((PagedListRenderOptions)options).FunctionToTransformEachPageLink != null)
+                {
+                    return ((PagedListRenderOptions)options).FunctionToTransformEachPageLink(li, inner);
+                }
             }
 
             AppendHtml(li, TagBuilderToString(inner));
             return li;
         }
 
-        private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options)
         {
             const int targetPageNumber = 1;
             var first = new TagBuilder("a");
@@ -77,7 +81,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(first, options, "PagedList-skipToFirst");
         }
 
-        private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options)
         {
             var targetPageNumber = list.PageNumber - 1;
             var previous = new TagBuilder("a");
@@ -99,7 +103,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(previous, options, options.PreviousElementClass);
         }
 
-        private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options)
         {
             var format = options.FunctionToDisplayEachPageNumber
                 ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
@@ -122,7 +126,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(page, options);
         }
 
-        private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options)
         {
             var targetPageNumber = list.PageNumber + 1;
             var next = new TagBuilder("a");
@@ -143,7 +147,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(next, options, options.NextElementClass);
         }
 
-        private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+        private static TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options)
         {
             var targetPageNumber = list.PageCount;
             var last = new TagBuilder("a");
@@ -163,7 +167,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(last, options, "PagedList-skipToLast");
         }
 
-        private static TagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptions options)
+        private static TagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptionsBase options)
         {
             var text = new TagBuilder("a");
             SetInnerText(text, string.Format(options.PageCountAndCurrentLocationFormat, list.PageNumber, list.PageCount));
@@ -171,7 +175,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
         }
 
-        private static TagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptions options)
+        private static TagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptionsBase options)
         {
             var text = new TagBuilder("a");
             SetInnerText(text, string.Format(options.ItemSliceAndTotalFormat, list.FirstItemOnPage, list.LastItemOnPage, list.TotalItemCount));
@@ -179,7 +183,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
         }
 
-        private static TagBuilder Ellipses(PagedListRenderOptions options)
+        private static TagBuilder Ellipses(PagedListRenderOptionsBase options)
         {
             var a = new TagBuilder("a");
             AppendHtml(a, options.EllipsesFormat);
@@ -212,7 +216,7 @@ namespace X.PagedList.Mvc
         public static HtmlString PagedListPager(this System.Web.Mvc.HtmlHelper html,
             IPagedList list,
             Func<int, string> generatePageUrl,
-            PagedListRenderOptions options)
+            PagedListRenderOptionsBase options)
         {
             if (options.Display == PagedListDisplayMode.Never || (options.Display == PagedListDisplayMode.IfNeeded && list.PageCount <= 1))
                 return null;
@@ -345,7 +349,7 @@ namespace X.PagedList.Mvc
             return new HtmlString(TagBuilderToString(outerDiv));
         }
 
-        private static TagBuilder PreviousEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int firstPageToDisplay)
+        private static TagBuilder PreviousEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options, int firstPageToDisplay)
         {
             var targetPageNumber = firstPageToDisplay - 1;
             var previous = new TagBuilder("a")
@@ -361,7 +365,7 @@ namespace X.PagedList.Mvc
             return WrapInListItem(previous, options, "PagedList-skipToPrevious");
         }
 
-        private static TagBuilder NextEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int lastPageToDisplay)
+        private static TagBuilder NextEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options, int lastPageToDisplay)
         {
             var targetPageNumber = lastPageToDisplay + 1;
 
