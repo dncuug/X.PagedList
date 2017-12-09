@@ -10,7 +10,7 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>7.2.0</Version>
+    <Version>7.2.2</Version>
     <AssemblyVersion>7.2.0</AssemblyVersion>
     <FileVersion>7.2.0</FileVersion>
   </PropertyGroup>
