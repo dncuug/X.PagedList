@@ -1,15 +1,13 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using X.PagedList.Mvc.Common;
 
 namespace X.PagedList.Mvc.Core
 {
-    ///<summary>
-    /// Options for configuring the output of <see cref = "X.PagedList.Mvc.Core.HtmlHelper" />
-    ///</summary>
-    public class PagedListRenderOptions : PagedListRenderOptionsBase
+	///<summary>
+	/// Options for configuring the output of <see cref = "X.PagedList.Mvc.Core.HtmlHelper" />
+	///</summary>
+	public class PagedListRenderOptions : PagedListRenderOptionsBase
     {
 
         /// <summary>
