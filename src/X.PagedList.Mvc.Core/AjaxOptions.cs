@@ -6,14 +6,20 @@ namespace X.PagedList.Mvc.Core
     {
         public virtual IEnumerable<HtmlAttribute> ToUnobtrusiveHtmlAttributes()
         {
-            return new List<HtmlAttribute>
+            var attrs = new List<HtmlAttribute>
             {
                 new HtmlAttribute {Key = "data-ajax-method", Value = HttpMethod},
                 new HtmlAttribute {Key = "data-ajax-mode", Value = InsertionMode},
                 new HtmlAttribute {Key = "data-ajax-update", Value = "#" + UpdateTargetId},
-                new HtmlAttribute {Key = "data-ajax", Value = "true"},
-                new HtmlAttribute {Key = "data-ajax-complete", Value = OnComplete}
+                new HtmlAttribute {Key = "data-ajax", Value = "true"}
             };
+
+            if (!string.IsNullOrEmpty(OnComplete))
+            {
+                attrs.Add(new HtmlAttribute { Key = "data-ajax-complete", Value = OnComplete });
+            }
+
+            return attrs;
         }
 
         public string HttpMethod { get; set; }
