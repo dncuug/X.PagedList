@@ -231,180 +231,124 @@ namespace X.PagedList.Mvc.Common
         /// </summary>
         public string DelimiterBetweenPageNumbers { get; set; }
 
-        
-
         ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase Classic
+        public static PagedListRenderOptionsBase Classic => new PagedListRenderOptionsBase
         {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always
-                };
-            }
-        }
+	        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+	        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+	        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+	        DisplayLinkToNextPage = PagedListDisplayMode.Always
+        };
 
-        ///<summary>
+	    ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase ClassicPlusFirstAndLast
+        public static PagedListRenderOptionsBase ClassicPlusFirstAndLast => new PagedListRenderOptionsBase
         {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Always,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always
-                };
-            }
-        }
+	        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+	        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+	        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+	        DisplayLinkToNextPage = PagedListDisplayMode.Always
+        };
 
-        ///<summary>
+	    ///<summary>
         /// Shows only the Previous and Next links.
         ///</summary>
-        public static PagedListRenderOptionsBase Minimal
+        public static PagedListRenderOptionsBase Minimal => new PagedListRenderOptionsBase
         {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    DisplayLinkToIndividualPages = false
-                };
-            }
-        }
+	        DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+	        DisplayLinkToLastPage = PagedListDisplayMode.Never,
+	        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+	        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+	        DisplayLinkToIndividualPages = false
+        };
 
-        ///<summary>
+	    ///<summary>
         /// Shows Previous and Next links along with current page number and page count.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithPageCountText
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    DisplayLinkToIndividualPages = false,
-                    DisplayPageCountAndCurrentLocation = true
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase MinimalWithPageCountText => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+		    DisplayLinkToIndividualPages = false,
+		    DisplayPageCountAndCurrentLocation = true
+	    };
 
-        ///<summary>
+	    ///<summary>
         ///	Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithItemCountText
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    DisplayLinkToIndividualPages = false,
-                    DisplayItemSliceAndTotal = true
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase MinimalWithItemCountText => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+		    DisplayLinkToIndividualPages = false,
+		    DisplayItemSliceAndTotal = true
+	    };
 
-        ///<summary>
+	    ///<summary>
         ///	Shows only links to each individual page.
         ///</summary>
-        public static PagedListRenderOptionsBase PageNumbersOnly
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Never,
-                    DisplayEllipsesWhenNotShowingAllPageNumbers = false
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase PageNumbersOnly => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Never,
+		    DisplayEllipsesWhenNotShowingAllPageNumbers = false
+	    };
 
-        ///<summary>
+	    ///<summary>
         ///	Shows Next and Previous while limiting to a max of 5 page numbers at a time.
         ///</summary>
-        public static PagedListRenderOptionsBase OnlyShowFivePagesAtATime
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    MaximumPageNumbersToDisplay = 5
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase OnlyShowFivePagesAtATime => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+		    MaximumPageNumbersToDisplay = 5
+	    };
 
-        ///<summary>
+	    ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links).
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPager
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    DisplayLinkToIndividualPages = false,
-                    ContainerDivClasses = null,
-                    UlElementClasses = new[] { "pager" },
-                    ClassToApplyToFirstListItemInPager = null,
-                    ClassToApplyToLastListItemInPager = null,
-                    LinkToPreviousPageFormat = "Previous",
-                    LinkToNextPageFormat = "Next"
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase TwitterBootstrapPager => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+		    DisplayLinkToIndividualPages = false,
+		    ContainerDivClasses = null,
+		    UlElementClasses = new[] { "pager" },
+		    ClassToApplyToFirstListItemInPager = null,
+		    ClassToApplyToLastListItemInPager = null,
+		    LinkToPreviousPageFormat = "Previous",
+		    LinkToNextPageFormat = "Next"
+	    };
 
-        ///<summary>
+	    ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links), with aligned links.
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPagerAligned
-        {
-            get
-            {
-                return new PagedListRenderOptionsBase
-                {
-                    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
-                    DisplayLinkToLastPage = PagedListDisplayMode.Never,
-                    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-                    DisplayLinkToNextPage = PagedListDisplayMode.Always,
-                    DisplayLinkToIndividualPages = false,
-                    ContainerDivClasses = null,
-                    UlElementClasses = new[] { "pager" },
-                    ClassToApplyToFirstListItemInPager = "previous",
-                    ClassToApplyToLastListItemInPager = "next",
-                    LinkToPreviousPageFormat = "&larr; Older",
-                    LinkToNextPageFormat = "Newer &rarr;"
-                };
-            }
-        }
+        public static PagedListRenderOptionsBase TwitterBootstrapPagerAligned => new PagedListRenderOptionsBase
+	    {
+		    DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+		    DisplayLinkToLastPage = PagedListDisplayMode.Never,
+		    DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+		    DisplayLinkToNextPage = PagedListDisplayMode.Always,
+		    DisplayLinkToIndividualPages = false,
+		    ContainerDivClasses = null,
+		    UlElementClasses = new[] { "pager" },
+		    ClassToApplyToFirstListItemInPager = "previous",
+		    ClassToApplyToLastListItemInPager = "next",
+		    LinkToPreviousPageFormat = "&larr; Older",
+		    LinkToNextPageFormat = "Newer &rarr;"
+	    };
     }
 }
