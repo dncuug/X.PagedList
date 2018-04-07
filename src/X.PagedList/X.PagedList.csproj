@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.2;net45;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;net45;net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Ernado © 2018</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
