@@ -16,6 +16,7 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>x_paged_list.snk</AssemblyOriginatorKeyFile>
+    <PackageId>nx.X.PagedList</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
