@@ -148,3 +148,5 @@ LastBuild.log
 _ReSharper*
 .DS_Store
 src/PagedList.Mvc/Content/
+
+.idea/
