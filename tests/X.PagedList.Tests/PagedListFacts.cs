@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace X.PagedList.Tests
@@ -30,6 +31,17 @@ namespace X.PagedList.Tests
         //	//assert
         //	Assert.Throws<ArgumentOutOfRangeException>(act);
         //}
+
+        [Fact]
+        public async Task Argument_out_of_range()
+        {
+            var queryable = (new List<Object>()).AsQueryable();
+            var list = await queryable.ToListAsync();
+            var pagedList = list.ToPagedList();
+            
+            Assert.NotNull(pagedList);
+        }
+       
 
         [Fact]
         public void Split_Works()

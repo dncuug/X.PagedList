@@ -37,7 +37,7 @@ namespace X.PagedList
                 throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
             }
 
-            if (pageSize < 1)
+            if (pageSize < 0)
             {
                 throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
             }
