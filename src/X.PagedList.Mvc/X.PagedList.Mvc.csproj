@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net452;net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>7.2.2</Version>
+    <Version>7.6.0</Version>
     <Authors>Copyright Troy Goode, Ernado © 2017</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
     <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET MVC</Description>
@@ -14,8 +14,8 @@
     <RepositoryType>git</RepositoryType>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>x_paged_list_mvc.snk</AssemblyOriginatorKeyFile>
-    <AssemblyVersion>7.2.0</AssemblyVersion>
-    <FileVersion>7.2.0</FileVersion>
+    <AssemblyVersion>7.6.0</AssemblyVersion>
+    <FileVersion>7.6.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
