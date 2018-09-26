@@ -20,8 +20,7 @@ namespace X.PagedList.Mvc.Example.Controllers
 
         public ActionResult Index(int? page)
         {
-
-            Mapper.Initialize(x => x.AddProfile<OrderOrderViewModelProfile>()); // create mapping between Order and OrderViewModel
+            
             const int pageSize = 2;
 
             var orders = GetAllOrdersFromDatabase();
