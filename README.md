@@ -180,5 +180,18 @@ You can instantiate [**PagedListRenderOptions**](https://github.com/dncuug/X.Pag
 @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions { DelimiterBetweenPageNumbers = "|" })
 ```
 
+### Bootstrap 4 Pager Example
+
+Below is an example configuration that uses the Boostrap 4 pager clases as per https://getbootstrap.com/docs/4.1/components/pagination/
+
+```html
+
+@Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Index", new { page = page }), 
+    new PagedListRenderOptions {
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" }
+})
+```
+
 ## License
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
