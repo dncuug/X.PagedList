@@ -6,6 +6,7 @@
 
 @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
 @using X.PagedList; 
+@using X.PagedList.Mvc.Common
 
 <ul>
     @foreach (var name in Model)
@@ -14,4 +15,4 @@
     }
 </ul>
 
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("GetOnePageOfNames", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5, DisplayPageCountAndCurrentLocation = true, UlElementClasses = new[] { "pagination" }, ContainerDivClasses = new[] { "pagination-container" } }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "nameListContainer" }))
+@Html.PagedListPager((IPagedList<>)ViewBag.Names, page => Url.Action("GetOnePageOfNames", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5, DisplayPageCountAndCurrentLocation = true, UlElementClasses = new[] { "pagination" }, ContainerDivClasses = new[] { "pagination-container" } }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "nameListContainer" }))

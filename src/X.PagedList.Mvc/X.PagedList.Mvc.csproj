@@ -36,8 +36,4 @@
     <Reference Include="System.Web" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-
 </Project>
