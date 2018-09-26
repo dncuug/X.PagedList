@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.1;net45;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.1;netstandard2.0;net45;net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Ernado © 2018</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
-    <Version>7.2.4</Version>
-    <AssemblyVersion>7.2.4</AssemblyVersion>
-    <FileVersion>7.2.4</FileVersion>
+    <Version>7.2.5</Version>
+    <AssemblyVersion>7.2.5</AssemblyVersion>
+    <FileVersion>7.2.5</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
