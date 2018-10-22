@@ -358,11 +358,13 @@ namespace X.PagedList.Mvc
             };
             previous.Attributes["rel"] = "prev";
 
+            previous.AddCssClass("PagedList-skipToPrevious");
+
             if (!list.HasPreviousPage)
-                return WrapInListItem(previous, options, "PagedList-skipToPrevious", "disabled");
+                return WrapInListItem(previous, options, options.EllipsesElementClass, "disabled");
 
             previous.Attributes["href"] = generatePageUrl(targetPageNumber);
-            return WrapInListItem(previous, options, "PagedList-skipToPrevious");
+            return WrapInListItem(previous, options, options.EllipsesElementClass);
         }
 
         private static TagBuilder NextEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptionsBase options, int lastPageToDisplay)
@@ -376,11 +378,13 @@ namespace X.PagedList.Mvc
 
             next.Attributes["rel"] = "next";
 
+            next.AddCssClass("PagedList-skipToNext");
+
             if (!list.HasNextPage)
-                return WrapInListItem(next, options, "PagedList-skipToNext", "disabled");
+                return WrapInListItem(next, options, options.EllipsesElementClass, "disabled");
 
             next.Attributes["href"] = generatePageUrl(targetPageNumber);
-            return WrapInListItem(next, options, "PagedList-skipToNext");
+            return WrapInListItem(next, options, options.EllipsesElementClass);
         }
 
         ///<summary>

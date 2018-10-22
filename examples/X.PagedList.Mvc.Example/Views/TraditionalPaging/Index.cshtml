@@ -16,9 +16,9 @@
 
 <h3>List of @ViewBag.Names.TotalItemCount Names (Page Size: @ViewBag.Names.PageSize, Current Page: @ViewBag.Names.PageNumber)</h3>
 <ol start="@ViewBag.Names.FirstItemOnPage">
-	@foreach(var i in ViewBag.Names){
-		<li>@i</li>
-	}
+      @foreach(var i in ViewBag.Names){
+          <li>@i</li>
+      }
 </ol>
 
 <h2>Out-of-the-box Pager Configurations</h2>
@@ -55,5 +55,28 @@
 <h3>Show Range of Items For Each Page</h3>
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new PagedListRenderOptions { FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(), MaximumPageNumbersToDisplay = 5 })
 
+<h3>Custom Options</h3>
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }),
+    new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        LiElementClasses = new string[] {"page-item"},
+        PageClasses = new string[] {"page-link"},
+        ClassToApplyToFirstListItemInPager = "material-icons",
+        ClassToApplyToLastListItemInPager = "material-icons",
+        PreviousElementClass = "material-icons",
+        NextElementClass = "material-icons",
+        EllipsesElementClass = "material-icons",
+        LinkToFirstPageFormat = "first_page",
+        LinkToPreviousPageFormat = "chevron_left",
+        LinkToLastPageFormat = "last_page",
+        LinkToNextPageFormat = "chevron_right",
+        EllipsesFormat = "more_horiz"
+    })
+
 <h3>Empty PagedList</h3>
 @Html.PagedListPager(new string[0].ToPagedList(1, 10), page => Url.Action("Index", new { page }))
+
