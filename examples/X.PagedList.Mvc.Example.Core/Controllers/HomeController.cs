@@ -30,7 +30,7 @@ namespace X.PagedList.Mvc.Example.Core.Controllers
             return View();
         }
 
-        private IPagedList<string> GetPagedNames(int? page)
+        protected IPagedList<string> GetPagedNames(int? page)
         {
             // return a 404 if user browses to before the first page
             if (page.HasValue && page < 1)
