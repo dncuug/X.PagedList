@@ -73,16 +73,16 @@ namespace X.PagedList.Tests
 
             var list = collection.ToPagedList(keySelector, pageNumber, pageSize);
 
-            Assert.Equal(list.ElementAt(0), 22);
-            Assert.Equal(list.ElementAt(1), 24);
-            Assert.Equal(list.ElementAt(2), 26);
-            Assert.Equal(list.ElementAt(3), 28);
-            Assert.Equal(list.ElementAt(4), 30);
-            Assert.Equal(list.ElementAt(5), 32);
-            Assert.Equal(list.ElementAt(6), 34);
-            Assert.Equal(list.ElementAt(7), 36);
-            Assert.Equal(list.ElementAt(8), 38);
-            Assert.Equal(list.ElementAt(9), 40);
+            Assert.Equal(22, list.ElementAt(0));
+            Assert.Equal(24, list.ElementAt(1));
+            Assert.Equal(26, list.ElementAt(2));
+            Assert.Equal(28, list.ElementAt(3));
+            Assert.Equal(30, list.ElementAt(4));
+            Assert.Equal(32, list.ElementAt(5));
+            Assert.Equal(34, list.ElementAt(6));
+            Assert.Equal(36, list.ElementAt(7));
+            Assert.Equal(38, list.ElementAt(8));
+            Assert.Equal(40, list.ElementAt(9));
         }
 
         private static int Order(int i)
@@ -235,9 +235,9 @@ namespace X.PagedList.Tests
             var pagedList3 = data.ToPagedList(4, 1);
 
             //assert
-            Assert.Equal(true, pagedList1.HasNextPage);
-            Assert.Equal(false, pagedList2.HasNextPage);
-            Assert.Equal(false, pagedList3.HasNextPage);
+            Assert.True(pagedList1.HasNextPage);
+            Assert.False(pagedList2.HasNextPage);
+            Assert.False(pagedList3.HasNextPage);
         }
 
         [Fact]
@@ -252,9 +252,9 @@ namespace X.PagedList.Tests
             var pagedList3 = data.ToPagedList(4, 1);
 
             //assert
-            Assert.Equal(false, pagedList1.IsLastPage);
-            Assert.Equal(true, pagedList2.IsLastPage);
-            Assert.Equal(false, pagedList3.IsLastPage);
+            Assert.False(pagedList1.IsLastPage);
+            Assert.True(pagedList2.IsLastPage);
+            Assert.False(pagedList3.IsLastPage);
         }
 
         [Fact]
