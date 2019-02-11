@@ -23,7 +23,7 @@ namespace X.PagedList
         protected internal BasePagedList()
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
         /// </summary>
@@ -37,9 +37,14 @@ namespace X.PagedList
                 throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
             }
 
-            if (pageSize < 0)
+            if (pageSize < 1)
             {
                 throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
+            }
+
+            if (totalItemCount < 0)
+            {
+                throw new ArgumentOutOfRangeException($"totalItemCount = {totalItemCount}. TotalItemCount cannot be less than 0.");
             }
 
             // set source to blank list if superset is null to prevent exceptions
@@ -50,17 +55,25 @@ namespace X.PagedList
             PageCount = TotalItemCount > 0
                             ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
                             : 0;
-            HasPreviousPage = PageNumber > 1;
-            HasNextPage = PageNumber < PageCount;
-            IsFirstPage = PageNumber == 1;
-            IsLastPage = PageNumber == PageCount;
-            FirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 
-            var numberOfLastItemOnPage = FirstItemOnPage + PageSize - 1;
+            bool pageNumberIsGood = PageCount > 0 && PageNumber <= PageCount;
 
-            LastItemOnPage = numberOfLastItemOnPage > TotalItemCount
-                                ? TotalItemCount
-                                : numberOfLastItemOnPage;
+            HasPreviousPage = pageNumberIsGood && PageNumber > 1;
+            HasNextPage = pageNumberIsGood && PageNumber < PageCount;
+            IsFirstPage = pageNumberIsGood && PageNumber == 1;
+            IsLastPage = pageNumberIsGood && PageNumber == PageCount;
+			
+            var numberOfFirstItemOnPage = (PageNumber - 1) * PageSize + 1;
+
+            FirstItemOnPage = pageNumberIsGood ? numberOfFirstItemOnPage : 0;
+
+            var numberOfLastItemOnPage = numberOfFirstItemOnPage + PageSize - 1;
+
+            LastItemOnPage = pageNumberIsGood
+                                ? (numberOfLastItemOnPage > TotalItemCount
+                                   ? TotalItemCount
+                                   : numberOfLastItemOnPage)
+                                : 0;
         }
 
         #region IPagedList<T> Members
