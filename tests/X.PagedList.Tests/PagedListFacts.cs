@@ -429,6 +429,5 @@ namespace X.PagedList.Tests
             Assert.Equal(expectedFirstItemOnPage, pagedList.FirstItemOnPage);
             Assert.Equal(expectedLastItemOnPage, pagedList.LastItemOnPage);
         }
-
     }
 }

@@ -33,6 +33,5 @@ namespace X.PagedList.Tests
 			//assert
 			Assert.Throws<ArgumentOutOfRangeException>(() => new StaticPagedList<int>(data, 1, 10, -1));
 		}
-
 	}
 }
