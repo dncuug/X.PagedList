@@ -5,8 +5,13 @@
 @using X.PagedList
 @using X.PagedList.Mvc
 @using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Fluent
 
 @Styles.Render("~/Content/PagedList.css")
+
+@{
+    var pagedList = (IPagedList)ViewBag.Names;
+}
 
 <h2>Traditional Paging</h2>
 
@@ -80,3 +85,109 @@
 <h3>Empty PagedList</h3>
 @Html.PagedListPager(new string[0].ToPagedList(1, 10), page => Url.Action("Index", new { page }))
 
+<hr>
+
+<h3>Fluent Default Paging Control</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Classic())
+
+<h3>Fluent Classic Paging Control (always shows Previous/Next links, but sometimes they are disabled)</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Classic())
+
+<h3>Fluent Classic Paging Control (Classic +First and Last links)</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .ClassicPlusFirstAndLast())
+
+<h3>Fluent Minimal Paging Control</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Minimal())
+
+<h3>Fluent Minimal Paging Control w/ Page Count Text</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .MinimalWithPageCountText())
+
+<h3>Fluent Minimal Paging Control w/ Item Count Text</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .MinimalWithItemCountText())
+
+<h3>Fluent Page Numbers Only</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .PageNumbersOnly())
+
+<h3>Fluent Only Show Five Pages At A Time</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .OnlyShowFivePagesAtATime())
+
+<h2>Fluent Custom Pager Configurations</h2>
+
+<h3>Fluent Custom Wording (<em>Spanish Translation Example</em>)</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Build(new PagedListRenderOptions
+    {
+        LinkToFirstPageFormat = "<< Primera",
+        LinkToPreviousPageFormat = "< Anterior",
+        LinkToNextPageFormat = "Siguiente >",
+        LinkToLastPageFormat = "Última >>"
+    }))
+
+<h3>Fluent Show Range of Items For Each Page</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Build(new PagedListRenderOptions
+    {
+        FunctionToDisplayEachPageNumber = page => ((page - 1) * ViewBag.Names.PageSize + 1).ToString() + "-" + (((page - 1) * ViewBag.Names.PageSize) + ViewBag.Names.PageSize).ToString(),
+        MaximumPageNumbersToDisplay = 5
+    }))
+
+<h3>Fluent Custom Options</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Build(new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        LiElementClasses = new string[] { "page-item" },
+        PageClasses = new string[] { "page-link" },
+        ClassToApplyToFirstListItemInPager = "material-icons",
+        ClassToApplyToLastListItemInPager = "material-icons",
+        PreviousElementClass = "material-icons",
+        NextElementClass = "material-icons",
+        EllipsesElementClass = "material-icons",
+        LinkToFirstPageFormat = "first_page",
+        LinkToPreviousPageFormat = "chevron_left",
+        LinkToLastPageFormat = "last_page",
+        LinkToNextPageFormat = "chevron_right",
+        EllipsesFormat = "more_horiz"
+    }))
+
+<h3>Fluent Empty PagedList</h3>
+@Html.Pager()
+
+<h3>Fluent Pager with Partial view</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .WithPartialView("Paging/_Pager")
+    .Build())
+
+<h3>Pager for #85</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .WithPartialView("Paging/_Pager_85")
+    .DisplayLinkToFirstPage (PagedListDisplayMode.IfNeeded)
+    .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
+    .DisplayLinkToPreviousPage()
+    .DisplayLinkToNextPage()
+    .MaximumPageNumbersToDisplay(3)
+    .Build())

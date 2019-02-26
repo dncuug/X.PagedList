@@ -240,6 +240,8 @@
     <Content Include="Views\UnobtrusiveAjax\Index.cshtml" />
     <Content Include="Views\UnobtrusiveAjax\UnobtrusiveAjax_Partial.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Paging\_Pager.cshtml" />
+    <Content Include="Views\Shared\Paging\_Pager_85.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
