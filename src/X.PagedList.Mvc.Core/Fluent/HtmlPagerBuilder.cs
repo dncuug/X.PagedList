@@ -1,21 +1,20 @@
-﻿namespace X.PagedList.Mvc.Fluent
+﻿namespace X.PagedList.Mvc.Core.Fluent
 {
     using System;
-    using System.Web;
-    using System.Web.Mvc;
-    using System.Web.Mvc.Html;
     using Common;
+    using Microsoft.AspNetCore.Html;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
     internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
     {
-        private readonly HtmlHelper htmlHelper;
+        private readonly IHtmlHelper htmlHelper;
         private readonly IPagedList pagedList;
 
         private Func<int, string> generatePageUrl;
         private PagedListRenderOptionsBase options;
         private string partialViewName;
 
-        public HtmlPagerBuilder(HtmlHelper htmlHelper, IPagedList pagedList)
+        public HtmlPagerBuilder(IHtmlHelper htmlHelper, IPagedList pagedList)
         {
             this.htmlHelper = htmlHelper;
             this.pagedList = pagedList;
@@ -86,49 +85,49 @@
             return this;
         }
 
-        public IHtmlString Classic()
+        public IHtmlContent Classic()
         {
             this.options = PagedListRenderOptionsBase.Classic;
 
             return Build();
         }
 
-        public IHtmlString ClassicPlusFirstAndLast()
+        public IHtmlContent ClassicPlusFirstAndLast()
         {
             this.options = PagedListRenderOptionsBase.ClassicPlusFirstAndLast;
 
             return Build();
         }
 
-        public IHtmlString Minimal()
+        public IHtmlContent Minimal()
         {
             this.options = PagedListRenderOptionsBase.Minimal;
 
             return Build();
         }
 
-        public IHtmlString MinimalWithPageCountText()
+        public IHtmlContent MinimalWithPageCountText()
         {
             this.options = PagedListRenderOptionsBase.MinimalWithPageCountText;
 
             return Build();
         }
 
-        public IHtmlString MinimalWithItemCountText()
+        public IHtmlContent MinimalWithItemCountText()
         {
             this.options = PagedListRenderOptionsBase.MinimalWithItemCountText;
 
             return Build();
         }
 
-        public IHtmlString PageNumbersOnly()
+        public IHtmlContent PageNumbersOnly()
         {
             this.options = PagedListRenderOptionsBase.PageNumbersOnly;
 
             return Build();
         }
 
-        public IHtmlString OnlyShowFivePagesAtATime()
+        public IHtmlContent OnlyShowFivePagesAtATime()
         {
             this.options = PagedListRenderOptionsBase.OnlyShowFivePagesAtATime;
 
@@ -142,22 +141,22 @@
             return this;
         }
 
-        public IHtmlString Build(PagedListRenderOptions options)
+        public IHtmlContent Build(PagedListRenderOptions options)
         {
             this.options = options ?? this.options;
 
             return Build();
         }
 
-        public IHtmlString Build()
+        public IHtmlContent Build()
         {
             if (string.IsNullOrWhiteSpace(this.partialViewName))
             {
                 return this.htmlHelper.PagedListPager(this.pagedList, this.generatePageUrl, this.options);
             }
 
-            this.htmlHelper.ViewData["Options"] = this.options;
-            this.htmlHelper.ViewData["GeneratePageUrl"] = this.generatePageUrl;
+            this.htmlHelper.ViewBag.Options = this.options;
+            this.htmlHelper.ViewBag.GeneratePageUrl = this.generatePageUrl;
 
             return this.htmlHelper.Partial(this.partialViewName, this.pagedList);
         }
