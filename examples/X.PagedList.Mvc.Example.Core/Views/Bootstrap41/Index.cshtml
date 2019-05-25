@@ -23,5 +23,8 @@
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
 @Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new X.PagedList.Mvc.Common.PagedListRenderOptionsBase
 {
+    PageClasses = new string[] { "page-link" },
+    UlElementClasses = new string[] { "pagination" },
+    LiElementClasses = new string[] { "page-item" },
     DisplayItemSliceAndTotal = true,
 })

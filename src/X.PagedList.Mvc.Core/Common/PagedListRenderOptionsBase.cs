@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
 
 namespace X.PagedList.Mvc.Common
 {
@@ -11,6 +12,7 @@ namespace X.PagedList.Mvc.Common
         ///</summary>
         public PagedListRenderOptionsBase()
         {
+            HtmlEncoder = HtmlEncoder.Default;
             DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded;
             DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded;
             DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded;
@@ -40,6 +42,11 @@ namespace X.PagedList.Mvc.Common
             PreviousElementClass = "PagedList-skipToPrevious";
             NextElementClass = "PagedList-skipToNext";
         }
+
+        /// <summary>
+        /// Gets or sets the HtmlEncoder to use encoding HTML render.
+        /// </summary>
+        public HtmlEncoder HtmlEncoder { get; set; }
 
         ///<summary>
         /// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.

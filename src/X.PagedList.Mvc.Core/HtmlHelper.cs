@@ -25,9 +25,9 @@ namespace X.PagedList.Mvc.Core
             tagBuilder.InnerHtml.AppendHtml(innerHtml);
         }
 
-        private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode = TagRenderMode.Normal)
+        private static string TagBuilderToString(TagBuilder tagBuilder, HtmlEncoder encoder = null, TagRenderMode renderMode = TagRenderMode.Normal)
         {
-            var encoder = HtmlEncoder.Create(new TextEncoderSettings());
+            encoder = encoder ?? HtmlEncoder.Create(new TextEncoderSettings());
             var writer = new System.IO.StringWriter() as TextWriter;
             tagBuilder.WriteTo(writer, encoder);
             return writer.ToString();
@@ -54,7 +54,7 @@ namespace X.PagedList.Mvc.Core
                 }
             }
 
-            AppendHtml(li, TagBuilderToString(inner));
+            AppendHtml(li, TagBuilderToString(inner, options.HtmlEncoder));
             return li;
         }
 
@@ -284,7 +284,7 @@ namespace X.PagedList.Mvc.Core
             //collapse all of the list items into one big string
             var listItemLinksString = listItemLinks.Aggregate(
                 new StringBuilder(),
-                (sb, listItem) => sb.Append(TagBuilderToString(listItem)),
+                (sb, listItem) => sb.Append(TagBuilderToString(listItem, options.HtmlEncoder)),
                 sb => sb.ToString()
                 );
 
@@ -302,9 +302,9 @@ namespace X.PagedList.Mvc.Core
             var outerDiv = new TagBuilder("div");
             foreach (var c in options.ContainerDivClasses ?? Enumerable.Empty<string>())
                 outerDiv.AddCssClass(c);
-            AppendHtml(outerDiv, TagBuilderToString(ul));
+            AppendHtml(outerDiv, TagBuilderToString(ul, options.HtmlEncoder));
 
-            return new HtmlString(TagBuilderToString(outerDiv));
+            return new HtmlString(TagBuilderToString(outerDiv, options.HtmlEncoder));
         }
 
         ///<summary>
@@ -374,9 +374,9 @@ namespace X.PagedList.Mvc.Core
 
             AppendHtml(fieldset, TagBuilderToString(label));
 
-            AppendHtml(fieldset, TagBuilderToString(input, TagRenderMode.SelfClosing));
+            AppendHtml(fieldset, TagBuilderToString(input, null, TagRenderMode.SelfClosing));
 
-            AppendHtml(fieldset, TagBuilderToString(submit, TagRenderMode.SelfClosing));
+            AppendHtml(fieldset, TagBuilderToString(submit, null, TagRenderMode.SelfClosing));
 
             AppendHtml(form, TagBuilderToString(fieldset));
             return new HtmlString(TagBuilderToString(form));
