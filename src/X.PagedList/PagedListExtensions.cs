@@ -88,7 +88,9 @@ namespace X.PagedList
         /// <seealso cref="PagedList{T}"/>
         public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> superset)
         {
-            return new PagedList<T>(superset, 1, superset.Count());
+            int supersetSize = superset.Count();
+            int pageSize = supersetSize == 0 ? 1 : supersetSize;
+            return new PagedList<T>(superset, 1, pageSize);
         }
 
         /// <summary>

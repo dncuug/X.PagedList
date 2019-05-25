@@ -30,7 +30,7 @@ namespace X.PagedList.Tests
 			var partitionList = list.Partition(1000);
 			
 			//assert
-			Assert.Equal(1, partitionList.Count());
+			Assert.Single(partitionList);
 			Assert.Equal(10, partitionList.First().Count());
 		}
 
@@ -60,8 +60,8 @@ namespace X.PagedList.Tests
 
 			//assert
 			Assert.Equal(9, splitList.Count());
-			Assert.Equal(1, splitList.First().Count());
-			Assert.Equal(1, splitList.Last().Count());
+			Assert.Single(splitList.First());
+			Assert.Single(splitList.Last());
 		}
 	}
 }
