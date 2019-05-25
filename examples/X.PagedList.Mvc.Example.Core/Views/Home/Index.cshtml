@@ -1,9 +1,13 @@
 ﻿@{
     ViewBag.Title = "Product Listing";
+    var pagedList = (IPagedList) ViewBag.Names;
 }
 
 @using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
 @using X.PagedList; @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
+@using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Core.Fluent
+
 
 <!-- import the included stylesheet for some (very basic) default styling -->
 <link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -18,4 +22,20 @@
 </ul>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }))
+@Html.PagedListPager(pagedList, page => Url.Action("Index", new { page }))
+
+<h3>Fluent pager</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .Build())
+
+<h3>Pager for #85</h3>
+@(Html.Pager(pagedList)
+    .Url(page => Url.Action("Index", new { page }))
+    .WithPartialView("Paging/_Pager_85")
+    .DisplayLinkToFirstPage (PagedListDisplayMode.IfNeeded)
+    .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
+    .DisplayLinkToPreviousPage()
+    .DisplayLinkToNextPage()
+    .MaximumPageNumbersToDisplay(3)
+    .Build())
