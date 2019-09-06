@@ -177,15 +177,17 @@ namespace X.PagedList
             var subset = new List<T>();
             var totalCount = 0;
 
-            if ((superset != null) && (superset.Any()))
+            if (superset != null)
             {
                 totalCount = superset.Count();
-
-                subset.AddRange(
-                    (pageNumber == 1)
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-                        : await superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-                );
+                if (totalCount > 0)
+                {
+                    subset.AddRange(
+                        (pageNumber == 1)
+                            ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                            : await superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                    );
+                }
             }
 
             return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
