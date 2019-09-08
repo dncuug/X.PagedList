@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using X.PagedList.Mvc.Common;
+using X.PagedList.Mvc.Core.Common;
 
 namespace X.PagedList.Mvc.Core
 {

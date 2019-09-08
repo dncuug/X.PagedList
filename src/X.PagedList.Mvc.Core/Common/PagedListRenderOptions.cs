@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using X.PagedList.Mvc.Core;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Mvc.Common;
 
-namespace X.PagedList.Mvc.Common
+namespace X.PagedList.Mvc.Core.Common
 {
 	///<summary>
 	/// Options for configuring the output of <see cref = "X.PagedList.Mvc.Core.HtmlHelper" />

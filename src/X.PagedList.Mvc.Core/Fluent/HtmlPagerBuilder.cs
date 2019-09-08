@@ -1,4 +1,6 @@
-﻿namespace X.PagedList.Mvc.Core.Fluent
+﻿using X.PagedList.Mvc.Common;
+
+namespace X.PagedList.Mvc.Core.Fluent
 {
     using System;
     using Common;
