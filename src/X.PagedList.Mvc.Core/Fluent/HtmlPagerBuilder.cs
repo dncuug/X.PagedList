@@ -9,158 +9,158 @@ namespace X.PagedList.Mvc.Core.Fluent
 
     internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
     {
-        private readonly IHtmlHelper htmlHelper;
-        private readonly IPagedList pagedList;
+        private readonly IHtmlHelper _htmlHelper;
+        private readonly IPagedList _pagedList;
 
-        private Func<int, string> generatePageUrl;
-        private PagedListRenderOptionsBase options;
-        private string partialViewName;
+        private Func<int, string> _generatePageUrl;
+        private PagedListRenderOptionsBase _options;
+        private string _partialViewName;
 
         public HtmlPagerBuilder(IHtmlHelper htmlHelper, IPagedList pagedList)
         {
-            this.htmlHelper = htmlHelper;
-            this.pagedList = pagedList;
-            this.generatePageUrl = x => x.ToString();
-            this.options = new PagedListRenderOptions();
+            this._htmlHelper = htmlHelper;
+            this._pagedList = pagedList;
+            this._generatePageUrl = x => x.ToString();
+            this._options = new PagedListRenderOptions();
         }
 
         public IHtmlPagerBuilder Url(Func<int, string> builder)
         {
-            this.generatePageUrl = builder;
+            this._generatePageUrl = builder;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayLinkToFirstPage(PagedListDisplayMode displayMode = PagedListDisplayMode.Always)
         {
-            this.options.DisplayLinkToFirstPage = displayMode;
+            this._options.DisplayLinkToFirstPage = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayLinkToLastPage(PagedListDisplayMode displayMode = PagedListDisplayMode.Always)
         {
-            this.options.DisplayLinkToLastPage = displayMode;
+            this._options.DisplayLinkToLastPage = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayLinkToPreviousPage(PagedListDisplayMode displayMode = PagedListDisplayMode.Always)
         {
-            this.options.DisplayLinkToPreviousPage = displayMode;
+            this._options.DisplayLinkToPreviousPage = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayLinkToNextPage(PagedListDisplayMode displayMode = PagedListDisplayMode.Always)
         {
-            this.options.DisplayLinkToNextPage = displayMode;
+            this._options.DisplayLinkToNextPage = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayLinkToIndividualPages(bool displayMode = true)
         {
-            this.options.DisplayLinkToIndividualPages = displayMode;
+            this._options.DisplayLinkToIndividualPages = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayPageCountAndCurrentLocation(bool displayMode = true)
         {
-            this.options.DisplayPageCountAndCurrentLocation = displayMode;
+            this._options.DisplayPageCountAndCurrentLocation = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder DisplayEllipsesWhenNotShowingAllPageNumbers(bool displayMode = true)
         {
-            this.options.DisplayEllipsesWhenNotShowingAllPageNumbers = displayMode;
+            this._options.DisplayEllipsesWhenNotShowingAllPageNumbers = displayMode;
 
             return this;
         }
 
         public IHtmlPagerBuilder MaximumPageNumbersToDisplay(int pageNumbers)
         {
-            this.options.MaximumPageNumbersToDisplay = pageNumbers;
+            this._options.MaximumPageNumbersToDisplay = pageNumbers;
 
             return this;
         }
 
         public IHtmlContent Classic()
         {
-            this.options = PagedListRenderOptionsBase.Classic;
+            this._options = PagedListRenderOptionsBase.Classic;
 
             return Build();
         }
 
         public IHtmlContent ClassicPlusFirstAndLast()
         {
-            this.options = PagedListRenderOptionsBase.ClassicPlusFirstAndLast;
+            this._options = PagedListRenderOptionsBase.ClassicPlusFirstAndLast;
 
             return Build();
         }
 
         public IHtmlContent Minimal()
         {
-            this.options = PagedListRenderOptionsBase.Minimal;
+            this._options = PagedListRenderOptionsBase.Minimal;
 
             return Build();
         }
 
         public IHtmlContent MinimalWithPageCountText()
         {
-            this.options = PagedListRenderOptionsBase.MinimalWithPageCountText;
+            this._options = PagedListRenderOptionsBase.MinimalWithPageCountText;
 
             return Build();
         }
 
         public IHtmlContent MinimalWithItemCountText()
         {
-            this.options = PagedListRenderOptionsBase.MinimalWithItemCountText;
+            this._options = PagedListRenderOptionsBase.MinimalWithItemCountText;
 
             return Build();
         }
 
         public IHtmlContent PageNumbersOnly()
         {
-            this.options = PagedListRenderOptionsBase.PageNumbersOnly;
+            this._options = PagedListRenderOptionsBase.PageNumbersOnly;
 
             return Build();
         }
 
         public IHtmlContent OnlyShowFivePagesAtATime()
         {
-            this.options = PagedListRenderOptionsBase.OnlyShowFivePagesAtATime;
+            this._options = PagedListRenderOptionsBase.OnlyShowFivePagesAtATime;
 
             return Build();
         }
 
         public IHtmlPagerBuilder WithPartialView(string partialViewName)
         {
-            this.partialViewName = partialViewName;
+            this._partialViewName = partialViewName;
 
             return this;
         }
 
         public IHtmlContent Build(PagedListRenderOptions options)
         {
-            this.options = options ?? this.options;
+            this._options = options ?? this._options;
 
             return Build();
         }
 
         public IHtmlContent Build()
         {
-            if (string.IsNullOrWhiteSpace(this.partialViewName))
+            if (string.IsNullOrWhiteSpace(this._partialViewName))
             {
-                return this.htmlHelper.PagedListPager(this.pagedList, this.generatePageUrl, this.options);
+                return this._htmlHelper.PagedListPager(this._pagedList, this._generatePageUrl, this._options);
             }
 
-            this.htmlHelper.ViewBag.Options = this.options;
-            this.htmlHelper.ViewBag.GeneratePageUrl = this.generatePageUrl;
+            this._htmlHelper.ViewBag.Options = this._options;
+            this._htmlHelper.ViewBag.GeneratePageUrl = this._generatePageUrl;
 
-            return this.htmlHelper.Partial(this.partialViewName, this.pagedList);
+            return this._htmlHelper.Partial(this._partialViewName, this._pagedList);
         }
     }
 }
