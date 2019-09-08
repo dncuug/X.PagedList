@@ -19,16 +19,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\X.PagedList.Mvc.Core\Common\GoToFormRenderOptions.cs" Link="Common\GoToFormRenderOptions.cs" />
-    <Compile Include="..\X.PagedList.Mvc.Core\Common\PagedListDisplayMode.cs" Link="Common\PagedListDisplayMode.cs" />
-    <Compile Include="..\X.PagedList.Mvc.Core\Common\PagedListRenderOptionsBase.cs" Link="Common\PagedListRenderOptionsBase.cs" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.6" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\X.PagedList.Web.Common\X.PagedList.Web.Common.csproj" />
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
   </ItemGroup>
 

@@ -15,10 +15,11 @@
     <FileVersion>7.6.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.1.2" />    
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />    
   </ItemGroup>
    <ItemGroup>
+    <ProjectReference Include="..\X.PagedList.Web.Common\X.PagedList.Web.Common.csproj" />
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
   </ItemGroup>
 </Project>

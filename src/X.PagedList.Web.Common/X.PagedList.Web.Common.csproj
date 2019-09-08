@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.1;netstandard2.0;net45;net461</TargetFrameworks>
+    <Version>7.9.0</Version>
+    <AssemblyVersion>7.9.0</AssemblyVersion>
+    <FileVersion>7.9.0</FileVersion>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

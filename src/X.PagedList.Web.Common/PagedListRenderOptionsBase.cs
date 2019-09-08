@@ -11,11 +11,7 @@ namespace X.PagedList.Mvc.Common
         ///</summary>
         public PagedListRenderOptionsBase()
         {
-
-#if NETSTANDARD
             HtmlEncoder = System.Text.Encodings.Web.HtmlEncoder.Default;
-#endif
-
             DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded;
             DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded;
             DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded;
@@ -46,12 +42,10 @@ namespace X.PagedList.Mvc.Common
             NextElementClass = "PagedList-skipToNext";
         }
 
-#if NETSTANDARD
         /// <summary>
         /// Gets or sets the HtmlEncoder to use encoding HTML render.
         /// </summary>
         public System.Text.Encodings.Web.HtmlEncoder HtmlEncoder { get; set; }
-#endif
 
         ///<summary>
         /// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
@@ -246,7 +240,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase Classic => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase Classic => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -257,7 +251,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase ClassicPlusFirstAndLast => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase ClassicPlusFirstAndLast => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Always,
             DisplayLinkToLastPage = PagedListDisplayMode.Always,
@@ -268,7 +262,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Shows only the Previous and Next links.
         ///</summary>
-        public static PagedListRenderOptionsBase Minimal => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase Minimal => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -280,7 +274,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Shows Previous and Next links along with current page number and page count.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithPageCountText => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase MinimalWithPageCountText => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -293,7 +287,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         ///	Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithItemCountText => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase MinimalWithItemCountText => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -306,7 +300,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         ///	Shows only links to each individual page.
         ///</summary>
-        public static PagedListRenderOptionsBase PageNumbersOnly => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase PageNumbersOnly => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -318,7 +312,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         ///	Shows Next and Previous while limiting to a max of 5 page numbers at a time.
         ///</summary>
-        public static PagedListRenderOptionsBase OnlyShowFivePagesAtATime => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase OnlyShowFivePagesAtATime => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -330,7 +324,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links).
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPager => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase TwitterBootstrapPager => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -348,7 +342,7 @@ namespace X.PagedList.Mvc.Common
         ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links), with aligned links.
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPagerAligned => new PagedListRenderOptions
+        public static PagedListRenderOptionsBase TwitterBootstrapPagerAligned => new PagedListRenderOptionsBase
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
