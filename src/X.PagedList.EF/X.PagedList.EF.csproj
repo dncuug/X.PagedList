@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>7.9.0</Version>
     <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
@@ -14,6 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>7.9.0</AssemblyVersion>
     <FileVersion>7.9.0</FileVersion>
+    <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
