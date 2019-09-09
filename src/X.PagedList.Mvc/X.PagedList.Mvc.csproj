@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>7.9.0</Version>
+    <Version>8.0.0</Version>
     <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
     <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET MVC</Description>
@@ -13,8 +13,8 @@
     <RepositoryType>git</RepositoryType>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>x_paged_list_mvc.snk</AssemblyOriginatorKeyFile>
-    <AssemblyVersion>7.9.0</AssemblyVersion>
-    <FileVersion>7.9.0</FileVersion>
+    <AssemblyVersion>8.0.0</AssemblyVersion>
+    <FileVersion>8.0.0</FileVersion>
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 

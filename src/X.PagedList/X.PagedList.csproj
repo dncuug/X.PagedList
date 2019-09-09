@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2018</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
-    <Version>7.9.0</Version>
-    <AssemblyVersion>7.9.0</AssemblyVersion>
-    <FileVersion>7.9.0</FileVersion>
+    <Version>8.0.0</Version>
+    <AssemblyVersion>8.0.0</AssemblyVersion>
+    <FileVersion>8.0.0</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>

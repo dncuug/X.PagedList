@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace X.PagedList.Mvc.Common
+namespace X.PagedList.Web.Common
 {
     public class PagedListRenderOptionsBase
     {

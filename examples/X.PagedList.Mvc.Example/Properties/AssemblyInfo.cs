@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("X.PagedList.Mvc.Example")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NTUU KPI")]
+[assembly: AssemblyCompany(".NET Core Ukrainian User Group")]
 [assembly: AssemblyProduct("X.PagedList.Mvc.Example")]
-[assembly: AssemblyCopyright("Copyright © 2016")]
+[assembly: AssemblyCopyright("Copyright © 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("5.2.0.*")]
-[assembly: AssemblyFileVersion("5.2.0.5100")]
+[assembly: AssemblyVersion("8.0.0.*")]
+[assembly: AssemblyFileVersion("8.0.0.8000")]
