@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.1;netstandard2.0;net45;net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2018</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
     <Version>7.9.0</Version>
     <AssemblyVersion>7.9.0</AssemblyVersion>

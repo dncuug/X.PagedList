@@ -9,7 +9,6 @@ namespace X.PagedList.Mvc.Core.Common
 	///</summary>
 	public class PagedListRenderOptions : PagedListRenderOptionsBase
     {
-
         /// <summary>
         /// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
         /// </summary>
@@ -23,13 +22,14 @@ namespace X.PagedList.Mvc.Core.Common
         /// <returns>The PagedListRenderOptionsBase value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
         public static PagedListRenderOptionsBase EnableUnobtrusiveAjaxReplacing(PagedListRenderOptionsBase options, AjaxOptions ajaxOptions)
         {
-            if (options is PagedListRenderOptions)
+            if (options is PagedListRenderOptions renderOptions)
             {
-                ((PagedListRenderOptions)options).FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
+                renderOptions.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
                  {
                      var liClass = liTagBuilder.Attributes.ContainsKey("class")
                          ? liTagBuilder.Attributes["class"] ?? ""
                          : "";
+
                      if (ajaxOptions != null && !liClass.Contains("disabled") && !liClass.Contains("active"))
                      {
                          foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
@@ -38,6 +38,7 @@ namespace X.PagedList.Mvc.Core.Common
                      return aTagBuilder;
                  };
             }
+
             return options;
         }
 
