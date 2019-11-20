@@ -167,7 +167,7 @@ bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Co
 
 ### Custom Pager Configurations
 
-You can instantiate [**PagedListRenderOptions**](https://github.com/dncuug/X.PagedList/blob/master/src/X.PagedList.Mvc/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
+You can instantiate [**PagedListRenderOptions**](https://github.com/dncuug/X.PagedList/blob/master/src/X.PagedList.Mvc/Common/PagedListRenderOptions.cs) yourself to create custom configurations. All elements/links have discrete CSS classes applied to make styling easier as well.
 
 ```html
 <h3>Custom Wording (<em>Spanish Translation Example</em>)</h3>
