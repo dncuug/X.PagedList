@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using X.PagedList.Mvc.Common;
+using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc
 {

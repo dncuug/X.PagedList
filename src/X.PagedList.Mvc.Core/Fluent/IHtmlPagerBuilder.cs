@@ -1,4 +1,4 @@
-﻿using X.PagedList.Mvc.Common;
+﻿using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc.Core.Fluent
 {

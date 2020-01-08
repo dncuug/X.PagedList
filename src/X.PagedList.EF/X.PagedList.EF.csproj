@@ -1,10 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>7.9.0</Version>
-    <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
+    <Version>8.0.1</Version>
+    <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
     <Company>.NET Core Ukrainian User Group</Company>
     <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET MVC</Description>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
@@ -12,12 +11,14 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>7.9.0</AssemblyVersion>
-    <FileVersion>7.9.0</FileVersion>
+    <AssemblyVersion>8.0.1</AssemblyVersion>
+    <FileVersion>8.0.1</FileVersion>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.2.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>    

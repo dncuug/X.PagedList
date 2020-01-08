@@ -1,6 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using X.PagedList.Mvc.Common;
+using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc.Core.Common
 {
