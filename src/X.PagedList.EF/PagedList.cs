@@ -37,9 +37,9 @@ namespace X.PagedList.EF
 		}
 
 		private void InitSubset(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
-        {
-            // add items to internal list
-            var items = pageNumber == 1
+		{
+			// add items to internal list
+			var items = pageNumber == 1
 				? superset.OrderBy(keySelectorMethod).AsQueryable().Take(() => pageSize).ToList()
 				: superset.OrderBy(keySelectorMethod).AsQueryable().Skip(() => (pageNumber - 1) * pageSize).Take(() => pageSize).ToList();
 
@@ -72,11 +72,11 @@ namespace X.PagedList.EF
 			: base(pageNumber, pageSize, superset?.Count() ?? 0)
 		{
 			if (TotalItemCount > 0)
-            {
+			{
 
-                superset = superset ?? new List<T>().AsQueryable();
+				superset = superset ?? new List<T>().AsQueryable();
 
-                Subset.AddRange(pageNumber == 1
+				Subset.AddRange(pageNumber == 1
 					? superset.Take(() => pageSize).ToList()
 					: superset.Skip(() => (pageNumber - 1) * pageSize).Take(() => pageSize).ToList()
 				);
