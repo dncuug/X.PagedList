@@ -1,10 +1,10 @@
-{
+﻿{
   "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
+    "windowsAuthentication": false, 
+    "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:49951/",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:55924",
+      "sslPort": 44326
     }
   },
   "profiles": {
@@ -16,7 +16,12 @@
       }
     },
     "X.PagedList.Mvc.Example.Core": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

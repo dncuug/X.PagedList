@@ -2,22 +2,22 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.0.0</Version>
-    <AssemblyVersion>8.0.0</AssemblyVersion>
-    <FileVersion>8.0.0</FileVersion>
+    <Version>8.0.5</Version>
+    <AssemblyVersion>8.0.5</AssemblyVersion>
+    <FileVersion>8.0.5</FileVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Encodings.Web" Version="4.5.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

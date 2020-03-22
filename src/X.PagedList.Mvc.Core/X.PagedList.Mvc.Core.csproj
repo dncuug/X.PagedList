@@ -1,25 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Description>Library for easily paging through any IEnumerable/IQueryable in ASP.NET Core</Description>
-    <Authors>Copyright Troy Goode, Ernado © 2019</Authors>
-    <Company>.NET Core Ukrainian User Group</Company>
+    <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.0.0</Version>
-    <AssemblyVersion>8.0.0</AssemblyVersion>
-    <FileVersion>8.0.0</FileVersion>
+    <Version>8.0.5</Version>
+    <AssemblyVersion>8.0.5</AssemblyVersion>
+    <FileVersion>8.0.5</FileVersion>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />    
   </ItemGroup>
-   <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\X.PagedList.Web.Common\X.PagedList.Web.Common.csproj" />
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
   </ItemGroup>
+
 </Project>
