@@ -174,6 +174,16 @@ namespace X.PagedList
 	    /// <seealso cref="PagedList{T}"/>
 	    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken)
         {
+            if (pageNumber < 1)
+            {
+                throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
+            }
+
+            if (pageSize < 1)
+            {
+                throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
+            }
+
             var subset = new List<T>();
             var totalCount = 0;
 
