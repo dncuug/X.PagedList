@@ -13,7 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <AssemblyVersion>8.0.7</AssemblyVersion>
     <FileVersion>8.0.7</FileVersion>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
     <DelaySign>false</DelaySign>
