@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace X.PagedList.Web.Common
+﻿namespace X.PagedList.Web.Common
 {
-    public class PagedListRenderOptionsBase
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text.Encodings.Web;
+
+    public sealed class PagedListRenderOptions
     {
         ///<summary>
         /// The default settings render all navigation links and no descriptive text
         ///</summary>
-        public PagedListRenderOptionsBase()
+        public PagedListRenderOptions()
         {
             HtmlEncoder = System.Text.Encodings.Web.HtmlEncoder.Default;
             DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded;
@@ -45,7 +46,7 @@ namespace X.PagedList.Web.Common
         /// <summary>
         /// Gets or sets the HtmlEncoder to use encoding HTML render.
         /// </summary>
-        public System.Text.Encodings.Web.HtmlEncoder HtmlEncoder { get; set; }
+        public HtmlEncoder HtmlEncoder { get; set; }
 
         ///<summary>
         /// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
@@ -240,7 +241,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase Classic => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions Classic => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -251,7 +252,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Also includes links to First and Last pages.
         ///</summary>
-        public static PagedListRenderOptionsBase ClassicPlusFirstAndLast => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions ClassicPlusFirstAndLast => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Always,
             DisplayLinkToLastPage = PagedListDisplayMode.Always,
@@ -262,7 +263,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Shows only the Previous and Next links.
         ///</summary>
-        public static PagedListRenderOptionsBase Minimal => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions Minimal => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -274,7 +275,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Shows Previous and Next links along with current page number and page count.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithPageCountText => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions MinimalWithPageCountText => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -287,7 +288,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         ///	Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
         ///</summary>
-        public static PagedListRenderOptionsBase MinimalWithItemCountText => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions MinimalWithItemCountText => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -300,7 +301,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         ///	Shows only links to each individual page.
         ///</summary>
-        public static PagedListRenderOptionsBase PageNumbersOnly => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions PageNumbersOnly => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -312,7 +313,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         ///	Shows Next and Previous while limiting to a max of 5 page numbers at a time.
         ///</summary>
-        public static PagedListRenderOptionsBase OnlyShowFivePagesAtATime => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions OnlyShowFivePagesAtATime => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -324,7 +325,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links).
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPager => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions TwitterBootstrapPager => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -342,7 +343,7 @@ namespace X.PagedList.Web.Common
         ///<summary>
         /// Twitter Bootstrap 2's basic pager format (just Previous and Next links), with aligned links.
         ///</summary>
-        public static PagedListRenderOptionsBase TwitterBootstrapPagerAligned => new PagedListRenderOptionsBase
+        public static PagedListRenderOptions TwitterBootstrapPagerAligned => new PagedListRenderOptions
         {
             DisplayLinkToFirstPage = PagedListDisplayMode.Never,
             DisplayLinkToLastPage = PagedListDisplayMode.Never,
@@ -356,5 +357,74 @@ namespace X.PagedList.Web.Common
             LinkToPreviousPageFormat = "&larr; Older",
             LinkToNextPageFormat = "Newer &rarr;"
         };
+
+        /// <summary>
+        /// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
+        /// </summary>
+        public Func<ITagBuilder, ITagBuilder, ITagBuilder> FunctionToTransformEachPageLink { get; set; }
+
+        /// <summary>
+        /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+        /// </summary>
+        /// <param name="options">The preferred Html.PagedList(...) style options.</param>
+        /// <param name="ajaxOptions">The ajax options that will put into the link</param>
+        /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, AjaxOptions ajaxOptions)
+        {
+            if (options is PagedListRenderOptions renderOptions)
+            {
+                renderOptions.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
+                {
+                    var liClass = liTagBuilder.Attributes.ContainsKey("class")
+                        ? liTagBuilder.Attributes["class"] ?? string.Empty
+                        : string.Empty;
+
+                    if (ajaxOptions != null && !liClass.Contains("disabled") && !liClass.Contains("active"))
+                    {
+                        foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
+                        {
+                            aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString());
+                        }
+                    }
+
+                    liTagBuilder.AppendHtml(aTagBuilder.ToString());
+
+                    return liTagBuilder;
+                };
+            }
+
+            return options;
+        }
+
+        /// <summary>
+        /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+        /// </summary>
+        /// <param name="id">The element ID ("my_id") of the element whose innerHtml should be replaced, if # is included at the start this will be removed.</param>
+        /// <returns>A default instance of PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(string id)
+        {
+
+            if (id.StartsWith("#"))
+                id = id.Substring(1);
+
+            var ajaxOptions = new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = id
+            };
+
+            return EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions(), ajaxOptions);
+        }
+
+        /// <summary>
+        /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
+        /// </summary>
+        /// <param name="ajaxOptions">Ajax options that will be used to generate the unobstrusive tags on the link</param>
+        /// <returns>A default instance of PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
+        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(AjaxOptions ajaxOptions)
+        {
+            return EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions(), ajaxOptions);
+        }
     }
 }

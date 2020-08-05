@@ -6,7 +6,6 @@ namespace X.PagedList.Mvc.Fluent
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Html;
-    using Common;
 
     internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
     {
@@ -14,7 +13,7 @@ namespace X.PagedList.Mvc.Fluent
         private readonly IPagedList _pagedList;
 
         private Func<int, string> _generatePageUrl;
-        private PagedListRenderOptionsBase _options;
+        private PagedListRenderOptions _options;
         private string _partialViewName;
 
         public HtmlPagerBuilder(HtmlHelper htmlHelper, IPagedList pagedList)
@@ -90,49 +89,49 @@ namespace X.PagedList.Mvc.Fluent
 
         public IHtmlString Classic()
         {
-            this._options = PagedListRenderOptionsBase.Classic;
+            this._options = PagedListRenderOptions.Classic;
 
             return Build();
         }
 
         public IHtmlString ClassicPlusFirstAndLast()
         {
-            this._options = PagedListRenderOptionsBase.ClassicPlusFirstAndLast;
+            this._options = PagedListRenderOptions.ClassicPlusFirstAndLast;
 
             return Build();
         }
 
         public IHtmlString Minimal()
         {
-            this._options = PagedListRenderOptionsBase.Minimal;
+            this._options = PagedListRenderOptions.Minimal;
 
             return Build();
         }
 
         public IHtmlString MinimalWithPageCountText()
         {
-            this._options = PagedListRenderOptionsBase.MinimalWithPageCountText;
+            this._options = PagedListRenderOptions.MinimalWithPageCountText;
 
             return Build();
         }
 
         public IHtmlString MinimalWithItemCountText()
         {
-            this._options = PagedListRenderOptionsBase.MinimalWithItemCountText;
+            this._options = PagedListRenderOptions.MinimalWithItemCountText;
 
             return Build();
         }
 
         public IHtmlString PageNumbersOnly()
         {
-            this._options = PagedListRenderOptionsBase.PageNumbersOnly;
+            this._options = PagedListRenderOptions.PageNumbersOnly;
 
             return Build();
         }
 
         public IHtmlString OnlyShowFivePagesAtATime()
         {
-            this._options = PagedListRenderOptionsBase.OnlyShowFivePagesAtATime;
+            this._options = PagedListRenderOptions.OnlyShowFivePagesAtATime;
 
             return Build();
         }

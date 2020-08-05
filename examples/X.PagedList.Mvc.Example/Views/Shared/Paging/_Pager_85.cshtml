@@ -1,11 +1,10 @@
 ﻿@using System.Text
-@using X.PagedList.Mvc.Common
 @using X.PagedList.Web.Common
 
 @model X.PagedList.IPagedList
 
 @{
-    var options = (PagedListRenderOptionsBase)ViewData["Options"];
+    var options = (PagedListRenderOptions)ViewData["Options"];
     var generatePageUrl = (Func<int, string>)ViewData["GeneratePageUrl"];
     var containerDivClasses = (options.ContainerDivClasses ?? Enumerable.Empty<string>()).Aggregate(new StringBuilder(), (c, n) => c.Append(n).Append(" "));
     var ulElementClasses = (options.UlElementClasses ?? Enumerable.Empty<string>()).Aggregate(new StringBuilder(), (c, n) => c.Append(n).Append(" "));

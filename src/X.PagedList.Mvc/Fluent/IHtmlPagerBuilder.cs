@@ -4,7 +4,6 @@ namespace X.PagedList.Mvc.Fluent
 {
     using System;
     using System.Web;
-    using Common;
 
     public interface IHtmlPagerBuilder
     {

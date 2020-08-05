@@ -23,7 +23,7 @@
 </section>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new PagedListRenderOptionsBase
+@Html.PagedListPager((IPagedList)ViewBag.Names, page => Url.Action("Index", new { page }), new PagedListRenderOptions
 {
     PageClasses = new string[] { "page-link" },
     UlElementClasses = new string[] { "pagination" },
