@@ -3,7 +3,6 @@
 namespace X.PagedList.Mvc.Core.Fluent
 {
     using System;
-    using Common;
     using Microsoft.AspNetCore.Html;
 
     public interface IHtmlPagerBuilder

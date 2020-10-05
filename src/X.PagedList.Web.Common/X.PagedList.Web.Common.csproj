@@ -22,4 +22,8 @@
     <PackageReference Include="System.Text.Encodings.Web" Version="4.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
+  </ItemGroup>
+
 </Project>

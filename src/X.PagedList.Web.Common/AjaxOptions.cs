@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace X.PagedList.Mvc.Core
+namespace X.PagedList.Web.Common
 {
     public class AjaxOptions
     {
