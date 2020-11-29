@@ -3,14 +3,15 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
+    <Company>Ukrainian .NET Developer Community</Company>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.0.7</Version>
-    <AssemblyVersion>8.0.7</AssemblyVersion>
-    <FileVersion>8.0.7</FileVersion>
+    <Version>8.1.0</Version>
+    <AssemblyVersion>8.1.0</AssemblyVersion>
+    <FileVersion>8.1.0</FileVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <TargetFramework>netstandard2.0</TargetFramework>
