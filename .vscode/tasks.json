@@ -1,15 +1,41 @@
 {
-    "version": "0.1.0",
-    "command": "dotnet",
-    "isShellCommand": true,
-    "args": [],
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
             "args": [
-                "${workspaceRoot}/tests/X.PagedList.Tests/X.PagedList.Tests.csproj"
+                "build",
+                "${workspaceFolder}/examples/X.PagedList.Mvc.Example.Core/X.PagedList.Mvc.Example.Core.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
-            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/examples/X.PagedList.Mvc.Example.Core/X.PagedList.Mvc.Example.Core.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "${workspaceFolder}/examples/X.PagedList.Mvc.Example.Core/X.PagedList.Mvc.Example.Core.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
             "problemMatcher": "$msCompile"
         }
     ]
