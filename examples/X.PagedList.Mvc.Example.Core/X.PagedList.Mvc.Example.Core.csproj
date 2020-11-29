@@ -8,7 +8,4 @@
     <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
     <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj" />
   </ItemGroup>
-
-
-
 </Project>
