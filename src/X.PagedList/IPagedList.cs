@@ -10,7 +10,7 @@ namespace X.PagedList
 	/// </remarks>
 	/// <typeparam name="T">The type of object the collection should contain.</typeparam>
 	/// <seealso cref="IEnumerable{T}"/>
-	public interface IPagedList<out T> : IPagedList, IEnumerable<T>
+	public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>, IEnumerable<T>
 	{
 		///<summary>
 		/// Gets the element at the specified index.
