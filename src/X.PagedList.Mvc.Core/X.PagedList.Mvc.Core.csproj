@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2021</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
