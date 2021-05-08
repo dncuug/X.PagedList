@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2020</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2021</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
     <Version>8.1.0</Version>
     <AssemblyVersion>8.1.0</AssemblyVersion>
@@ -16,6 +16,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
