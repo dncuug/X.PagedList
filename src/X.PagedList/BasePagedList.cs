@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace X.PagedList
 {
     /// <summary>
-    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing
+    /// metadata about the superset collection of objects this subset was created from.
     /// </summary>
     /// <remarks>
-    /// Represents a subset of a collection of objects that can be individually accessed by index and containing metadata about the superset collection of objects this subset was created from.
+    /// Represents a subset of a collection of objects that can be individually accessed by index and containing
+    /// metadata about the superset collection of objects this subset was created from.
     /// </remarks>
     /// <typeparam name = "T">The type of object the collection should contain.</typeparam>
     /// <seealso cref = "IPagedList{T}" />
     /// <seealso cref = "List{T}" />
+    [PublicAPI]
     public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     {
         protected readonly List<T> Subset = new List<T>();
@@ -25,7 +29,8 @@ namespace X.PagedList
         }
 
         /// <summary>
-        /// Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties needed to calculate position and size data on the subset and superset.
+        /// Initializes a new instance of a type deriving from <see cref = "BasePagedList{T}" /> and sets properties
+        /// needed to calculate position and size data on the subset and superset.
         /// </summary>
         /// <param name = "pageNumber">The one-based index of the subset of objects contained by this instance.</param>
         /// <param name = "pageSize">The maximum size of any individual subset.</param>
@@ -56,7 +61,7 @@ namespace X.PagedList
                             ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
                             : 0;
 
-            bool pageNumberIsGood = PageCount > 0 && PageNumber <= PageCount;
+            var pageNumberIsGood = PageCount > 0 && PageNumber <= PageCount;
 
             HasPreviousPage = pageNumberIsGood && PageNumber > 1;
             HasNextPage = pageNumberIsGood && PageNumber < PageCount;

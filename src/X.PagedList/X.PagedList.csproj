@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2021.1.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" Condition="'$(TargetFramework)' == 'netstandard1.1'" />
     <PackageReference Include="System.Linq.Queryable" Version="4.3.0" Condition="'$(TargetFramework)' == 'netstandard1.1'" />
   </ItemGroup>
