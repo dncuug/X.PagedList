@@ -224,6 +224,11 @@ namespace X.PagedList.Web.Common
             previous.Attributes.Add("rel", "prev");
             previous.AddCssClass("PagedList-skipToPrevious");
 
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+            {
+                previous.AddCssClass(c);
+            }
+
             if (!list.HasPreviousPage)
             {
                 return WrapInListItem(previous, options, options.EllipsesElementClass, "disabled");
@@ -245,6 +250,11 @@ namespace X.PagedList.Web.Common
 
             next.Attributes.Add("rel", "next");
             next.AddCssClass("PagedList-skipToNext");
+
+            foreach (var c in options.PageClasses ?? Enumerable.Empty<string>())
+            {
+                next.AddCssClass(c);
+            }
 
             if (!list.HasNextPage)
             {

@@ -387,7 +387,7 @@
                         }
                     }
 
-                    liTagBuilder.AppendHtml(aTagBuilder.ToString());
+                    liTagBuilder.AppendHtml(aTagBuilder.ToString(TagRenderMode.Normal));
 
                     return liTagBuilder;
                 };
