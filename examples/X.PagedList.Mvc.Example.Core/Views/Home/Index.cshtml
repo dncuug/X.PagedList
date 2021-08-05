@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = "Product Listing";
-    var pagedList = (IPagedList) ViewBag.Names;
+    var pagedList = (IPagedList)ViewBag.Names;
 }
 
 @using X.PagedList.Mvc.Core; @*import this so we get our HTML Helper*@
@@ -39,3 +39,22 @@
     .DisplayLinkToNextPage()
     .MaximumPageNumbersToDisplay(3)
     .Build())
+
+<h3>Pager with ItemSliceAndTotalPosition at the end</h3>
+@Html.PagedListPager(pagedList,
+    page => Url.Action("Index",
+        new { page }),
+        new PagedListRenderOptions()
+        {
+            DisplayItemSliceAndTotal = true,
+            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End
+        })
+
+<h3>Pager with ItemSliceAndTotalPosition at the beginning</h3>
+@Html.PagedListPager(pagedList,
+    page => Url.Action("Index",
+        new { page }),
+    new PagedListRenderOptions()
+    {
+        DisplayItemSliceAndTotal = true,
+    })

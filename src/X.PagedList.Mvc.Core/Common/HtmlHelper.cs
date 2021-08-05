@@ -326,7 +326,7 @@ namespace X.PagedList.Web.Common
             }
 
             //text
-            if (options.DisplayItemSliceAndTotal)
+            if (options.DisplayItemSliceAndTotal && options.ItemSliceAndTotalPosition == ItemSliceAndTotalPosition.Start)
             {
                 listItemLinks.Add(ItemSliceAndTotalText(list, options));
             }
@@ -372,6 +372,12 @@ namespace X.PagedList.Web.Common
                 (options.DisplayLinkToLastPage == PagedListDisplayMode.IfNeeded && lastPageToDisplay < list.PageCount))
             {
                 listItemLinks.Add(Last(list, generatePageUrl, options));
+            }
+
+            //text
+            if (options.DisplayItemSliceAndTotal && options.ItemSliceAndTotalPosition == ItemSliceAndTotalPosition.End)
+            {
+                listItemLinks.Add(ItemSliceAndTotalText(list, options));
             }
 
             if (listItemLinks.Any())
