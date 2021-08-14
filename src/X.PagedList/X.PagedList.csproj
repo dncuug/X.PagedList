@@ -4,9 +4,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Ernado © 2021</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
-    <Version>8.1.0</Version>
-    <AssemblyVersion>8.1.0</AssemblyVersion>
-    <FileVersion>8.1.0</FileVersion>
+    <Version>8.2.0</Version>
+    <AssemblyVersion>8.2.0</AssemblyVersion>
+    <FileVersion>8.2.0</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>

@@ -9,9 +9,9 @@
     <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>8.1.0</Version>
-    <AssemblyVersion>8.1.0</AssemblyVersion>
-    <FileVersion>8.1.0</FileVersion>
+    <Version>8.3.0</Version>
+    <AssemblyVersion>8.3.0</AssemblyVersion>
+    <FileVersion>8.3.0</FileVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <SignAssembly>true</SignAssembly>
@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
