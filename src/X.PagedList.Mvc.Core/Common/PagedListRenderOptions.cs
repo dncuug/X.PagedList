@@ -372,12 +372,12 @@
         /// <summary>
         /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
         /// </summary>
-        /// <param name="options">The preferred Html.PagedList(...) style options.</param>
+        /// <param name="renderOptions">The preferred Html.PagedList(...) style options.</param>
         /// <param name="ajaxOptions">The ajax options that will put into the link</param>
         /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
-        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions options, AjaxOptions ajaxOptions)
+        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions renderOptions, AjaxOptions ajaxOptions)
         {
-            if (options is PagedListRenderOptions renderOptions)
+            if (renderOptions is PagedListRenderOptions renderOptions)
             {
                 renderOptions.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
                 {
@@ -399,7 +399,7 @@
                 };
             }
 
-            return options;
+            return renderOptions;
         }
 
         /// <summary>

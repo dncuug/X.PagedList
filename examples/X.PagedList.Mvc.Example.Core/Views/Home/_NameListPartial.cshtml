@@ -15,4 +15,26 @@
     }
 </ul>
 
-@Html.PagedListPager((IPagedList<string>)ViewBag.Names, page => Url.Action("GetOnePageOfNames", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5, DisplayPageCountAndCurrentLocation = true, UlElementClasses = new[] { "pagination" }, ContainerDivClasses = new[] { "pagination-container" } }, new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "nameListContainer" }))
+@Html.PagedListPager(
+    list: (IPagedList<string>)ViewBag.Names, 
+    generatePageUrl: page => Url.Action("GetOnePageOfNames", new { page }), 
+    options: PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        renderOptions: new PagedListRenderOptions 
+        { 
+            MaximumPageNumbersToDisplay = 5, 
+            DisplayPageCountAndCurrentLocation = true, 
+            UlElementClasses = new[] 
+            { 
+                "pagination" 
+            }, 
+            ContainerDivClasses = new[] 
+            { 
+                "pagination-container" 
+            } 
+        },
+        ajaxOptions: new AjaxOptions
+        {
+            HttpMethod = "GET", 
+            UpdateTargetId = "nameListContainer" 
+        })
+)
