@@ -1,7 +1,6 @@
-﻿namespace X.PagedList.Web.Common
+﻿namespace X.PagedList.Web.Common;
+
+public interface ITagBuilderFactory
 {
-    public interface ITagBuilderFactory
-    {
-        ITagBuilder Create(string tagName);
-    }
+    ITagBuilder Create(string tagName);
 }

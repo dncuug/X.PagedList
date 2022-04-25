@@ -1,20 +1,19 @@
-﻿namespace X.PagedList.Web.Common
+﻿namespace X.PagedList.Web.Common;
+
+using System.Collections.Generic;
+using System.Text.Encodings.Web;
+
+public interface ITagBuilder
 {
-    using System.Collections.Generic;
-    using System.Text.Encodings.Web;
+    IDictionary<string, string> Attributes { get; }
 
-    public interface ITagBuilder
-    {
-        IDictionary<string, string> Attributes { get; }
+    void AppendHtml(string innerHtml);
 
-        void AppendHtml(string innerHtml);
+    void AddCssClass(string value);
 
-        void AddCssClass(string value);
+    void MergeAttribute(string key, string value);
 
-        void MergeAttribute(string key, string value);
+    void SetInnerText(string innerText);
 
-        void SetInnerText(string innerText);
-
-        string ToString(TagRenderMode renderMode, HtmlEncoder encoder = null);
-    }
+    string ToString(TagRenderMode renderMode, HtmlEncoder encoder = null);
 }

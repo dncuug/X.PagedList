@@ -1,23 +1,22 @@
-﻿namespace X.PagedList.Web.Common
+﻿namespace X.PagedList.Web.Common;
+
+/// <summary>
+/// A tri-state enum that controls the visibility of portions of the PagedList paging control.
+/// </summary>
+public enum PagedListDisplayMode
 {
     /// <summary>
-    /// A tri-state enum that controls the visibility of portions of the PagedList paging control.
+    /// Always render.
     /// </summary>
-    public enum PagedListDisplayMode
-    {
-        /// <summary>
-        /// Always render.
-        /// </summary>
-        Always,
+    Always,
 
-        /// <summary>
-        /// Never render.
-        /// </summary>
-        Never,
+    /// <summary>
+    /// Never render.
+    /// </summary>
+    Never,
 
-        /// <summary>
-        /// Only render when there is data that makes sense to show (context sensitive).
-        /// </summary>
-        IfNeeded
-    }
+    /// <summary>
+    /// Only render when there is data that makes sense to show (context sensitive).
+    /// </summary>
+    IfNeeded
 }

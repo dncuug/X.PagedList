@@ -1,10 +1,9 @@
-﻿namespace X.PagedList.Web.Common
+﻿namespace X.PagedList.Web.Common;
+
+public enum TagRenderMode
 {
-    public enum TagRenderMode
-    {
-        Normal = 0,
-        StartTag = 1,
-        EndTag = 2,
-        SelfClosing = 3
-    }
+    Normal = 0,
+    StartTag = 1,
+    EndTag = 2,
+    SelfClosing = 3
 }

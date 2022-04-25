@@ -1,12 +1,11 @@
 ﻿using X.PagedList.Web.Common;
 
-namespace X.PagedList.Mvc.Core
+namespace X.PagedList.Mvc.Core;
+
+internal sealed class TagBuilderFactory : ITagBuilderFactory
 {
-    internal sealed class TagBuilderFactory : ITagBuilderFactory
+    public ITagBuilder Create(string tagName)
     {
-        public ITagBuilder Create(string tagName)
-        {
-            return new TagBuilder(tagName);
-        }
+        return new TagBuilder(tagName);
     }
 }
