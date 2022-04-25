@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Ernado © 2021</Authors>
+    <Authors>Copyright Troy Goode, Ernado © 2022</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
@@ -10,16 +10,15 @@
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Version>8.3.0</Version>
-    <AssemblyVersion>8.3.0</AssemblyVersion>
-    <FileVersion>8.3.0</FileVersion>
+    <AssemblyVersion>8.4.0</AssemblyVersion>
+    <FileVersion>8.4.0</FileVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>default</LangVersion>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageVersion>8.4.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,6 +27,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
