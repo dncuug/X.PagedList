@@ -375,9 +375,9 @@
         /// <param name="renderOptions">The preferred Html.PagedList(...) style options.</param>
         /// <param name="ajaxOptions">The ajax options that will put into the link</param>
         /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
-        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions renderOptions, AjaxOptions ajaxOptions)
+        public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions pagedListRenderOptions, AjaxOptions ajaxOptions)
         {
-            if (renderOptions is PagedListRenderOptions renderOptions)
+            if (pagedListRenderOptions is PagedListRenderOptions renderOptions)
             {
                 renderOptions.FunctionToTransformEachPageLink = (liTagBuilder, aTagBuilder) =>
                 {
@@ -399,7 +399,7 @@
                 };
             }
 
-            return renderOptions;
+            return pagedListRenderOptions;
         }
 
         /// <summary>

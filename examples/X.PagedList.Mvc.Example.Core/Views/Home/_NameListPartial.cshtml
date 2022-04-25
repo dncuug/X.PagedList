@@ -19,7 +19,7 @@
     list: (IPagedList<string>)ViewBag.Names, 
     generatePageUrl: page => Url.Action("GetOnePageOfNames", new { page }), 
     options: PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
-        renderOptions: new PagedListRenderOptions 
+        pagedListRenderOptions: new PagedListRenderOptions 
         { 
             MaximumPageNumbersToDisplay = 5, 
             DisplayPageCountAndCurrentLocation = true, 
