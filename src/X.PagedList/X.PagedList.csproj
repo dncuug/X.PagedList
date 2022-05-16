@@ -4,9 +4,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Andrew Gubskiy © 2022</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
-    <Version>8.4.2</Version>
-    <AssemblyVersion>8.4.2</AssemblyVersion>
-    <FileVersion>8.4.2</FileVersion>
+    <Version>8.4.3</Version>
+    <AssemblyVersion>8.4.3</AssemblyVersion>
+    <FileVersion>8.4.3</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
@@ -16,7 +16,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
     <LangVersion>default</LangVersion>
-    <PackageVersion>8.4.2</PackageVersion>
+    <PackageVersion>8.4.3</PackageVersion>
     <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
