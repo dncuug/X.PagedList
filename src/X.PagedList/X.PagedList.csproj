@@ -4,7 +4,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Copyright Troy Goode, Andrew Gubskiy © 2022</Authors>
     <Company>Ukrainian .NET Developer Community</Company>
-    <Version>8.4.0</Version>
+    <Version>8.4.2</Version>
     <AssemblyVersion>8.4.2</AssemblyVersion>
     <FileVersion>8.4.2</FileVersion>
     <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
