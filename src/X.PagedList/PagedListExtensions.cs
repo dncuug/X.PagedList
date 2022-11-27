@@ -240,7 +240,7 @@ public static class PagedListExtensions
 
 		if (superset != null)
 		{
-			totalCount = superset.Count();
+			totalCount = await superset.CountAsync(cancellationToken).ConfigureAwait(false);
 			if (totalCount > 0)
 			{
 				subset.AddRange(
