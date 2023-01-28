@@ -5,6 +5,10 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+#if NET5_0_OR_GREATER
+		using Microsoft.EntityFrameworkCore;
+#endif
+
 
 namespace X.PagedList;
 
@@ -238,20 +242,27 @@ public static class PagedListExtensions
 		var subset = new List<T>();
 		var totalCount = 0;
 
-		if (superset != null)
-		{
-			totalCount = await superset.CountAsync(cancellationToken).ConfigureAwait(false);
-			if (totalCount > 0)
-			{
-				subset.AddRange(
-					(pageNumber == 1)
-						? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-						: await superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-				);
-			}
-		}
+        if (superset != null)
+        {
+#if NETSTANDARD2_1
+		totalCount = superset.Count();
+#elif NETSTANDARD2_0
+        totalCount = superset.Count();
+#else
+        totalCount = await superset.CountAsync(cancellationToken);
+#endif
 
-		return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
+            if (totalCount > 0)
+            {
+                subset.AddRange(
+                    (pageNumber == 1)
+                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                        : await superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
+                );
+            }
+        }
+
+        return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
 	}
 	    
 	/// <summary>
