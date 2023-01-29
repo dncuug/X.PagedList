@@ -227,7 +227,7 @@ public static class PagedListExtensions
 	/// about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
 	{
 		if (pageNumber < 1)
 		{
@@ -242,8 +242,15 @@ public static class PagedListExtensions
 		var subset = new List<T>();
 		var totalCount = 0;
 
+
         if (superset != null)
         {
+            if (totalSetCount.HasValue)
+            {
+				totalCount = totalSetCount.Value;
+            }
+            else
+            {
 #if NETSTANDARD2_1
 		totalCount = superset.Count();
 #elif NETSTANDARD2_0
@@ -251,6 +258,7 @@ public static class PagedListExtensions
 #else
         totalCount = await superset.CountAsync(cancellationToken);
 #endif
+            }
 
             if (totalCount > 0)
             {
@@ -283,9 +291,9 @@ public static class PagedListExtensions
 	/// about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount = null)
 	{
-		return await ToPagedListAsync(superset, pageNumber, pageSize, CancellationToken.None);
+		return await ToPagedListAsync(superset, pageNumber, pageSize, totalSetCount, CancellationToken.None);
 	}
 
 	/// <summary>
@@ -307,9 +315,9 @@ public static class PagedListExtensions
 	/// about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken, int? totalSetCount = null)
 	{
-		return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, cancellationToken);
+		return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, totalSetCount, cancellationToken);
 	}
 	    
 	/// <summary>
@@ -330,9 +338,9 @@ public static class PagedListExtensions
 	/// about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, int? totalSetCount = null)
 	{
-		return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, CancellationToken.None);
+		return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, totalSetCount, CancellationToken.None);
 	}
 
 	/// <summary>
@@ -351,9 +359,9 @@ public static class PagedListExtensions
 	/// metadata about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize, CancellationToken cancellationToken)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize, CancellationToken cancellationToken, int? totalSetCount = null)
 	{
-		return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, cancellationToken);
+		return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, totalSetCount, cancellationToken);
 	}
 	    
 	/// <summary>
@@ -373,8 +381,8 @@ public static class PagedListExtensions
 	/// about the collection of objects the subset was created from.
 	/// </returns>
 	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize)
+	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize, int? totalSetCount = null)
 	{
-		return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, CancellationToken.None);
+		return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, totalSetCount, CancellationToken.None);
 	}
 }
