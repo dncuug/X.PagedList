@@ -5,9 +5,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-#if NET5_0_OR_GREATER
-		using Microsoft.EntityFrameworkCore;
-#endif
 
 
 namespace X.PagedList;
@@ -213,21 +210,26 @@ public static class PagedListExtensions
 		return await Task.Run(superset.ToList, cancellationToken);
 	}
 
-	/// <summary>
-	/// Async creates a subset of this collection of objects that can be individually accessed by index and
-	/// containing metadata about the collection of objects the subset was created from.
-	/// </summary>
-	/// <typeparam name="T">The type of object the collection should contain.</typeparam>
-	/// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IQueryable{T}"/>, it will be treated as such.</param>
-	/// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
-	/// <param name="pageSize">The maximum size of any individual subset.</param>
-	/// <param name="cancellationToken"></param>
-	/// <returns>
-	/// A subset of this collection of objects that can be individually accessed by index and containing metadata
-	/// about the collection of objects the subset was created from.
-	/// </returns>
-	/// <seealso cref="PagedList{T}"/>
-	public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
+    public static async Task<int> CountAsync<T>(this IEnumerable<T> superset, CancellationToken cancellationToken)
+    {
+        return await Task.Run(superset.Count, cancellationToken);
+    }
+
+    /// <summary>
+    /// Async creates a subset of this collection of objects that can be individually accessed by index and
+    /// containing metadata about the collection of objects the subset was created from.
+    /// </summary>
+    /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+    /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IQueryable{T}"/>, it will be treated as such.</param>
+    /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+    /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>
+    /// A subset of this collection of objects that can be individually accessed by index and containing metadata
+    /// about the collection of objects the subset was created from.
+    /// </returns>
+    /// <seealso cref="PagedList{T}"/>
+    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
 	{
 		if (pageNumber < 1)
 		{
@@ -251,13 +253,7 @@ public static class PagedListExtensions
             }
             else
             {
-#if NETSTANDARD2_1
-		totalCount = superset.Count();
-#elif NETSTANDARD2_0
-        totalCount = superset.Count();
-#else
-        totalCount = await superset.CountAsync(cancellationToken);
-#endif
+                totalCount = await superset.CountAsync(cancellationToken).ConfigureAwait(false);
             }
 
             if (totalCount > 0)
