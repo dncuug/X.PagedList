@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace X.PagedList.Tests;
+﻿namespace X.PagedList.Tests;
 
 public class TestContext : DbContext
 {

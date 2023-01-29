@@ -3,9 +3,9 @@ using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc.Core;
 
+using Microsoft.AspNetCore.Html;
 using System.IO;
 using System.Text.Encodings.Web;
-using Microsoft.AspNetCore.Html;
 
 internal sealed class TagBuilder : ITagBuilder
 {
