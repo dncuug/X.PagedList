@@ -18,7 +18,7 @@
     <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
     <LangVersion>default</LangVersion>
     <PackageVersion>8.4.3</PackageVersion>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

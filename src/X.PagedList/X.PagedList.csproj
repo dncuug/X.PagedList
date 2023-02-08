@@ -18,6 +18,7 @@
     <LangVersion>default</LangVersion>
     <PackageVersion>8.4.3</PackageVersion>
     <TargetFrameworks>net7.0;net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
 	<ItemGroup>
