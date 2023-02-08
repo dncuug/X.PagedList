@@ -2,9 +2,9 @@
 
 namespace X.PagedList.Mvc.Core.Fluent;
 
-using System;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
 {

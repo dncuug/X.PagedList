@@ -1,7 +1,7 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace X.PagedList;
 
@@ -67,7 +67,7 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
         HasNextPage = pageNumberIsGood && PageNumber < PageCount;
         IsFirstPage = pageNumberIsGood && PageNumber == 1;
         IsLastPage = pageNumberIsGood && PageNumber == PageCount;
-			
+
         var numberOfFirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 
         FirstItemOnPage = pageNumberIsGood ? numberOfFirstItemOnPage : 0;

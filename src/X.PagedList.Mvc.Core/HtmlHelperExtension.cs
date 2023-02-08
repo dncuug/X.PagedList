@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Html;
-using X.PagedList.Web.Common;
 using System;
+using X.PagedList.Web.Common;
 using IHtmlHelper = Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper;
 
 namespace X.PagedList.Mvc.Core;
