@@ -6,7 +6,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-
 namespace X.PagedList;
 
 /// <summary>
@@ -89,7 +88,7 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> superset, int pageNumber, int pageSize)
     {
-        return new PagedList<T>(superset, pageNumber, pageSize);
+        return new PagedList<T>(superset ?? new List<T>(), pageNumber, pageSize);
     }
 
     /// <summary>
@@ -106,9 +105,10 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> superset)
     {
-        int supersetSize = superset.Count();
-        int pageSize = supersetSize == 0 ? 1 : supersetSize;
-        return new PagedList<T>(superset, 1, pageSize);
+        var supersetSize = superset?.Count() ?? 0;
+        var pageSize = supersetSize == 0 ? 1 : supersetSize;
+
+        return new PagedList<T>(superset ?? new List<T>(), 1, pageSize);
     }
 
     /// <summary>
@@ -122,6 +122,7 @@ public static class PagedListExtensions
     public static IPagedList<TResult> Select<TSource, TResult>(this IPagedList<TSource> source, Func<TSource, TResult> selector)
     {
         var subset = ((IEnumerable<TSource>)source).Select(selector);
+        
         return new PagedList<TResult>(source, subset);
     }
 
@@ -223,6 +224,7 @@ public static class PagedListExtensions
     /// <param name="superset">The collection of objects to be divided into subsets. If the collection implements <see cref="IQueryable{T}"/>, it will be treated as such.</param>
     /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <param name="cancellationToken"></param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
@@ -282,6 +284,7 @@ public static class PagedListExtensions
     /// The one-based index of the subset of objects to be contained by this instance.
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
     /// about the collection of objects the subset was created from.
@@ -289,7 +292,7 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount = null)
     {
-        return await ToPagedListAsync(superset, pageNumber, pageSize, totalSetCount, CancellationToken.None);
+        return await ToPagedListAsync(AsQueryable(superset), pageNumber, pageSize, totalSetCount, CancellationToken.None);
     }
 
     /// <summary>
@@ -306,6 +309,7 @@ public static class PagedListExtensions
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <param name="cancellationToken"></param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
     /// about the collection of objects the subset was created from.
@@ -313,7 +317,7 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, CancellationToken cancellationToken, int? totalSetCount = null)
     {
-        return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, totalSetCount, cancellationToken);
+        return await ToPagedListAsync(AsQueryable(superset), pageNumber, pageSize, totalSetCount, cancellationToken);
     }
 
     /// <summary>
@@ -329,6 +333,7 @@ public static class PagedListExtensions
     /// The one-based index of the subset of objects to be contained by this instance.
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
     /// about the collection of objects the subset was created from.
@@ -336,7 +341,7 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, int? totalSetCount = null)
     {
-        return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, totalSetCount, CancellationToken.None);
+        return await ToPagedListAsync(AsQueryable(superset), pageNumber, pageSize, totalSetCount, CancellationToken.None);
     }
 
     /// <summary>
@@ -350,6 +355,7 @@ public static class PagedListExtensions
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <param name="cancellationToken"></param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -357,7 +363,7 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize, CancellationToken cancellationToken, int? totalSetCount = null)
     {
-        return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, totalSetCount, cancellationToken);
+        return await ToPagedListAsync(AsQueryable(superset), pageNumber ?? 1, pageSize, totalSetCount, cancellationToken);
     }
 
     /// <summary>
@@ -372,6 +378,7 @@ public static class PagedListExtensions
     /// defaulting to the first page.
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
     /// about the collection of objects the subset was created from.
@@ -379,6 +386,16 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int? pageNumber, int pageSize, int? totalSetCount = null)
     {
-        return await ToPagedListAsync(superset.AsQueryable(), pageNumber ?? 1, pageSize, totalSetCount, CancellationToken.None);
+        return await ToPagedListAsync(AsQueryable(superset), pageNumber ?? 1, pageSize, totalSetCount, CancellationToken.None);
+    }
+
+    private static IQueryable<T> AsQueryable<T>(IQueryable<T> superset)
+    {
+        return superset ?? new EnumerableQuery<T>(new List<T>());
+    }
+    
+    private static IQueryable<T> AsQueryable<T>(IEnumerable<T> superset)
+    {
+        return superset == null ? new EnumerableQuery<T>(new List<T>()) : superset.AsQueryable();
     }
 }
