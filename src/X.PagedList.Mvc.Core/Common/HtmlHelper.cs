@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 
@@ -270,8 +271,10 @@ public sealed class HtmlHelper
 
     #endregion Private methods
 
-    public string PagedListPager(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    public string PagedListPager(IPagedList pagedList, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
+        var list = pagedList ?? new StaticPagedList<int>(ImmutableList<int>.Empty, 1, 10, 0);
+        
         if (options.Display == PagedListDisplayMode.Never || (options.Display == PagedListDisplayMode.IfNeeded && list.PageCount <= 1))
         {
             return null;
