@@ -7,5 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
     <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj" />
+    <ProjectReference Include="..\Example.DAL\Example.DAL.csproj" />
   </ItemGroup>
 </Project>
