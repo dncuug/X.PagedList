@@ -18,6 +18,13 @@ public class HomeController : Controller
         ViewBag.Names = listPaged;
         return View();
     }
+    
+    public IActionResult EFCore(int page = 1)
+    {
+        var listPaged = GetPagedNames(page);
+        ViewBag.Names = listPaged;
+        return View();
+    }
 
     public IActionResult GetOnePageOfNames(int page = 1)
     {
