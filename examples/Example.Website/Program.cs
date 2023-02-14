@@ -1,3 +1,4 @@
+using System.IO;
 using Example.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,9 @@ public class Program
 
         builder.Services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlite("Data Source=/Users/andrew/Projects/X.PagedList/examples/Example.Website/data/example.sqlite");
+            var connectionString = $"Data Source={Path.Combine(builder.Environment.ContentRootPath, "data", "example.sqlite")}";
+            
+            options.UseSqlite(connectionString);
         });
 
         var app = builder.Build();
