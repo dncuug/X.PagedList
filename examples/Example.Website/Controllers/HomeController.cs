@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Example.DAL;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
@@ -30,7 +31,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult EFCore(int page = 1)
+    public async Task<IActionResult> EFCore(int page = 1)
     {
         // return a 404 if user browses to before the first page
         if (page < 1)
@@ -38,9 +39,9 @@ public class HomeController : Controller
             return NotFound();
         }
 
-        var records = _databaseContext.Animals
+        var records = await _databaseContext.Animals
             .Select(o => o.Name)
-            .ToPagedList(page, PageSize);
+            .ToPagedListAsync(page, PageSize);
 
         // return a 404 if user browses to pages beyond last page. special case first page if no items exist
         if (records.PageNumber != 1 && page > records.PageCount)
