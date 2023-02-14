@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Mvc.Core", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Tests", "tests\X.PagedList.Tests\X.PagedList.Tests.csproj", "{C78B1316-1EF9-45C3-A3FD-9A131BA3DD62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Mvc.Example.Core", "examples\X.PagedList.Mvc.Example.Core\X.PagedList.Mvc.Example.Core.csproj", "{288F5726-904F-48B8-8363-EA1A22D331D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Website", "examples\Example.Website\Example.Website.csproj", "{288F5726-904F-48B8-8363-EA1A22D331D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
