@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Example.DAL;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -6,6 +8,15 @@ namespace Example.Website.Controllers;
 
 public class HomeController : Controller
 {
+    private const int PageSize = 10;
+    
+    private readonly DatabaseContext _databaseContext;
+
+    public HomeController(DatabaseContext databaseContext)
+    {
+        _databaseContext = databaseContext;
+    }
+    
     public IActionResult Index(int page = 1)
     {
         ViewBag.Names = GetPagedNames(page);
@@ -18,11 +29,27 @@ public class HomeController : Controller
         ViewBag.Names = listPaged;
         return View();
     }
-    
+
     public IActionResult EFCore(int page = 1)
     {
-        var listPaged = GetPagedNames(page);
-        ViewBag.Names = listPaged;
+        // return a 404 if user browses to before the first page
+        if (page < 1)
+        {
+            return NotFound();
+        }
+
+        var records = _databaseContext.Animals
+            .Select(o => o.Name)
+            .ToPagedList(page, PageSize);
+
+        // return a 404 if user browses to pages beyond last page. special case first page if no items exist
+        if (records.PageNumber != 1 && page > records.PageCount)
+        {
+            return NotFound();
+        }
+
+        ViewBag.Names = records;
+        
         return View();
     }
 
@@ -38,29 +65,35 @@ public class HomeController : Controller
         return View();
     }
 
-    protected IPagedList<string> GetPagedNames(int? page)
+    private IPagedList<string> GetPagedNames(int? page)
     {
         // return a 404 if user browses to before the first page
         if (page.HasValue && page < 1)
+        {
             return null;
+        }
 
         // retrieve list from database/whereverand
-        var listUnpaged = GetStuffFromDatabase();
+        var listUnPaged = GetStuffFromFile();
 
         // page the list
-        const int pageSize = 20;
-        var listPaged = listUnpaged.ToPagedList(page ?? 1, pageSize);
+        
+        var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
 
         // return a 404 if user browses to pages beyond last page. special case first page if no items exist
         if (listPaged.PageNumber != 1 && page.HasValue && page > listPaged.PageCount)
+        {
             return null;
+        }
 
         return listPaged;
     }
 
-    // in this case we return IEnumerable<string>, but in most
-    // - DB situations you'll want to return IQueryable<string>
-    protected IEnumerable<string> GetStuffFromDatabase()
+    /// <summary>
+    /// In this case we return array of string, but in most DB situations you'll want to return IQueryable
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerable<string> GetStuffFromFile()
     {
         var sampleData = System.IO.File.ReadAllText("Names.txt");
         return sampleData.Split('\n');
