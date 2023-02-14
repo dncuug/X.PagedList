@@ -90,7 +90,7 @@ public static class PagedListExtensions
     {
         return new PagedList<T>(superset ?? new List<T>(), pageNumber, pageSize);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -104,30 +104,47 @@ public static class PagedListExtensions
     /// The one-based index of the subset of objects to be contained by this instance.
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
     /// <returns>A subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.</returns>
     /// <seealso cref="PagedList{T}"/>
-    public static IPagedList<T> ToPagedList<T>(this IQueryable<T> superset, int pageNumber, int pageSize)
+    public static IPagedList<T> ToPagedList<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount)
     {
-        if (superset == null)
+        if (pageNumber < 1)
         {
-            return new StaticPagedList<T>(new List<T>(), 1, pageSize, 0);
+            throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
         }
 
-        IEnumerable<T> resultSet;
-
-        if (pageNumber == 1)
+        if (pageSize < 1)
         {
-            resultSet = superset.Take(pageSize);
-        }
-        else
-        {
-            resultSet = superset.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+            throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
 
-        var totalItemCount = superset.Count();
+        var subset = new List<T>();
+        var totalCount = 0;
 
-        return new StaticPagedList<T>(resultSet, pageNumber, pageSize, totalItemCount);
+        if (superset != null)
+        {
+            if (totalSetCount.HasValue)
+            {
+                totalCount = totalSetCount.Value;
+            }
+            else
+            {
+                totalCount = superset.Count();
+            }
+
+            if (totalCount > 0)
+            {
+                subset.AddRange(
+                    (pageNumber == 1)
+                        ? superset.Skip(0).Take(pageSize)
+                        : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
+                );
+            }
+        }
+
+        return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
     }
 
     /// <summary>
