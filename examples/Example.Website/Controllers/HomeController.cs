@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
-namespace X.PagedList.Mvc.Example.Core.Controllers;
+namespace Example.Website.Controllers;
 
 public class HomeController : Controller
 {
