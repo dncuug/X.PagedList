@@ -125,22 +125,19 @@ public static class PagedListExtensions
 
         if (superset != null)
         {
-            if (totalSetCount.HasValue)
-            {
-                totalCount = totalSetCount.Value;
-            }
-            else
-            {
-                totalCount = superset.Count();
-            }
+            totalCount = totalSetCount.HasValue ? totalSetCount.Value : superset.Count();
 
-            if (totalCount > 0)
+            if (totalCount > 0 && !totalSetCount.HasValue)
             {
                 subset.AddRange(
                     (pageNumber == 1)
                         ? superset.Skip(0).Take(pageSize)
                         : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
                 );
+            }
+            else
+            {
+                subset = superset.ToList();
             }
         }
 
