@@ -11,3 +11,8 @@ You can find all information about how to use X.PagedList libraries in [Wiki](ht
 
 ## License
 Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+## Get a digital subscription for project news
+[Subscribe](https://twitter.com/intent/user?screen_name=andrew_gubskiy) to my Twitter to keep up-to-date with project news and receive announcements.
+
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20%40andrew_gubskiy)](https://twitter.com/andrew_gubskiy)
