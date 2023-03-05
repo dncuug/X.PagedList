@@ -1,3 +1,6 @@
+[![NuGet Version](http://img.shields.io/nuget/v/X.PagedList.svg?style=flat)](https://www.nuget.org/packages/X.PagedList/)
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20me!)](https://twitter.com/intent/user?screen_name=andrew_gubskiy)
+
 # X.PagedList
 
 ## What is this?
@@ -14,5 +17,3 @@ Licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.
 
 ## Get a digital subscription for project news
 [Subscribe](https://twitter.com/intent/user?screen_name=andrew_gubskiy) to my Twitter to keep up-to-date with project news and receive announcements.
-
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20%40andrew_gubskiy)](https://twitter.com/andrew_gubskiy)
