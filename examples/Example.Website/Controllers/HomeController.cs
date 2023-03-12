@@ -31,29 +31,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public async Task<IActionResult> EFCore(int page = 1)
-    {
-        // return a 404 if user browses to before the first page
-        if (page < 1)
-        {
-            return NotFound();
-        }
-
-        var records = await _databaseContext.Animals
-            .Select(o => o.Name)
-            .ToPagedListAsync(page, PageSize);
-
-        // return a 404 if user browses to pages beyond last page. special case first page if no items exist
-        if (records.PageNumber != 1 && page > records.PageCount)
-        {
-            return NotFound();
-        }
-
-        ViewBag.Names = records;
-        
-        return View();
-    }
-
     public IActionResult GetOnePageOfNames(int page = 1)
     {
         var listPaged = GetPagedNames(page);
