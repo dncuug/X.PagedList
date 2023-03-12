@@ -1,28 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
-    <Company>Ukrainian .NET Developer Community</Company>
-    <Version>8.4.6</Version>
-    <AssemblyVersion>8.4.6</AssemblyVersion>
-    <FileVersion>8.4.6</FileVersion>
-    <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
-    <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
-    <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
-    <LangVersion>default</LangVersion>
-    <PackageVersion>8.4.6</PackageVersion>
-    <TargetFrameworks>net7.0;net6.0;netstandard2.0;netstandard2.1</TargetFrameworks>
-    <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
-  </PropertyGroup>
+    <PropertyGroup>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
+        <Company>Ukrainian .NET Developer Community</Company>
+        <Version>8.4.7</Version>
+        <AssemblyVersion>8.4.7</AssemblyVersion>
+        <FileVersion>8.4.7</FileVersion>
+        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
+        <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
+        <LangVersion>default</LangVersion>
+        <PackageVersion>8.4.7</PackageVersion>
+        <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+    </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-	</ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1"/>
+    </ItemGroup>
 
 </Project>
