@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
-    <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj" />
-    <ProjectReference Include="..\Example.DAL\Example.DAL.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\X.PagedList.EF\X.PagedList.EF.csproj"/>
+        <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj"/>
+        <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj"/>
+        <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
+    </ItemGroup>
+
 </Project>
