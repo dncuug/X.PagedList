@@ -1,32 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
-    <Company>Ukrainian .NET Developer Community</Company>
-    <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
-    <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
-    <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <Version>8.4.5</Version>
-    <AssemblyVersion>8.4.5</AssemblyVersion>
-    <FileVersion>8.4.5</FileVersion>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
-    <LangVersion>default</LangVersion>
-    <PackageVersion>8.4.5</PackageVersion>
-    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-  </PropertyGroup>
+    <PropertyGroup>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
+        <Company>Ukrainian .NET Developer Community</Company>
+        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
+        <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Version>8.4.7</Version>
+        <AssemblyVersion>8.4.7</AssemblyVersion>
+        <FileVersion>8.4.7</FileVersion>
+        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
+        <Description>ASP.NET Core extesnions for X.PagedList library</Description>
+        <LangVersion>default</LangVersion>
+        <PackageVersion>8.4.7</PackageVersion>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
+    </ItemGroup>
 
 </Project>

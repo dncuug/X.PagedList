@@ -4,6 +4,11 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
         <Company>Ukrainian .NET Developer Community</Company>
+        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
+        <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
         <Version>8.4.7</Version>
         <AssemblyVersion>8.4.7</AssemblyVersion>
         <FileVersion>8.4.7</FileVersion>
@@ -11,10 +16,9 @@
         <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
-        <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
-        <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
+        <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
         <LangVersion>default</LangVersion>
         <PackageVersion>8.4.7</PackageVersion>
         <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
