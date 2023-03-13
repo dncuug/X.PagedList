@@ -234,41 +234,11 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
     {
-        if (pageNumber < 1)
+        return await Task.Factory.StartNew(() =>
         {
-            throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
-        }
+            return ToPagedList(superset, pageNumber, pageSize, totalSetCount);
 
-        if (pageSize < 1)
-        {
-            throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
-        }
-
-        var subset = new List<T>();
-        var totalCount = 0;
-
-        if (superset != null)
-        {
-            if (totalSetCount.HasValue)
-            {
-                totalCount = totalSetCount.Value;
-            }
-            else
-            {
-                totalCount = superset.Count();
-            }
-
-            if (totalCount > 0)
-            {
-                subset.AddRange(
-                    (pageNumber == 1)
-                        ? superset.Skip(0).Take(pageSize).ToList()
-                        : superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
-                );
-            }
-        }
-
-        return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
+        }, cancellationToken);
     }
 
     /// <summary>
