@@ -52,4 +52,13 @@ public class StaticPagedList<T> : BasePagedList<T>
     {
         Subset.AddRange(subset);
     }
+    
+    /// <summary>
+    /// Method return empty static paged list
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
+    [PublicAPI]
+    public static StaticPagedList<T> Empty(int pageSize = 100) =>
+        new(Array.Empty<T>(), 1, pageSize, 0);
 }

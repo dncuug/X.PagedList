@@ -86,6 +86,7 @@ public class PagedList<T> : BasePagedList<T>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
+    [PublicAPI]
     public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
@@ -112,7 +113,7 @@ public class PagedList<T> : BasePagedList<T>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
     public PagedList(IEnumerable<T> superset, int pageNumber, int pageSize)
-        : this(superset.AsQueryable<T>(), pageNumber, pageSize)
+        : this(superset.AsQueryable(), pageNumber, pageSize)
     {
     }
 
@@ -136,4 +137,13 @@ public class PagedList<T> : BasePagedList<T>
 
         Subset.AddRange(superset);
     }
+    
+    /// <summary>
+    /// Method return empty paged list
+    /// </summary>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
+    [PublicAPI]
+    public static PagedList<T> Empty(int pageSize = 100) => 
+        new(Array.Empty<T>(), 1, pageSize);
 }
