@@ -41,7 +41,7 @@ public class AsyncPagedListExtensionsTheories
         {
             new Blog() {Name = "Codding Horror", BlogID = 1, Url = "http://blog.codinghorror.com/code-smells/"},
             new Blog() {Name = "Melting Asphalt", BlogID = 2, Url = "http://www.meltingasphalt.com"},
-            new Blog() {Name = "Scott Hanselman", BlogID = 3, Url = "http://www.meltingasphalt.com"}
+            new Blog() {Name = "Scott Hanselman", BlogID = 3, Url = "https://www.hanselman.com"}
         }.AsQueryable();
     }
 }
