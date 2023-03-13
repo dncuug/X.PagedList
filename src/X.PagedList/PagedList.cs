@@ -92,10 +92,7 @@ public class PagedList<T> : BasePagedList<T>
     {
         if (TotalItemCount > 0 && superset != null)
         {
-            Subset.AddRange(pageNumber == 1
-                ? superset.Take(pageSize).ToList()
-                : superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
-            );
+            Subset.AddRange(superset.Skip((pageNumber - 1) * pageSize).Take(pageSize));
         }
     }
 
