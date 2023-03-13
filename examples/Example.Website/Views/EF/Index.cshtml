@@ -1,4 +1,4 @@
-@{
+﻿@{
     ViewBag.Title = "Product Listing";
     var pagedList = (IPagedList)ViewBag.Names;
 }
@@ -22,16 +22,16 @@
 </ul>
 
 <!-- output a paging control that lets the user navigation to the previous page, next page, etc -->
-@Html.PagedListPager(pagedList, page => Url.Action("EFCore", new { page }))
+@Html.PagedListPager(pagedList, page => Url.Action("Index", new { page }))
 
 <h3>Fluent pager</h3>
 @(Html.Pager(pagedList)
-    .Url(page => Url.Action("EFCore", new { page }))
+    .Url(page => Url.Action("Index", new { page }))
     .Build())
 
 <h3>Pager for #85</h3>
 @(Html.Pager(pagedList)
-    .Url(page => Url.Action("EFCore", new { page }))
+    .Url(page => Url.Action("Index", new { page }))
     .WithPartialView("Paging/_Pager_85")
     .DisplayLinkToFirstPage (PagedListDisplayMode.IfNeeded)
     .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
@@ -42,7 +42,7 @@
 
 <h3>Pager with ItemSliceAndTotalPosition at the end</h3>
 @Html.PagedListPager(pagedList,
-    page => Url.Action("EFCore", new { page }),
+    page => Url.Action("Index", new { page }),
     new PagedListRenderOptions()
     {
         DisplayItemSliceAndTotal = true,
@@ -51,7 +51,7 @@
 
 <h3>Pager with ItemSliceAndTotalPosition at the beginning</h3>
 @Html.PagedListPager(pagedList,
-    page => Url.Action("EFCore", new { page }),
+    page => Url.Action("Index", new { page }),
     new PagedListRenderOptions()
     {
         DisplayItemSliceAndTotal = true,

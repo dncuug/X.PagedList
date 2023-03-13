@@ -36,7 +36,7 @@ public class PagedListFacts
     public async Task Argument_out_of_range()
     {
         var queryable = (new List<Object>()).AsQueryable();
-        var list = await queryable.ToListAsync();
+        var list = queryable.ToList();
         var pagedList = list.ToPagedList();
 
         Assert.NotNull(pagedList);

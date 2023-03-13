@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -18,18 +18,18 @@
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
-        <Description>ASP.NET Core extesnions for X.PagedList library</Description>
+        <Description>EF extensions for X.PagedList library</Description>
         <LangVersion>default</LangVersion>
         <PackageVersion>8.4.7</PackageVersion>
         <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
+        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
     </ItemGroup>
 
 </Project>
