@@ -49,16 +49,16 @@ public class AsyncPagedListExtensionsTheories
         var listPageNumber = pageNumber != 0 ? pageNumber - 1 : pageNumber;
         var xListPageNumber = pageNumber == 0 ? 1 : pageNumber;
         
-        var superset = fixture.CreateMany<Blog>(superSetTotalCount).AsQueryable();
-        var pageOfSuperSet = superset.Skip(listPageNumber.Value * pageSize).Take(pageSize).ToList();
+        var superset = fixture.CreateMany<Blog>(superSetTotalCount).OrderByDescending(b => b.BlogID).AsQueryable();
         
-        var pagedBlogs = await superset.ToPagedListAsync(xListPageNumber, pageSize, superset.Count());
+        var pageOfSuperSet = superset.Skip(listPageNumber.Value * pageSize).Take(pageSize).ToList();
+        var pagedBlogs = await pageOfSuperSet.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize, superset.Count());
         
         Assert.Equal(expectedCount, pagedBlogs.PageCount);
         Assert.Equal(xListPageNumber, pagedBlogs.PageNumber);
         Assert.Equal(pageSize, pagedBlogs.PageSize);
         Assert.Equal(pageOfSuperSet.Count(), pagedBlogs.Count);
-        Assert.Equal(pageOfSuperSet.First().Name, pagedBlogs.First().Name);
+        Assert.Equal(pageOfSuperSet.First().Name, pagedBlogs.OrderByDescending(b => b.BlogID).First().Name);
     }
 
     private static IQueryable<Blog> BuildBlogList()
