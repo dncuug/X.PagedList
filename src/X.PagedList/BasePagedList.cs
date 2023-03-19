@@ -19,7 +19,9 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
 {
-    protected readonly List<T> Subset = new List<T>();
+    protected readonly List<T> Subset = new();
+
+    public const int DefaultPageSize = 100;
 
     /// <summary>
     /// Parameterless constructor.
@@ -75,9 +77,9 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
         var numberOfLastItemOnPage = numberOfFirstItemOnPage + PageSize - 1;
 
         LastItemOnPage = pageNumberIsGood
-            ? (numberOfLastItemOnPage > TotalItemCount
+            ? numberOfLastItemOnPage > TotalItemCount
                 ? TotalItemCount
-                : numberOfLastItemOnPage)
+                : numberOfLastItemOnPage
             : 0;
     }
 

@@ -60,6 +60,6 @@ public class StaticPagedList<T> : BasePagedList<T>
     /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static StaticPagedList<T> Empty(int pageNumber = 1, int pageSize = 100) =>
+    public static StaticPagedList<T> Empty(int pageNumber = 1, int pageSize = DefaultPageSize) =>
         new(Array.Empty<T>(), pageNumber, pageSize, 0);
 }

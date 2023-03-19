@@ -122,7 +122,7 @@ public static class PagedListExtensions
 
         if (superset == null)
         {
-            return StaticPagedList<T>.Empty(pageNumber: pageNumber, pageSize: pageSize);
+            return StaticPagedList<T>.Empty(pageNumber, pageSize);
         }
 
         var supersetCount = superset.Count();
@@ -136,14 +136,14 @@ public static class PagedListExtensions
         
         var totalCount = totalSetCount ?? supersetCount;
 
-        if ((totalCount <= 0 || totalSetCount.HasValue ) && supersetCount <= pageSize)
+        if ((totalCount <= 0 || totalSetCount.HasValue) && supersetCount <= pageSize)
         {
             subset = superset.ToList();
         }
         else
         {
             var skip = (pageNumber - 1) * pageSize;
-            
+
             subset = superset.Skip(skip).Take(pageSize).ToList();
         }
 
