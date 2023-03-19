@@ -1,9 +1,11 @@
-﻿namespace X.PagedList.Web.Common;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Mvc.Core;
+
+namespace X.PagedList.Web.Common;
 
 public sealed class PagedListRenderOptions
 {
@@ -12,7 +14,7 @@ public sealed class PagedListRenderOptions
     ///</summary>
     public PagedListRenderOptions()
     {
-        HtmlEncoder = System.Text.Encodings.Web.HtmlEncoder.Default;
+        HtmlEncoder = HtmlEncoder.Default;
         DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded;
         DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded;
         DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded;
@@ -367,12 +369,12 @@ public sealed class PagedListRenderOptions
     /// <summary>
     /// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
     /// </summary>
-    public Func<ITagBuilder, ITagBuilder, ITagBuilder> FunctionToTransformEachPageLink { get; set; }
+    public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
 
     /// <summary>
     /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
     /// </summary>
-    /// <param name="renderOptions">The preferred Html.PagedList(...) style options.</param>
+    /// <param name="pagedListRenderOptions"></param>
     /// <param name="ajaxOptions">The ajax options that will put into the link</param>
     /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
     public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions pagedListRenderOptions, AjaxOptions ajaxOptions)
@@ -411,7 +413,9 @@ public sealed class PagedListRenderOptions
     {
 
         if (id.StartsWith("#"))
+        {
             id = id.Substring(1);
+        }
 
         var ajaxOptions = new AjaxOptions()
         {
