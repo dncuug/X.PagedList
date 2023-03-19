@@ -9,8 +9,5 @@ public interface ITagBuilderFactory
 
 internal sealed class TagBuilderFactory : ITagBuilderFactory
 {
-    public TagBuilder Create(string tagName)
-    {
-        return new TagBuilder(tagName);
-    }
+    public TagBuilder Create(string tagName) => new(tagName);
 }

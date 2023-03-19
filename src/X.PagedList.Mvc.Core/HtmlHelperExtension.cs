@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc.Core;
 

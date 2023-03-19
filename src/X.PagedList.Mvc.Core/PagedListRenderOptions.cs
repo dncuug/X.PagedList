@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using X.PagedList.Mvc.Core;
 
-namespace X.PagedList.Web.Common;
+namespace X.PagedList.Mvc.Core;
 
-public sealed class PagedListRenderOptions
+public class PagedListRenderOptions
 {
     ///<summary>
     /// The default settings render all navigation links and no descriptive text

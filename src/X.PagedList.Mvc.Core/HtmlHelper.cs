@@ -4,11 +4,10 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using X.PagedList.Mvc.Core;
 
-namespace X.PagedList.Web.Common;
+namespace X.PagedList.Mvc.Core;
 
-public sealed class HtmlHelper
+public class HtmlHelper
 {
     private readonly ITagBuilderFactory _tagBuilderFactory;
 

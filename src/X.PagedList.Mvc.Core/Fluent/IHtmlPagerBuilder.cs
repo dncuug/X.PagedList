@@ -1,7 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
-using X.PagedList.Web.Common;
 
 namespace X.PagedList.Mvc.Core.Fluent;
 
