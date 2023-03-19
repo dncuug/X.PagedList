@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoFixture;
 using Xunit;
 
 namespace X.PagedList.Tests;
 
-public class AsyncPagedListExtensionsTheories
+public class PagedListTheories
 {
     [Theory]
     [InlineData(1, 2, 2)]
@@ -67,31 +66,88 @@ public class AsyncPagedListExtensionsTheories
         Assert.Equal(pageOfSuperSet.Count(), pagedBlogsWithoutTotalCount.Count);
         Assert.Equal(pageOfSuperSet.First().Name, pagedBlogsWithoutTotalCount.OrderByDescending(b => b.BlogID).First().Name);
     }
-
-    [Fact]
-    public async Task ToListAsync_Check_CornerCases()
+    
+    
+    [Theory]
+    [InlineData(new[] { 1, 2, 3 }, 1, 1, false, true)]
+    [InlineData(new[] { 1, 2, 3 }, 2, 1, true, true)]
+    [InlineData(new[] { 1, 2, 3 }, 3, 1, true, false)]
+    [InlineData(new[] { 1, 2, 3 }, 1, 3, false, false)]
+    [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)]
+    [InlineData(new int[] { }, 1, 3, false, false)]
+    public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
+        bool expectedHasPrevious, bool expectedHasNext)
     {
-        var pageNumber = 2;
-        var pageSize = 10;
-        var superSetTotalCount = 110;
+        //arrange
+        var data = integers;
 
-        var superset = BuildBlogList(50);
-        var queryable = superset.AsQueryable();
-        
-        var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
-        var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
+        //act
+        var pagedList = data.ToPagedList(pageNumber, pageSize);
 
-        //test the totalSetCount extension
-        Assert.Equal(11, pagedList.PageCount);
-        Assert.Equal(2, pagedList.PageNumber);
-        Assert.Equal(pageSize, pagedList.PageSize);
-        Assert.Equal(10, pagedList.Count);
-        
-        //test the pagedListWithoutTotalCount extension
-        Assert.Equal(11, pagedList.PageCount);
-        Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
-        Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
-        Assert.Equal(10, pagedListWithoutTotalCount.Count);
+        //assert
+        Assert.Equal(expectedHasPrevious, pagedList.HasPreviousPage);
+        Assert.Equal(expectedHasNext, pagedList.HasNextPage);
+    }
+
+    [Theory]
+    [InlineData(new[] { 1, 2, 3 }, 1, 1, true, false)]
+    [InlineData(new[] { 1, 2, 3 }, 2, 1, false, false)]
+    [InlineData(new[] { 1, 2, 3 }, 3, 1, false, true)]
+    [InlineData(new[] { 1, 2, 3 }, 1, 3, true, true)] // Page 1 of 1
+    [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)] // Page 2 of 1
+    [InlineData(new int[] { }, 1, 3, false, false)] // Page 1 of 0
+    public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
+        bool expectedIsFirstPage, bool expectedIsLastPage)
+    {
+        //arrange
+        var data = integers;
+
+        //act
+        var pagedList = data.ToPagedList(pageNumber, pageSize);
+
+        //assert
+        Assert.Equal(expectedIsFirstPage, pagedList.IsFirstPage);
+        Assert.Equal(expectedIsLastPage, pagedList.IsLastPage);
+    }
+
+    [Theory]
+    [InlineData(new[] { 1, 2, 3 }, 1, 3)]
+    [InlineData(new[] { 1, 2, 3 }, 3, 1)]
+    [InlineData(new[] { 1 }, 1, 1)]
+    [InlineData(new[] { 1, 2, 3 }, 2, 2)]
+    [InlineData(new[] { 1, 2, 3, 4 }, 2, 2)]
+    [InlineData(new[] { 1, 2, 3, 4, 5 }, 2, 3)]
+    [InlineData(new int[] { }, 1, 0)]
+    public void Theory_PageCount_Is_Correct(int[] integers, int pageSize, int expectedNumberOfPages)
+    {
+        //arrange
+        var data = integers;
+
+        //act
+        var pagedList = data.ToPagedList(1, pageSize);
+
+        //assert
+        Assert.Equal(expectedNumberOfPages, pagedList.PageCount);
+    }
+    
+    
+    [Theory]
+    [InlineData(new[] { 1, 2, 3, 4, 5 }, 1, 2, 1, 2)]
+    [InlineData(new[] { 1, 2, 3, 4, 5 }, 2, 2, 3, 4)]
+    [InlineData(new[] { 1, 2, 3, 4, 5 }, 3, 2, 5, 5)]
+    [InlineData(new[] { 1, 2, 3, 4, 5 }, 4, 2, 0, 0)]
+    [InlineData(new int[] { }, 1, 2, 0, 0)]
+    public void Theory_FirstItemOnPage_And_LastItemOnPage_Are_Correct(int[] integers, int pageNumber, int pageSize, int expectedFirstItemOnPage, int expectedLastItemOnPage)
+    {
+        //arrange
+        var data = integers;
+
+        //act
+        var pagedList = data.ToPagedList(pageNumber, pageSize);
+
+        //assert
+        Assert.Equal(expectedFirstItemOnPage, pagedList.FirstItemOnPage);
+        Assert.Equal(expectedLastItemOnPage, pagedList.LastItemOnPage);
     }
 
     private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
