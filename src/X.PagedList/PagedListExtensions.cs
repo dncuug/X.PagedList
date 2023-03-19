@@ -119,27 +119,32 @@ public static class PagedListExtensions
         {
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
-        
-        if (totalSetCount.HasValue && superset.Count() > totalSetCount.Value)
+
+        if (superset == null)
         {
-            throw new ArgumentOutOfRangeException($"superset count = {superset.Count()} superset count cannot be more than {totalSetCount.Value}.");
+            return StaticPagedList<T>.Empty(pageSize, pageNumber);
         }
 
-        var subset = new List<T>();
-        var totalCount = 0;
-
-        if (superset != null)
+        var supersetCount = superset.Count();
+        
+        if (supersetCount > totalSetCount)
         {
-            totalCount = totalSetCount ?? superset.Count();
+            throw new ArgumentOutOfRangeException($"superset count = {supersetCount} superset count cannot be more than {totalSetCount.Value}.");
+        }
 
-            if (totalCount > 0 && !totalSetCount.HasValue)
-            {
-                subset.AddRange(superset.Skip((pageNumber - 1) * pageSize).Take(pageSize));
-            }
-            else
-            {
-                subset = superset.ToList();
-            }
+        List<T> subset;
+        
+        var totalCount = totalSetCount ?? supersetCount;
+
+        if ((totalCount <= 0 || totalSetCount.HasValue ) && supersetCount <= pageSize)
+        {
+            subset = superset.ToList();
+        }
+        else
+        {
+            var skip = (pageNumber - 1) * pageSize;
+            
+            subset = superset.Skip(skip).Take(pageSize).ToList();
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);

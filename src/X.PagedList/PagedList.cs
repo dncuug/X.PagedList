@@ -48,9 +48,8 @@ public class PagedList<T, TKey> : BasePagedList<T>
     {
         // add items to internal list
 
-        var items = pageNumber == 1
-            ? superset.OrderBy(keySelectorMethod).Take(pageSize).ToList()
-            : superset.OrderBy(keySelectorMethod).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
 
         Subset.AddRange(items);
     }
@@ -92,7 +91,9 @@ public class PagedList<T> : BasePagedList<T>
     {
         if (TotalItemCount > 0 && superset != null)
         {
-            Subset.AddRange(superset.Skip((pageNumber - 1) * pageSize).Take(pageSize));
+            var skip = (pageNumber - 1) * pageSize;
+            
+            Subset.AddRange(superset.Skip(skip).Take(pageSize));
         }
     }
 
@@ -134,13 +135,14 @@ public class PagedList<T> : BasePagedList<T>
 
         Subset.AddRange(superset);
     }
-    
+
     /// <summary>
     /// Method return empty paged list
     /// </summary>
     /// <param name="pageSize"></param>
+    /// <param name="pageNumber"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static PagedList<T> Empty(int pageSize = 100) => 
-        new(Array.Empty<T>(), 1, pageSize);
+    public static PagedList<T> Empty(int pageSize = 100, int pageNumber = 1) => 
+        new(Array.Empty<T>(), pageNumber, pageSize);
 }
