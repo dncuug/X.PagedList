@@ -44,23 +44,25 @@ public static class PagedListExtensions
         var subset = new List<T>();
         var totalCount = 0;
 
-        if (superset != null)
+        if (superset == null)
         {
-            if (totalSetCount.HasValue)
-            {
-                totalCount = totalSetCount.Value;
-            }
-            else
-            {
-                totalCount = await superset.CountAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
-            }
+            return StaticPagedList<T>.Empty(pageNumber, pageSize);
+        }
 
-            if (totalCount > 0)
-            {
-                var skip = (pageNumber - 1) * pageSize;
+        if (totalSetCount.HasValue)
+        {
+            totalCount = totalSetCount.Value;
+        }
+        else
+        {
+            totalCount = await superset.CountAsync(cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+
+        if (totalCount > 0)
+        {
+            var skip = (pageNumber - 1) * pageSize;
                 
-                subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
-            }
+            subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
