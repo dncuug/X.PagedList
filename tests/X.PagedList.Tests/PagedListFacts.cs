@@ -381,4 +381,17 @@ public class PagedListFacts
         //assert
         Assert.Equal(2, pagedList.PageCount);
     }
+    
+    [Fact]
+    public void TotalSetCount_Is_Null()
+    {
+        //arrange
+        var data = Enumerable.Range(1, 100001).AsQueryable();
+
+        //act
+        var pagedList = data.ToPagedList(1, 10, null);
+
+        //assert
+        Assert.Equal(10001, pagedList.PageCount);
+    }
 }
