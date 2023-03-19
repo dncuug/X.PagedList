@@ -111,7 +111,7 @@ public class PagedList<T> : BasePagedList<T>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
     public PagedList(IEnumerable<T> superset, int pageNumber, int pageSize)
-        : this(superset.AsQueryable(), pageNumber, pageSize)
+        : this(superset.AsQueryable<T>(), pageNumber, pageSize)
     {
     }
 
