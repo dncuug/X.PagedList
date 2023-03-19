@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList.Mvc.Core;
 
 namespace X.PagedList.Web.Common;
 
@@ -17,29 +19,29 @@ public sealed class HtmlHelper
 
     #region Private methods
 
-    private static void SetInnerText(ITagBuilder tagBuilder, string innerText)
+    private static void SetInnerText(TagBuilder tagBuilder, string innerText)
     {
         tagBuilder.SetInnerText(innerText);
     }
 
-    private static void AppendHtml(ITagBuilder tagBuilder, string innerHtml)
+    private static void AppendHtml(TagBuilder tagBuilder, string innerHtml)
     {
         tagBuilder.AppendHtml(innerHtml);
     }
 
-    private static string TagBuilderToString(ITagBuilder tagBuilder)
+    private static string TagBuilderToString(TagBuilder tagBuilder)
     {
         return tagBuilder
             .ToString(TagRenderMode.Normal);
     }
 
-    private static string TagBuilderToString(ITagBuilder tagBuilder, TagRenderMode renderMode)
+    private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
     {
         return tagBuilder
             .ToString(renderMode);
     }
 
-    private ITagBuilder WrapInListItem(string text)
+    private TagBuilder WrapInListItem(string text)
     {
         var li = _tagBuilderFactory
             .Create("li");
@@ -49,29 +51,26 @@ public sealed class HtmlHelper
         return li;
     }
 
-    private ITagBuilder WrapInListItem(ITagBuilder inner, PagedListRenderOptions options, params string[] classes)
+    private TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptions options, params string[] classes)
     {
-        var li = _tagBuilderFactory
-            .Create("li");
+        var li = _tagBuilderFactory.Create("li");
 
         foreach (var @class in classes)
         {
             li.AddCssClass(@class);
         }
 
-        if (options != null)
+        if (options?.FunctionToTransformEachPageLink != null)
         {
-            if (options.FunctionToTransformEachPageLink != null)
-            {
-                return options.FunctionToTransformEachPageLink(li, inner);
-            }
+            return options.FunctionToTransformEachPageLink(li, inner);
         }
 
         AppendHtml(li, TagBuilderToString(inner));
+        
         return li;
     }
 
-    private ITagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    private TagBuilder First(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         const int targetPageNumber = 1;
         var first = _tagBuilderFactory
@@ -94,7 +93,7 @@ public sealed class HtmlHelper
         return WrapInListItem(first, options, "PagedList-skipToFirst");
     }
 
-    private ITagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    private TagBuilder Previous(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageNumber - 1;
         var previous = _tagBuilderFactory
@@ -119,7 +118,7 @@ public sealed class HtmlHelper
         return WrapInListItem(previous, options, options.PreviousElementClass);
     }
 
-    private ITagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    private TagBuilder Page(int i, IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var format = options.FunctionToDisplayEachPageNumber
                      ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
@@ -147,7 +146,7 @@ public sealed class HtmlHelper
         return WrapInListItem(page, options);
     }
 
-    private ITagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    private TagBuilder Next(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageNumber + 1;
         var next = _tagBuilderFactory
@@ -172,7 +171,7 @@ public sealed class HtmlHelper
         return WrapInListItem(next, options, options.NextElementClass);
     }
 
-    private ITagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    private TagBuilder Last(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageCount;
         var last = _tagBuilderFactory
@@ -195,7 +194,7 @@ public sealed class HtmlHelper
         return WrapInListItem(last, options, "PagedList-skipToLast");
     }
 
-    private ITagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptions options)
+    private TagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptions options)
     {
         var text = _tagBuilderFactory
             .Create("a");
@@ -205,7 +204,7 @@ public sealed class HtmlHelper
         return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
     }
 
-    private ITagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptions options)
+    private TagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptions options)
     {
         var text = _tagBuilderFactory
             .Create("a");
@@ -215,7 +214,7 @@ public sealed class HtmlHelper
         return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
     }
 
-    private ITagBuilder PreviousEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int firstPageToDisplay)
+    private TagBuilder PreviousEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int firstPageToDisplay)
     {
         var previous = _tagBuilderFactory
             .Create("a");
@@ -242,7 +241,7 @@ public sealed class HtmlHelper
         return WrapInListItem(previous, options, options.EllipsesElementClass);
     }
 
-    private ITagBuilder NextEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int lastPageToDisplay)
+    private TagBuilder NextEllipsis(IPagedList list, Func<int, string> generatePageUrl, PagedListRenderOptions options, int lastPageToDisplay)
     {
         var next = _tagBuilderFactory
             .Create("a");
@@ -280,7 +279,7 @@ public sealed class HtmlHelper
             return null;
         }
 
-        var listItemLinks = new List<ITagBuilder>();
+        var listItemLinks = new List<TagBuilder>();
 
         //calculate start and end of range of page numbers
         var firstPageToDisplay = 1;
