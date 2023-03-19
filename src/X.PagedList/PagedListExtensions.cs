@@ -119,28 +119,30 @@ public static class PagedListExtensions
         {
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
+        
+        if (totalSetCount.HasValue && superset.Count() > totalSetCount.Value)
+        {
+            throw new ArgumentOutOfRangeException($"superset count = {superset.Count()} superset count cannot be more than {totalSetCount.Value}.");
+        }
 
         var subset = new List<T>();
         var totalCount = 0;
 
         if (superset != null)
         {
-            if (totalSetCount.HasValue)
-            {
-                totalCount = totalSetCount.Value;
-            }
-            else
-            {
-                totalCount = superset.Count();
-            }
+            totalCount = totalSetCount.HasValue ? totalSetCount.Value : superset.Count();
 
-            if (totalCount > 0)
+            if (totalCount > 0 && !totalSetCount.HasValue)
             {
                 subset.AddRange(
                     (pageNumber == 1)
                         ? superset.Skip(0).Take(pageSize)
                         : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
                 );
+            }
+            else
+            {
+                subset = superset.ToList();
             }
         }
 
@@ -254,28 +256,30 @@ public static class PagedListExtensions
         {
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
+        
+        if (totalSetCount.HasValue && superset.Count() > totalSetCount.Value)
+        {
+            throw new ArgumentOutOfRangeException($"superset count = {superset.Count()} superset count cannot be more than {totalSetCount.Value}.");
+        }
 
         var subset = new List<T>();
         var totalCount = 0;
 
         if (superset != null)
         {
-            if (totalSetCount.HasValue)
-            {
-                totalCount = totalSetCount.Value;
-            }
-            else
-            {
-                totalCount = superset.Count();
-            }
+            totalCount = totalSetCount.HasValue ? totalSetCount.Value : superset.Count();
 
-            if (totalCount > 0)
+            if (totalCount > 0 && !totalSetCount.HasValue)
             {
                 subset.AddRange(
                     (pageNumber == 1)
-                        ? superset.Skip(0).Take(pageSize).ToList()
-                        : superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
+                        ? superset.Skip(0).Take(pageSize)
+                        : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
                 );
+            }
+            else
+            {
+                subset = superset.ToList();
             }
         }
 

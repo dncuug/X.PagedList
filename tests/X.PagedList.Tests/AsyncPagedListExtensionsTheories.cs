@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoFixture;
 using Xunit;
 
 namespace X.PagedList.Tests;
@@ -34,14 +35,43 @@ public class AsyncPagedListExtensionsTheories
         Assert.Equal(1, pagedBlogs.PageNumber);
         Assert.Equal(pageSize, pagedBlogs.PageSize);
     }
-
-    private static IQueryable<Blog> BuildBlogList()
+    
+    [Theory]
+    [InlineData(1000, 100, 10, null)]
+    [InlineData(1000, 200, 5, 3)]
+    [InlineData(1000, 300, 4, 4)]
+    public async Task ToListAsync_ForQueryable_With_TotalSetCount_Works(int superSetTotalCount, int pageSize,
+        int expectedCount, int? pageNumber = null)
     {
-        return new List<Blog>
-        {
-            new Blog() {Name = "Codding Horror", BlogID = 1, Url = "http://blog.codinghorror.com/code-smells/"},
-            new Blog() {Name = "Melting Asphalt", BlogID = 2, Url = "http://www.meltingasphalt.com"},
-            new Blog() {Name = "Scott Hanselman", BlogID = 3, Url = "http://www.meltingasphalt.com"}
-        }.AsQueryable();
+        
+        pageNumber = pageNumber.HasValue == false ? 0 : pageNumber;
+        var listPageNumber = pageNumber != 0 ? pageNumber - 1 : pageNumber;
+        var xListPageNumber = pageNumber == 0 ? 1 : pageNumber;
+        
+        var superset = BuildBlogList(1000);
+        
+        var pageOfSuperSet = superset.Skip(listPageNumber.Value * pageSize).Take(pageSize).ToList();
+        var pagedBlogs = await pageOfSuperSet.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize, superSetTotalCount);
+        var pagedBlogsWithoutTotalCount = await superset.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize);
+        
+        //test the totalSetCount extension
+        Assert.Equal(expectedCount, pagedBlogs.PageCount);
+        Assert.Equal(xListPageNumber, pagedBlogs.PageNumber);
+        Assert.Equal(pageSize, pagedBlogs.PageSize);
+        Assert.Equal(pageOfSuperSet.Count(), pagedBlogs.Count);
+        Assert.Equal(pageOfSuperSet.First().Name, pagedBlogs.OrderByDescending(b => b.BlogID).First().Name);
+        
+        //test the default behaviour
+        Assert.Equal(expectedCount, pagedBlogsWithoutTotalCount.PageCount);
+        Assert.Equal(xListPageNumber, pagedBlogsWithoutTotalCount.PageNumber);
+        Assert.Equal(pageSize, pagedBlogsWithoutTotalCount.PageSize);
+        Assert.Equal(pageOfSuperSet.Count(), pagedBlogsWithoutTotalCount.Count);
+        Assert.Equal(pageOfSuperSet.First().Name, pagedBlogsWithoutTotalCount.OrderByDescending(b => b.BlogID).First().Name);
+    }
+
+    private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
+    {
+        var fixture = new Fixture();
+        return fixture.CreateMany<Blog>(itemCount).OrderByDescending(b => b.BlogID).AsQueryable();
     }
 }
