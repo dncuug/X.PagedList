@@ -139,10 +139,10 @@ public class PagedList<T> : BasePagedList<T>
     /// <summary>
     /// Method return empty paged list
     /// </summary>
-    /// <param name="pageSize"></param>
     /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static PagedList<T> Empty(int pageSize = 100, int pageNumber = 1) => 
+    public static PagedList<T> Empty(int pageNumber = 1, int pageSize = 100) => 
         new(Array.Empty<T>(), pageNumber, pageSize);
 }
