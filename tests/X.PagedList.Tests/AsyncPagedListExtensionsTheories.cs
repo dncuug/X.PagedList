@@ -40,8 +40,7 @@ public class AsyncPagedListExtensionsTheories
     [InlineData(1000, 100, 10, null)]
     [InlineData(1000, 200, 5, 3)]
     [InlineData(1000, 300, 4, 4)]
-    public async Task ToListAsync_ForQueryable_With_TotalSetCount_Works(int superSetTotalCount, int pageSize,
-        int expectedCount, int? pageNumber = null)
+    public async Task ToListAsync_ForQueryable_With_TotalSetCount_Works(int superSetTotalCount, int pageSize, int expectedCount, int? pageNumber = null)
     {
         
         pageNumber = pageNumber.HasValue == false ? 0 : pageNumber;
@@ -69,9 +68,36 @@ public class AsyncPagedListExtensionsTheories
         Assert.Equal(pageOfSuperSet.First().Name, pagedBlogsWithoutTotalCount.OrderByDescending(b => b.BlogID).First().Name);
     }
 
+    [Fact]
+    public async Task ToListAsync_Check_CornerCases()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var superset = BuildBlogList(50);
+        var queryable = superset.AsQueryable();
+        
+        var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
+
+        //test the totalSetCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
+        
+        //test the pagedListWithoutTotalCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
+        Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
+        Assert.Equal(10, pagedListWithoutTotalCount.Count);
+    }
+
     private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
     {
         var fixture = new Fixture();
+        
         return fixture.CreateMany<Blog>(itemCount).OrderByDescending(b => b.BlogID).AsQueryable();
     }
 }

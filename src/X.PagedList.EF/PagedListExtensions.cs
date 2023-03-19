@@ -57,11 +57,9 @@ public static class PagedListExtensions
 
             if (totalCount > 0)
             {
-                subset.AddRange(
-                    (pageNumber == 1)
-                        ? await superset.Skip(0).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-                        : await superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false)
-                );
+                var skip = (pageNumber - 1) * pageSize;
+                
+                subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
             }
         }
 

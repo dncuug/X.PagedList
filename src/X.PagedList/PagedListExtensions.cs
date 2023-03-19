@@ -119,31 +119,32 @@ public static class PagedListExtensions
         {
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
-        
-        if (totalSetCount.HasValue && superset.Count() > totalSetCount.Value)
+
+        if (superset == null)
         {
-            throw new ArgumentOutOfRangeException($"superset count = {superset.Count()} superset count cannot be more than {totalSetCount.Value}.");
+            return StaticPagedList<T>.Empty(pageNumber, pageSize);
         }
 
-        var subset = new List<T>();
-        var totalCount = 0;
-
-        if (superset != null)
+        var supersetCount = superset.Count();
+        
+        if (supersetCount > totalSetCount)
         {
-            totalCount = totalSetCount.HasValue ? totalSetCount.Value : superset.Count();
+            throw new ArgumentOutOfRangeException($"superset count = {supersetCount} superset count cannot be more than {totalSetCount.Value}.");
+        }
 
-            if (totalCount > 0 && !totalSetCount.HasValue)
-            {
-                subset.AddRange(
-                    (pageNumber == 1)
-                        ? superset.Skip(0).Take(pageSize)
-                        : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
-                );
-            }
-            else
-            {
-                subset = superset.ToList();
-            }
+        List<T> subset;
+        
+        var totalCount = totalSetCount ?? supersetCount;
+
+        if ((totalCount <= 0 || totalSetCount.HasValue) && supersetCount <= pageSize)
+        {
+            subset = superset.ToList();
+        }
+        else
+        {
+            var skip = (pageNumber - 1) * pageSize;
+
+            subset = superset.Skip(skip).Take(pageSize).ToList();
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
@@ -247,43 +248,11 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
     {
-        if (pageNumber < 1)
+        return await Task.Factory.StartNew(() =>
         {
-            throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
-        }
+            return ToPagedList(superset, pageNumber, pageSize, totalSetCount);
 
-        if (pageSize < 1)
-        {
-            throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
-        }
-        
-        if (totalSetCount.HasValue && superset.Count() > totalSetCount.Value)
-        {
-            throw new ArgumentOutOfRangeException($"superset count = {superset.Count()} superset count cannot be more than {totalSetCount.Value}.");
-        }
-
-        var subset = new List<T>();
-        var totalCount = 0;
-
-        if (superset != null)
-        {
-            totalCount = totalSetCount.HasValue ? totalSetCount.Value : superset.Count();
-
-            if (totalCount > 0 && !totalSetCount.HasValue)
-            {
-                subset.AddRange(
-                    (pageNumber == 1)
-                        ? superset.Skip(0).Take(pageSize)
-                        : superset.Skip(((pageNumber - 1) * pageSize)).Take(pageSize)
-                );
-            }
-            else
-            {
-                subset = superset.ToList();
-            }
-        }
-
-        return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
+        }, cancellationToken);
     }
 
     /// <summary>

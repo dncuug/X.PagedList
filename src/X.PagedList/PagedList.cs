@@ -48,9 +48,8 @@ public class PagedList<T, TKey> : BasePagedList<T>
     {
         // add items to internal list
 
-        var items = pageNumber == 1
-            ? superset.OrderBy(keySelectorMethod).Take(pageSize).ToList()
-            : superset.OrderBy(keySelectorMethod).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+        var skip = (pageNumber - 1) * pageSize;
+        var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
 
         Subset.AddRange(items);
     }
@@ -86,15 +85,15 @@ public class PagedList<T> : BasePagedList<T>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
+    [PublicAPI]
     public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
         if (TotalItemCount > 0 && superset != null)
         {
-            Subset.AddRange(pageNumber == 1
-                ? superset.Take(pageSize).ToList()
-                : superset.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList()
-            );
+            var skip = (pageNumber - 1) * pageSize;
+            
+            Subset.AddRange(superset.Skip(skip).Take(pageSize));
         }
     }
 
@@ -136,4 +135,14 @@ public class PagedList<T> : BasePagedList<T>
 
         Subset.AddRange(superset);
     }
+
+    /// <summary>
+    /// Method return empty paged list
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <returns></returns>
+    [PublicAPI]
+    public static PagedList<T> Empty(int pageNumber = 1, int pageSize = DefaultPageSize) => 
+        new(Array.Empty<T>(), pageNumber, pageSize);
 }
