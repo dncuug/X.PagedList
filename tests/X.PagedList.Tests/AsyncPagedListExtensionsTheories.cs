@@ -73,33 +73,31 @@ public class AsyncPagedListExtensionsTheories
     {
         var pageNumber = 2;
         var pageSize = 10;
-        var superSetTotalCount = 100;
+        var superSetTotalCount = 110;
 
         var superset = BuildBlogList(50);
-
-        //var pageOfSuperSet = superset.Skip(listPageNumber.Value * pageSize).Take(pageSize).ToList();
         var queryable = superset.AsQueryable();
         
         var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
         var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
 
         //test the totalSetCount extension
-        Assert.Equal(10, pagedList.PageCount);
+        Assert.Equal(11, pagedList.PageCount);
         Assert.Equal(2, pagedList.PageNumber);
         Assert.Equal(pageSize, pagedList.PageSize);
         Assert.Equal(10, pagedList.Count);
-        //Assert.Equal(pagedList.First().Name, superset.OrderByDescending(b => b.BlogID).First().Name);Assert.Equal(10, pagedList.PageCount);
         
         //test the pagedListWithoutTotalCount extension
+        Assert.Equal(11, pagedList.PageCount);
         Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
         Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
         Assert.Equal(10, pagedListWithoutTotalCount.Count);
-        //Assert.Equal(pagedList.First().Name, superset.OrderByDescending(b => b.BlogID).First().Name);
     }
 
     private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
     {
         var fixture = new Fixture();
+        
         return fixture.CreateMany<Blog>(itemCount).OrderByDescending(b => b.BlogID).AsQueryable();
     }
 }
