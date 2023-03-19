@@ -122,7 +122,7 @@ public static class PagedListExtensions
 
         if (superset == null)
         {
-            return StaticPagedList<T>.Empty(pageNumber, pageSize);
+            return StaticPagedList<T>.Empty(pageSize);
         }
 
         var supersetCount = superset.Count();

@@ -54,12 +54,11 @@ public class StaticPagedList<T> : BasePagedList<T>
     }
 
     /// <summary>
-    /// Method return empty static paged list
+    /// Create empty static paged list
     /// </summary>
-    /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static StaticPagedList<T> Empty(int pageNumber = 1, int pageSize = DefaultPageSize) =>
-        new(Array.Empty<T>(), pageNumber, pageSize, 0);
+    public static StaticPagedList<T> Empty(int pageSize = DefaultPageSize) =>
+        new(Array.Empty<T>(), 1, pageSize, 0);
 }

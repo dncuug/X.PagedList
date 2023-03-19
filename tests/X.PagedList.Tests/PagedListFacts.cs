@@ -362,6 +362,97 @@ public class PagedListFacts
         Assert.Equal(10, pagedListWithoutTotalCount.Count);
     }
     
+    [Fact]
+    public async Task ToListAsync_Check_CornerCases_For_Enumerable()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var superset = BuildBlogList(50);
+        var enumerable = superset.AsEnumerable();
+        
+        var pagedList = await enumerable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = await enumerable.ToPagedListAsync(pageNumber, pageSize);
+
+        //test the totalSetCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
+        
+        //test the pagedListWithoutTotalCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
+        Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
+        Assert.Equal(10, pagedListWithoutTotalCount.Count);
+    }
+    
+    [Fact]
+    public async Task ClonePagedList()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var superset1 = BuildBlogList(50);
+        var superset2 = BuildBlogList(10);
+        var queryable1 = superset1.AsEnumerable();
+        
+        var pagedList = await queryable1.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+
+        var clone = new PagedList<Blog>(pagedList, superset2);
+
+        //test the totalSetCount extension
+        Assert.Equal(11, clone.PageCount);
+        Assert.Equal(2, clone.PageNumber);
+        Assert.Equal(pageSize, clone.PageSize);
+        Assert.Equal(10, clone.Count);
+    } 
+    
+    [Fact]
+    public async Task Check_Ctor_With_KeySelectorMethod()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var collection = BuildBlogList(50);
+        
+        Func<Blog, int> keySelector = blog =>
+        {
+            return blog.BlogID;
+        };
+        
+        var pagedList = new PagedList<Blog, int>(collection, keySelector, 2, pageSize);
+        
+
+        //test the totalSetCount extension
+        Assert.Equal(5, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
+    }
+
+    [Fact]
+    public async Task Check_Empty_Method()
+    {
+        var empty1 = PagedList<int>.Empty();
+        var empty2 = PagedList<int>.Empty(10);
+        var empty3 = PagedList<int>.Empty(15);
+        var empty4 = StaticPagedList<int>.Empty();
+        var empty5 = StaticPagedList<int>.Empty(10);
+        var empty6 = StaticPagedList<int>.Empty(15);
+
+        //test the totalSetCount extension
+        Assert.Equal(0, empty1.PageCount);
+        Assert.Equal(0, empty2.PageCount);
+        Assert.Equal(1, empty3.PageNumber);
+        Assert.Equal(0, empty4.TotalItemCount);
+        Assert.Equal(0, empty5.TotalItemCount);
+        Assert.Equal(0, empty6.TotalItemCount);
+    }
+
     private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
     {
         var fixture = new Fixture();
