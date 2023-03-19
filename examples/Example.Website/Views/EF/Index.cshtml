@@ -46,7 +46,19 @@
     new PagedListRenderOptions()
     {
         DisplayItemSliceAndTotal = true,
-        ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End
+        ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End,
+        FunctionToTransformEachPageLink = (tagBuilder, inner) =>
+        {
+            // Create tag builder
+            // var builder = new TagBuilder("div");
+            // builder.AppendHtml(inner.ToString(TagRenderMode.Normal));
+            // builder.AddCssClass(".ef-example");
+
+            inner.AddCssClass(".ef-example");
+            tagBuilder.AppendHtml(inner.ToString(TagRenderMode.Normal));
+
+            return tagBuilder;
+        } 
     })
 
 <h3>Pager with ItemSliceAndTotalPosition at the beginning</h3>
