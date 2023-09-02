@@ -119,8 +119,8 @@ public class PagedList<T> : BasePagedList<T>
     /// For Clone PagedList
     /// </summary>
     /// <param name="pagedList">Source PagedList</param>
-    /// <param name="superset">Source collection</param>
-    public PagedList(IPagedList pagedList, IEnumerable<T> superset)
+    /// <param name="collection">Source collection</param>
+    public PagedList(IPagedList pagedList, IEnumerable<T> collection)
     {
         TotalItemCount = pagedList.TotalItemCount;
         PageSize = pagedList.PageSize;
@@ -133,16 +133,21 @@ public class PagedList<T> : BasePagedList<T>
         FirstItemOnPage = pagedList.FirstItemOnPage;
         LastItemOnPage = pagedList.LastItemOnPage;
 
-        Subset.AddRange(superset);
+        Subset.AddRange(collection);
+        
+        if (Subset.Count > PageSize)
+        {
+            throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
+        }
+
     }
 
     /// <summary>
-    /// Method return empty paged list
+    /// Create empty static paged list
     /// </summary>
-    /// <param name="pageNumber"></param>
     /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static PagedList<T> Empty(int pageNumber = 1, int pageSize = DefaultPageSize) => 
-        new(Array.Empty<T>(), pageNumber, pageSize);
+    public static PagedList<T> Empty(int pageSize = DefaultPageSize) => 
+        new(Array.Empty<T>(), 1, pageSize);
 }

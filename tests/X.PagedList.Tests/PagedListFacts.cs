@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AutoFixture;
 using Xunit;
 
 namespace X.PagedList.Tests;
@@ -334,70 +335,131 @@ public class PagedListFacts
         //assert
         Assert.Equal(8, pagedList.LastItemOnPage);
     }
-
-
-    [Theory]
-    [InlineData(new[] { 1, 2, 3 }, 1, 1, false, true)]
-    [InlineData(new[] { 1, 2, 3 }, 2, 1, true, true)]
-    [InlineData(new[] { 1, 2, 3 }, 3, 1, true, false)]
-    [InlineData(new[] { 1, 2, 3 }, 1, 3, false, false)]
-    [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)]
-    [InlineData(new int[] { }, 1, 3, false, false)]
-    public void Theory_HasPreviousPage_And_HasNextPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
-        bool expectedHasPrevious, bool expectedHasNext)
+    
+    [Fact]
+    public async Task ToListAsync_Check_CornerCases()
     {
-        //arrange
-        var data = integers;
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
 
-        //act
-        var pagedList = data.ToPagedList(pageNumber, pageSize);
+        var superset = BuildBlogList(50);
+        var queryable = superset.AsQueryable();
+        
+        var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
 
-        //assert
-        Assert.Equal(expectedHasPrevious, pagedList.HasPreviousPage);
-        Assert.Equal(expectedHasNext, pagedList.HasNextPage);
+        //test the totalSetCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
+        
+        //test the pagedListWithoutTotalCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
+        Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
+        Assert.Equal(10, pagedListWithoutTotalCount.Count);
+    }
+    
+    [Fact]
+    public async Task ToListAsync_Check_CornerCases_For_Enumerable()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var superset = BuildBlogList(50);
+        var enumerable = superset.AsEnumerable();
+        
+        var pagedList = await enumerable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = await enumerable.ToPagedListAsync(pageNumber, pageSize);
+
+        //test the totalSetCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
+        
+        //test the pagedListWithoutTotalCount extension
+        Assert.Equal(11, pagedList.PageCount);
+        Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
+        Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
+        Assert.Equal(10, pagedListWithoutTotalCount.Count);
+    }
+    
+    [Fact]
+    public async Task ClonePagedList()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var superset1 = BuildBlogList(50);
+        var superset2 = BuildBlogList(10);
+        var queryable1 = superset1.AsEnumerable();
+        
+        var pagedList = await queryable1.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+
+        var clone = new PagedList<Blog>(pagedList, superset2);
+
+        //test the totalSetCount extension
+        Assert.Equal(11, clone.PageCount);
+        Assert.Equal(2, clone.PageNumber);
+        Assert.Equal(pageSize, clone.PageSize);
+        Assert.Equal(10, clone.Count);
+    } 
+    
+    [Fact]
+    public async Task Check_Ctor_With_KeySelectorMethod()
+    {
+        var pageNumber = 2;
+        var pageSize = 10;
+        var superSetTotalCount = 110;
+
+        var collection = BuildBlogList(50);
+        
+        Func<Blog, int> keySelector = blog =>
+        {
+            return blog.BlogID;
+        };
+        
+        var pagedList = new PagedList<Blog, int>(collection, keySelector, 2, pageSize);
+        
+
+        //test the totalSetCount extension
+        Assert.Equal(5, pagedList.PageCount);
+        Assert.Equal(2, pagedList.PageNumber);
+        Assert.Equal(pageSize, pagedList.PageSize);
+        Assert.Equal(10, pagedList.Count);
     }
 
-    [Theory]
-    [InlineData(new[] { 1, 2, 3 }, 1, 1, true, false)]
-    [InlineData(new[] { 1, 2, 3 }, 2, 1, false, false)]
-    [InlineData(new[] { 1, 2, 3 }, 3, 1, false, true)]
-    [InlineData(new[] { 1, 2, 3 }, 1, 3, true, true)] // Page 1 of 1
-    [InlineData(new[] { 1, 2, 3 }, 2, 3, false, false)] // Page 2 of 1
-    [InlineData(new int[] { }, 1, 3, false, false)] // Page 1 of 0
-    public void Theory_IsFirstPage_And_IsLastPage_Are_Correct(int[] integers, int pageNumber, int pageSize,
-        bool expectedIsFirstPage, bool expectedIsLastPage)
+    [Fact]
+    public async Task Check_Empty_Method()
     {
-        //arrange
-        var data = integers;
+        var empty1 = PagedList<int>.Empty();
+        var empty2 = PagedList<int>.Empty(10);
+        var empty3 = PagedList<int>.Empty(15);
+        var empty4 = StaticPagedList<int>.Empty();
+        var empty5 = StaticPagedList<int>.Empty(10);
+        var empty6 = StaticPagedList<int>.Empty(15);
 
-        //act
-        var pagedList = data.ToPagedList(pageNumber, pageSize);
-
-        //assert
-        Assert.Equal(expectedIsFirstPage, pagedList.IsFirstPage);
-        Assert.Equal(expectedIsLastPage, pagedList.IsLastPage);
+        //test the totalSetCount extension
+        Assert.Equal(0, empty1.PageCount);
+        Assert.Equal(0, empty2.PageCount);
+        Assert.Equal(1, empty3.PageNumber);
+        Assert.Equal(0, empty4.TotalItemCount);
+        Assert.Equal(0, empty5.TotalItemCount);
+        Assert.Equal(0, empty6.TotalItemCount);
     }
 
-    [Theory]
-    [InlineData(new[] { 1, 2, 3 }, 1, 3)]
-    [InlineData(new[] { 1, 2, 3 }, 3, 1)]
-    [InlineData(new[] { 1 }, 1, 1)]
-    [InlineData(new[] { 1, 2, 3 }, 2, 2)]
-    [InlineData(new[] { 1, 2, 3, 4 }, 2, 2)]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 2, 3)]
-    [InlineData(new int[] { }, 1, 0)]
-    public void Theory_PageCount_Is_Correct(int[] integers, int pageSize, int expectedNumberOfPages)
+    private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
     {
-        //arrange
-        var data = integers;
-
-        //act
-        var pagedList = data.ToPagedList(1, pageSize);
-
-        //assert
-        Assert.Equal(expectedNumberOfPages, pagedList.PageCount);
+        var fixture = new Fixture();
+        
+        return fixture.CreateMany<Blog>(itemCount).OrderByDescending(b => b.BlogID).AsQueryable();
     }
-
+    
     [Fact]
     public void PageCount_Is_Correct_Big()
     {
@@ -410,23 +472,17 @@ public class PagedListFacts
         //assert
         Assert.Equal(2, pagedList.PageCount);
     }
-
-    [Theory]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 1, 2, 1, 2)]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 2, 2, 3, 4)]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 3, 2, 5, 5)]
-    [InlineData(new[] { 1, 2, 3, 4, 5 }, 4, 2, 0, 0)]
-    [InlineData(new int[] { }, 1, 2, 0, 0)]
-    public void Theory_FirstItemOnPage_And_LastItemOnPage_Are_Correct(int[] integers, int pageNumber, int pageSize, int expectedFirstItemOnPage, int expectedLastItemOnPage)
+    
+    [Fact]
+    public void TotalSetCount_Is_Null()
     {
         //arrange
-        var data = integers;
+        var data = Enumerable.Range(1, 100001).AsQueryable();
 
         //act
-        var pagedList = data.ToPagedList(pageNumber, pageSize);
+        var pagedList = data.ToPagedList(1, 10, null);
 
         //assert
-        Assert.Equal(expectedFirstItemOnPage, pagedList.FirstItemOnPage);
-        Assert.Equal(expectedLastItemOnPage, pagedList.LastItemOnPage);
+        Assert.Equal(10001, pagedList.PageCount);
     }
 }

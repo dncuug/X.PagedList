@@ -1,9 +1,11 @@
-﻿namespace X.PagedList.Mvc.Core.Fluent;
-
+﻿using System.Linq;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Linq;
 
+namespace X.PagedList.Mvc.Core.Fluent;
+
+[PublicAPI]
 public static class HtmlPagerExtensions
 {
     public static IHtmlContent Pager(this IHtmlHelper htmlHelper)
