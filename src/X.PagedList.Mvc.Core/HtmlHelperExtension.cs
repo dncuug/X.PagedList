@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -40,7 +41,9 @@ public static class HtmlHelperExtension
     {
         var htmlHelper = new HtmlHelper(new TagBuilderFactory());
         var htmlString = htmlHelper.PagedListPager(list, generatePageUrl, options);
-
+        
+        htmlString = HttpUtility.HtmlDecode(htmlString);
+        
         return new HtmlString(htmlString);
     }
 
