@@ -22,6 +22,7 @@
         <LangVersion>default</LangVersion>
         <PackageVersion>9.0.1</PackageVersion>
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
