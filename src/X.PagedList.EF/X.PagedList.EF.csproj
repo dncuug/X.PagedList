@@ -12,9 +12,9 @@
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <Version>9.0.4</Version>
-        <AssemblyVersion>9.0.4</AssemblyVersion>
-        <FileVersion>9.0.4</FileVersion>
+        <Version>9.1.2</Version>
+        <AssemblyVersion>9.1.2</AssemblyVersion>
+        <FileVersion>9.1.2</FileVersion>
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryType>git</RepositoryType>
@@ -23,7 +23,7 @@
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
         <Description>EF extensions for X.PagedList library</Description>
         <LangVersion>default</LangVersion>
-        <PackageVersion>9.0.4</PackageVersion>
+        <PackageVersion>9.1.2</PackageVersion>
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <Nullable>enable</Nullable>
     </PropertyGroup>
