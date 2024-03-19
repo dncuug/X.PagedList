@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <PackageLicenseUrl>https://raw.githubusercontent.com/dncuug/X.PagedList/master/LICENSE</PackageLicenseUrl>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Authors>Copyright Troy Goode, Andrew Gubskiy © 2024</Authors>
         <Company>Ukrainian .NET Developer Community</Company>
