@@ -21,7 +21,8 @@
         <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
         <LangVersion>default</LangVersion>
         <PackageVersion>9.0.1</PackageVersion>
-        <TargetFrameworks>net6.0;netstandard2.0;netstandard2.1;net8.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
