@@ -2,16 +2,16 @@
 
     <PropertyGroup>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Authors>Copyright Troy Goode, Andrew Gubskiy © 2023</Authors>
+        <Authors>Copyright Troy Goode, Andrew Gubskiy © 2024</Authors>
         <Company>Ukrainian .NET Developer Community</Company>
         <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <Version>9.0.1</Version>
-        <AssemblyVersion>9.0.1</AssemblyVersion>
-        <FileVersion>9.0.1</FileVersion>
+        <Version>9.0.4</Version>
+        <AssemblyVersion>9.0.4</AssemblyVersion>
+        <FileVersion>9.0.4</FileVersion>
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryType>git</RepositoryType>
@@ -20,12 +20,12 @@
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
         <Description>Library for easily paging through any IEnumerable/IQueryable in .NET and .NET Core</Description>
         <LangVersion>default</LangVersion>
-        <PackageVersion>9.0.1</PackageVersion>
-        <TargetFrameworks>net6.0;net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <PackageVersion>9.0.4</PackageVersion>
+        <TargetFrameworks>net6.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0">
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0">
 	        <PrivateAssets>all</PrivateAssets>
         </PackageReference>
     </ItemGroup>

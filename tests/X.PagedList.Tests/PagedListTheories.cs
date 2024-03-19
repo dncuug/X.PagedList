@@ -28,7 +28,7 @@ public class PagedListTheories
     {
         int? pageNumber = null;
         var blogs = BuildBlogList();
-        var pagedBlogs = await blogs.ToPagedListAsync(pageNumber, pageSize);
+        var pagedBlogs = await blogs.ToPagedListAsync(pageNumber ?? 1, pageSize);
 
         Assert.Equal(expectedCount, pagedBlogs.Count);
         Assert.Equal(1, pagedBlogs.PageNumber);
@@ -41,14 +41,14 @@ public class PagedListTheories
     [InlineData(1000, 300, 4, 4)]
     public async Task ToListAsync_ForQueryable_With_TotalSetCount_Works(int superSetTotalCount, int pageSize, int expectedCount, int? pageNumber = null)
     {
-        
         pageNumber = pageNumber.HasValue == false ? 0 : pageNumber;
-        var listPageNumber = pageNumber != 0 ? pageNumber - 1 : pageNumber;
-        var xListPageNumber = pageNumber == 0 ? 1 : pageNumber;
+        
+        var listPageNumber = pageNumber != 0 ? (pageNumber ?? 1) - 1 : (pageNumber ?? 1);
+        var xListPageNumber = pageNumber == 0 ? 1 : (pageNumber ?? 1);
         
         var superset = BuildBlogList(1000);
-        
-        var pageOfSuperSet = superset.Skip(listPageNumber.Value * pageSize).Take(pageSize).ToList();
+
+        var pageOfSuperSet = superset.Skip(listPageNumber * pageSize).Take(pageSize).ToList();
         var pagedBlogs = await pageOfSuperSet.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize, superSetTotalCount);
         var pagedBlogsWithoutTotalCount = await superset.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize);
         
