@@ -21,7 +21,7 @@
         <Description>ASP.NET Core extesnions for X.PagedList library</Description>
         <LangVersion>default</LangVersion>
         <PackageVersion>9.0.1</PackageVersion>
-        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup>
