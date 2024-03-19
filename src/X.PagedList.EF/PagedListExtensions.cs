@@ -31,6 +31,11 @@ public static class PagedListExtensions
     /// <seealso cref="PagedList{T}"/>
     public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T>? superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
     {
+        if (superset == null)
+        {
+            throw new ArgumentNullException(nameof(superset));
+        }
+        
         if (pageNumber < 1)
         {
             throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
@@ -43,11 +48,6 @@ public static class PagedListExtensions
 
         var subset = new List<T>();
         var totalCount = 0;
-
-        if (superset == null)
-        {
-            return StaticPagedList<T>.Empty(pageSize);
-        }
 
         if (totalSetCount.HasValue)
         {
