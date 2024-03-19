@@ -28,6 +28,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <None Include="icon.png" Pack="True" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0">
 	        <PrivateAssets>all</PrivateAssets>
         </PackageReference>
