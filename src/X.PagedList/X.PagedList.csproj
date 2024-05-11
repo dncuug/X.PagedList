@@ -3,20 +3,16 @@
     <PropertyGroup>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageIcon>icon.png</PackageIcon>
-        <PackageLicenseUrl>https://raw.githubusercontent.com/dncuug/X.PagedList/master/LICENSE</PackageLicenseUrl>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Authors>Copyright Troy Goode, Andrew Gubskiy © 2024</Authors>
         <Company>Ukrainian .NET Developer Community</Company>
         <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
-        <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <Version>9.1.2</Version>
         <AssemblyVersion>9.1.2</AssemblyVersion>
         <FileVersion>9.1.2</FileVersion>
-        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
         <SignAssembly>true</SignAssembly>
