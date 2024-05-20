@@ -35,7 +35,7 @@
 
     
     <ItemGroup>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.19"/>
         <PackageReference Include="JetBrains.Annotations" Version="2023.3.0">
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
