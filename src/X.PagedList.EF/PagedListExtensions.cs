@@ -35,7 +35,7 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         if (pageNumber < 1)
         {
             throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
@@ -61,7 +61,7 @@ public static class PagedListExtensions
         if (totalCount > 0)
         {
             var skip = (pageNumber - 1) * pageSize;
-                
+
             subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
         }
 

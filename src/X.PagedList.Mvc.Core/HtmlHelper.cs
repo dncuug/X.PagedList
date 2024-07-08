@@ -65,7 +65,7 @@ public class HtmlHelper
         }
 
         AppendHtml(li, TagBuilderToString(inner));
-        
+
         return li;
     }
 
@@ -272,7 +272,7 @@ public class HtmlHelper
     public string PagedListPager(IPagedList pagedList, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var list = pagedList ?? new StaticPagedList<int>(ImmutableList<int>.Empty, 1, 10, 0);
-        
+
         if (options.Display == PagedListDisplayMode.Never || (options.Display == PagedListDisplayMode.IfNeeded && list.PageCount <= 1))
         {
             return null;

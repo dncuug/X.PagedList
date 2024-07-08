@@ -41,9 +41,9 @@ public static class HtmlHelperExtension
     {
         var htmlHelper = new HtmlHelper(new TagBuilderFactory());
         var htmlString = htmlHelper.PagedListPager(list, generatePageUrl, options);
-        
+
         htmlString = HttpUtility.HtmlDecode(htmlString);
-        
+
         return new HtmlString(htmlString);
     }
 
