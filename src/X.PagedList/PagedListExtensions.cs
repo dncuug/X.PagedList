@@ -26,7 +26,7 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         var take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
         var result = new List<IEnumerable<T>>();
 
@@ -58,7 +58,7 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         // Cache this to avoid evaluating it twice
         var count = superset.Count();
 
@@ -88,10 +88,10 @@ public static class PagedListExtensions
     public static IPagedList<TResult> Select<TSource, TResult>(this IPagedList<TSource> source, Func<TSource, TResult> selector)
     {
         var subset = ((IEnumerable<TSource>)source).Select(selector);
-        
+
         return new PagedList<TResult>(source, subset);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -110,13 +110,13 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         var supersetSize = superset.Count();
         var pageSize = supersetSize == 0 ? 1 : supersetSize;
 
         return new PagedList<T>(superset, 1, pageSize);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -139,10 +139,10 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         return new PagedList<T>(superset, pageNumber, pageSize);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -166,10 +166,10 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         return new PagedList<T, TKey>(superset.AsQueryable(), keySelector, pageNumber, pageSize);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -193,7 +193,7 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         if (pageNumber < 1)
         {
             throw new ArgumentOutOfRangeException($"pageNumber = {pageNumber}. PageNumber cannot be below 1.");
@@ -205,14 +205,14 @@ public static class PagedListExtensions
         }
 
         var supersetCount = superset.Count();
-        
+
         if (supersetCount > totalSetCount)
         {
             throw new ArgumentOutOfRangeException($"superset count = {supersetCount} superset count cannot be more than {totalSetCount.Value}.");
         }
 
         List<T> subset;
-        
+
         var totalCount = totalSetCount ?? supersetCount;
 
         if ((totalCount <= 0 || totalSetCount.HasValue) && supersetCount <= pageSize)
@@ -254,7 +254,7 @@ public static class PagedListExtensions
         {
             throw new ArgumentNullException(nameof(superset));
         }
-        
+
         return new PagedList<T, TKey>(superset, keySelector, pageNumber, pageSize);
     }
 }

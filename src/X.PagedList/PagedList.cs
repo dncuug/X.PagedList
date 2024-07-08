@@ -92,7 +92,7 @@ public class PagedList<T> : BasePagedList<T>
         if (TotalItemCount > 0 && superset != null)
         {
             var skip = (pageNumber - 1) * pageSize;
-            
+
             Subset.AddRange(superset.Skip(skip).Take(pageSize));
         }
     }
@@ -134,7 +134,7 @@ public class PagedList<T> : BasePagedList<T>
         LastItemOnPage = pagedList.LastItemOnPage;
 
         Subset.AddRange(collection);
-        
+
         if (Subset.Count > PageSize)
         {
             throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
@@ -148,6 +148,6 @@ public class PagedList<T> : BasePagedList<T>
     /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static PagedList<T> Empty(int pageSize = DefaultPageSize) => 
+    public static PagedList<T> Empty(int pageSize = DefaultPageSize) =>
         new(Array.Empty<T>(), 1, pageSize);
 }
