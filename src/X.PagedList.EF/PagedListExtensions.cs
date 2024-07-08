@@ -29,7 +29,7 @@ public static class PagedListExtensions
     /// about the collection of objects the subset was created from.
     /// </returns>
     /// <seealso cref="PagedList{T}"/>
-    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T>? superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
+    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
     {
         if (superset == null)
         {
