@@ -46,8 +46,8 @@ public static class PagedListExtensions
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
 
-        var subset = new List<T>();
-        var totalCount = 0;
+        List<T> subset;
+        int totalCount;
 
         if (totalSetCount.HasValue)
         {
@@ -62,7 +62,11 @@ public static class PagedListExtensions
         {
             var skip = (pageNumber - 1) * pageSize;
 
-            subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
+            subset = await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        }
+        else
+        {
+            subset = new List<T>();
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
