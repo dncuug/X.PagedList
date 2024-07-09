@@ -6,7 +6,6 @@
 Library was not updated for a long time. This version contains lot of breaking changes:
 - Updated namespaces
 - Removed some classes which duplicated ASP.NET Core classes
-- UpdateTargetId in AjaxOptions now not automatically prepended
 - Other changes
 
 ## What is this?
