@@ -29,7 +29,7 @@ public static class PagedListExtensions
     /// about the collection of objects the subset was created from.
     /// </returns>
     /// <seealso cref="PagedList{T}"/>
-    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T>? superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
+    public static async Task<IPagedList<T>> ToPagedListAsync<T>(this IQueryable<T> superset, int pageNumber, int pageSize, int? totalSetCount, CancellationToken cancellationToken)
     {
         if (superset == null)
         {
@@ -46,8 +46,8 @@ public static class PagedListExtensions
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
 
-        var subset = new List<T>();
-        var totalCount = 0;
+        List<T> subset;
+        int totalCount;
 
         if (totalSetCount.HasValue)
         {
@@ -62,7 +62,11 @@ public static class PagedListExtensions
         {
             var skip = (pageNumber - 1) * pageSize;
 
-            subset.AddRange(await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false));
+            subset = await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
+        }
+        else
+        {
+            subset = new List<T>();
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
