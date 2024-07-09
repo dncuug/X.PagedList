@@ -100,7 +100,7 @@ public static class PagedListExtensions
     /// <param name="superset">
     /// The collection of objects to be divided into subsets. If the
     /// collection implements <see cref="IQueryable{T}"/>, it will be treated as such.
-    /// </param>       
+    /// </param>
     /// <returns>A subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.</returns>
     /// <seealso cref="PagedList{T}"/>
@@ -159,7 +159,7 @@ public static class PagedListExtensions
     /// <returns>
     /// A subset of this collection of objects that can be individually accessed by index and containing metadata
     /// about the collection of objects the subset was created from.
-    /// </returns>        
+    /// </returns>
     public static IPagedList<T> ToPagedList<T, TKey>(this IEnumerable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
     {
         if (superset == null)
@@ -204,26 +204,19 @@ public static class PagedListExtensions
             throw new ArgumentOutOfRangeException($"pageSize = {pageSize}. PageSize cannot be less than 1.");
         }
 
-        var supersetCount = superset.Count();
-
-        if (supersetCount > totalSetCount)
-        {
-            throw new ArgumentOutOfRangeException($"superset count = {supersetCount} superset count cannot be more than {totalSetCount.Value}.");
-        }
+        int totalCount = totalSetCount ?? superset.Count();
 
         List<T> subset;
 
-        var totalCount = totalSetCount ?? supersetCount;
-
-        if ((totalCount <= 0 || totalSetCount.HasValue) && supersetCount <= pageSize)
-        {
-            subset = superset.ToList();
-        }
-        else
+        if (totalCount > 0)
         {
             var skip = (pageNumber - 1) * pageSize;
 
             subset = superset.Skip(skip).Take(pageSize).ToList();
+        }
+        else
+        {
+            subset = new List<T>();
         }
 
         return new StaticPagedList<T>(subset, pageNumber, pageSize, totalCount);
