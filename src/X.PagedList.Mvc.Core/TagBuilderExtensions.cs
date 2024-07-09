@@ -19,7 +19,7 @@ public static class TagBuilderExtensions
         tagBuilder.InnerHtml.AppendHtml(innerHtml);
     }
 
-    public static void MergeAttribute(this TagBuilder tagBuilder, string key, string value)
+    public static void MergeAttribute(this TagBuilder tagBuilder, string key, string? value)
     {
         tagBuilder
             .MergeAttribute(key, value);
@@ -30,11 +30,11 @@ public static class TagBuilderExtensions
         tagBuilder.InnerHtml.SetContent(innerText);
     }
 
-    public static string ToString(this TagBuilder tagBuilder, TagRenderMode renderMode, HtmlEncoder encoder = null)
+    public static string ToString(this TagBuilder tagBuilder, TagRenderMode renderMode, HtmlEncoder? encoder = null)
     {
         encoder ??= HtmlEncoder.Create(new TextEncoderSettings());
 
-        using (var writer = new StringWriter() as TextWriter)
+        using (var writer = new StringWriter())
         {
             tagBuilder.WriteTo(writer, encoder);
 
