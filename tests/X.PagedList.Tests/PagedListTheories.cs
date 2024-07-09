@@ -49,7 +49,7 @@ public class PagedListTheories
         var superset = BuildBlogList(1000);
 
         var pageOfSuperSet = superset.Skip(listPageNumber * pageSize).Take(pageSize).ToList();
-        var pagedBlogs = await pageOfSuperSet.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize, superSetTotalCount);
+        var pagedBlogs = await superset.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize, superSetTotalCount);
         var pagedBlogsWithoutTotalCount = await superset.AsQueryable().ToPagedListAsync(xListPageNumber, pageSize);
 
         //test the totalSetCount extension
