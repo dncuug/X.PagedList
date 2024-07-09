@@ -27,7 +27,7 @@ public static class PagedListExtensions
             throw new ArgumentNullException(nameof(superset));
         }
 
-        var take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
+        int take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
         var result = new List<IEnumerable<T>>();
 
         for (int i = 0; i < numberOfPages; i++)
@@ -60,7 +60,7 @@ public static class PagedListExtensions
         }
 
         // Cache this to avoid evaluating it twice
-        var count = superset.Count();
+        int count = superset.Count();
 
         if (count < pageSize)
         {
@@ -111,8 +111,8 @@ public static class PagedListExtensions
             throw new ArgumentNullException(nameof(superset));
         }
 
-        var supersetSize = superset.Count();
-        var pageSize = supersetSize == 0 ? 1 : supersetSize;
+        int supersetSize = superset.Count();
+        int pageSize = supersetSize == 0 ? 1 : supersetSize;
 
         return new PagedList<T>(superset, 1, pageSize);
     }

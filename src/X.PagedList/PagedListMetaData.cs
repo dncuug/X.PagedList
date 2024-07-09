@@ -4,7 +4,7 @@ namespace X.PagedList;
 
 ///<summary>
 /// Non-enumerable version of the PagedList class.
-///</summary>    
+///</summary>
 [PublicAPI]
 public class PagedListMetaData : IPagedList
 {
