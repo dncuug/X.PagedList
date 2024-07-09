@@ -62,8 +62,8 @@ public class AjaxOptions
         return attrs;
     }
 
-    public string HttpMethod { get; set; }
-    public InsertionMode InsertionMode { get; set; }
+    public string HttpMethod { get; set; } = "GET";
+    public InsertionMode InsertionMode { get; set; } = InsertionMode.Replace;
     public string? UpdateTargetId { get; set; }
     public string? Confirm { get; set; }
     public int LoadingElementDuration { get; set; }
