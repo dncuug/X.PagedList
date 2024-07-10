@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace X.PagedList;
+namespace X.PagedList.Extensions;
 
 /// <summary>
 /// Container for extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
@@ -27,7 +27,7 @@ public static class PagedListExtensions
             throw new ArgumentNullException(nameof(superset));
         }
 
-        var take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
+        int take = Convert.ToInt32(Math.Ceiling(superset.Count() / (double)numberOfPages));
         var result = new List<IEnumerable<T>>();
 
         for (int i = 0; i < numberOfPages; i++)
@@ -60,7 +60,7 @@ public static class PagedListExtensions
         }
 
         // Cache this to avoid evaluating it twice
-        var count = superset.Count();
+        int count = superset.Count();
 
         if (count < pageSize)
         {
@@ -111,8 +111,8 @@ public static class PagedListExtensions
             throw new ArgumentNullException(nameof(superset));
         }
 
-        var supersetSize = superset.Count();
-        var pageSize = supersetSize == 0 ? 1 : supersetSize;
+        int supersetSize = superset.Count();
+        int pageSize = supersetSize == 0 ? 1 : supersetSize;
 
         return new PagedList<T>(superset, 1, pageSize);
     }
@@ -141,6 +141,32 @@ public static class PagedListExtensions
         }
 
         return new PagedList<T>(superset, pageNumber, pageSize);
+    }
+
+    /// <summary>
+    /// Creates a subset of this collection of objects that can be individually accessed by index and containing
+    /// metadata about the collection of objects the subset was created from.
+    /// </summary>
+    /// <typeparam name="T">The type of object the collection should contain.</typeparam>
+    /// <param name="superset">
+    /// The collection of objects to be divided into subsets. If the collection
+    /// implements <see cref="IEnumerable{T}"/>, it will be treated as such.
+    /// </param>
+    /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
+    /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <param name="totalSetCount">The total size of set</param>
+    /// <returns>
+    /// A subset of this collection of objects that can be individually accessed by index and containing metadata
+    /// about the collection of objects the subset was created from.
+    /// </returns>
+    public static IPagedList<T> ToPagedList<T>(this IEnumerable<T> superset, int pageNumber, int pageSize, int? totalSetCount)
+    {
+        if (superset == null)
+        {
+            throw new ArgumentNullException(nameof(superset));
+        }
+
+        return ToPagedList(superset.AsQueryable(), pageNumber, pageSize, totalSetCount);
     }
 
     /// <summary>

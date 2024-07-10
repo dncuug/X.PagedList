@@ -11,7 +11,7 @@ internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
 
     private Func<int, string> _generatePageUrl;
     private PagedListRenderOptions _options;
-    private string _partialViewName;
+    private string? _partialViewName;
 
     public HtmlPagerBuilder(IHtmlHelper htmlHelper, IPagedList pagedList)
     {
@@ -140,7 +140,7 @@ internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
         return this;
     }
 
-    public IHtmlContent Build(PagedListRenderOptions options)
+    public IHtmlContent Build(PagedListRenderOptions? options)
     {
         _options = options ?? _options;
 

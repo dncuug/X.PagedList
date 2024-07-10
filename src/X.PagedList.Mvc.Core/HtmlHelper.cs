@@ -50,7 +50,7 @@ public class HtmlHelper
         return li;
     }
 
-    private TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptions options, params string[] classes)
+    private TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptions? options, params string[] classes)
     {
         var li = _tagBuilderFactory.Create("li");
 
@@ -233,7 +233,7 @@ public class HtmlHelper
             return WrapInListItem(previous, options, options.EllipsesElementClass, "disabled");
         }
 
-        var targetPageNumber = firstPageToDisplay - 1;
+        int targetPageNumber = firstPageToDisplay - 1;
 
         previous.Attributes.Add("href", generatePageUrl(targetPageNumber));
 
@@ -269,7 +269,7 @@ public class HtmlHelper
 
     #endregion Private methods
 
-    public string PagedListPager(IPagedList pagedList, Func<int, string> generatePageUrl, PagedListRenderOptions options)
+    public string? PagedListPager(IPagedList? pagedList, Func<int, string> generatePageUrl, PagedListRenderOptions options)
     {
         var list = pagedList ?? new StaticPagedList<int>(ImmutableList<int>.Empty, 1, 10, 0);
 
@@ -281,14 +281,14 @@ public class HtmlHelper
         var listItemLinks = new List<TagBuilder>();
 
         //calculate start and end of range of page numbers
-        var firstPageToDisplay = 1;
-        var lastPageToDisplay = list.PageCount;
-        var pageNumbersToDisplay = lastPageToDisplay;
+        int firstPageToDisplay = 1;
+        int lastPageToDisplay = list.PageCount;
+        int pageNumbersToDisplay = lastPageToDisplay;
 
         if (options.MaximumPageNumbersToDisplay.HasValue && list.PageCount > options.MaximumPageNumbersToDisplay)
         {
             // cannot fit all pages into pager
-            var maxPageNumbersToDisplay = options.MaximumPageNumbersToDisplay.Value;
+            int maxPageNumbersToDisplay = options.MaximumPageNumbersToDisplay.Value;
 
             firstPageToDisplay = list.PageNumber - maxPageNumbersToDisplay / 2;
 
@@ -341,7 +341,7 @@ public class HtmlHelper
                 listItemLinks.Add(PreviousEllipsis(list, generatePageUrl, options, firstPageToDisplay));
             }
 
-            foreach (var i in Enumerable.Range(firstPageToDisplay, pageNumbersToDisplay))
+            foreach (int i in Enumerable.Range(firstPageToDisplay, pageNumbersToDisplay))
             {
                 //show delimiter between page numbers
                 if (i > firstPageToDisplay && !string.IsNullOrWhiteSpace(options.DelimiterBetweenPageNumbers))

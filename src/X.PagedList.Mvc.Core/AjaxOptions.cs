@@ -62,17 +62,17 @@ public class AjaxOptions
         return attrs;
     }
 
-    public string HttpMethod { get; set; }
-    public InsertionMode InsertionMode { get; set; }
-    public string UpdateTargetId { get; set; }
-    public string Confirm { get; set; }
+    public string HttpMethod { get; set; } = "GET";
+    public InsertionMode InsertionMode { get; set; } = InsertionMode.Replace;
+    public string? UpdateTargetId { get; set; }
+    public string? Confirm { get; set; }
     public int LoadingElementDuration { get; set; }
-    public string LoadingElementId { get; set; }
-    public string OnBegin { get; set; }
-    public string OnComplete { get; set; }
-    public string OnFailure { get; set; }
-    public string OnSuccess { get; set; }
-    public string Url { get; set; }
+    public string? LoadingElementId { get; set; }
+    public string? OnBegin { get; set; }
+    public string? OnComplete { get; set; }
+    public string? OnFailure { get; set; }
+    public string? OnSuccess { get; set; }
+    public string? Url { get; set; }
     public bool AllowCache { get; set; }
 }
 

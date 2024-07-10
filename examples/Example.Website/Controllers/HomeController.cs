@@ -1,23 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using Example.DAL;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Example.DAL;
-using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace Example.Website.Controllers;
 
 public class HomeController : Controller
 {
     private const int PageSize = 10;
-    
+
     private readonly DatabaseContext _databaseContext;
 
     public HomeController(DatabaseContext databaseContext)
     {
         _databaseContext = databaseContext;
     }
-    
+
     public IActionResult Index(int page = 1)
     {
         ViewBag.Names = GetPagedNames(page);
@@ -55,7 +56,7 @@ public class HomeController : Controller
         var listUnPaged = GetStuffFromFile();
 
         // page the list
-        
+
         var listPaged = listUnPaged.ToPagedList(page ?? 1, PageSize);
 
         // return a 404 if user browses to pages beyond last page. special case first page if no items exist
