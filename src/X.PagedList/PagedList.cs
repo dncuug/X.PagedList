@@ -44,7 +44,7 @@ public class PagedList<T> : BasePagedList<T>
         {
             var skip = (pageNumber - 1) * pageSize;
 
-            Subset.AddRange(superset.Skip(skip).Take(pageSize));
+            FillSubset(superset.Skip(skip).Take(pageSize));
         }
     }
 
@@ -84,9 +84,9 @@ public class PagedList<T> : BasePagedList<T>
         FirstItemOnPage = pagedList.FirstItemOnPage;
         LastItemOnPage = pagedList.LastItemOnPage;
 
-        Subset.AddRange(collection);
+        FillSubset(collection);
 
-        if (Subset.Count > PageSize)
+        if (base.Count > PageSize)
         {
             throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
         }

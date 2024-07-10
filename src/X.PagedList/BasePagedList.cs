@@ -20,15 +20,22 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
-    protected readonly List<T> Subset = new();
-
     public const int DefaultPageSize = 100;
+
+    private readonly List<T> _subset = new();
 
     /// <summary>
     /// Parameterless constructor.
     /// </summary>
     protected internal BasePagedList()
     {
+    }
+    
+    protected void FillSubset(IEnumerable<T> set)
+    {
+        _subset.Clear();
+        
+        _subset.AddRange(set);
     }
 
     /// <summary>
@@ -88,15 +95,17 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+    // [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
-        return Subset.GetEnumerator();
+        return _subset.GetEnumerator();
     }
 
     /// <summary>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
+    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
@@ -106,12 +115,12 @@ public abstract class BasePagedList<T> : IPagedList<T>
     ///	    Gets the element at the specified index.
     /// </summary>
     /// <param name = "index">The zero-based index of the element to get.</param>
-    public T this[int index] => Subset[index];
+    public T this[int index] => _subset[index];
 
     /// <summary>
     /// 	Gets the number of elements contained on this page.
     /// </summary>
-    public virtual int Count => Subset.Count;
+    public virtual int Count => _subset.Count;
 
     /// <summary>
     /// 	Total number of subsets within the superset.
