@@ -13,17 +13,16 @@
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
 
-        <Version>9.1.2</Version>
-        <AssemblyVersion>9.1.2</AssemblyVersion>
-        <FileVersion>9.1.2</FileVersion>
-
+        <Version>9.5.0</Version>
+        <AssemblyVersion>9.5.0</AssemblyVersion>
+        <FileVersion>9.5.0</FileVersion>
+        <PackageVersion>9.5.0-pre</PackageVersion>
+        
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
 
         <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
-
-        <PackageVersion>9.1.2</PackageVersion>
+        <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>        
 
         <Nullable>enable</Nullable>
     </PropertyGroup>
