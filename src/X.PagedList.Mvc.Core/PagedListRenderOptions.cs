@@ -53,22 +53,22 @@ public class PagedListRenderOptions
     ///<summary>
     /// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
     ///</summary>
-    public IEnumerable<string> ContainerDivClasses { get; set; }
+    public IEnumerable<string>? ContainerDivClasses { get; set; }
 
     ///<summary>
     /// CSSClasses to append to the &lt;ul&gt; element in the paging control.
     ///</summary>
-    public IEnumerable<string> UlElementClasses { get; set; }
+    public IEnumerable<string>? UlElementClasses { get; set; }
 
     /// <summary>
     /// Attrinutes to appendto the &lt;ul&gt; element in the paging control
     /// </summary>
-    public IDictionary<string, string> UlElementattributes { get; set; }
+    public IDictionary<string, string>? UlElementattributes { get; set; }
 
     ///<summary>
     /// CSS Classes to append to every &lt;li&gt; element in the paging control.
     ///</summary>
-    public IEnumerable<string> LiElementClasses { get; set; }
+    public IEnumerable<string>? LiElementClasses { get; set; }
 
     /// <summary>
     /// CSS Classes to appent to active &lt;li&gt; element in the paging control.
@@ -78,7 +78,7 @@ public class PagedListRenderOptions
     ///<summary>
     /// CSS Classes to append to every &lt;a&gt; or &lt;span&gt; element that represent each page in the paging control.
     ///</summary>
-    public IEnumerable<string> PageClasses { get; set; }
+    public IEnumerable<string>? PageClasses { get; set; }
 
     ///<summary>
     /// CSS Classes to append to previous element in the paging control.
@@ -98,12 +98,12 @@ public class PagedListRenderOptions
     ///<summary>
     /// Specifies a CSS class to append to the first list item in the pager. If null or whitespace is defined, no additional class is added to first list item in list.
     ///</summary>
-    public string ClassToApplyToFirstListItemInPager { get; set; }
+    public string? ClassToApplyToFirstListItemInPager { get; set; }
 
     ///<summary>
     /// Specifies a CSS class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
     ///</summary>
-    public string ClassToApplyToLastListItemInPager { get; set; }
+    public string? ClassToApplyToLastListItemInPager { get; set; }
 
     /// <summary>
     /// If set to Always, always renders the paging control. If set to IfNeeded, render the paging control when there is more than one page.
@@ -238,12 +238,12 @@ public class PagedListRenderOptions
     /// <summary>
     /// A function that will render each page number when specified (and DisplayLinkToIndividualPages is true). If no function is specified, the LinkToIndividualPageFormat value will be used instead.
     /// </summary>
-    public Func<int, string> FunctionToDisplayEachPageNumber { get; set; }
+    public Func<int, string>? FunctionToDisplayEachPageNumber { get; set; }
 
     /// <summary>
     /// Text that will appear between each page number. If null or whitespace is specified, no delimiter will be shown.
     /// </summary>
-    public string DelimiterBetweenPageNumbers { get; set; }
+    public string? DelimiterBetweenPageNumbers { get; set; }
 
     ///<summary>
     /// Also includes links to First and Last pages.
@@ -368,7 +368,7 @@ public class PagedListRenderOptions
     /// <summary>
     /// An extension point which allows you to fully customize the anchor tags used for clickable pages, as well as navigation features such as Next, Last, etc.
     /// </summary>
-    public Func<TagBuilder, TagBuilder, TagBuilder> FunctionToTransformEachPageLink { get; set; }
+    public Func<TagBuilder, TagBuilder, TagBuilder>? FunctionToTransformEachPageLink { get; set; }
 
     /// <summary>
     /// Enables ASP.NET MVC's unobtrusive AJAX feature. An XHR request will retrieve HTML from the clicked page and replace the innerHtml of the provided element ID.
@@ -376,7 +376,7 @@ public class PagedListRenderOptions
     /// <param name="pagedListRenderOptions"></param>
     /// <param name="ajaxOptions">The ajax options that will put into the link</param>
     /// <returns>The PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
-    public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions pagedListRenderOptions, AjaxOptions ajaxOptions)
+    public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions pagedListRenderOptions, AjaxOptions? ajaxOptions)
     {
         if (pagedListRenderOptions is PagedListRenderOptions renderOptions)
         {
@@ -431,7 +431,7 @@ public class PagedListRenderOptions
     /// </summary>
     /// <param name="ajaxOptions">Ajax options that will be used to generate the unobstrusive tags on the link</param>
     /// <returns>A default instance of PagedListRenderOptions value passed in, with unobtrusive AJAX attributes added to the page links.</returns>
-    public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(AjaxOptions ajaxOptions)
+    public static PagedListRenderOptions EnableUnobtrusiveAjaxReplacing(AjaxOptions? ajaxOptions)
     {
         return EnableUnobtrusiveAjaxReplacing(new PagedListRenderOptions(), ajaxOptions);
     }

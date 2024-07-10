@@ -43,5 +43,5 @@ public interface IHtmlPagerBuilder
 
     IHtmlContent Build();
 
-    IHtmlContent Build(PagedListRenderOptions options);
+    IHtmlContent Build(PagedListRenderOptions? options);
 }

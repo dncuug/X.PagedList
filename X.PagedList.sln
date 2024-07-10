@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29215.179
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BDDADD09-D112-418E-8469-BC762EC09936}"
+	ProjectSection(SolutionItems) = preProject
+		src\Directory.Build.props = src\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0170B742-C624-4C22-9DE1-2A93CF9C12D6}"
 EndProject
@@ -17,9 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Tests", "tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Website", "examples\Example.Website\Example.Website.csproj", "{288F5726-904F-48B8-8363-EA1A22D331D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.DAL", "examples\Example.DAL\Example.DAL.csproj", "{AD16A8D1-EAF0-4947-BCEC-A8B423B2F117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.DAL", "examples\Example.DAL\Example.DAL.csproj", "{AD16A8D1-EAF0-4947-BCEC-A8B423B2F117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.EF", "src\X.PagedList.EF\X.PagedList.EF.csproj", "{1934BC10-30AE-4C4C-AF22-E444B1F70ACA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.EF", "src\X.PagedList.EF\X.PagedList.EF.csproj", "{1934BC10-30AE-4C4C-AF22-E444B1F70ACA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

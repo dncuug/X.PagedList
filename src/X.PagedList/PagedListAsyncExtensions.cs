@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using X.PagedList.Extensions;
 
-namespace X.PagedList;
+namespace X.PagedList.AsyncExtensions;
 
 /// <summary>
 /// Container for async extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
@@ -35,7 +36,7 @@ public static class PagedListAsyncExtensions
 
         }, cancellationToken);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.
@@ -60,7 +61,7 @@ public static class PagedListAsyncExtensions
     {
         return await ToPagedListAsync(superset.AsQueryable(), pageNumber, pageSize, totalSetCount, cancellationToken);
     }
-    
+
     /// <summary>
     /// Async creates a subset of this collection of objects that can be individually accessed by index and
     /// containing metadata about the collection of objects the subset was created from.
@@ -84,7 +85,7 @@ public static class PagedListAsyncExtensions
     {
         return await ToPagedListAsync(superset, pageNumber, pageSize, totalSetCount, CancellationToken.None);
     }
-    
+
     /// <summary>
     /// Creates a subset of this collection of objects that can be individually accessed by index and containing
     /// metadata about the collection of objects the subset was created from.

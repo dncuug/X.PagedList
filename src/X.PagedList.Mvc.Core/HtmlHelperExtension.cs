@@ -20,7 +20,7 @@ public static class HtmlHelperExtension
     ///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
     ///<returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
-        IPagedList list,
+        IPagedList? list,
         Func<int, string> generatePageUrl)
     {
         return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
@@ -35,15 +35,15 @@ public static class HtmlHelperExtension
     ///<param name = "options">Formatting options.</param>
     ///<returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
-        IPagedList list,
+        IPagedList? list,
         Func<int, string> generatePageUrl,
         PagedListRenderOptions options)
     {
-        var htmlHelper = new HtmlHelper(new TagBuilderFactory());
-        var htmlString = htmlHelper.PagedListPager(list, generatePageUrl, options);
-        
+        HtmlHelper htmlHelper = new HtmlHelper(new TagBuilderFactory());
+        string? htmlString = htmlHelper.PagedListPager(list, generatePageUrl, options);
+
         htmlString = HttpUtility.HtmlDecode(htmlString);
-        
+
         return new HtmlString(htmlString);
     }
 
@@ -88,8 +88,8 @@ public static class HtmlHelperExtension
         string formAction,
         GoToFormRenderOptions options)
     {
-        var htmlHelper = new HtmlHelper(new TagBuilderFactory());
-        var htmlString = htmlHelper.PagedListGoToPageForm(list, formAction, options);
+        HtmlHelper htmlHelper = new HtmlHelper(new TagBuilderFactory());
+        string htmlString = htmlHelper.PagedListGoToPageForm(list, formAction, options);
 
         return new HtmlString(htmlString);
     }

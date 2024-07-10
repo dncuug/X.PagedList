@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoFixture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoFixture;
+using X.PagedList.AsyncExtensions;
+using X.PagedList.Extensions;
 using Xunit;
 
 namespace X.PagedList.Tests;
@@ -34,7 +36,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task Argument_out_of_range()
+    public void Argument_out_of_range()
     {
         var queryable = (new List<Object>()).AsQueryable();
         var list = queryable.ToList();
@@ -67,8 +69,8 @@ public class PagedListFacts
     {
         var collection = Enumerable.Range(1, 1000000);
 
-        var pageNumber = 2;
-        var pageSize = 10;
+        int pageNumber = 2;
+        int pageSize = 10;
 
         Expression<Func<int, int>> keySelector = i => Order(i);
 
@@ -102,7 +104,7 @@ public class PagedListFacts
         var pagedList = data.ToPagedList(2, 3);
 
         //assert
-        Assert.Equal(0, pagedList.Count);
+        Assert.Empty(pagedList);
     }
 
     [Fact]
@@ -208,7 +210,7 @@ public class PagedListFacts
         pagedList = data.ToPagedList(3, 2);
 
         //assert
-        Assert.Equal(1, pagedList.Count);
+        Assert.Single(pagedList);
     }
 
     [Fact]
@@ -335,17 +337,17 @@ public class PagedListFacts
         //assert
         Assert.Equal(8, pagedList.LastItemOnPage);
     }
-    
+
     [Fact]
     public async Task ToListAsync_Check_CornerCases()
     {
-        var pageNumber = 2;
-        var pageSize = 10;
-        var superSetTotalCount = 110;
+        int pageNumber = 2;
+        int pageSize = 10;
+        int superSetTotalCount = 110;
 
         var superset = BuildBlogList(50);
         var queryable = superset.AsQueryable();
-        
+
         var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
         var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
 
@@ -354,24 +356,24 @@ public class PagedListFacts
         Assert.Equal(2, pagedList.PageNumber);
         Assert.Equal(pageSize, pagedList.PageSize);
         Assert.Equal(10, pagedList.Count);
-        
+
         //test the pagedListWithoutTotalCount extension
         Assert.Equal(11, pagedList.PageCount);
         Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
         Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
         Assert.Equal(10, pagedListWithoutTotalCount.Count);
     }
-    
+
     [Fact]
     public async Task ToListAsync_Check_CornerCases_For_Enumerable()
     {
-        var pageNumber = 2;
-        var pageSize = 10;
-        var superSetTotalCount = 110;
+        int pageNumber = 2;
+        int pageSize = 10;
+        int superSetTotalCount = 110;
 
         var superset = BuildBlogList(50);
         var enumerable = superset.AsEnumerable();
-        
+
         var pagedList = await enumerable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
         var pagedListWithoutTotalCount = await enumerable.ToPagedListAsync(pageNumber, pageSize);
 
@@ -380,25 +382,25 @@ public class PagedListFacts
         Assert.Equal(2, pagedList.PageNumber);
         Assert.Equal(pageSize, pagedList.PageSize);
         Assert.Equal(10, pagedList.Count);
-        
+
         //test the pagedListWithoutTotalCount extension
         Assert.Equal(11, pagedList.PageCount);
         Assert.Equal(2, pagedListWithoutTotalCount.PageNumber);
         Assert.Equal(pageSize, pagedListWithoutTotalCount.PageSize);
         Assert.Equal(10, pagedListWithoutTotalCount.Count);
     }
-    
+
     [Fact]
     public async Task ClonePagedList()
     {
-        var pageNumber = 2;
-        var pageSize = 10;
-        var superSetTotalCount = 110;
+        int pageNumber = 2;
+        int pageSize = 10;
+        int superSetTotalCount = 110;
 
         var superset1 = BuildBlogList(50);
         var superset2 = BuildBlogList(10);
         var queryable1 = superset1.AsEnumerable();
-        
+
         var pagedList = await queryable1.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
 
         var clone = new PagedList<Blog>(pagedList, superset2);
@@ -408,24 +410,22 @@ public class PagedListFacts
         Assert.Equal(2, clone.PageNumber);
         Assert.Equal(pageSize, clone.PageSize);
         Assert.Equal(10, clone.Count);
-    } 
-    
+    }
+
     [Fact]
-    public async Task Check_Ctor_With_KeySelectorMethod()
+    public void Check_Ctor_With_KeySelectorMethod()
     {
-        var pageNumber = 2;
-        var pageSize = 10;
-        var superSetTotalCount = 110;
+        int pageSize = 10;
 
         var collection = BuildBlogList(50);
-        
+
         Func<Blog, int> keySelector = blog =>
         {
             return blog.BlogID;
         };
-        
+
         var pagedList = new PagedList<Blog, int>(collection, keySelector, 2, pageSize);
-        
+
 
         //test the totalSetCount extension
         Assert.Equal(5, pagedList.PageCount);
@@ -435,7 +435,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task Check_Empty_Method()
+    public void Check_Empty_Method()
     {
         var empty1 = PagedList<int>.Empty();
         var empty2 = PagedList<int>.Empty(10);
@@ -456,10 +456,10 @@ public class PagedListFacts
     private static IQueryable<Blog> BuildBlogList(int itemCount = 3)
     {
         var fixture = new Fixture();
-        
+
         return fixture.CreateMany<Blog>(itemCount).OrderByDescending(b => b.BlogID).AsQueryable();
     }
-    
+
     [Fact]
     public void PageCount_Is_Correct_Big()
     {
@@ -472,7 +472,7 @@ public class PagedListFacts
         //assert
         Assert.Equal(2, pagedList.PageCount);
     }
-    
+
     [Fact]
     public void TotalSetCount_Is_Null()
     {

@@ -25,20 +25,20 @@ public class PagedList<T, TKey> : BasePagedList<T>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
-    public PagedList(IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
+    public PagedList(IQueryable<T>? superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
         // add items to internal list
-        if (TotalItemCount > 0)
+        if (superset != null && TotalItemCount > 0)
         {
             InitSubset(superset, keySelector.Compile(), pageNumber, pageSize);
         }
     }
 
-    public PagedList(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
+    public PagedList(IQueryable<T>? superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
-        if (TotalItemCount > 0)
+        if (superset != null && TotalItemCount > 0)
         {
             InitSubset(superset, keySelectorMethod, pageNumber, pageSize);
         }
@@ -67,7 +67,7 @@ public class PagedList<T, TKey> : BasePagedList<T>
 /// <seealso cref="IPagedList{T}"/>
 /// <seealso cref="BasePagedList{T}"/>
 /// <seealso cref="StaticPagedList{T}"/>
-/// <seealso cref="List{T}"/>    
+/// <seealso cref="List{T}"/>
 public class PagedList<T> : BasePagedList<T>
 {
     /// <summary>
@@ -86,13 +86,13 @@ public class PagedList<T> : BasePagedList<T>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
     [PublicAPI]
-    public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
+    public PagedList(IQueryable<T>? superset, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
-        if (TotalItemCount > 0 && superset != null)
+        if (superset != null && TotalItemCount > 0)
         {
             var skip = (pageNumber - 1) * pageSize;
-            
+
             Subset.AddRange(superset.Skip(skip).Take(pageSize));
         }
     }
@@ -110,8 +110,8 @@ public class PagedList<T> : BasePagedList<T>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
-    public PagedList(IEnumerable<T> superset, int pageNumber, int pageSize)
-        : this(superset.AsQueryable<T>(), pageNumber, pageSize)
+    public PagedList(IEnumerable<T>? superset, int pageNumber, int pageSize)
+        : this(superset?.AsQueryable<T>(), pageNumber, pageSize)
     {
     }
 
@@ -134,7 +134,7 @@ public class PagedList<T> : BasePagedList<T>
         LastItemOnPage = pagedList.LastItemOnPage;
 
         Subset.AddRange(collection);
-        
+
         if (Subset.Count > PageSize)
         {
             throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
@@ -148,6 +148,6 @@ public class PagedList<T> : BasePagedList<T>
     /// <param name="pageSize"></param>
     /// <returns></returns>
     [PublicAPI]
-    public static PagedList<T> Empty(int pageSize = DefaultPageSize) => 
+    public static PagedList<T> Empty(int pageSize = DefaultPageSize) =>
         new(Array.Empty<T>(), 1, pageSize);
 }

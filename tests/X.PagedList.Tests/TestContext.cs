@@ -2,5 +2,5 @@
 
 public class TestContext : DbContext
 {
-    public virtual DbSet<Blog> Blogs { get; set; }
+    public virtual DbSet<Blog>? Blogs { get; set; }
 }
