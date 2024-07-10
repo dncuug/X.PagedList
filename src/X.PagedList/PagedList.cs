@@ -18,6 +18,7 @@ namespace X.PagedList;
 /// <seealso cref="BasePagedList{T}"/>
 /// <seealso cref="StaticPagedList{T}"/>
 /// <seealso cref="List{T}"/>
+[PublicAPI]
 public class PagedList<T> : BasePagedList<T>
 {
     /// <summary>
