@@ -34,7 +34,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task Argument_out_of_range()
+    public void Argument_out_of_range()
     {
         var queryable = (new List<Object>()).AsQueryable();
         var list = queryable.ToList();
@@ -102,7 +102,7 @@ public class PagedListFacts
         var pagedList = data.ToPagedList(2, 3);
 
         //assert
-        Assert.Equal(0, pagedList.Count);
+        Assert.Empty(pagedList);
     }
 
     [Fact]
@@ -208,7 +208,7 @@ public class PagedListFacts
         pagedList = data.ToPagedList(3, 2);
 
         //assert
-        Assert.Equal(1, pagedList.Count);
+        Assert.Single(pagedList);
     }
 
     [Fact]
@@ -411,11 +411,9 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task Check_Ctor_With_KeySelectorMethod()
+    public void Check_Ctor_With_KeySelectorMethod()
     {
-        int pageNumber = 2;
         int pageSize = 10;
-        int superSetTotalCount = 110;
 
         var collection = BuildBlogList(50);
 
@@ -435,7 +433,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task Check_Empty_Method()
+    public void Check_Empty_Method()
     {
         var empty1 = PagedList<int>.Empty();
         var empty2 = PagedList<int>.Empty(10);
