@@ -21,8 +21,7 @@ public static class TagBuilderExtensions
 
     public static void MergeAttribute(this TagBuilder tagBuilder, string key, string? value)
     {
-        tagBuilder
-            .MergeAttribute(key, value);
+        tagBuilder.MergeAttribute(key, value);
     }
 
     public static void SetInnerText(this TagBuilder tagBuilder, string innerText)
