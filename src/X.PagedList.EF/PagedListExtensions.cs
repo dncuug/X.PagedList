@@ -60,7 +60,7 @@ public static class PagedListExtensions
 
         if (totalCount > 0)
         {
-            var skip = (pageNumber - 1) * pageSize;
+            int skip = (pageNumber - 1) * pageSize;
 
             subset = await superset.Skip(skip).Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
         }
