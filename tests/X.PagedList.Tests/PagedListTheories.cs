@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using AutoFixture;
+using System.Linq;
 using System.Threading.Tasks;
-using AutoFixture;
+using X.PagedList.AsyncExtensions;
+using X.PagedList.Extensions;
 using Xunit;
 
 namespace X.PagedList.Tests;

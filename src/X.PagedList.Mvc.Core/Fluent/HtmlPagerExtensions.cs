@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
+using X.PagedList.Extensions;
 
 namespace X.PagedList.Mvc.Core.Fluent;
 

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoFixture;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using AutoFixture;
+using X.PagedList.AsyncExtensions;
+using X.PagedList.Extensions;
 using Xunit;
 
 namespace X.PagedList.Tests;

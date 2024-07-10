@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using X.PagedList.Extensions;
 
-namespace X.PagedList;
+namespace X.PagedList.AsyncExtensions;
 
 /// <summary>
 /// Container for async extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
