@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace X.PagedList;
 
@@ -17,7 +18,7 @@ namespace X.PagedList;
 /// <seealso cref = "IPagedList{T}" />
 /// <seealso cref = "List{T}" />
 [PublicAPI]
-public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
+public abstract class BasePagedList<T> : IPagedList<T>
 {
     protected List<T> Subset = new();
 
@@ -101,10 +102,10 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
         return GetEnumerator();
     }
 
-    ///<summary>
-    ///	Gets the element at the specified index.
-    ///</summary>
-    ///<param name = "index">The zero-based index of the element to get.</param>
+    /// <summary>
+    ///	    Gets the element at the specified index.
+    /// </summary>
+    /// <param name = "index">The zero-based index of the element to get.</param>
     public T this[int index] => Subset[index];
 
     /// <summary>
@@ -112,13 +113,98 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     /// </summary>
     public virtual int Count => Subset.Count;
 
-    ///<summary>
-    /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
-    [Obsolete("This method will be removed in future versions")]
-    public PagedListMetaData GetMetaData()
+    /// <summary>
+    /// 	Total number of subsets within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Total number of subsets within the superset.
+    /// </value>
+    public int PageCount { get; protected set; }
+
+    /// <summary>
+    /// 	Total number of objects contained within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Total number of objects contained within the superset.
+    /// </value>
+    public int TotalItemCount { get; protected set; }
+
+    /// <summary>
+    ///     One-based index of this subset within the superset, zero if the superset is empty.
+    /// </summary>
+    /// <value>
+    /// 	One-based index of this subset within the superset, zero if the superset is empty.
+    /// </value>
+    public int PageNumber { get; protected set; }
+
+    /// <summary>
+    /// 	Maximum size any individual subset.
+    /// </summary>
+    /// <value>
+    /// 	Maximum size any individual subset.
+    /// </value>
+    public int PageSize { get; protected set; }
+
+    /// <summary>
+    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// </value>
+    public bool HasPreviousPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the last subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the last subset within the superset.
+    /// </value>
+    public bool HasNextPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is the first subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
+    /// this is the first subset within the superset.
+    /// </value>
+    public bool IsFirstPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
+    /// this is the last subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is the last subset within the superset.
+    /// </value>
+    public bool IsLastPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </summary>
+    /// <value>
+    /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </value>
+    public int FirstItemOnPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </summary>
+    /// <value>
+    /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </value>
+    public int LastItemOnPage { get; protected set; }
+
+    public IPagedList GetMetaData()
     {
-        return new PagedListMetaData(this);
+        return new StaticPagedList<object>(ImmutableArray<object>.Empty, this);
     }
 }
