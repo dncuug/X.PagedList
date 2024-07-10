@@ -20,7 +20,7 @@ public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
     /// Gets a non-enumerable copy of this paged list.
     ///</summary>
     ///<returns>A non-enumerable copy of this paged list.</returns>
-    PagedListMetaData GetMetaData();
+    IPagedList GetMetaData();
 }
 
 /// <summary>
