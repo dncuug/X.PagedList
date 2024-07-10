@@ -31,13 +31,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult GetOnePageOfNames(int page = 1)
-    {
-        var listPaged = GetPagedNames(page);
-        ViewBag.Names = listPaged;
-        return PartialView("_NameListPartial", ViewBag.Names);
-    }
-
     public IActionResult Error()
     {
         return View();
@@ -74,6 +67,7 @@ public class HomeController : Controller
     private IEnumerable<string> GetStuffFromFile()
     {
         var sampleData = System.IO.File.ReadAllText("Names.txt");
+        
         return sampleData.Split('\n');
     }
 }

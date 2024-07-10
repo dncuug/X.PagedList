@@ -4,7 +4,8 @@ namespace Example.Website.Controllers;
 
 public class Bootstrap41Controller : HomeController
 {
-    public Bootstrap41Controller(DatabaseContext databaseContext) : base(databaseContext)
+    public Bootstrap41Controller(DatabaseContext databaseContext) 
+        : base(databaseContext)
     {
     }
 }
