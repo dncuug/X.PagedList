@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
-using X.PagedList.AsyncExtensions;
 using X.PagedList.Extensions;
 using Xunit;
 
@@ -339,7 +337,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task ToListAsync_Check_CornerCases()
+    public void ToList_Check_CornerCases()
     {
         int pageNumber = 2;
         int pageSize = 10;
@@ -348,8 +346,8 @@ public class PagedListFacts
         var superset = BuildBlogList(50);
         var queryable = superset.AsQueryable();
 
-        var pagedList = await queryable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
-        var pagedListWithoutTotalCount = await queryable.ToPagedListAsync(pageNumber, pageSize);
+        var pagedList = queryable.ToPagedList(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = queryable.ToPagedList(pageNumber, pageSize);
 
         //test the totalSetCount extension
         Assert.Equal(11, pagedList.PageCount);
@@ -365,7 +363,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task ToListAsync_Check_CornerCases_For_Enumerable()
+    public void ToList_Check_CornerCases_For_Enumerable()
     {
         int pageNumber = 2;
         int pageSize = 10;
@@ -374,8 +372,8 @@ public class PagedListFacts
         var superset = BuildBlogList(50);
         var enumerable = superset.AsEnumerable();
 
-        var pagedList = await enumerable.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
-        var pagedListWithoutTotalCount = await enumerable.ToPagedListAsync(pageNumber, pageSize);
+        var pagedList = enumerable.ToPagedList(pageNumber, pageSize, superSetTotalCount);
+        var pagedListWithoutTotalCount = enumerable.ToPagedList(pageNumber, pageSize);
 
         //test the totalSetCount extension
         Assert.Equal(11, pagedList.PageCount);
@@ -391,7 +389,7 @@ public class PagedListFacts
     }
 
     [Fact]
-    public async Task ClonePagedList()
+    public void ClonePagedList()
     {
         int pageNumber = 2;
         int pageSize = 10;
@@ -401,7 +399,7 @@ public class PagedListFacts
         var superset2 = BuildBlogList(10);
         var queryable1 = superset1.AsEnumerable();
 
-        var pagedList = await queryable1.ToPagedListAsync(pageNumber, pageSize, superSetTotalCount);
+        var pagedList = queryable1.ToPagedList(pageNumber, pageSize, superSetTotalCount);
 
         var clone = new PagedList<Blog>(pagedList, superset2);
 
