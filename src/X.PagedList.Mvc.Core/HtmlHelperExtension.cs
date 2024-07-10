@@ -21,7 +21,7 @@ public static class HtmlHelperExtension
     ///<returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
         IPagedList? list,
-        Func<int, string> generatePageUrl)
+        Func<int, string?> generatePageUrl)
     {
         return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
     }
@@ -36,7 +36,7 @@ public static class HtmlHelperExtension
     ///<returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
         IPagedList? list,
-        Func<int, string> generatePageUrl,
+        Func<int, string?> generatePageUrl,
         PagedListRenderOptions options)
     {
         HtmlHelper htmlHelper = new HtmlHelper(new TagBuilderFactory());

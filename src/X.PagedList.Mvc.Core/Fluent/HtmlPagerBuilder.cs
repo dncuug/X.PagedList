@@ -9,7 +9,7 @@ internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
     private readonly IHtmlHelper _htmlHelper;
     private readonly IPagedList _pagedList;
 
-    private Func<int, string> _generatePageUrl;
+    private Func<int, string?> _generatePageUrl;
     private PagedListRenderOptions _options;
     private string? _partialViewName;
 
@@ -21,7 +21,7 @@ internal sealed class HtmlPagerBuilder : IHtmlPagerBuilder
         _options = new PagedListRenderOptions();
     }
 
-    public IHtmlPagerBuilder Url(Func<int, string> builder)
+    public IHtmlPagerBuilder Url(Func<int, string?> builder)
     {
         _generatePageUrl = builder;
 
