@@ -7,7 +7,7 @@ namespace X.PagedList.Mvc.Core.Fluent;
 [PublicAPI]
 public interface IHtmlPagerBuilder
 {
-    IHtmlPagerBuilder Url(Func<int, string> builder);
+    IHtmlPagerBuilder Url(Func<int, string?> builder);
 
     IHtmlPagerBuilder DisplayLinkToFirstPage(PagedListDisplayMode displayMode = PagedListDisplayMode.Always);
 
