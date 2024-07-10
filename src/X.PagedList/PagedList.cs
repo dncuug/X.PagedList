@@ -90,7 +90,6 @@ public class PagedList<T> : BasePagedList<T>
         {
             throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
         }
-
     }
 
     /// <summary>
