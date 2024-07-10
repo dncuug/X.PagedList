@@ -13,7 +13,7 @@ public class StaticPagedListFacts
     public void StaticPagedList_uses_supplied_totalItemCount_to_determine_subsets_position_within_superset(int pageNumber, bool shouldBeFirstPage, bool shouldBeLastPage)
     {
         //arrange
-        var subset = new[] { 1, 1, 1 };
+        int[] subset = new[] { 1, 1, 1 };
 
         //act
         var list = new StaticPagedList<int>(subset, pageNumber, 3, 9);
@@ -28,7 +28,7 @@ public class StaticPagedListFacts
     public void TotalItemCount_Below_One_Throws_Exception()
     {
         //arrange
-        var data = new[] { 1, 2, 3, 4, 5 };
+        int[] data = new[] { 1, 2, 3, 4, 5 };
 
         //assert
         Assert.Throws<ArgumentOutOfRangeException>(() => new StaticPagedList<int>(data, 1, 10, -1));

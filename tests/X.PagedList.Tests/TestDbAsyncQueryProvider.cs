@@ -26,7 +26,7 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
         return new TestDbAsyncEnumerable<TElement>(expression);
     }
 
-    public object Execute(Expression expression)
+    public object? Execute(Expression expression)
     {
         return _inner.Execute(expression);
     }
@@ -36,7 +36,7 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
         return _inner.Execute<TResult>(expression);
     }
 
-    public Task<object> ExecuteAsync(Expression expression, CancellationToken cancellationToken)
+    public Task<object?> ExecuteAsync(Expression expression, CancellationToken cancellationToken)
     {
         return Task.FromResult(Execute(expression));
     }
@@ -96,7 +96,7 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
             get { return _inner.Current; }
         }
 
-        object IDbAsyncEnumerator.Current
+        object? IDbAsyncEnumerator.Current
         {
             get { return Current; }
         }
@@ -142,7 +142,7 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
 
             public T Current => _enumerator.Current;
 
-            object IDbAsyncEnumerator.Current => Current;
+            object? IDbAsyncEnumerator.Current => Current;
         }
     }
 }

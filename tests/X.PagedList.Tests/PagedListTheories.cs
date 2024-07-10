@@ -43,8 +43,8 @@ public class PagedListTheories
     {
         pageNumber = pageNumber.HasValue == false ? 0 : pageNumber;
 
-        var listPageNumber = pageNumber != 0 ? (pageNumber ?? 1) - 1 : (pageNumber ?? 1);
-        var xListPageNumber = pageNumber == 0 ? 1 : (pageNumber ?? 1);
+        int listPageNumber = pageNumber != 0 ? (pageNumber ?? 1) - 1 : (pageNumber ?? 1);
+        int xListPageNumber = pageNumber == 0 ? 1 : (pageNumber ?? 1);
 
         var superset = BuildBlogList(1000);
 
@@ -79,7 +79,7 @@ public class PagedListTheories
         bool expectedHasPrevious, bool expectedHasNext)
     {
         //arrange
-        var data = integers;
+        int[] data = integers;
 
         //act
         var pagedList = data.ToPagedList(pageNumber, pageSize);
@@ -100,7 +100,7 @@ public class PagedListTheories
         bool expectedIsFirstPage, bool expectedIsLastPage)
     {
         //arrange
-        var data = integers;
+        int[] data = integers;
 
         //act
         var pagedList = data.ToPagedList(pageNumber, pageSize);
@@ -121,7 +121,7 @@ public class PagedListTheories
     public void Theory_PageCount_Is_Correct(int[] integers, int pageSize, int expectedNumberOfPages)
     {
         //arrange
-        var data = integers;
+        int[] data = integers;
 
         //act
         var pagedList = data.ToPagedList(1, pageSize);
@@ -140,7 +140,7 @@ public class PagedListTheories
     public void Theory_FirstItemOnPage_And_LastItemOnPage_Are_Correct(int[] integers, int pageNumber, int pageSize, int expectedFirstItemOnPage, int expectedLastItemOnPage)
     {
         //arrange
-        var data = integers;
+        int[] data = integers;
 
         //act
         var pagedList = data.ToPagedList(pageNumber, pageSize);
