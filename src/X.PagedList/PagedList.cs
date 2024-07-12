@@ -34,17 +34,24 @@ public class PagedList<T> : BasePagedList<T>
     /// The one-based index of the subset of objects to be contained by this instance.
     /// </param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
     [PublicAPI]
-    public PagedList(IQueryable<T>? superset, int pageNumber, int pageSize)
-        : base(pageNumber, pageSize, superset?.Count() ?? 0)
+    public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
+        : base(pageNumber, pageSize, superset.Count())
     {
-        if (superset != null && TotalItemCount > 0)
+        if (superset is null)
+        {
+            throw new ArgumentNullException(nameof(superset));
+        }
+
+        // add items to internal list
+        if (TotalItemCount > 0)
         {
             var skip = (pageNumber - 1) * pageSize;
 
-            SetSubset(superset.Skip(skip).Take(pageSize));
+            Subset = superset.Skip(skip).Take(pageSize).ToList();
         }
     }
 
@@ -59,10 +66,11 @@ public class PagedList<T> : BasePagedList<T>
     /// </param>
     /// <param name="pageNumber">The one-based index of the subset of objects to be contained by this instance.</param>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
+    /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
-    public PagedList(IEnumerable<T>? superset, int pageNumber, int pageSize)
-        : this(superset?.AsQueryable(), pageNumber, pageSize)
+    public PagedList(IEnumerable<T> superset, int pageNumber, int pageSize)
+        : this(superset.AsQueryable<T>(), pageNumber, pageSize)
     {
     }
 
@@ -74,6 +82,23 @@ public class PagedList<T> : BasePagedList<T>
     public PagedList(IPagedList pagedList, IEnumerable<T> collection)
         : base(pagedList, collection)
     {
+        TotalItemCount = pagedList.TotalItemCount;
+        PageSize = pagedList.PageSize;
+        PageNumber = pagedList.PageNumber;
+        PageCount = pagedList.PageCount;
+        HasPreviousPage = pagedList.HasPreviousPage;
+        HasNextPage = pagedList.HasNextPage;
+        IsFirstPage = pagedList.IsFirstPage;
+        IsLastPage = pagedList.IsLastPage;
+        FirstItemOnPage = pagedList.FirstItemOnPage;
+        LastItemOnPage = pagedList.LastItemOnPage;
+
+        Subset = collection.ToList();
+
+        if (base.Count > PageSize)
+        {
+            throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
+        }
     }
 
     /// <summary>
