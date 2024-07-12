@@ -96,7 +96,6 @@ jobs:
           dotnet build tests/X.PagedList.Tests/X.PagedList.Tests.csproj
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
-          --self-contained
 
     - name: Run Tests
       run: >-
