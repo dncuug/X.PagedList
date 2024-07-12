@@ -91,7 +91,14 @@ jobs:
           -r ${{ matrix.BuildRuntime }}
           --self-contained
 
-    - name: Test
+    - name: Build Tests
+      run: >-
+          dotnet build tests/X.PagedList.Tests/X.PagedList.Tests.csproj
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
+    - name: Run Tests
       run: >-
           dotnet test tests/X.PagedList.Tests/X.PagedList.Tests.csproj
           -c ${{ env.BuildConfiguration }}
