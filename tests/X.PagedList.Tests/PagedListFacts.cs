@@ -119,20 +119,20 @@ public class PagedListFacts
     }
 
     [Fact]
-    public void Null_Data_Set_Doesnt_Return_Null()
+    public void Empty_Data_Set_Doesnt_Return_Null()
     {
         //act
-        var pagedList = new PagedList<object>(null, 1, 10);
+        var pagedList = new PagedList<object>(new List<object>(), 1, 10);
 
         //assert
         Assert.NotNull(pagedList);
     }
 
     [Fact]
-    public void Null_Data_Set_Returns_Zero_Pages()
+    public void Empty_Data_Set_Returns_Zero_Pages()
     {
         //act
-        var pagedList = new PagedList<object>(null, 1, 10);
+        var pagedList = new PagedList<object>(new List<object>(), 1, 10);
 
         //assert
         Assert.Equal(0, pagedList.PageCount);

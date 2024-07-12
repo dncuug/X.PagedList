@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace X.PagedList;
 
@@ -50,7 +51,7 @@ public class StaticPagedList<T> : BasePagedList<T>
     public StaticPagedList(IEnumerable<T> subset, int pageNumber, int pageSize, int totalItemCount)
         : base(pageNumber, pageSize, totalItemCount)
     {
-        Subset.AddRange(subset);
+        Subset = subset.ToList();
     }
 
     /// <summary>
