@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace X.PagedList;
 
@@ -94,7 +93,7 @@ public class PagedList<T> : BasePagedList<T>
 
         Subset.AddRange(collection);
 
-        if (Subset.Count > PageSize)
+        if (base.Count > PageSize)
         {
             throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
         }
