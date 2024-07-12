@@ -73,6 +73,6 @@ jobs:
           --no-build
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
-          -v minimal
+          -v normal
 
 ...
