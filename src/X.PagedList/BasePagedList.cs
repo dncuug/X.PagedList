@@ -120,7 +120,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// <summary>
     /// 	Gets the number of elements contained on this page.
     /// </summary>
-    public virtual int Count => _subset.Count;
+    public virtual int Count => Subset.Count;
 
     /// <summary>
     /// 	Total number of subsets within the superset.
