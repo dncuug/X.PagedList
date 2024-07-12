@@ -20,7 +20,7 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
-    protected List<T> Subset = new();
+    private List<T> _subset = new();
 
     public const int DefaultPageSize = 100;
 
@@ -84,6 +84,13 @@ public abstract class BasePagedList<T> : IPagedList<T>
             : 0;
     }
 
+    protected void SetSubset(IEnumerable<T> subset)
+    {
+        _subset.Clear();
+        _subset.AddRange(subset);
+        
+    }
+
     /// <summary>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
@@ -91,7 +98,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     // [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
-        return Subset.GetEnumerator();
+        return _subset.GetEnumerator();
     }
 
     /// <summary>
@@ -113,7 +120,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// <summary>
     /// 	Gets the number of elements contained on this page.
     /// </summary>
-    public virtual int Count => Subset.Count;
+    public virtual int Count => _subset.Count;
 
     /// <summary>
     /// 	Total number of subsets within the superset.

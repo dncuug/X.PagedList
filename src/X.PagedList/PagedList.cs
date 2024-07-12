@@ -92,7 +92,7 @@ public class PagedList<T> : BasePagedList<T>
         FirstItemOnPage = pagedList.FirstItemOnPage;
         LastItemOnPage = pagedList.LastItemOnPage;
 
-        Subset = collection.ToList();
+        SetSubset(collection);
 
         if (base.Count > PageSize)
         {
