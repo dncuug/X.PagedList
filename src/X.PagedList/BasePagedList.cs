@@ -83,8 +83,6 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
             : 0;
     }
 
-    #region IPagedList<T> Members
-
     /// <summary>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
@@ -123,6 +121,4 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     {
         return new PagedListMetaData(this);
     }
-
-    #endregion
 }
