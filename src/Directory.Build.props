@@ -13,10 +13,10 @@
         <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
 
-        <Version>10.0.3</Version>
-        <AssemblyVersion>10.0.3</AssemblyVersion>
-        <FileVersion>10.0.3</FileVersion>
-        <PackageVersion>10.0.3-pre</PackageVersion>
+        <Version>11.0.0</Version>
+        <AssemblyVersion>11.0.0</AssemblyVersion>
+        <FileVersion>11.0.0</FileVersion>
+        <PackageVersion>11.0.0-pre</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
