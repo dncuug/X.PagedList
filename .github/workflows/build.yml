@@ -101,6 +101,7 @@ jobs:
     - name: Run Tests
       run: >-
           dotnet test tests/X.PagedList.Tests/X.PagedList.Tests.csproj
+          --no-build
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
           -v detailed
