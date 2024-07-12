@@ -107,8 +107,8 @@ public abstract class BasePagedList<T> : IPagedList<T>
 
     protected void SetSubset(IEnumerable<T> subset)
     {
-        _subset.Clear();
-        _subset.AddRange(subset);
+        Subset.Clear();
+        Subset.AddRange(subset);
     }
 
     /// <summary>
