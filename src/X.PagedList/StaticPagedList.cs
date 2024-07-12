@@ -51,7 +51,7 @@ public class StaticPagedList<T> : BasePagedList<T>
     public StaticPagedList(IEnumerable<T> subset, int pageNumber, int pageSize, int totalItemCount)
         : base(pageNumber, pageSize, totalItemCount)
     {
-        Subset = subset.ToList();
+        SetSubset(subset);
     }
 
     /// <summary>

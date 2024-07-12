@@ -57,7 +57,7 @@ public class PagedList<T, TKey> : BasePagedList<T>
             var skip = (pageNumber - 1) * pageSize;
             var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
             
-            Subset.AddRange(items);
+            SetSubset(items);
         }
     }
 }
