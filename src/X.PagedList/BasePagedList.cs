@@ -20,9 +20,9 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
-    public const int DefaultPageSize = 100;
-
     protected List<T> Subset = new();
+
+    public const int DefaultPageSize = 100;
 
     /// <summary>
     /// Parameterless constructor.
