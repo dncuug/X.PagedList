@@ -50,9 +50,18 @@ public class PagedList<T, TKey> : BasePagedList<T>
 
     private void InitSubset(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
     {
-        var skip = (pageNumber - 1) * pageSize;
-        var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
+        if (superset == null)
+        {
+            throw new ArgumentNullException(nameof(superset));
+        }
 
-        Subset.AddRange(items);
+        // add items to internal list
+        if (TotalItemCount > 0)
+        {
+            var skip = (pageNumber - 1) * pageSize;
+            var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
+
+            Subset.AddRange(items);    
+        }
     }
 }
