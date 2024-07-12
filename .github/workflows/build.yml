@@ -6,9 +6,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ "main", "staging/**", "test/**" ]
+    branches: [ "master", "staging/**", "test/**" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
   workflow_dispatch: # Allow run on demand
 
 jobs:
