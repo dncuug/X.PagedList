@@ -15,15 +15,7 @@ namespace X.PagedList;
 /// <typeparam name="T">The type of object the collection should contain.</typeparam>
 /// <seealso cref="IEnumerable{T}"/>
 [PublicAPI]
-public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
-{
-    ///<summary>
-    /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
-    [Obsolete("This method is not intended to be used and will be removed in a future version.")]
-    IPagedList GetMetaData();
-}
+public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>;
 
 /// <summary>
 /// Represents a subset of a collection of objects that can be individually accessed by index and containing

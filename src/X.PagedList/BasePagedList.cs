@@ -209,14 +209,4 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// is greater than PageCount.
     /// </value>
     public int LastItemOnPage { get; protected set; }
-
-    /// <summary>
-    /// Return clean metadata without collection inside
-    /// </summary>
-    /// <returns></returns>
-    [Obsolete("This method will be removed in the next major version.")]
-    public IPagedList GetMetaData()
-    {
-        return new StaticPagedList<object>(ImmutableArray<object>.Empty, this);
-    }
 }
