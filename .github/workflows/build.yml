@@ -49,14 +49,11 @@ jobs:
       with:
         dotnet-version: ${{ env.NetSdkVersion }}
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4
-      with:
-        # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
-        node-version: ${{ env.NodeJsVersion }}
-
     - name: Restore X.PagedList
-      run: dotnet restore src/X.PagedList/X.PagedList.csproj -r ${{ matrix.BuildRuntime }} -v minimal
+      run: >-
+          dotnet restore src/X.PagedList/X.PagedList.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
 
     - name: Build X.PagedList
       run: >-
@@ -66,12 +63,39 @@ jobs:
           -r ${{ matrix.BuildRuntime }}
           --self-contained
 
+    - name: Restore X.PagedList.EF
+      run: >-
+          dotnet restore src/X.PagedList.EF/X.PagedList.EF.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
+
+    - name: Build X.PagedList.EF
+      run: >-
+          dotnet build src/X.PagedList.EF/X.PagedList.EF.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
+    - name: Restore X.PagedList.Mvc.Core
+      run: >-
+          dotnet restore src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
+
+    - name: Build X.PagedList.Mvc.Core
+      run: >-
+          dotnet build src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
     - name: Test
       run: >-
           dotnet test tests/X.PagedList.Tests/X.PagedList.Tests.csproj
-          --no-build
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
-          -v normal
+          -v detailed
 
 ...
