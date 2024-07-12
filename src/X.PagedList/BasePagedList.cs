@@ -20,7 +20,7 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
-    private readonly List<T> _subset = new();
+    protected List<T> Subset = new();
 
     public const int DefaultPageSize = 100;
 
@@ -86,8 +86,8 @@ public abstract class BasePagedList<T> : IPagedList<T>
 
     protected void SetSubset(IEnumerable<T> subset)
     {
-        _subset.Clear();
-        _subset.AddRange(subset);
+        Subset.Clear();
+        Subset.AddRange(subset);
         
     }
 
@@ -98,7 +98,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     // [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
-        return _subset.GetEnumerator();
+        return Subset.GetEnumerator();
     }
 
     /// <summary>

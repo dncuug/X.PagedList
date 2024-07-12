@@ -79,8 +79,6 @@ public class PagedList<T, TKey> : BasePagedList<T>
             throw new ArgumentNullException(nameof(superset));
         }
 
-    private void InitSubset(IEnumerable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
-    {
         // add items to internal list
         if (TotalItemCount > 0)
         {
