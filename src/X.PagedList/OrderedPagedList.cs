@@ -36,28 +36,23 @@ public class PagedList<T, TKey> : BasePagedList<T>
     /// <param name="pageSize">The maximum size of any individual subset.</param>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
-    public PagedList(IQueryable<T>? superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
-        : base(pageNumber, pageSize, superset?.Count() ?? 0)
+    public PagedList(IQueryable<T> superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
+        : base(pageNumber, pageSize, superset.Count())
     {
         InitSubset(superset, keySelector.Compile(), pageNumber, pageSize);
     }
 
-    public PagedList(IQueryable<T>? superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
-        : base(pageNumber, pageSize, superset?.Count() ?? 0)
+    public PagedList(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
+        : base(pageNumber, pageSize, superset.Count())
     {
         InitSubset(superset, keySelectorMethod, pageNumber, pageSize);
     }
 
-    private void InitSubset(IQueryable<T>? superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
+    private void InitSubset(IQueryable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
     {
-        if (superset != null)
-        {
-            // add items to internal list
+        var skip = (pageNumber - 1) * pageSize;
+        var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
 
-            var skip = (pageNumber - 1) * pageSize;
-            var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
-
-            Subset.AddRange(items);
-        }
+        Subset.AddRange(items);
     }
 }
