@@ -22,20 +22,13 @@ public abstract class BasePagedList<T> : IPagedList<T>
 {
     public const int DefaultPageSize = 100;
 
-    private readonly List<T> _subset = new();
+    protected List<T> Subset = new();
 
     /// <summary>
     /// Parameterless constructor.
     /// </summary>
     protected internal BasePagedList()
     {
-    }
-    
-    protected void FillSubset(IEnumerable<T> set)
-    {
-        _subset.Clear();
-        
-        _subset.AddRange(set);
     }
 
     /// <summary>
@@ -98,7 +91,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     // [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
-        return _subset.GetEnumerator();
+        return Subset.GetEnumerator();
     }
 
     /// <summary>
@@ -115,12 +108,12 @@ public abstract class BasePagedList<T> : IPagedList<T>
     ///	    Gets the element at the specified index.
     /// </summary>
     /// <param name = "index">The zero-based index of the element to get.</param>
-    public T this[int index] => _subset[index];
+    public T this[int index] => Subset[index];
 
     /// <summary>
     /// 	Gets the number of elements contained on this page.
     /// </summary>
-    public virtual int Count => _subset.Count;
+    public virtual int Count => Subset.Count;
 
     /// <summary>
     /// 	Total number of subsets within the superset.
