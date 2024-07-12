@@ -67,7 +67,6 @@ jobs:
           --self-contained
 
     - name: Test
-      if: ${{ matrix.BuildRuntime == env.TestRuntime }}
       run: >-
           dotnet test tests/X.PagedList.Tests/X.PagedList.Tests.csproj
           --no-build
