@@ -1,0 +1,102 @@
+# For more information on GitHub Actions, refer to https://github.com/features/actions
+# For a complete CI/CD sample to get started with GitHub Action workflows for Desktop Applications,
+# refer to https://github.com/microsoft/github-actions-for-desktop-apps
+
+name: Build and Test
+
+on:
+  push:
+    branches: [ "master", "staging/**", "test/**" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch: # Allow run on demand
+
+jobs:
+
+  build:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        BuildRuntime: [win-x64, linux-x64]
+
+    # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: ubuntu-latest
+
+    timeout-minutes: 5
+
+    name: Target ${{ matrix.BuildRuntime }}
+
+    env:
+      NetSdkVersion: 8.x
+      BuildConfiguration: Release
+      BuildPlatform: Any CPU
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.NetSdkVersion }}
+
+    - name: Restore X.PagedList
+      run: >-
+          dotnet restore src/X.PagedList/X.PagedList.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
+
+    - name: Build X.PagedList
+      run: >-
+          dotnet build src/X.PagedList/X.PagedList.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
+    - name: Restore X.PagedList.EF
+      run: >-
+          dotnet restore src/X.PagedList.EF/X.PagedList.EF.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
+
+    - name: Build X.PagedList.EF
+      run: >-
+          dotnet build src/X.PagedList.EF/X.PagedList.EF.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
+    - name: Restore X.PagedList.Mvc.Core
+      run: >-
+          dotnet restore src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
+          -r ${{ matrix.BuildRuntime }}
+          -v minimal
+
+    - name: Build X.PagedList.Mvc.Core
+      run: >-
+          dotnet build src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
+    - name: Build Tests
+      run: >-
+          dotnet build tests/X.PagedList.Tests/X.PagedList.Tests.csproj
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+
+    - name: Run Tests
+      run: >-
+          dotnet test tests/X.PagedList.Tests/X.PagedList.Tests.csproj
+          --no-build
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          -v normal
+
+...
