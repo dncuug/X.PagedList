@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Immutable;
+using System.Linq;
 
 namespace X.PagedList;
 
@@ -84,11 +84,31 @@ public abstract class BasePagedList<T> : IPagedList<T>
             : 0;
     }
 
+    protected BasePagedList(IPagedList pagedList, IEnumerable<T> collection)
+    {
+        TotalItemCount = pagedList.TotalItemCount;
+        PageSize = pagedList.PageSize;
+        PageNumber = pagedList.PageNumber;
+        PageCount = pagedList.PageCount;
+        HasPreviousPage = pagedList.HasPreviousPage;
+        HasNextPage = pagedList.HasNextPage;
+        IsFirstPage = pagedList.IsFirstPage;
+        IsLastPage = pagedList.IsLastPage;
+        FirstItemOnPage = pagedList.FirstItemOnPage;
+        LastItemOnPage = pagedList.LastItemOnPage;
+
+        SetSubset(collection);
+
+        if (collection.Count() > PageSize)
+        {
+            throw new Exception($"{nameof(collection)} size can't be greater than PageSize");
+        }
+    }
+
     protected void SetSubset(IEnumerable<T> subset)
     {
         _subset.Clear();
         _subset.AddRange(subset);
-        
     }
 
     /// <summary>
