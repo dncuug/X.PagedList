@@ -20,6 +20,8 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
+    protected readonly List<T> Subset = new();
+
     public const int DefaultPageSize = 100;
 
     protected List<T> Subset = new();
@@ -88,7 +90,6 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-    // [MustDisposeResource]
     public IEnumerator<T> GetEnumerator()
     {
         return Subset.GetEnumerator();
@@ -98,16 +99,15 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-    [MustDisposeResource]
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
 
-    /// <summary>
-    ///	    Gets the element at the specified index.
-    /// </summary>
-    /// <param name = "index">The zero-based index of the element to get.</param>
+    ///<summary>
+    ///	Gets the element at the specified index.
+    ///</summary>
+    ///<param name = "index">The zero-based index of the element to get.</param>
     public T this[int index] => Subset[index];
 
     /// <summary>

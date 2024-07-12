@@ -39,29 +39,25 @@ public class PagedList<T, TKey> : BasePagedList<T>
     public PagedList(IQueryable<T>? superset, Expression<Func<T, TKey>> keySelector, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
-        // add items to internal list
-        if (superset != null && TotalItemCount > 0)
-        {
-            InitSubset(superset, keySelector.Compile(), pageNumber, pageSize);
-        }
+        InitSubset(superset, keySelector.Compile(), pageNumber, pageSize);
     }
 
     public PagedList(IQueryable<T>? superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset?.Count() ?? 0)
     {
-        if (superset != null && TotalItemCount > 0)
-        {
-            InitSubset(superset, keySelectorMethod, pageNumber, pageSize);
-        }
+        InitSubset(superset, keySelectorMethod, pageNumber, pageSize);
     }
 
-    private void InitSubset(IEnumerable<T> superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
+    private void InitSubset(IQueryable<T>? superset, Func<T, TKey> keySelectorMethod, int pageNumber, int pageSize)
     {
-        // add items to internal list
+        if (superset != null)
+        {
+            // add items to internal list
 
-        var skip = (pageNumber - 1) * pageSize;
-        var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
-
-        Subset = items;
+            var skip = (pageNumber - 1) * pageSize;
+            var items = superset.OrderBy(keySelectorMethod).Skip(skip).Take(pageSize).ToList();
+            
+            Subset.AddRange(items);
+        }
     }
 }
