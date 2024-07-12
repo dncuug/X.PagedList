@@ -44,7 +44,7 @@ public class PagedList<T> : BasePagedList<T>
         {
             var skip = (pageNumber - 1) * pageSize;
 
-            FillSubset(superset.Skip(skip).Take(pageSize));
+            Subset = superset.Skip(skip).Take(pageSize).ToList();;
         }
     }
 
@@ -84,7 +84,7 @@ public class PagedList<T> : BasePagedList<T>
         FirstItemOnPage = pagedList.FirstItemOnPage;
         LastItemOnPage = pagedList.LastItemOnPage;
 
-        FillSubset(collection);
+        Subset = collection.ToList();
 
         if (base.Count > PageSize)
         {
