@@ -118,6 +118,7 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     /// Gets a non-enumerable copy of this paged list.
     ///</summary>
     ///<returns>A non-enumerable copy of this paged list.</returns>
+    [Obsolete("This method will be removed in future versions")]
     public PagedListMetaData GetMetaData()
     {
         return new PagedListMetaData(this);
