@@ -35,8 +35,6 @@ public class PagedListMetaData : IPagedList
         LastItemOnPage = pagedList.LastItemOnPage;
     }
 
-    #region IPagedList Members
-
     /// <summary>
     /// 	Total number of subsets within the superset.
     /// </summary>
@@ -126,6 +124,4 @@ public class PagedListMetaData : IPagedList
     /// is greater than PageCount.
     /// </value>
     public int LastItemOnPage { get; protected set; }
-
-    #endregion
 }
