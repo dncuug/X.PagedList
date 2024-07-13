@@ -205,8 +205,5 @@ public abstract class BasePagedList<T> : IPagedList<T>
     ///</summary>
     ///<returns>A non-enumerable copy of this paged list.</returns>
     [Obsolete("This method will be removed in future versions")]
-    public IPagedList GetMetaData()
-    {
-        return new StaticPagedList<T>(new List<T>(), this);
-    }
+    public IPagedList GetMetaData() => new StaticPagedList<T>(new List<T>(), this);
 }
