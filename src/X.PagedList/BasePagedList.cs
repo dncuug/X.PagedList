@@ -19,9 +19,9 @@ namespace X.PagedList;
 [PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
-    protected List<T> Subset = new();
-
     public const int DefaultPageSize = 100;
+    
+    protected List<T> Subset = new();
 
     /// <summary>
     /// 	Total number of subsets within the superset.
