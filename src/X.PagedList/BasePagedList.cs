@@ -280,14 +280,4 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// 	Gets the number of elements contained on this page.
     /// </summary>
     public virtual int Count => Subset.Count;
-
-    ///<summary>
-    /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
-    [Obsolete("This method will be removed in future versions")]
-    public IPagedList GetMetaData()
-    {
-        return new StaticPagedList<T>(new List<T>(), this);
-    }
 }
