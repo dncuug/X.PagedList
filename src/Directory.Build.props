@@ -16,7 +16,7 @@
         <Version>10.0.3</Version>
         <AssemblyVersion>10.0.3</AssemblyVersion>
         <FileVersion>10.0.3</FileVersion>
-        <PackageVersion>10.0.3-pre</PackageVersion>
+        <PackageVersion>10.0.3</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
