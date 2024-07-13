@@ -63,20 +63,18 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
             ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
             : 0;
 
-        bool pageNumberIsGood = PageCount > 0 && PageNumber <= PageCount;
-
-        HasPreviousPage = pageNumberIsGood && PageNumber > 1;
-        HasNextPage = pageNumberIsGood && PageNumber < PageCount;
-        IsFirstPage = pageNumberIsGood && PageNumber == 1;
-        IsLastPage = pageNumberIsGood && PageNumber == PageCount;
+        HasPreviousPage = PageCount > 0 && PageNumber <= PageCount && PageNumber > 1;
+        HasNextPage = PageCount > 0 && PageNumber <= PageCount && PageNumber < PageCount;
+        IsFirstPage = PageCount > 0 && PageNumber <= PageCount && PageNumber == 1;
+        IsLastPage = PageCount > 0 && PageNumber <= PageCount && PageNumber == PageCount;
 
         int numberOfFirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 
-        FirstItemOnPage = pageNumberIsGood ? numberOfFirstItemOnPage : 0;
+        FirstItemOnPage = PageCount > 0 && PageNumber <= PageCount ? numberOfFirstItemOnPage : 0;
 
         int numberOfLastItemOnPage = numberOfFirstItemOnPage + PageSize - 1;
 
-        LastItemOnPage = pageNumberIsGood
+        LastItemOnPage = PageCount > 0 && PageNumber <= PageCount
             ? numberOfLastItemOnPage > TotalItemCount ? TotalItemCount : numberOfLastItemOnPage
             : 0;
     }
