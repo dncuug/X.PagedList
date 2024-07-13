@@ -61,7 +61,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// <value>
     /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
     /// </value>
-    public bool HasPreviousPage { get; protected set; }
+    public bool HasPreviousPage => PageCount > 0 && PageNumber <= PageCount && PageNumber > 1;
 
     /// <summary>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
@@ -71,7 +71,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
     /// is NOT the last subset within the superset.
     /// </value>
-    public bool HasNextPage { get; protected set; }
+    public bool HasNextPage => PageCount > 0 && PageNumber <= PageCount && PageNumber < PageCount;
 
     /// <summary>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
@@ -81,7 +81,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
     /// this is the first subset within the superset.
     /// </value>
-    public bool IsFirstPage { get; protected set; }
+    public bool IsFirstPage => PageCount > 0 && PageNumber <= PageCount && PageNumber == 1;
 
     /// <summary>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
@@ -91,7 +91,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
     /// is the last subset within the superset.
     /// </value>
-    public bool IsLastPage { get; protected set; }
+    public bool IsLastPage => PageCount > 0 && PageNumber <= PageCount && PageNumber == PageCount;
 
     /// <summary>
     /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
@@ -153,10 +153,6 @@ public abstract class BasePagedList<T> : IPagedList<T>
             ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
             : 0;
 
-        HasPreviousPage = PageCount > 0 && PageNumber <= PageCount && PageNumber > 1;
-        HasNextPage = PageCount > 0 && PageNumber <= PageCount && PageNumber < PageCount;
-        IsFirstPage = PageCount > 0 && PageNumber <= PageCount && PageNumber == 1;
-        IsLastPage = PageCount > 0 && PageNumber <= PageCount && PageNumber == PageCount;
 
         int numberOfFirstItemOnPage = (PageNumber - 1) * PageSize + 1;
 
