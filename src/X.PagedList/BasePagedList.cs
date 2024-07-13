@@ -24,42 +24,42 @@ public abstract class BasePagedList<T> : IPagedList<T>
     protected List<T> Subset = new();
 
     /// <summary>
-    /// 	Total number of subsets within the superset.
+    /// Total number of subsets within the superset.
     /// </summary>
     /// <value>
-    /// 	Total number of subsets within the superset.
+    /// Total number of subsets within the superset.
     /// </value>
     public int PageCount => TotalItemCount > 0 ? (int)Math.Ceiling(TotalItemCount / (double)PageSize) : 0;
 
     /// <summary>
-    /// 	Total number of objects contained within the superset.
+    /// Total number of objects contained within the superset.
     /// </summary>
     /// <value>
-    /// 	Total number of objects contained within the superset.
+    /// Total number of objects contained within the superset.
     /// </value>
     public int TotalItemCount { get; protected set; }
 
     /// <summary>
-    /// 	One-based index of this subset within the superset, zero if the superset is empty.
+    /// One-based index of this subset within the superset, zero if the superset is empty.
     /// </summary>
     /// <value>
-    /// 	One-based index of this subset within the superset, zero if the superset is empty.
+    /// One-based index of this subset within the superset, zero if the superset is empty.
     /// </value>
     public int PageNumber { get; protected set; }
 
     /// <summary>
-    /// 	Maximum size any individual subset.
+    /// Maximum size any individual subset.
     /// </summary>
     /// <value>
-    /// 	Maximum size any individual subset.
+    /// Maximum size any individual subset.
     /// </value>
     public int PageSize { get; protected set; }
 
     /// <summary>
-    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
     /// </summary>
     /// <value>
-    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
     /// </value>
     public bool HasPreviousPage => PageCount > 0 && PageNumber <= PageCount && PageNumber > 1;
 
@@ -163,22 +163,16 @@ public abstract class BasePagedList<T> : IPagedList<T>
     }
 
     /// <summary>
-    /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+    /// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-    public IEnumerator<T> GetEnumerator()
-    {
-        return Subset.GetEnumerator();
-    }
+    public IEnumerator<T> GetEnumerator() => Subset.GetEnumerator();
 
     /// <summary>
-    /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+    /// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
     ///<summary>
     ///	Gets the element at the specified index.
