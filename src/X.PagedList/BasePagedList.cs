@@ -17,11 +17,101 @@ namespace X.PagedList;
 /// <seealso cref = "IPagedList{T}" />
 /// <seealso cref = "List{T}" />
 [PublicAPI]
-public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
+public abstract class BasePagedList<T> : IPagedList<T>
 {
     protected List<T> Subset = new();
 
     public const int DefaultPageSize = 100;
+    
+    /// <summary>
+    /// 	Total number of subsets within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Total number of subsets within the superset.
+    /// </value>
+    public int PageCount { get; protected set; }
+
+    /// <summary>
+    /// 	Total number of objects contained within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Total number of objects contained within the superset.
+    /// </value>
+    public int TotalItemCount { get; protected set; }
+
+    /// <summary>
+    /// 	One-based index of this subset within the superset, zero if the superset is empty.
+    /// </summary>
+    /// <value>
+    /// 	One-based index of this subset within the superset, zero if the superset is empty.
+    /// </value>
+    public int PageNumber { get; protected set; }
+
+    /// <summary>
+    /// 	Maximum size any individual subset.
+    /// </summary>
+    /// <value>
+    /// 	Maximum size any individual subset.
+    /// </value>
+    public int PageSize { get; protected set; }
+
+    /// <summary>
+    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// </summary>
+    /// <value>
+    /// 	Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is NOT the first subset within the superset.
+    /// </value>
+    public bool HasPreviousPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the last subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the last subset within the superset.
+    /// </value>
+    public bool HasNextPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is the first subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
+    /// this is the first subset within the superset.
+    /// </value>
+    public bool IsFirstPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and
+    /// this is the last subset within the superset.
+    /// </summary>
+    /// <value>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is the last subset within the superset.
+    /// </value>
+    public bool IsLastPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </summary>
+    /// <value>
+    /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </value>
+    public int FirstItemOnPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </summary>
+    /// <value>
+    /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </value>
+    public int LastItemOnPage { get; protected set; }
 
     /// <summary>
     /// Parameterless constructor.
@@ -113,8 +203,8 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
     ///</summary>
     ///<returns>A non-enumerable copy of this paged list.</returns>
     [Obsolete("This method will be removed in future versions")]
-    public PagedListMetaData GetMetaData()
+    public IPagedList GetMetaData()
     {
-        return new PagedListMetaData(this);
+        return new StaticPagedList<T>(new List<T>(), this);
     }
 }
