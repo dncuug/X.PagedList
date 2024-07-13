@@ -146,9 +146,9 @@ public abstract class BasePagedList<T> : IPagedList<T>
 
         // set source to blank list if superset is null to prevent exceptions
         TotalItemCount = totalItemCount;
-
         PageSize = pageSize;
         PageNumber = pageNumber;
+
         PageCount = TotalItemCount > 0
             ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
             : 0;
@@ -167,9 +167,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
         int numberOfLastItemOnPage = numberOfFirstItemOnPage + PageSize - 1;
 
         LastItemOnPage = pageNumberIsGood
-            ? numberOfLastItemOnPage > TotalItemCount
-                ? TotalItemCount
-                : numberOfLastItemOnPage
+            ? numberOfLastItemOnPage > TotalItemCount ? TotalItemCount : numberOfLastItemOnPage
             : 0;
     }
 
