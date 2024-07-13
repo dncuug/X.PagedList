@@ -9,10 +9,6 @@ namespace X.PagedList;
 /// Represents a subset of a collection of objects that can be individually accessed by index and containing
 /// metadata about the superset collection of objects this subset was created from.
 /// </summary>
-/// <remarks>
-/// Represents a subset of a collection of objects that can be individually accessed by index and containing
-/// metadata about the superset collection of objects this subset was created from.
-/// </remarks>
 /// <typeparam name="T">The type of object the collection should contain.</typeparam>
 /// <seealso cref="IPagedList{T}"/>
 /// <seealso cref="BasePagedList{T}"/>
