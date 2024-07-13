@@ -22,14 +22,14 @@ public abstract class BasePagedList<T> : IPagedList<T>
     protected List<T> Subset = new();
 
     public const int DefaultPageSize = 100;
-    
+
     /// <summary>
     /// 	Total number of subsets within the superset.
     /// </summary>
     /// <value>
     /// 	Total number of subsets within the superset.
     /// </value>
-    public int PageCount { get; protected set; }
+    public int PageCount => TotalItemCount > 0 ? (int)Math.Ceiling(TotalItemCount / (double)PageSize) : 0;
 
     /// <summary>
     /// 	Total number of objects contained within the superset.
@@ -101,7 +101,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
     /// is greater than PageCount.
     /// </value>
-    public int FirstItemOnPage { get; protected set; }
+    public int FirstItemOnPage => PageCount > 0 && PageNumber <= PageCount ? (PageNumber - 1) * PageSize + 1 : 0;
 
     /// <summary>
     /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
@@ -111,7 +111,19 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber
     /// is greater than PageCount.
     /// </value>
-    public int LastItemOnPage { get; protected set; }
+    public int LastItemOnPage
+    {
+        get
+        {
+            int numberOfLastItemOnPage = (PageNumber - 1) * PageSize + 1 + PageSize - 1;
+
+            var result = PageCount > 0 && PageNumber <= PageCount
+                ? numberOfLastItemOnPage > TotalItemCount ? TotalItemCount : numberOfLastItemOnPage
+                : 0;
+            
+            return result;
+        }
+    }
 
     /// <summary>
     /// Parameterless constructor.
@@ -148,21 +160,6 @@ public abstract class BasePagedList<T> : IPagedList<T>
         TotalItemCount = totalItemCount;
         PageSize = pageSize;
         PageNumber = pageNumber;
-
-        PageCount = TotalItemCount > 0
-            ? (int)Math.Ceiling(TotalItemCount / (double)PageSize)
-            : 0;
-
-
-        int numberOfFirstItemOnPage = (PageNumber - 1) * PageSize + 1;
-
-        FirstItemOnPage = PageCount > 0 && PageNumber <= PageCount ? numberOfFirstItemOnPage : 0;
-
-        int numberOfLastItemOnPage = numberOfFirstItemOnPage + PageSize - 1;
-
-        LastItemOnPage = PageCount > 0 && PageNumber <= PageCount
-            ? numberOfLastItemOnPage > TotalItemCount ? TotalItemCount : numberOfLastItemOnPage
-            : 0;
     }
 
     /// <summary>
