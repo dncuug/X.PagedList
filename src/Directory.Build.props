@@ -1,17 +1,15 @@
 <Project>
 
     <PropertyGroup>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageIcon>icon.png</PackageIcon>
-
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-
-        <Authors>Copyright Troy Goode, Andrew Gubskiy © 2024</Authors>
-        <Company>Ukrainian .NET Developer Community</Company>
-
-        <PackageLicenseUrl>https://github.com/dncuug/X.PagedList/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
+        
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         <PackageIconUrl>https://ru.gravatar.com/userimage/8071071/f2dc08ee7e4016451f64a7ae9cffd110.png?size=200</PackageIconUrl>
+        
+        <Authors>Troy Goode, Andrew Gubskiy</Authors>
+        <Copyright>Andrew Gubskiy © 2024</Copyright>
+        <Company>Ukrainian .NET Developer Community</Company>
 
         <Version>10.0.3</Version>
         <AssemblyVersion>10.0.3</AssemblyVersion>
@@ -20,15 +18,12 @@
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/dncuug/X.PagedList</PackageProjectUrl>
 
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
 
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
-    <ItemGroup>
-        <None Include="icon.png" Pack="True" PackagePath=""/>
-    </ItemGroup>
 
 </Project>
