@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using System.Collections.Generic;
 
 namespace X.PagedList;
@@ -11,15 +10,7 @@ namespace X.PagedList;
 /// <typeparam name="T">The type of object the collection should contain.</typeparam>
 /// <seealso cref="IReadOnlyList{T}"/>
 [PublicAPI]
-public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
-{
-    ///<summary>
-    /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
-    [Obsolete("This method will be removed in future versions")]
-    PagedListMetaData GetMetaData();
-}
+public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>;
 
 /// <summary>
 /// Represents a subset of a collection of objects that can be individually accessed by index and containing
