@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace X.Web.PagedList.Fluent;
 
