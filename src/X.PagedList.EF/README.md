@@ -1,19 +1,15 @@
 # X.PagedList.EF
+The X.PagedList.EF is a set of extensions for X.PagedList library which extent Enti
 
-[![NuGet Version](http://img.shields.io/nuget/v/X.PagedList.EF.svg?style=flat)](https://www.nuget.org/packages/X.PagedList.EF/)
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20me!)](https://twitter.com/intent/user?screen_name=andrew_gubskiy)
+## Important announcement
+In a continuous effort to enhance library quality and support, this package has been migrated to X.Web.PagedList.
 
+From now on, please use [X.Web.PagedList](https://www.nuget.org/packages/X.Web.PagedList/) instead of this package.
 
-## What is this?
-The X.PagedList.EF library provides Entity Framework Core extensions for the X.PagedList library, enabling easier 
-paging through data collections within Entity Framework contexts. This extension facilitates the creation of paged 
-lists from IQueryable collections, streamlining the process of managing large datasets in .NET applications.
+It's important to note that you must update your code to use the `X.PagedList` namespace instead of `X.PagedList.Mvc.Core`.
 
 ## How to use
 You can find all information about how to use X.PagedList libraries in [Wiki](https://github.com/dncuug/X.PagedList/wiki)
 
 ## License
 Licensed under the [MIT License](https://github.com/dncuug/X.PagedList/blob/master/LICENSE).
-
-## Get a digital subscription for project news
-[Subscribe](https://twitter.com/intent/user?screen_name=andrew_gubskiy) to my Twitter to keep up-to-date with project news and receive announcements.
