@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Example.DAL;
 using Microsoft.AspNetCore.Mvc;
-using X.PagedList.EF;
+using X.Extensions.PagedList.EF;
 
 namespace Example.Website.Controllers;
 
