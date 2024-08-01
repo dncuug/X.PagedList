@@ -32,6 +32,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
     </ItemGroup>
 
