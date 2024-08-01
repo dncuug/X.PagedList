@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using X.PagedList.Extensions;
 
 namespace X.PagedList.Tests;
 

@@ -1,6 +1,5 @@
 ﻿using AutoFixture;
 using System.Linq;
-using X.PagedList.Extensions;
 using Xunit;
 
 namespace X.PagedList.Tests;

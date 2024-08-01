@@ -1,12 +1,13 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
+using X.PagedList;
 
-namespace X.PagedList.EF;
+namespace X.Extensions.PagedList.EF;
 
 /// <summary>
 /// EntityFramework extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
