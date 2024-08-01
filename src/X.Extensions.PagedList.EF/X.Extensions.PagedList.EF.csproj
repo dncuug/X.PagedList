@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Title>X.PagedList.EF</Title>
+        <Description>EF extensions for X.PagedList library</Description>
+
+        <LangVersion>default</LangVersion>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+
+        <PackageTags>paging pagedlist paged list entity framework ef</PackageTags>
+
+        <RootNamespace>X.PagedList.EF</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[7.0.20,8)"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
+    </ItemGroup>
+
+</Project>
