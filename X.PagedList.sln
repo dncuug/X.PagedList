@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{30
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList", "src\X.PagedList\X.PagedList.csproj", "{49F86DF5-728F-4F22-986E-38DFC9C2432A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Mvc.Core", "src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj", "{3FB17E16-B671-450F-81BD-FD607D6A78C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Web.PagedList", "src\X.Web.PagedList\X.Web.PagedList.csproj", "{3FB17E16-B671-450F-81BD-FD607D6A78C4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.PagedList.Tests", "tests\X.PagedList.Tests\X.PagedList.Tests.csproj", "{C78B1316-1EF9-45C3-A3FD-9A131BA3DD62}"
 EndProject

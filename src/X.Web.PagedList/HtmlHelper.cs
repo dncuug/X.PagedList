@@ -4,8 +4,9 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList;
 
-namespace X.PagedList.Mvc.Core;
+namespace X.Web.PagedList;
 
 public class HtmlHelper
 {

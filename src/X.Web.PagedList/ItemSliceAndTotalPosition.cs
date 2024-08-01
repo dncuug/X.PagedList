@@ -1,4 +1,4 @@
-﻿namespace X.PagedList.Mvc.Core;
+﻿namespace X.Web.PagedList;
 
 /// <summary>
 /// A two-state enum that controls the position of ItemSliceAndTotal text within PagedList items.

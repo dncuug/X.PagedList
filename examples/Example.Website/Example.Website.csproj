@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\src\X.PagedList.EF\X.PagedList.EF.csproj"/>
-        <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj"/>
+        <ProjectReference Include="..\..\src\X.Web.PagedList\X.Web.PagedList.csproj" />
         <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj"/>
         <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
     </ItemGroup>
