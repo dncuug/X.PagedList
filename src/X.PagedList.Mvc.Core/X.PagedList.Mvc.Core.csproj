@@ -8,6 +8,7 @@
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 
         <PackageTags>paging pagedlist paged list web mvc</PackageTags>
+        <PackageIcon>x-web.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -16,6 +17,10 @@
 
     <ItemGroup>
         <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../x-web.png" Pack="True" PackagePath=""/>
     </ItemGroup>
 
     <ItemGroup>
