@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace X.PagedList.Mvc.Core;
+﻿namespace X.Web.PagedList;
 
 ///<summary>
 /// Options for configuring the output of <see cref = "HtmlHelper" />.

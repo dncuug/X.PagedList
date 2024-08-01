@@ -1,10 +1,11 @@
-﻿using JetBrains.Annotations;
+﻿using System.Linq;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Linq;
+using X.PagedList;
 using X.PagedList.Extensions;
 
-namespace X.PagedList.Mvc.Core.Fluent;
+namespace X.Web.PagedList.Fluent;
 
 [PublicAPI]
 public static class HtmlPagerExtensions

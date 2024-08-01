@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using X.PagedList.Extensions;
 using Xunit;
 
 namespace X.PagedList.Tests;
