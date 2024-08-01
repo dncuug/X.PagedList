@@ -8,7 +8,7 @@
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 
         <PackageTags>paging pagedlist paged list web mvc</PackageTags>
-        <PackageIcon>x-web.png</PackageIcon>
+        <PackageIcon>x-extensions.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,8 +20,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../x-web.png" Pack="True" PackagePath=""/>
+        <None Include="../../x-extensions.png" Pack="True" PackagePath=""/>
     </ItemGroup>
+    
 
     <ItemGroup>
       <ProjectReference Include="..\X.Extensions.PagedList.EF\X.Extensions.PagedList.EF.csproj" />
