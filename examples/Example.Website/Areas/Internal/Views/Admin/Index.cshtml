@@ -1,0 +1,22 @@
+﻿@model IPagedList<string>
+
+@using X.PagedList;
+@using X.Web.PagedList
+
+@{
+    ViewBag.Title = "Internal Admin Product Listing";
+    Layout = "_Layout";
+}
+
+<h3>Pager with Area links</h3>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item
+        </li>
+    }
+</ul>
+
+@Html.PagedListPager(
+    (IPagedList)Model, page => Url.Action(ViewData["Action"].ToString(), new { page, area = "Internal" }))

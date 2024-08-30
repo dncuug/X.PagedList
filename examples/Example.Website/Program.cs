@@ -17,12 +17,12 @@ public class Program
         builder.Services.AddDbContext<DatabaseContext>(options =>
         {
             var connectionString = $"Data Source={Path.Combine(builder.Environment.ContentRootPath, "data", "example.sqlite")}";
-            
+
             options.UseSqlite(connectionString);
         });
 
         var app = builder.Build();
-        
+
         if (builder.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -33,7 +33,7 @@ public class Program
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
-        
+
         app.UseStaticFiles();
 
         app.UseRouting();
@@ -41,8 +41,12 @@ public class Program
         app.UseAuthorization();
 
         app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            name: "MyArea",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
     }

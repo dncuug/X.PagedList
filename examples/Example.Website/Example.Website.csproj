@@ -12,4 +12,15 @@
         <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\Error.cshtml" />
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\_Layout-41.cshtml" />
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\_Layout.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Internal\Views\Shared\Paging\_Pager.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Internal\Views\Shared\Paging\_Pager_85.cshtml" />
+    </ItemGroup>
+
 </Project>
