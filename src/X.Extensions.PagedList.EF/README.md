@@ -1,6 +1,6 @@
 # X.Extensions.PagedList.EF
 
-The X.Extensions.PagedList.EF was migrated to X.PagedList.EF.
+The X.Extensions.PagedList.EF was migrated to the X.PagedList.EF.
 
 ## How to use
 You can find all information about how to use X.PagedList libraries in [Wiki](https://github.com/dncuug/X.PagedList/wiki)
