@@ -10,10 +10,10 @@
         <Copyright>Andrew Gubskiy © 2024</Copyright>
         <Company>Ukrainian .NET Developer Community</Company>
 
-        <Version>10.1.2</Version>
-        <AssemblyVersion>10.1.2</AssemblyVersion>
-        <FileVersion>10.1.2</FileVersion>
-        <PackageVersion>10.1.2</PackageVersion>
+        <Version>10.2.1</Version>
+        <AssemblyVersion>10.2.1</AssemblyVersion>
+        <FileVersion>10.2.1</FileVersion>
+        <PackageVersion>10.2.1</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
@@ -22,7 +22,13 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
 
-        <Nullable>enable</Nullable>
+        <Nullable>enable</Nullable>       
+
+        <PackageIcon>x-pagedlist.png</PackageIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../x-pagedlist.png" Pack="True" PackagePath=""/>
+    </ItemGroup>
 
 </Project>
