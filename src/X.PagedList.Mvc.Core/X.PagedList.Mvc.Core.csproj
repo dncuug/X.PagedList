@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <Title>X.PagedList.Mvc.Core</Title>
-        <Description>ASP.NET Core extensions for X.PagedList library</Description>
+        <Description>ASP.NET Core extensions for implementing paging in web applications.</Description>
 
         <LangVersion>default</LangVersion>
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
@@ -28,7 +28,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X.Web.PagedList\X.Web.PagedList.csproj"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
     </ItemGroup>
 
 </Project>

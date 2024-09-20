@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace X.Web.PagedList;
+namespace X.PagedList.Mvc.Core;
 
 public class PagedListRenderOptions
 {
