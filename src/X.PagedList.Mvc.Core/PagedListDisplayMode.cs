@@ -1,4 +1,4 @@
-﻿namespace X.Web.PagedList;
+﻿namespace X.PagedList.Mvc.Core;
 
 /// <summary>
 /// A tri-state enum that controls the visibility of portions of the PagedList paging control.
