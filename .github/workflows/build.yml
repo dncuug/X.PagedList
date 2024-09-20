@@ -63,6 +63,14 @@ jobs:
           -r ${{ matrix.BuildRuntime }}
           -v minimal
 
+    - name: Build X.PagedList.EF
+      run: >-
+          dotnet build src/X.PagedList.EF/X.PagedList.EF.csproj
+          --no-restore
+          -c ${{ env.BuildConfiguration }}
+          -r ${{ matrix.BuildRuntime }}
+          --self-contained
+
     - name: Restore X.PagedList.Mvc.Core
       run: >-
           dotnet restore src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
