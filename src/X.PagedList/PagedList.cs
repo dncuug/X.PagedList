@@ -79,13 +79,6 @@ public class PagedList<T> : BasePagedList<T>
         TotalItemCount = pagedList.TotalItemCount;
         PageSize = pagedList.PageSize;
         PageNumber = pagedList.PageNumber;
-        PageCount = pagedList.PageCount;
-        HasPreviousPage = pagedList.HasPreviousPage;
-        HasNextPage = pagedList.HasNextPage;
-        IsFirstPage = pagedList.IsFirstPage;
-        IsLastPage = pagedList.IsLastPage;
-        FirstItemOnPage = pagedList.FirstItemOnPage;
-        LastItemOnPage = pagedList.LastItemOnPage;
 
         Subset.AddRange(collection);
 
