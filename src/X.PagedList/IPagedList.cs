@@ -18,7 +18,7 @@ public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
     ///</summary>
     ///<returns>A non-enumerable copy of this paged list.</returns>
     [Obsolete("This method will be removed in future versions")]
-    PagedListMetaData GetMetaData();
+    IPagedList GetMetaData();
 }
 
 /// <summary>
