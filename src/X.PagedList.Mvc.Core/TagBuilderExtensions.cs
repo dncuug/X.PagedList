@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace X.Web.PagedList;
+namespace X.PagedList.Mvc.Core;
 
 [PublicAPI]
 public static class TagBuilderExtensions

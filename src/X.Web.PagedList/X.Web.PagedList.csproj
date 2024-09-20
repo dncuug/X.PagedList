@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Title>X.Web.PagedList</Title>
+        <Title>X.PagedList.Mvc.Core</Title>
         <Description>ASP.NET Core extensions for implementing paging in web applications.</Description>
 
         <LangVersion>default</LangVersion>
         <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
 
         <PackageTags>paging pagedlist paged list web mvc</PackageTags>
-        <PackageIcon>x-web.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,16 +19,16 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../x-web.png" Pack="True" PackagePath=""/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
         <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
+        <ProjectReference Include="..\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj"/>
     </ItemGroup>
+
 
 </Project>

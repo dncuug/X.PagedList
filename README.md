@@ -4,11 +4,6 @@
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20me!)](https://twitter.com/intent/user?screen_name=andrew_gubskiy)
 
 
-## Important announcement for X.PagedList users!
-
-⚠️ [Namespace Transferring Announcement for X.PagedList Users](https://andrey-gubskiy.medium.com/namespace-transferring-announcement-for-x-pagedlist-users-234809138ff5).
-
-
 ## What is this?
 This is a fork of [Troy's](https://github.com/troygoode) project PagedList. The main difference is that X.PagedList is a library that supports the 
 modern .NET platform — you can use it everywhere the .NET platform is supported.

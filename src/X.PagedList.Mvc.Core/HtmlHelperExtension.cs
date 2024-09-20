@@ -3,9 +3,8 @@ using System.Web;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using X.PagedList;
 
-namespace X.Web.PagedList;
+namespace X.PagedList.Mvc.Core;
 
 ///<summary>
 ///	Extension methods for generating paging controls that can operate on instances of IPagedList.

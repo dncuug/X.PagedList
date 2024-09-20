@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace X.Web.PagedList;
+namespace X.PagedList.Mvc.Core;
 
 public interface ITagBuilderFactory
 {

@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "X.Extensions.PagedList.EF",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.Mvc.Core", "src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj", "{3B840A44-3150-4BB5-83DA-9B81D1FCB6BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X.PagedList.EF", "src\X.PagedList.EF\X.PagedList.EF.csproj", "{B72170CA-12E0-46E5-821C-FCE7E6F79736}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{3B840A44-3150-4BB5-83DA-9B81D1FCB6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B840A44-3150-4BB5-83DA-9B81D1FCB6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B840A44-3150-4BB5-83DA-9B81D1FCB6BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72170CA-12E0-46E5-821C-FCE7E6F79736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72170CA-12E0-46E5-821C-FCE7E6F79736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72170CA-12E0-46E5-821C-FCE7E6F79736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72170CA-12E0-46E5-821C-FCE7E6F79736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{AD16A8D1-EAF0-4947-BCEC-A8B423B2F117} = {309A8FC8-4784-4D8D-903F-BD54EBB0F1D7}
 		{1934BC10-30AE-4C4C-AF22-E444B1F70ACA} = {BDDADD09-D112-418E-8469-BC762EC09936}
 		{3B840A44-3150-4BB5-83DA-9B81D1FCB6BE} = {BDDADD09-D112-418E-8469-BC762EC09936}
+		{B72170CA-12E0-46E5-821C-FCE7E6F79736} = {BDDADD09-D112-418E-8469-BC762EC09936}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A82D446-6F26-48B2-8085-DFA5F87453FC}
