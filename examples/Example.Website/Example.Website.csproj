@@ -6,10 +6,21 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\X.Extensions.PagedList.EF\X.Extensions.PagedList.EF.csproj" />
+        <ProjectReference Include="..\..\src\X.PagedList.EF\X.PagedList.EF.csproj" />
         <ProjectReference Include="..\..\src\X.PagedList\X.PagedList.csproj"/>
-        <ProjectReference Include="..\..\src\X.Web.PagedList\X.Web.PagedList.csproj" />
+        <ProjectReference Include="..\..\src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" />
         <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\Error.cshtml" />
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\_Layout-41.cshtml" />
+      <AdditionalFiles Include="Areas\Internal\Views\Shared\_Layout.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Internal\Views\Shared\Paging\_Pager.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Internal\Views\Shared\Paging\_Pager_85.cshtml" />
     </ItemGroup>
 
 </Project>

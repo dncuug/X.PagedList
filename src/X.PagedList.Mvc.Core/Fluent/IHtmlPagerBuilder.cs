@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 
-namespace X.Web.PagedList.Fluent;
+namespace X.PagedList.Mvc.Core.Fluent;
 
 [PublicAPI]
 public interface IHtmlPagerBuilder

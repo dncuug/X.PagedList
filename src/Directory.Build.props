@@ -22,7 +22,13 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>xpagedlist.snk</AssemblyOriginatorKeyFile>
 
-        <Nullable>enable</Nullable>
+        <Nullable>enable</Nullable>       
+
+        <PackageIcon>x-pagedlist.png</PackageIcon>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../../x-pagedlist.png" Pack="True" PackagePath=""/>
+    </ItemGroup>
 
 </Project>

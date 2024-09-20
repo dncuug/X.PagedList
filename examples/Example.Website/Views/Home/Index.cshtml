@@ -4,13 +4,13 @@
 }
 
 @using X.PagedList;
-@using X.Web.PagedList
-@using X.Web.PagedList.Fluent
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Core.Fluent
 @*import this so we can cast our list to IPagedList (only necessary because ViewBag is dynamic)*@
 
 
 <!-- import the included stylesheet for some (very basic) default styling -->
-<link href="/css/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="/css/PagedList.css" rel="stylesheet" type="text/css"/>
 
 <!-- loop through each of your products and display it however you want. we're just printing the name here -->
 <h2>List of Products</h2>
@@ -33,7 +33,7 @@
 @(Html.Pager(pagedList)
     .Url(page => Url.Action("Index", new { page }))
     .WithPartialView("Paging/_Pager_85")
-    .DisplayLinkToFirstPage (PagedListDisplayMode.IfNeeded)
+    .DisplayLinkToFirstPage(PagedListDisplayMode.IfNeeded)
     .DisplayLinkToLastPage(PagedListDisplayMode.IfNeeded)
     .DisplayLinkToPreviousPage()
     .DisplayLinkToNextPage()
@@ -44,11 +44,11 @@
 @Html.PagedListPager(pagedList,
     page => Url.Action("Index",
         new { page }),
-        new PagedListRenderOptions()
-        {
-            DisplayItemSliceAndTotal = true,
-            ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End
-        })
+    new PagedListRenderOptions()
+    {
+        DisplayItemSliceAndTotal = true,
+        ItemSliceAndTotalPosition = ItemSliceAndTotalPosition.End
+    })
 
 <h3>Pager with ItemSliceAndTotalPosition at the beginning</h3>
 @Html.PagedListPager(pagedList,
