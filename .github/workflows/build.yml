@@ -57,29 +57,29 @@ jobs:
           -r ${{ matrix.BuildRuntime }}
           --self-contained
 
-    - name: Restore X.Extensions.PagedList.EF
+    - name: Restore X.PagedList.EF
       run: >-
-          dotnet restore src/X.Extensions.PagedList.EF/X.Extensions.PagedList.EF.csproj
+          dotnet restore src/X.PagedList.EF/X.PagedList.EF.csproj
           -r ${{ matrix.BuildRuntime }}
           -v minimal
 
-    - name: Build X.Extensions.PagedList.EF
+    - name: Build X.PagedList.EF
       run: >-
-          dotnet build src/X.Extensions.PagedList.EF/X.Extensions.PagedList.EF.csproj
+          dotnet build src/X.PagedList.EF/X.PagedList.EF.csproj
           --no-restore
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
           --self-contained
 
-    - name: Restore X.Web.PagedList
+    - name: Restore X.PagedList.Mvc.Core
       run: >-
-          dotnet restore src/X.Web.PagedList/X.Web.PagedList.csproj
+          dotnet restore src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
           -r ${{ matrix.BuildRuntime }}
           -v minimal
 
-    - name: Build X.Web.PagedList
+    - name: Build X.PagedList.Mvc.Core
       run: >-
-          dotnet build src/X.Web.PagedList/X.Web.PagedList.csproj
+          dotnet build src/X.PagedList.Mvc.Core/X.PagedList.Mvc.Core.csproj
           --no-restore
           -c ${{ env.BuildConfiguration }}
           -r ${{ matrix.BuildRuntime }}
