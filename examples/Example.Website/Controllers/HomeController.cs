@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace Example.Website.Controllers;
 
