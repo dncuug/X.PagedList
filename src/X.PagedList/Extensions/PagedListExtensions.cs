@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace X.PagedList;
+namespace X.PagedList.Extensions;
 
 /// <summary>
 /// Container for extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
