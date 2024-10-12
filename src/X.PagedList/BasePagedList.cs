@@ -17,11 +17,67 @@ namespace X.PagedList;
 /// <seealso cref = "IPagedList{T}" />
 /// <seealso cref = "List{T}" />
 [PublicAPI]
-public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
+public abstract class BasePagedList<T> : IPagedList<T>
 {
     protected List<T> Subset = new();
 
     public const int DefaultPageSize = 100;
+
+    /// <summary>
+    /// Total number of subsets within the superset.
+    /// </summary>
+    public int PageCount { get; protected set; }
+
+    /// <summary>
+    /// Total number of objects contained within the superset.
+    /// </summary>
+    public int TotalItemCount { get; protected set; }
+
+    /// <summary>
+    /// One-based index of this subset within the superset, zero if the superset is empty.
+    /// </summary>
+    public int PageNumber { get; protected set; }
+
+    /// <summary>
+    /// Maximum size any individual subset.
+    /// </summary>
+    public int PageSize { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the first subset within the superset.
+    /// </summary>
+    public bool HasPreviousPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this
+    /// is NOT the last subset within the superset.
+    /// </summary>
+    public bool HasNextPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this  is
+    /// the first subset within the superset.
+    /// </summary>
+    public bool IsFirstPage { get; protected set; }
+
+    /// <summary>
+    /// Returns true if the superset is not empty and PageNumber is less than or equal to PageCount and this is
+    /// the last subset within the superset.
+    /// </summary>
+    public bool IsLastPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the first item in the paged subset, zero if the superset is empty or PageNumber
+    /// is greater than PageCount.
+    /// </summary>
+    public int FirstItemOnPage { get; protected set; }
+
+    /// <summary>
+    /// One-based index of the last item in the paged subset, zero if the superset is empty or PageNumber is
+    /// greater than PageCount.
+    /// </summary>
+    public int LastItemOnPage { get; protected set; }
 
     /// <summary>
     /// Parameterless constructor.
@@ -51,7 +107,8 @@ public abstract class BasePagedList<T> : PagedListMetaData, IPagedList<T>
 
         if (totalItemCount < 0)
         {
-            throw new ArgumentOutOfRangeException($"totalItemCount = {totalItemCount}. TotalItemCount cannot be less than 0.");
+            throw new ArgumentOutOfRangeException(
+                $"totalItemCount = {totalItemCount}. TotalItemCount cannot be less than 0.");
         }
 
         // set source to blank list if superset is null to prevent exceptions
