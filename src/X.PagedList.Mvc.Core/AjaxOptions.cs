@@ -97,6 +97,6 @@ public enum InsertionMode
 /// </remarks>
 public class HtmlAttribute
 {
-    public string Key { get; set; }
-    public object Value { get; set; }
+    public string Key { get; set; } = "";
+    public object? Value { get; set; }
 }

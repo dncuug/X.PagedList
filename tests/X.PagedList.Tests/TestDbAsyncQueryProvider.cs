@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
@@ -72,7 +73,7 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
         }
     }
 
-    internal class TestDbAsyncEnumerator<T> : IDbAsyncEnumerator<T>
+    internal class TestDbAsyncEnumerator<T> : IDbAsyncEnumerator<T>, IDisposable
     {
         private readonly IEnumerator<T> _inner;
 
@@ -86,63 +87,8 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
             _inner.Dispose();
         }
 
-        public Task<bool> MoveNextAsync(CancellationToken cancellationToken)
-        {
-            return Task.FromResult(_inner.MoveNext());
-        }
+        public T Current => _inner.Current;
 
-        public T Current
-        {
-            get { return _inner.Current; }
-        }
-
-        object? IDbAsyncEnumerator.Current
-        {
-            get { return Current; }
-        }
-    }
-
-    internal class AsyncEnumerableQuery<T> : EnumerableQuery<T>, IDbAsyncEnumerable<T>
-    {
-        public AsyncEnumerableQuery(IEnumerable<T> enumerable) : base(enumerable)
-        {
-        }
-
-        public AsyncEnumerableQuery(Expression expression) : base(expression)
-        {
-        }
-
-        public IDbAsyncEnumerator<T> GetAsyncEnumerator()
-        {
-            return new InMemoryDbAsyncEnumerator<T>(((IEnumerable<T>)this).GetEnumerator());
-        }
-
-        IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator()
-        {
-            return GetAsyncEnumerator();
-        }
-
-        private class InMemoryDbAsyncEnumerator<T> : IDbAsyncEnumerator<T>
-        {
-            private readonly IEnumerator<T> _enumerator;
-
-            public InMemoryDbAsyncEnumerator(IEnumerator<T> enumerator)
-            {
-                _enumerator = enumerator;
-            }
-
-            public void Dispose()
-            {
-            }
-
-            public Task<bool> MoveNextAsync(CancellationToken cancellationToken)
-            {
-                return Task.FromResult(_enumerator.MoveNext());
-            }
-
-            public T Current => _enumerator.Current;
-
-            object? IDbAsyncEnumerator.Current => Current;
-        }
+        object? IDbAsyncEnumerator.Current => Current;
     }
 }
