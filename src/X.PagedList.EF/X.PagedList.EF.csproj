@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[7.0.20,8)"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[7.0.20,8)"/>
         <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
     </ItemGroup>
 
