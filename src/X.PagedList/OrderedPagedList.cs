@@ -79,7 +79,7 @@ public class PagedList<T, TKey> : BasePagedList<T>
             throw new ArgumentNullException(nameof(superset));
         }
 
-        // add items to internal list
+        // add items to the internal list
         if (TotalItemCount > 0)
         {
             var skip = (pageNumber - 1) * pageSize;

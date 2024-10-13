@@ -63,12 +63,12 @@ public class AjaxOptions
     }
 
     /// <summary>
-    /// The HTTP method to make the request with. Default value is "GET".
+    /// The HTTP method to make the request with. The default value is "GET".
     /// </summary>
     public string HttpMethod { get; set; } = "GET";
 
     /// <summary>
-    /// The mode used to handle the data received as response. Default value is "Replace".
+    /// The mode used to handle the data received as response. The default value is "Replace".
     /// </summary>
     public InsertionMode InsertionMode { get; set; } = InsertionMode.Replace;
 
@@ -82,21 +82,4 @@ public class AjaxOptions
     public string? OnSuccess { get; set; }
     public string? Url { get; set; }
     public bool AllowCache { get; set; }
-}
-
-public enum InsertionMode
-{
-    Replace
-}
-
-/// <summary>
-/// Represents one attribute of a DOM element
-/// </summary>
-/// <remarks>
-/// Setting <see cref="Key"/> and <see cref="Value"/> is required.
-/// </remarks>
-public class HtmlAttribute
-{
-    public string Key { get; set; } = "";
-    public object? Value { get; set; }
 }

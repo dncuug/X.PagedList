@@ -55,7 +55,7 @@ public class StaticPagedList<T> : BasePagedList<T>
     }
 
     /// <summary>
-    /// Create empty static paged list
+    /// Create an empty static paged list
     /// </summary>
     /// <param name="pageSize"></param>
     /// <returns></returns>
