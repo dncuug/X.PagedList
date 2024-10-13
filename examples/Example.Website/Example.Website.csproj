@@ -12,4 +12,11 @@
         <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
     </ItemGroup>
 
+<!--    For live packages -->
+<!--    <ItemGroup>-->
+<!--        <PackageReference Include="X.PagedList" Version="10.5.3"/>-->
+<!--        <PackageReference Include="X.PagedList.EF" Version="10.5.3"/>-->
+<!--        <PackageReference Include="X.PagedList.Mvc.Core" Version="10.5.3"/>-->
+<!--    </ItemGroup>-->
+
 </Project>
