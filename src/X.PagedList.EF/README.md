@@ -12,5 +12,5 @@ lists from IQueryable collections, streamlining the process of managing large da
 ## How to use
 You can find all information about how to use X.PagedList libraries in [Wiki](https://github.com/dncuug/X.PagedList/wiki)
 
-## License
-Licensed under the [MIT License](https://github.com/dncuug/X.PagedList/blob/master/LICENSE).
+## Get a digital subscription for project news
+[Subscribe](https://x.com/intent/user?screen_name=andrew_gubskiy) to my X to keep up-to-date with project news and receive announcements.
