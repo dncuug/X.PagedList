@@ -10,10 +10,10 @@
         <Copyright>Andrew Gubskiy © 2024</Copyright>
         <Company>Ukrainian .NET Developer Community</Company>
 
-        <Version>10.5.2-pre</Version>
-        <AssemblyVersion>10.5.2</AssemblyVersion>
-        <FileVersion>10.5.2</FileVersion>
-        <PackageVersion>10.5.2-pre</PackageVersion>
+        <Version>10.5.3</Version>
+        <AssemblyVersion>10.5.3</AssemblyVersion>
+        <FileVersion>10.5.3</FileVersion>
+        <PackageVersion>10.5.3</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
