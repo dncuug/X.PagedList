@@ -12,11 +12,4 @@
         <ProjectReference Include="..\Example.DAL\Example.DAL.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="wwwroot\images\banner1.svg" />
-      <_ContentIncludedByDefault Remove="wwwroot\images\banner2.svg" />
-      <_ContentIncludedByDefault Remove="wwwroot\images\banner3.svg" />
-      <_ContentIncludedByDefault Remove="wwwroot\images\banner4.svg" />
-    </ItemGroup>
-
 </Project>
