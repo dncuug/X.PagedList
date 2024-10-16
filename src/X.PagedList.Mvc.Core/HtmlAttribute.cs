@@ -8,6 +8,11 @@ namespace X.PagedList.Mvc.Core;
 /// </remarks>
 public class HtmlAttribute
 {
-    public string Key { get; set; } = "";
-    public object? Value { get; set; }
+#if NET6_0
+    public string Key { get; set; } = string.Empty;
+    public object Value { get; set; } = string.Empty;
+#else
+    public required string Key { get; set; }
+    public required object Value { get; set; }
+#endif
 }
