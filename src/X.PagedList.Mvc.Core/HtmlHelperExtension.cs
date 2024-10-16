@@ -6,19 +6,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace X.PagedList.Mvc.Core;
 
-///<summary>
-///	Extension methods for generating paging controls that can operate on instances of IPagedList.
-///</summary>
+/// <summary>
+/// Extension methods for generating paging controls that can operate on instances of IPagedList.
+/// </summary>
 [PublicAPI]
 public static class HtmlHelperExtension
 {
-    ///<summary>
-    ///	Displays a configurable paging control for instances of PagedList.
-    ///</summary>
-    ///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
-    ///<param name = "list">The PagedList to use as the data source.</param>
-    ///<param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
-    ///<returns>Outputs the paging control HTML.</returns>
+    /// <summary>
+    /// Displays a configurable paging control for instances of PagedList.
+    /// </summary>
+    /// <param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
+    /// <param name = "list">The PagedList to use as the data source.</param>
+    /// <param name = "generatePageUrl">A function that takes the page number of the desired page and returns a URL-string that will load that page.</param>
+    /// <returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
         IPagedList? list,
         Func<int, string?> generatePageUrl)
@@ -26,14 +26,14 @@ public static class HtmlHelperExtension
         return PagedListPager(html, list, generatePageUrl, new PagedListRenderOptions());
     }
 
-    ///<summary>
-    ///	Displays a configurable paging control for instances of PagedList.
-    ///</summary>
-    ///<param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
-    ///<param name = "list">The PagedList to use as the data source.</param>
-    ///<param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
-    ///<param name = "options">Formatting options.</param>
-    ///<returns>Outputs the paging control HTML.</returns>
+    /// <summary>
+    /// Displays a configurable paging control for instances of PagedList.
+    /// </summary>
+    /// <param name = "html">This method is meant to hook off HtmlHelper as an extension method.</param>
+    /// <param name = "list">The PagedList to use as the data source.</param>
+    /// <param name = "generatePageUrl">A function that takes the page number  of the desired page and returns a URL-string that will load that page.</param>
+    /// <param name = "options">Formatting options.</param>
+    /// <returns>Outputs the paging control HTML.</returns>
     public static HtmlString PagedListPager(this IHtmlHelper html,
         IPagedList? list,
         Func<int, string?> generatePageUrl,
@@ -47,26 +47,26 @@ public static class HtmlHelperExtension
         return new HtmlString(htmlString);
     }
 
-    ///<summary>
+    /// <summary>
     /// Displays a configurable "Go To Page:" form for instances of PagedList.
-    ///</summary>
-    ///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
-    ///<param name="list">The PagedList to use as the data source.</param>
-    ///<param name="formAction">The URL this form should submit the GET request to.</param>
-    ///<returns>Outputs the "Go To Page:" form HTML.</returns>
+    /// </summary>
+    /// <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+    /// <param name="list">The PagedList to use as the data source.</param>
+    /// <param name="formAction">The URL this form should submit the GET request to.</param>
+    /// <returns>Outputs the "Go To Page:" form HTML.</returns>
     public static HtmlString PagedListGoToPageForm(this IHtmlHelper html, IPagedList list, string formAction)
     {
         return PagedListGoToPageForm(html, list, formAction, "page");
     }
 
-    ///<summary>
+    /// <summary>
     /// Displays a configurable "Go To Page:" form for instances of PagedList.
-    ///</summary>
-    ///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
-    ///<param name="list">The PagedList to use as the data source.</param>
-    ///<param name="formAction">The URL this form should submit the GET request to.</param>
-    ///<param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
-    ///<returns>Outputs the "Go To Page:" form HTML.</returns>
+    /// </summary>
+    /// <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+    /// <param name="list">The PagedList to use as the data source.</param>
+    /// <param name="formAction">The URL this form should submit the GET request to.</param>
+    /// <param name="inputFieldName">The querystring key this form should submit the new page number as.</param>
+    /// <returns>Outputs the "Go To Page:" form HTML.</returns>
     public static HtmlString PagedListGoToPageForm(this IHtmlHelper html,
         IPagedList list,
         string formAction,
@@ -75,14 +75,14 @@ public static class HtmlHelperExtension
         return PagedListGoToPageForm(html, list, formAction, new GoToFormRenderOptions(inputFieldName));
     }
 
-    ///<summary>
+    /// <summary>
     /// Displays a configurable "Go To Page:" form for instances of PagedList.
-    ///</summary>
-    ///<param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
-    ///<param name="list">The PagedList to use as the data source.</param>
-    ///<param name="formAction">The URL this form should submit the GET request to.</param>
-    ///<param name="options">Formatting options.</param>
-    ///<returns>Outputs the "Go To Page:" form HTML.</returns>
+    /// </summary>
+    /// <param name="html">This method is meant to hook off HtmlHelper as an extension method.</param>
+    /// <param name="list">The PagedList to use as the data source.</param>
+    /// <param name="formAction">The URL this form should submit the GET request to.</param>
+    /// <param name="options">Formatting options.</param>
+    /// <returns>Outputs the "Go To Page:" form HTML.</returns>
     public static HtmlString PagedListGoToPageForm(this IHtmlHelper html,
         IPagedList list,
         string formAction,

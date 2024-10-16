@@ -139,7 +139,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     }
 
     /// <summary>
-    /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+    /// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
     public IEnumerator<T> GetEnumerator()
@@ -148,7 +148,7 @@ public abstract class BasePagedList<T> : IPagedList<T>
     }
 
     /// <summary>
-    /// 	Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
+    /// Returns an enumerator that iterates through the BasePagedList&lt;T&gt;.
     /// </summary>
     /// <returns>A BasePagedList&lt;T&gt;.Enumerator for the BasePagedList&lt;T&gt;.</returns>
     IEnumerator IEnumerable.GetEnumerator()
@@ -156,21 +156,21 @@ public abstract class BasePagedList<T> : IPagedList<T>
         return GetEnumerator();
     }
 
-    ///<summary>
-    ///	Gets the element at the specified index.
-    ///</summary>
-    ///<param name = "index">The zero-based index of the element to get.</param>
+    /// <summary>
+    /// Gets the element at the specified index.
+    /// </summary>
+    /// <param name = "index">The zero-based index of the element to get.</param>
     public T this[int index] => Subset[index];
 
     /// <summary>
-    /// 	Gets the number of elements contained on this page.
+    /// Gets the number of elements contained on this page.
     /// </summary>
     public virtual int Count => Subset.Count;
 
-    ///<summary>
+    /// <summary>
     /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
+    /// </summary>
+    /// <returns>A non-enumerable copy of this paged list.</returns>
     [Obsolete("This method will be removed in future versions")]
     public PagedListMetaData GetMetaData() => new(this);
 }

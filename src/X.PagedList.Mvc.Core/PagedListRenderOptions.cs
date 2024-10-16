@@ -8,9 +8,9 @@ namespace X.PagedList.Mvc.Core;
 
 public class PagedListRenderOptions
 {
-    ///<summary>
+    /// <summary>
     /// The default settings render all navigation links and no descriptive text
-    ///</summary>
+    /// </summary>
     public PagedListRenderOptions()
     {
         HtmlEncoder = HtmlEncoder.Default;
@@ -50,14 +50,14 @@ public class PagedListRenderOptions
     /// </summary>
     public HtmlEncoder HtmlEncoder { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to the &lt;div&gt; element that wraps the paging control.
-    ///</summary>
+    /// </summary>
     public IEnumerable<string>? ContainerDivClasses { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSSClasses to append to the &lt;ul&gt; element in the paging control.
-    ///</summary>
+    /// </summary>
     public IEnumerable<string>? UlElementClasses { get; set; }
 
     /// <summary>
@@ -65,9 +65,9 @@ public class PagedListRenderOptions
     /// </summary>
     public IDictionary<string, string>? UlElementattributes { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to every &lt;li&gt; element in the paging control.
-    ///</summary>
+    /// </summary>
     public IEnumerable<string>? LiElementClasses { get; set; }
 
     /// <summary>
@@ -75,34 +75,34 @@ public class PagedListRenderOptions
     /// </summary>
     public string ActiveLiElementClass { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to every &lt;a&gt; or &lt;span&gt; element that represent each page in the paging control.
-    ///</summary>
+    /// </summary>
     public IEnumerable<string>? PageClasses { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to previous element in the paging control.
-    ///</summary>
+    /// </summary>
     public string PreviousElementClass { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to next element in the paging control.
-    ///</summary>
+    /// </summary>
     public string NextElementClass { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// CSS Classes to append to Ellipses element in the paging control.
-    ///</summary>
+    /// </summary>
     public string EllipsesElementClass { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// Specifies a CSS class to append to the first list item in the pager. If null or whitespace is defined, no additional class is added to first list item in list.
-    ///</summary>
+    /// </summary>
     public string? ClassToApplyToFirstListItemInPager { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// Specifies a CSS class to append to the last list item in the pager. If null or whitespace is defined, no additional class is added to last list item in list.
-    ///</summary>
+    /// </summary>
     public string? ClassToApplyToLastListItemInPager { get; set; }
 
     /// <summary>
@@ -110,124 +110,124 @@ public class PagedListRenderOptions
     /// </summary>
     public PagedListDisplayMode Display { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// If set to Always, render a hyperlink to the first page in the list. If set to IfNeeded, render the hyperlink only when the first page isn't visible in the paging control.
-    ///</summary>
+    /// </summary>
     public PagedListDisplayMode DisplayLinkToFirstPage { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// If set to Always, render a hyperlink to the last page in the list. If set to IfNeeded, render the hyperlink only when the last page isn't visible in the paging control.
-    ///</summary>
+    /// </summary>
     public PagedListDisplayMode DisplayLinkToLastPage { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// If set to Always, render a hyperlink to the previous page of the list. If set to IfNeeded, render the hyperlink only when there is a previous page in the list.
-    ///</summary>
+    /// </summary>
     public PagedListDisplayMode DisplayLinkToPreviousPage { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// If set to Always, render a hyperlink to the next page of the list. If set to IfNeeded, render the hyperlink only when there is a next page in the list.
-    ///</summary>
+    /// </summary>
     public PagedListDisplayMode DisplayLinkToNextPage { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// When true, includes hyperlinks for each page in the list.
-    ///</summary>
+    /// </summary>
     public bool DisplayLinkToIndividualPages { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// When true, shows the current page number and the total number of pages in the list.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Page 3 of 8."
-    ///</example>
+    /// </example>
     public bool DisplayPageCountAndCurrentLocation { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// When true, shows the one-based index of the first and last items on the page, and the total number of items in the list.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Showing items 75 through 100 of 183."
-    ///</example>
+    /// </example>
     public bool DisplayItemSliceAndTotal { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The maximum number of page numbers to display. Null displays all page numbers.
-    ///</summary>
+    /// </summary>
     public int? MaximumPageNumbersToDisplay { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// If true, adds an ellipsis where not all page numbers are being displayed.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "1 2 3 4 5 ...",
     /// "... 6 7 8 9 10 ...",
     /// "... 11 12 13 14 15"
-    ///</example>
+    /// </example>
     public bool DisplayEllipsesWhenNotShowingAllPageNumbers { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display when not all page numbers are displayed at once.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "..."
-    ///</example>
+    /// </example>
     public string EllipsesFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display inside the hyperlink to the first page. The one-based index of the page (always 1 in this case) is passed into the formatting function - use {0} to reference it.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "&lt;&lt; First"
-    ///</example>
+    /// </example>
     public string LinkToFirstPageFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display inside the hyperlink to the previous page. The one-based index of the page is passed into the formatting function - use {0} to reference it.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "&lt; Previous"
-    ///</example>
+    /// </example>
     public string LinkToPreviousPageFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display inside the hyperlink to each individual page. The one-based index of the page is passed into the formatting function - use {0} to reference it.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "{0}"
-    ///</example>
+    /// </example>
     public string LinkToIndividualPageFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display inside the hyperlink to the next page. The one-based index of the page is passed into the formatting function - use {0} to reference it.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Next &gt;"
-    ///</example>
+    /// </example>
     public string LinkToNextPageFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display inside the hyperlink to the last page. The one-based index of the page is passed into the formatting function - use {0} to reference it.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Last &gt;&gt;"
-    ///</example>
+    /// </example>
     public string LinkToLastPageFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display when DisplayPageCountAndCurrentLocation is true. Use {0} to reference the current page and {1} to reference the total number of pages.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Page {0} of {1}."
-    ///</example>
+    /// </example>
     public string PageCountAndCurrentLocationFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The pre-formatted text to display when DisplayItemSliceAndTotal is true. Use {0} to reference the first item on the page, {1} for the last item on the page, and {2} for the total number of items across all pages.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Showing items {0} through {1} of {2}."
-    ///</example>
+    /// </example>
     public string ItemSliceAndTotalFormat { get; set; }
 
     /// <summary>
@@ -245,9 +245,9 @@ public class PagedListRenderOptions
     /// </summary>
     public string? DelimiterBetweenPageNumbers { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// Also includes links to First and Last pages.
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions Classic => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -256,9 +256,9 @@ public class PagedListRenderOptions
         DisplayLinkToNextPage = PagedListDisplayMode.Always
     };
 
-    ///<summary>
+    /// <summary>
     /// Also includes links to First and Last pages.
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions ClassicPlusFirstAndLast => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Always,
@@ -267,9 +267,9 @@ public class PagedListRenderOptions
         DisplayLinkToNextPage = PagedListDisplayMode.Always
     };
 
-    ///<summary>
+    /// <summary>
     /// Shows only the Previous and Next links.
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions Minimal => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -279,9 +279,9 @@ public class PagedListRenderOptions
         DisplayLinkToIndividualPages = false
     };
 
-    ///<summary>
+    /// <summary>
     /// Shows Previous and Next links along with current page number and page count.
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions MinimalWithPageCountText => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -292,9 +292,9 @@ public class PagedListRenderOptions
         DisplayPageCountAndCurrentLocation = true
     };
 
-    ///<summary>
-    ///	Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
-    ///</summary>
+    /// <summary>
+    /// Shows Previous and Next links along with index of first and last items on page and total number of items across all pages.
+    /// </summary>
     public static PagedListRenderOptions MinimalWithItemCountText => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -305,9 +305,9 @@ public class PagedListRenderOptions
         DisplayItemSliceAndTotal = true
     };
 
-    ///<summary>
-    ///	Shows only links to each individual page.
-    ///</summary>
+    /// <summary>
+    /// Shows only links to each individual page.
+    /// </summary>
     public static PagedListRenderOptions PageNumbersOnly => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -317,9 +317,9 @@ public class PagedListRenderOptions
         DisplayEllipsesWhenNotShowingAllPageNumbers = false
     };
 
-    ///<summary>
-    ///	Shows Next and Previous while limiting to a max of 5 page numbers at a time.
-    ///</summary>
+    /// <summary>
+    /// Shows Next and Previous while limiting to a max of 5 page numbers at a time.
+    /// </summary>
     public static PagedListRenderOptions OnlyShowFivePagesAtATime => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -329,9 +329,9 @@ public class PagedListRenderOptions
         MaximumPageNumbersToDisplay = 5
     };
 
-    ///<summary>
+    /// <summary>
     /// Twitter Bootstrap 2's basic pager format (just Previous and Next links).
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions TwitterBootstrapPager => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,
@@ -347,9 +347,9 @@ public class PagedListRenderOptions
         LinkToNextPageFormat = "Next"
     };
 
-    ///<summary>
+    /// <summary>
     /// Twitter Bootstrap 2's basic pager format (just Previous and Next links), with aligned links.
-    ///</summary>
+    /// </summary>
     public static PagedListRenderOptions TwitterBootstrapPagerAligned => new PagedListRenderOptions
     {
         DisplayLinkToFirstPage = PagedListDisplayMode.Never,

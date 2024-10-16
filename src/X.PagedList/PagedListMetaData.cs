@@ -3,9 +3,9 @@ using JetBrains.Annotations;
 
 namespace X.PagedList;
 
-///<summary>
+/// <summary>
 /// Non-enumerable version of the PagedList class.
-///</summary>
+/// </summary>
 [PublicAPI]
 [Obsolete("This class will be removed in future versions")]
 public class PagedListMetaData : IPagedList
@@ -17,10 +17,10 @@ public class PagedListMetaData : IPagedList
     {
     }
 
-    ///<summary>
+    /// <summary>
     /// Non-enumerable version of the PagedList class.
-    ///</summary>
-    ///<param name="pagedList">A PagedList (likely enumerable) to copy metadata from.</param>
+    /// </summary>
+    /// <param name="pagedList">A PagedList (likely enumerable) to copy metadata from.</param>
     public PagedListMetaData(IPagedList pagedList)
     {
         PageCount = pagedList.PageCount;
