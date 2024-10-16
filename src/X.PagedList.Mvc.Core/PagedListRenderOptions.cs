@@ -56,12 +56,12 @@ public class PagedListRenderOptions
     public IEnumerable<string>? ContainerDivClasses { get; set; }
 
     /// <summary>
-    /// CSSClasses to append to the &lt;ul&gt; element in the paging control.
+    /// CSS Classes to append to the &lt;ul&gt; element in the paging control.
     /// </summary>
     public IEnumerable<string>? UlElementClasses { get; set; }
 
     /// <summary>
-    /// Attrinutes to appendto the &lt;ul&gt; element in the paging control
+    /// Attributes to append to the &lt;ul&gt; element in the paging control
     /// </summary>
     public IDictionary<string, string>? UlElementattributes { get; set; }
 
