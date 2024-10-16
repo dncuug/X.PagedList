@@ -13,10 +13,10 @@ namespace X.PagedList;
 [PublicAPI]
 public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
 {
-    ///<summary>
+    /// <summary>
     /// Gets a non-enumerable copy of this paged list.
-    ///</summary>
-    ///<returns>A non-enumerable copy of this paged list.</returns>
+    /// </summary>
+    /// <returns>A non-enumerable copy of this paged list.</returns>
     [Obsolete("This method will be removed in future versions")]
     PagedListMetaData GetMetaData();
 }

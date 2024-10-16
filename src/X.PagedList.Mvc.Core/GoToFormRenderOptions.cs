@@ -1,13 +1,13 @@
 ﻿namespace X.PagedList.Mvc.Core;
 
-///<summary>
+/// <summary>
 /// Options for configuring the output of <see cref = "HtmlHelper" />.
-///</summary>
+/// </summary>
 public class GoToFormRenderOptions
 {
-    ///<summary>
+    /// <summary>
     /// The default settings, with configurable querystring key (input field name).
-    ///</summary>
+    /// </summary>
     public GoToFormRenderOptions(string inputFieldName)
     {
         LabelFormat = "Go to page:";
@@ -16,27 +16,27 @@ public class GoToFormRenderOptions
         InputFieldType = "number";
     }
 
-    ///<summary>
+    /// <summary>
     /// The default settings.
-    ///</summary>
+    /// </summary>
     public GoToFormRenderOptions() : this("page")
     {
     }
 
-    ///<summary>
+    /// <summary>
     /// The text to show in the form's input label.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Go to page:"
-    ///</example>
+    /// </example>
     public string LabelFormat { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The text to show in the form's submit button.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "Go"
-    ///</example>
+    /// </example>
     public string SubmitButtonFormat { get; set; }
 
     /// <summary>
@@ -44,20 +44,20 @@ public class GoToFormRenderOptions
     /// </summary>
     public int SubmitButtonWidth { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The querystring key this form should submit the new page number as.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "page"
-    ///</example>
+    /// </example>
     public string InputFieldName { get; set; }
 
-    ///<summary>
+    /// <summary>
     /// The HTML input type for this field. Defaults to the HTML5 "number" type, but can be changed to "text" if targetting previous versions of HTML.
-    ///</summary>
-    ///<example>
+    /// </summary>
+    /// <example>
     /// "number"
-    ///</example>
+    /// </example>
     public string InputFieldType { get; set; }
 
     /// <summary>
