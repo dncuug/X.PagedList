@@ -5,7 +5,7 @@
     <Description>EF6 (legacy) extensions for X.PagedList library</Description>
     <LangVersion>default</LangVersion>
     <RootNamespace>X.PagedList.EF</RootNamespace>
-    <TargetFrameworks>net481;netstandard2.1;</TargetFrameworks>
+    <TargetFrameworks>net481;netstandard2.1</TargetFrameworks>
     <PackageTags>paging pagedlist paged list entity framework ef6</PackageTags>
   </PropertyGroup>
 
