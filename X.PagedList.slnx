@@ -4,7 +4,6 @@
     <Project Path="examples\Example.Website\Example.Website.csproj" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src\X.PagedList.EF6\X.PagedList.EF6.csproj" />
     <Project Path="src\X.PagedList.EF\X.PagedList.EF.csproj" Type="Classic C#" />
     <Project Path="src\X.PagedList.EntityFramework\X.PagedList.EntityFramework.csproj" Type="Classic C#" />
     <Project Path="src\X.PagedList.Mvc.Core\X.PagedList.Mvc.Core.csproj" Type="Classic C#" />
