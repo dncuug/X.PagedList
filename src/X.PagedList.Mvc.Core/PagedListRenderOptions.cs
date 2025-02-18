@@ -390,7 +390,7 @@ public class PagedListRenderOptions
                 {
                     foreach (var ajaxOption in ajaxOptions.ToUnobtrusiveHtmlAttributes())
                     {
-                        aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value?.ToString() ?? "");
+                        aTagBuilder.Attributes.Add(ajaxOption.Key, ajaxOption.Value.ToString() ?? "");
                     }
                 }
 
