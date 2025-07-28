@@ -11,12 +11,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath=""/>
-        <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+        <None Include="../../README.md" Pack="true" PackagePath="" />
+        <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" PrivateAssets="all"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" PrivateAssets="all" />
     </ItemGroup>
 
 </Project>

@@ -28,7 +28,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../../x-pagedlist.png" Pack="True" PackagePath=""/>
+        <None Include="../../x-pagedlist.png" Pack="True" PackagePath="" />
     </ItemGroup>
 
 </Project>
