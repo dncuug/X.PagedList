@@ -10,16 +10,6 @@ namespace X.PagedList.Tests;
 
 public class PagedListFacts
 {
-    //[Fact]
-    //public void Null_Data_Set_Doesnt_Throw_Exception()
-    //{
-    //	//act
-    //	Assert.ThrowsDelegate act = () => new PagedList<object>(null, 1, 10);
-
-    //	//assert
-    //	Assert.DoesNotThrow(act);
-    //}
-
     [Fact]
     public void PageNumber_Below_One_Throws_ArgumentOutOfRange()
     {
@@ -417,10 +407,7 @@ public class PagedListFacts
 
         var collection = BuildBlogList(50);
 
-        Func<Blog, int> keySelector = blog =>
-        {
-            return blog.BlogID;
-        };
+        Func<Blog, int> keySelector = blog => { return blog.BlogID; };
 
         var pagedList = new PagedList<Blog, int>(collection, keySelector, 2, pageSize);
 
