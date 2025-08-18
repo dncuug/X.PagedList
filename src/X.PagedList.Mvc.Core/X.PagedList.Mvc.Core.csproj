@@ -11,19 +11,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="README.md" Pack="true" PackagePath=""/>
+        <None Include="README.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
+        <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
-    
+
     <ItemGroup>
-        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\X.PagedList\X.PagedList.csproj" />
     </ItemGroup>
 
 </Project>
