@@ -16,7 +16,7 @@
         <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0'">
+    <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[7.0.20,8.0.0)" />
     </ItemGroup>
 
