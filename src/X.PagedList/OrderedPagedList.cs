@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 
 namespace X.PagedList;
 
@@ -17,7 +16,6 @@ namespace X.PagedList;
 /// </remarks>
 /// <typeparam name="T">The type of object the collection should contain.</typeparam>
 /// <typeparam name="TKey"></typeparam>
-[PublicAPI]
 public class PagedList<T, TKey> : BasePagedList<T>
 {
     /// <summary>

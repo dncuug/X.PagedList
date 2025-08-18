@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using System.Collections.Generic;
 
 namespace X.PagedList;
@@ -10,7 +9,6 @@ namespace X.PagedList;
 /// </summary>
 /// <typeparam name="T">The type of object the collection should contain.</typeparam>
 /// <seealso cref="IReadOnlyList{T}"/>
-[PublicAPI]
 public interface IPagedList<out T> : IPagedList, IReadOnlyList<T>
 {
     /// <summary>

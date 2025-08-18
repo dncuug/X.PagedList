@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace X.PagedList.Tests;
 
-public class TestDbAsyncQueryProvider { }
+public class TestDbAsyncQueryProvider
+{
+}
+
 internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
 {
     private readonly IQueryProvider _inner;
@@ -51,11 +54,13 @@ internal class TestDbAsyncQueryProvider<TEntity> : IDbAsyncQueryProvider
     {
         public TestDbAsyncEnumerable(IEnumerable<T> enumerable)
             : base(enumerable)
-        { }
+        {
+        }
 
         public TestDbAsyncEnumerable(Expression expression)
             : base(expression)
-        { }
+        {
+        }
 
         public IDbAsyncEnumerator<T> GetAsyncEnumerator()
         {

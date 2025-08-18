@@ -1,12 +1,10 @@
 ﻿using System;
-using JetBrains.Annotations;
 
 namespace X.PagedList;
 
 /// <summary>
 /// Non-enumerable version of the PagedList class.
 /// </summary>
-[PublicAPI]
 [Obsolete("This class will be removed in future versions")]
 public class PagedListMetaData : IPagedList
 {

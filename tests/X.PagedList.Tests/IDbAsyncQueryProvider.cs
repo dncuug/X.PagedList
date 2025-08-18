@@ -2,4 +2,6 @@
 
 namespace X.PagedList.Tests;
 
-public interface IDbAsyncQueryProvider : IQueryProvider { }
+public interface IDbAsyncQueryProvider : IQueryProvider
+{
+}

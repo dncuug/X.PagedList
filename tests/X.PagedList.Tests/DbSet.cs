@@ -2,4 +2,6 @@
 
 namespace X.PagedList.Tests;
 
-public class DbSet<T> : List<T> { }
+public class DbSet<T> : List<T>
+{
+}

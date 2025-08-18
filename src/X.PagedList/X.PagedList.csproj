@@ -15,8 +15,4 @@
         <None Include="../../LICENSE.md" Pack="true" PackagePath=""/>
     </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" PrivateAssets="all"/>
-    </ItemGroup>
-
 </Project>
