@@ -4,14 +4,12 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using JetBrains.Annotations;
 
 namespace X.PagedList.EntityFramework;
 
 /// <summary>
 /// EntityFramework extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
 /// </summary>
-[PublicAPI]
 public static class PagedListExtensions
 {
     /// <summary>
