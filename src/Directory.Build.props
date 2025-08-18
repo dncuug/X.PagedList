@@ -1,6 +1,7 @@
 <Project>
 
     <PropertyGroup>
+        <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -10,10 +11,10 @@
         <Copyright>Andrew Gubskiy © 2025</Copyright>
         <Company>Ukrainian .NET Developer Community</Company>
 
-        <Version>10.5.5</Version>
-        <AssemblyVersion>10.5.5</AssemblyVersion>
-        <FileVersion>10.5.5</FileVersion>
-        <PackageVersion>10.5.5</PackageVersion>
+        <Version>10.5.8</Version>
+        <AssemblyVersion>10.5.8</AssemblyVersion>
+        <FileVersion>10.5.8</FileVersion>
+        <PackageVersion>10.5.8</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
