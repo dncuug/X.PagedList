@@ -7,13 +7,13 @@
         <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
         
         <Authors>Troy Goode, Andrew Gubskiy</Authors>
-        <Copyright>Andrew Gubskiy © 2024</Copyright>
+        <Copyright>Andrew Gubskiy © 2025</Copyright>
         <Company>Ukrainian .NET Developer Community</Company>
 
-        <Version>10.5.3</Version>
-        <AssemblyVersion>10.5.3</AssemblyVersion>
-        <FileVersion>10.5.3</FileVersion>
-        <PackageVersion>10.5.3</PackageVersion>
+        <Version>10.5.5</Version>
+        <AssemblyVersion>10.5.5</AssemblyVersion>
+        <FileVersion>10.5.5</FileVersion>
+        <PackageVersion>10.5.5</PackageVersion>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/dncuug/X.PagedList.git</RepositoryUrl>
