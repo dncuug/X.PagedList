@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,7 +31,6 @@ public class PagedList<T> : BasePagedList<T>
     /// <exception cref="ArgumentNullException"></exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified index cannot be less than zero.</exception>
     /// <exception cref="ArgumentOutOfRangeException">The specified page size cannot be less than one.</exception>
-    [PublicAPI]
     public PagedList(IQueryable<T> superset, int pageNumber, int pageSize)
         : base(pageNumber, pageSize, superset.Count())
     {
@@ -100,7 +98,6 @@ public class PagedList<T> : BasePagedList<T>
     /// </summary>
     /// <param name="pageSize"></param>
     /// <returns></returns>
-    [PublicAPI]
     public static PagedList<T> Empty(int pageSize = DefaultPageSize) =>
         new(Array.Empty<T>(), 1, pageSize);
 }

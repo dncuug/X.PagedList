@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,7 +15,6 @@ namespace X.PagedList;
 /// <typeparam name = "T">The type of object the collection should contain.</typeparam>
 /// <seealso cref = "IPagedList{T}" />
 /// <seealso cref = "List{T}" />
-[PublicAPI]
 public abstract class BasePagedList<T> : IPagedList<T>
 {
     protected List<T> Subset = new();

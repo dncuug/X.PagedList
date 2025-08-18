@@ -1,5 +1,4 @@
 ﻿using System;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 
 namespace X.PagedList.Mvc.Core.Fluent;
@@ -11,7 +10,6 @@ namespace X.PagedList.Mvc.Core.Fluent;
 /// Chain configuration methods to control links, pagination behavior, and layout, then call one of the
 /// render methods (e.g., <see cref="Build()"/>, <see cref="Classic()"/>) to produce <see cref="IHtmlContent"/>.
 /// </remarks>
-[PublicAPI]
 public interface IHtmlPagerBuilder
 {
     /// <summary>

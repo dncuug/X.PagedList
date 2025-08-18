@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -9,7 +8,6 @@ namespace X.PagedList.Mvc.Core;
 /// <summary>
 /// Extension methods for generating paging controls that can operate on instances of IPagedList.
 /// </summary>
-[PublicAPI]
 public static class HtmlHelperExtension
 {
     /// <summary>
