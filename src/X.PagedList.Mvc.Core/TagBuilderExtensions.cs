@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text.Encodings.Web;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -11,7 +10,6 @@ namespace X.PagedList.Mvc.Core;
 /// like adding CSS classes, merging attributes, manipulating inner content,
 /// and rendering the tag to a string with a configurable <see cref="HtmlEncoder"/>.
 /// </summary>
-[PublicAPI]
 public static class TagBuilderExtensions
 {
     /// <summary>

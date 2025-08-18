@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using JetBrains.Annotations;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using X.PagedList.Extensions;
@@ -13,7 +12,6 @@ namespace X.PagedList.Mvc.Core.Fluent;
 /// Provides a simple entry point to either build and render a pager immediately, or obtain a fluent builder
 /// (<see cref="IHtmlPagerBuilder"/>) to further configure the pager before rendering.
 /// </remarks>
-[PublicAPI]
 public static class HtmlPagerExtensions
 {
     /// <summary>
