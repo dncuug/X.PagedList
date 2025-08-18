@@ -11,7 +11,6 @@ namespace X.PagedList.EF;
 /// <summary>
 /// EntityFramework extension methods designed to simplify the creation of instances of <see cref="PagedList{T}"/>.
 /// </summary>
-[PublicAPI]
 public static class PagedListExtensions
 {
     /// <summary>

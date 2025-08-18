@@ -7,35 +7,69 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace X.PagedList.Mvc.Core;
 
+/// <summary>
+/// HTML helper responsible for building pagination markup and a "go to page" form
+/// using <see cref="TagBuilder"/> instances produced by <see cref="ITagBuilderFactory"/>.
+/// </summary>
 public class HtmlHelper
 {
     private readonly ITagBuilderFactory _tagBuilderFactory;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HtmlHelper"/> class.
+    /// </summary>
+    /// <param name="tagBuilderFactory">Factory used to create <see cref="TagBuilder"/> instances.</param>
     public HtmlHelper(ITagBuilderFactory tagBuilderFactory)
     {
         _tagBuilderFactory = tagBuilderFactory;
     }
 
+    /// <summary>
+    /// Sets the inner text content of a tag (HTML-encoded).
+    /// </summary>
+    /// <param name="tagBuilder">The tag to mutate.</param>
+    /// <param name="innerText">The text to set as content.</param>
     private static void SetInnerText(TagBuilder tagBuilder, string innerText)
     {
         tagBuilder.SetInnerText(innerText);
     }
 
+    /// <summary>
+    /// Appends raw HTML to the tag's inner content (not encoded).
+    /// </summary>
+    /// <param name="tagBuilder">The tag to mutate.</param>
+    /// <param name="innerHtml">The HTML fragment to append.</param>
     private static void AppendHtml(TagBuilder tagBuilder, string innerHtml)
     {
         tagBuilder.AppendHtml(innerHtml);
     }
 
+    /// <summary>
+    /// Renders a <see cref="TagBuilder"/> to its HTML string using normal render mode.
+    /// </summary>
+    /// <param name="tagBuilder">The tag to render.</param>
+    /// <returns>The rendered HTML.</returns>
     private static string TagBuilderToString(TagBuilder tagBuilder)
     {
         return tagBuilder.ToString(TagRenderMode.Normal);
     }
 
+    /// <summary>
+    /// Renders a <see cref="TagBuilder"/> to its HTML string using the specified render mode.
+    /// </summary>
+    /// <param name="tagBuilder">The tag to render.</param>
+    /// <param name="renderMode">The render mode to use.</param>
+    /// <returns>The rendered HTML.</returns>
     private static string TagBuilderToString(TagBuilder tagBuilder, TagRenderMode renderMode)
     {
         return tagBuilder.ToString(renderMode);
     }
 
+    /// <summary>
+    /// Wraps the provided text in an &lt;li&gt; element.
+    /// </summary>
+    /// <param name="text">The text to place inside the list item.</param>
+    /// <returns>An &lt;li&gt; <see cref="TagBuilder"/>.</returns>
     private TagBuilder WrapInListItem(string text)
     {
         var li = _tagBuilderFactory.Create("li");
@@ -45,6 +79,13 @@ public class HtmlHelper
         return li;
     }
 
+    /// <summary>
+    /// Wraps the provided inner tag in an &lt;li&gt; element and applies optional classes and transformation.
+    /// </summary>
+    /// <param name="inner">The inner tag to place inside the list item.</param>
+    /// <param name="options">Rendering options that may transform the link.</param>
+    /// <param name="classes">Optional CSS classes for the &lt;li&gt; element.</param>
+    /// <returns>An &lt;li&gt; <see cref="TagBuilder"/> containing the inner tag.</returns>
     private TagBuilder WrapInListItem(TagBuilder inner, PagedListRenderOptions? options, params string[] classes)
     {
         var li = _tagBuilderFactory.Create("li");
@@ -64,10 +105,17 @@ public class HtmlHelper
         return li;
     }
 
+    /// <summary>
+    /// Builds the "first page" link item.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; with an anchor to the first page, or a disabled item if already on first page.</returns>
     private TagBuilder First(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         const int targetPageNumber = 1;
-        
+
         var first = _tagBuilderFactory.Create("a");
 
         AppendHtml(first, string.Format(options.LinkToFirstPageFormat, targetPageNumber));
@@ -87,10 +135,17 @@ public class HtmlHelper
         return WrapInListItem(first, options, "PagedList-skipToFirst");
     }
 
+    /// <summary>
+    /// Builds the "previous page" link item.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; with an anchor to the previous page, or a disabled item if not available.</returns>
     private TagBuilder Previous(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageNumber - 1;
-        
+
         var previous = _tagBuilderFactory.Create("a");
 
         AppendHtml(previous, string.Format(options.LinkToPreviousPageFormat, targetPageNumber));
@@ -112,11 +167,19 @@ public class HtmlHelper
         return WrapInListItem(previous, options, options.PreviousElementClass);
     }
 
+    /// <summary>
+    /// Builds an individual page number item, using &lt;span&gt; for the active page and &lt;a&gt; for others.
+    /// </summary>
+    /// <param name="i">The page number to render.</param>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; containing the page number element.</returns>
     private TagBuilder Page(int i, IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         var format = options.FunctionToDisplayEachPageNumber
                      ?? (pageNumber => string.Format(options.LinkToIndividualPageFormat, pageNumber));
-        
+
         var targetPageNumber = i;
 
         var page = i == list.PageNumber
@@ -140,6 +203,13 @@ public class HtmlHelper
         return WrapInListItem(page, options);
     }
 
+    /// <summary>
+    /// Builds the "next page" link item.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; with an anchor to the next page, or a disabled item if not available.</returns>
     private TagBuilder Next(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageNumber + 1;
@@ -164,6 +234,13 @@ public class HtmlHelper
         return WrapInListItem(next, options, options.NextElementClass);
     }
 
+    /// <summary>
+    /// Builds the "last page" link item.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; with an anchor to the last page, or a disabled item if already on last page.</returns>
     private TagBuilder Last(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         var targetPageNumber = list.PageCount;
@@ -186,6 +263,12 @@ public class HtmlHelper
         return WrapInListItem(last, options, "PagedList-skipToLast");
     }
 
+    /// <summary>
+    /// Builds a disabled item showing the current page number and total page count.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; containing the page count/location text.</returns>
     private TagBuilder PageCountAndLocationText(IPagedList list, PagedListRenderOptions options)
     {
         var text = _tagBuilderFactory.Create("a");
@@ -195,6 +278,12 @@ public class HtmlHelper
         return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
     }
 
+    /// <summary>
+    /// Builds a disabled item showing the current item slice and total item count.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="options">Render options.</param>
+    /// <returns>An &lt;li&gt; containing the item slice/total text.</returns>
     private TagBuilder ItemSliceAndTotalText(IPagedList list, PagedListRenderOptions options)
     {
         var text = _tagBuilderFactory.Create("a");
@@ -204,6 +293,14 @@ public class HtmlHelper
         return WrapInListItem(text, options, "PagedList-pageCountAndLocation", "disabled");
     }
 
+    /// <summary>
+    /// Builds a "previous ellipsis" item that links to the page before the first displayed page.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <param name="firstPageToDisplay">The first page number currently displayed.</param>
+    /// <returns>An &lt;li&gt; containing the ellipsis link or a disabled item.</returns>
     private TagBuilder PreviousEllipsis(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options, int firstPageToDisplay)
     {
         var previous = _tagBuilderFactory.Create("a");
@@ -230,6 +327,14 @@ public class HtmlHelper
         return WrapInListItem(previous, options, options.EllipsesElementClass);
     }
 
+    /// <summary>
+    /// Builds a "next ellipsis" item that links to the page after the last displayed page.
+    /// </summary>
+    /// <param name="list">The paged list.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options.</param>
+    /// <param name="lastPageToDisplay">The last page number currently displayed.</param>
+    /// <returns>An &lt;li&gt; containing the ellipsis link or a disabled item.</returns>
     private TagBuilder NextEllipsis(IPagedList list, Func<int, string?> generatePageUrl, PagedListRenderOptions options, int lastPageToDisplay)
     {
         var next = _tagBuilderFactory.Create("a");
@@ -256,6 +361,16 @@ public class HtmlHelper
         return WrapInListItem(next, options, options.EllipsesElementClass);
     }
 
+    /// <summary>
+    /// Builds a complete pager as an outer &lt;div&gt; containing a &lt;ul&gt; with list items for first/prev/next/last,
+    /// page number links, ellipses, and optional informational items.
+    /// </summary>
+    /// <param name="pagedList">The paged list to render. If null, an empty list is assumed.</param>
+    /// <param name="generatePageUrl">Function that generates a URL for a given page number.</param>
+    /// <param name="options">Render options controlling appearance and behavior.</param>
+    /// <returns>
+    /// The HTML for the pager, or <c>null</c> if rendering is suppressed by <see cref="PagedListRenderOptions.Display"/>.
+    /// </returns>
     public string? PagedListPager(IPagedList? pagedList, Func<int, string?> generatePageUrl, PagedListRenderOptions options)
     {
         var list = pagedList ?? new StaticPagedList<int>(ImmutableList<int>.Empty, 1, 10, 0);
@@ -428,6 +543,13 @@ public class HtmlHelper
         return TagBuilderToString(outerDiv);
     }
 
+    /// <summary>
+    /// Builds a "go to page" form that submits a GET request with the desired page number.
+    /// </summary>
+    /// <param name="list">The current paged list used to initialize the input with the current page number.</param>
+    /// <param name="formAction">The form action URL.</param>
+    /// <param name="options">Options controlling the fields, classes, and sizes.</param>
+    /// <returns>The HTML for the form.</returns>
     public string PagedListGoToPageForm(IPagedList list, string formAction, GoToFormRenderOptions options)
     {
         var form = _tagBuilderFactory.Create("form");
