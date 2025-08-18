@@ -169,6 +169,5 @@ public abstract class BasePagedList<T> : IPagedList<T>
     /// Gets a non-enumerable copy of this paged list.
     /// </summary>
     /// <returns>A non-enumerable copy of this paged list.</returns>
-    [Obsolete("This method will be removed in future versions")]
     public PagedListMetaData GetMetaData() => new(this);
 }
