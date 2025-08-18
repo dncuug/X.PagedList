@@ -28,7 +28,7 @@ public class StaticPagedListFacts
     public void TotalItemCount_Below_One_Throws_Exception()
     {
         //arrange
-        int[] data = new[] { 1, 2, 3, 4, 5 };
+        var data = new[] { 1, 2, 3, 4, 5 };
 
         //assert
         Assert.Throws<ArgumentOutOfRangeException>(() => new StaticPagedList<int>(data, 1, 10, -1));
