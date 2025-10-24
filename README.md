@@ -4,7 +4,6 @@
 [![Subscribe on X](https://img.shields.io/badge/Subscribe_on_X-000000?logo=x&logoColor=white&style=for-the-badge)](https://x.com/andrew_gubskiy)
 [![NuGet Downloads](https://img.shields.io/nuget/dt/X.PagedList?style=for-the-badge&label=NuGet%20Downloads&color=004880&logo=nuget&logoColor=white)](https://www.nuget.org/packages/X.PagedList)
 
-
 ## What is this?
 This is a fork of [Troy's](https://github.com/troygoode) project PagedList. The main difference is that X.PagedList is a library that supports the 
 modern .NET platform — you can use it everywhere the .NET platform is supported.
