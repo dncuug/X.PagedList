@@ -1,7 +1,8 @@
 # X.PagedList
 
-[![NuGet Version](http://img.shields.io/nuget/v/X.PagedList.svg?style=flat)](https://www.nuget.org/packages/X.PagedList/)
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/andrew_gubskiy.svg?style=social&label=Follow%20me!)](https://x.com/intent/user?screen_name=andrew_gubskiy)
+[![Sponsor on GitHub](https://img.shields.io/badge/Sponsor_on_GitHub-ff7f00?logo=github&logoColor=white&style=for-the-badge)](https://github.com/sponsors/a-gubskiy)
+[![Subscribe on X](https://img.shields.io/badge/Subscribe_on_X-000000?logo=x&logoColor=white&style=for-the-badge)](https://x.com/andrew_gubskiy)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/X.PagedList?style=for-the-badge&label=NuGet%20Downloads&color=004880&logo=nuget&logoColor=white)](https://www.nuget.org/packages/X.PagedList)
 
 
 ## What is this?
